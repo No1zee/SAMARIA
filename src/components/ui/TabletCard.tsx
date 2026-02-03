@@ -6,10 +6,11 @@ interface TabletCardProps {
   title: string;
   description: string;
   icon: React.ReactNode;
+  deliverables?: string[];
   delay?: number;
 }
 
-export default function TabletCard({ title, description, icon, delay = 0 }: TabletCardProps) {
+export default function TabletCard({ title, description, icon, deliverables, delay = 0 }: TabletCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -39,9 +40,23 @@ export default function TabletCard({ title, description, icon, delay = 0 }: Tabl
         </h3>
 
         {/* Description */}
-        <p className="text-off-white/70 text-sm leading-relaxed">
+        <p className="text-off-white/70 text-sm leading-relaxed mb-6">
           {description}
         </p>
+
+        {/* Deliverables */}
+        {deliverables && deliverables.length > 0 && (
+          <div className="w-full mt-4 pt-4 border-t border-brand-gold/10">
+            <ul className="space-y-2 text-left">
+              {deliverables.map((item, index) => (
+                <li key={index} className="flex items-start gap-2 text-xs text-off-white/60">
+                  <span className="text-brand-gold mt-0.5">→</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
 
       {/* Bottom Status Bar */}

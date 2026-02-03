@@ -66,23 +66,16 @@ export default function Navbar() {
             <Link
               key={item.name}
               href={item.href}
-              className="font-ui text-xs uppercase tracking-[0.2em] text-off-white/70 hover:text-brand-gold transition-colors relative group"
+              className="font-ui text-xs uppercase tracking-[0.2em] text-off-white/70 hover:text-brand-gold transition-colors relative group focus:outline-none focus:text-brand-gold"
             >
               {item.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-px bg-brand-gold group-hover:w-full transition-all duration-300"></span>
+              <span className="absolute -bottom-1 left-0 w-0 h-px bg-brand-gold group-hover:w-full group-focus:w-full transition-all duration-300"></span>
             </Link>
           ))}
         </div>
 
-        {/* CTA Button */}
-        <div className="hidden md:block">
-            <Link 
-                href="#contact"
-                className="font-ui text-xs font-bold uppercase tracking-widest bg-gold-metallic text-royal-obsidian px-6 py-3 hover:brightness-110 transition-all duration-300 clip-path-slant"
-            >
-                Initiate
-            </Link>
-        </div>
+
+
 
         {/* Mobile Menu Toggle */}
         <button 

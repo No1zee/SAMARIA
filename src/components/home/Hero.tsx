@@ -41,9 +41,19 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-off-white/80 max-w-2xl mx-auto mb-12 text-lg md:text-xl font-light"
+            className="text-off-white/80 max-w-2xl mx-auto mb-4 text-lg md:text-xl font-light"
         >
             Forging digital fortresses with the precision of the ancients and the speed of the future.
+        </motion.p>
+
+        {/* Value Proposition */}
+        <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="text-off-white/60 max-w-3xl mx-auto mb-12 text-base md:text-lg"
+        >
+            Full-stack web development for startups and SMEs building secure, high-performance applications
         </motion.p>
 
         {/* CTAs */}

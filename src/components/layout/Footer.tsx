@@ -33,18 +33,6 @@ export default function Footer() {
             </Link>
         </div>
 
-        {/* Socials */}
-        <div className="flex items-center gap-6">
-            <Link href="#" className="text-off-white/60 hover:text-brand-gold transition-colors">
-                <Twitter size={18} />
-            </Link>
-            <Link href="#" className="text-off-white/60 hover:text-brand-gold transition-colors">
-                <Linkedin size={18} />
-            </Link>
-            <Link href="#" className="text-off-white/60 hover:text-brand-gold transition-colors">
-                <Github size={18} />
-            </Link>
-        </div>
       </div>
     </footer>
   );

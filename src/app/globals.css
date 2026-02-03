@@ -72,6 +72,12 @@
     background-color: var(--color-brand-gold);
     color: var(--color-royal-obsidian);
   }
+
+  /* Focus Styles for Accessibility */
+  *:focus-visible {
+    outline: 2px solid var(--color-brand-gold);
+    outline-offset: 2px;
+  }
 }
 
 @utility clip-path-slant {

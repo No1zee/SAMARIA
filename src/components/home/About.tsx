@@ -28,7 +28,7 @@ export default function About() {
             </div>
             
             <h2 className="text-off-white mb-8 leading-tight">
-                We Build Digital <span className="text-gold-metallic">Fortresses</span>.
+                We Build Digital Fortresses.
             </h2>
 
             <div className="space-y-6 text-off-white/80 text-lg leading-relaxed">
@@ -40,14 +40,14 @@ export default function About() {
                 </p>
             </div>
 
-            <div className="mt-10 flex gap-8">
+            <div className="mt-10 space-y-6">
                 <div className="flex flex-col gap-2 border-l-2 border-brand-gold/30 pl-4">
-                    <span className="font-heading text-2xl text-brand-gold">100%</span>
-                    <span className="font-ui text-xs uppercase tracking-widest text-off-white/50">Precision</span>
+                    <span className="font-heading text-2xl text-brand-gold">100% Precision</span>
+                    <span className="font-ui text-xs text-off-white/60 leading-relaxed">Rigorous QA • Zero-defect deployments</span>
                 </div>
                 <div className="flex flex-col gap-2 border-l-2 border-brand-gold/30 pl-4">
-                    <span className="font-heading text-2xl text-brand-gold">∞</span>
-                    <span className="font-ui text-xs uppercase tracking-widest text-off-white/50">Scalability</span>
+                    <span className="font-heading text-2xl text-brand-gold">∞ Scalability</span>
+                    <span className="font-ui text-xs text-off-white/60 leading-relaxed">Cloud-native architecture • Auto-scaling infrastructure</span>
                 </div>
             </div>
         </motion.div>
@@ -75,7 +75,7 @@ export default function About() {
                 </div>
 
                 {/* Code Block */}
-                <code className="font-ui text-xs text-off-white/70 block">
+                <code className="font-mono text-xs text-off-white/70 block" style={{ fontFamily: "'JetBrains Mono', 'Fira Code', 'Consolas', monospace" }}>
                     <span className="text-purple-400">const</span> <span className="text-yellow-400">Manifesto</span> = &#123;<br/>
                     &nbsp;&nbsp;mission: <span className="text-green-400">"Empower Expansion"</span>,<br/>
                     &nbsp;&nbsp;values: [<br/>
@@ -83,6 +83,7 @@ export default function About() {
                     &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"Excellence"</span>,<br/>
                     &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"Legacy"</span><br/>
                     &nbsp;&nbsp;],<br/>
+                    &nbsp;&nbsp;stack: [<span className="text-cyan-400">"Next.js"</span>, <span className="text-cyan-400">"Node"</span>, <span className="text-cyan-400">"PostgreSQL"</span>],<br/>
                     &nbsp;&nbsp;status: <span className="text-blue-400">"ONLINE"</span><br/>
                     &#125;;<br/><br/>
                     <span className="text-gray-500">// Executing core protocols...</span><br/>
