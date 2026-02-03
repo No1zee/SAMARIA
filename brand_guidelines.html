@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samaria Tech Brand Guidelines v1.0</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Orbitron:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-royal-obsidian: #1A1A1B;
+            --color-metallic-brass: #C5A059;
+            --color-ivory-glow: #F5F5F0;
+            --color-toledo: #40061B;
+            --color-black-bean: #031812;
+            --color-brass-light: #F6BD67;
+            --color-brass-lighter: #F9CC88;
+            --color-bean-mid: #20605B;
+            --color-bean-light: #0D8980;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--color-ivory-glow);
+            color: var(--color-royal-obsidian);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2 {
+            font-family: 'Cinzel Decorative', serif;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--color-royal-obsidian) 0%, #2a2a2c 100%);
+            color: var(--color-ivory-glow);
+            padding: 80px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 20px,
+                rgba(197, 160, 89, 0.03) 20px,
+                rgba(197, 160, 89, 0.03) 40px
+            );
+            animation: circuitMove 20s linear infinite;
+        }
+
+        @keyframes circuitMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(40px, 40px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-metallic-brass);
+            text-shadow: 0 2px 10px rgba(197, 160, 89, 0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--color-ivory-glow);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero .meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .hero .meta span {
+            padding: 8px 16px;
+            background: rgba(197, 160, 89, 0.1);
+            border: 1px solid var(--color-metallic-brass);
+            border-radius: 20px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 40px;
+        }
+
+        .section-dark {
+            background: var(--color-royal-obsidian);
+            color: var(--color-ivory-glow);
+        }
+
+        .section-light {
+            background: var(--color-ivory-glow);
+            color: var(--color-royal-obsidian);
+        }
+
+        .section-accent {
+            background: linear-gradient(135deg, var(--color-toledo) 0%, var(--color-black-bean) 100%);
+            color: var(--color-ivory-glow);
+        }
+
+        .section-brass {
+            background: linear-gradient(135deg, var(--color-metallic-brass) 0%, var(--color-brass-light) 100%);
+            color: var(--color-royal-obsidian);
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-metallic-brass);
+        }
+
+        .section-dark h2, .section-accent h2 {
+            color: var(--color-metallic-brass);
+        }
+
+        .section-light h2 {
+            color: var(--color-royal-obsidian);
+        }
+
+        .section-brass h2 {
+            color: var(--color-royal-obsidian);
+        }
+
+        .section h3 {
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem 0;
+            color: var(--color-brass-light);
+        }
+
+        .section-light h3 {
+            color: var(--color-metallic-brass);
+        }
+
+        .section-brass h3 {
+            color: var(--color-royal-obsidian);
+            opacity: 0.8;
+        }
+
+        /* Logo Display */
+        .logo-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .logo-card {
+            background: var(--color-ivory-glow);
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-dark .logo-card {
+            background: rgba(245, 245, 240, 0.05);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        .logo-card img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .logo-card h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--color-metallic-brass);
+        }
+
+        .logo-card p {
+            font-size: 0.9rem;
+            color: var(--color-royal-obsidian);
+        }
+
+        .section-dark .logo-card p {
+            color: var(--color-ivory-glow);
+            opacity: 0.8;
+        }
+
+        /* Color Palette */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .color-swatch {
+            text-align: center;
+        }
+
+        .color-box {
+            height: 150px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .color-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .color-hex {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: var(--color-metallic-brass);
+        }
+
+        .section-light .color-hex {
+            color: var(--color-royal-obsidian);
+        }
+
+        /* Typography Showcase */
+        .type-showcase {
+            margin: 40px 0;
+        }
+
+        .type-example {
+            background: rgba(197, 160, 89, 0.05);
+            padding: 30px;
+            margin: 20px 0;
+            border-left: 4px solid var(--color-metallic-brass);
+            border-radius: 8px;
+        }
+
+        .section-dark .type-example {
+            background: rgba(197, 160, 89, 0.1);
+        }
+
+        .type-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-metallic-brass);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .h1-example {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .h2-example {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 2.25rem;
+            font-weight: 700;
+        }
+
+        .h3-example {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .body-example {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        li {
+            margin: 10px 0;
+            line-height: 1.8;
+        }
+
+        li strong {
+            color: var(--color-metallic-brass);
+        }
+
+        .section-brass li strong {
+            color: var(--color-royal-obsidian);
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            margin: 30px 0;
+            border-collapse: collapse;
+            background: rgba(245, 245, 240, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        th {
+            background: var(--color-metallic-brass);
+            color: var(--color-royal-obsidian);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        td {
+            font-size: 0.95rem;
+        }
+
+        code {
+            background: rgba(197, 160, 89, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: var(--color-brass-light);
+        }
+
+        .section-light code {
+            color: var(--color-toledo);
+        }
+
+        /* Quote/Motto */
+        .motto {
+            background: linear-gradient(135deg, rgba(197, 160, 89, 0.1) 0%, rgba(197, 160, 89, 0.05) 100%);
+            padding: 40px;
+            border-left: 5px solid var(--color-metallic-brass);
+            margin: 40px 0;
+            border-radius: 8px;
+        }
+
+        .motto blockquote {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            line-height: 1.8;
+            color: var(--color-metallic-brass);
+            margin-bottom: 15px;
+        }
+
+        .motto cite {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            color: var(--color-ivory-glow);
+            opacity: 0.8;
+        }
+
+        .section-light .motto cite {
+            color: var(--color-royal-obsidian);
+        }
+
+        /* Applications Grid */
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .app-card {
+            background: rgba(197, 160, 89, 0.05);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        .app-card h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--color-metallic-brass);
+        }
+
+        .section-light .app-card h4 {
+            color: var(--color-royal-obsidian);
+        }
+
+        /* Checklist */
+        .checklist {
+            margin: 30px 0;
+        }
+
+        .checklist li {
+            list-style: none;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .checklist li::before {
+            content: '□';
+            position: absolute;
+            left: 0;
+            color: var(--color-metallic-brass);
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--color-royal-obsidian);
+            color: var(--color-ivory-glow);
+            padding: 60px 40px 40px 40px;
+            text-align: center;
+            border-top: 3px solid var(--color-metallic-brass);
+        }
+
+        .footer h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--color-metallic-brass);
+        }
+
+        .footer p {
+            margin: 10px 0;
+            opacity: 0.8;
+        }
+
+        .footer a {
+            color: var(--color-metallic-brass);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: var(--color-brass-light);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .logo-showcase,
+            .color-grid,
+            .applications-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero .meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            table {
+                font-size: 0.85rem;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Code Blocks */
+        pre {
+            background: rgba(26, 26, 27, 0.8);
+            color: var(--color-ivory-glow);
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-left: 4px solid var(--color-metallic-brass);
+        }
+
+        pre code {
+            background: transparent;
+            color: var(--color-brass-light);
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Samaria Tech Brand Guidelines</h1>
+            <p class="subtitle">Engineering Africa's Digital Future</p>
+            <div class="meta">
+                <span>Version 1.0</span>
+                <span>February 3, 2026</span>
+                <span>Edward, Full-Stack Software Engineer</span>
+                <span>Official Brand Standard</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overview Section -->
+    <section class="section section-light">
+        <div class="container">
+            <h2>1. Overview</h2>
+            <p>This brand guideline document establishes the visual identity system for Samaria Tech, an IT solutions company specializing in software design, automation, and bespoke IT ecosystems for African businesses. The purpose of this document is to ensure consistency, professionalism, and brand recognition across all digital and physical touchpoints as Samaria scales from word-of-mouth to market leader.</p>
+            <p><strong>Brand Positioning:</strong> The premier architect of Africa's digital future—where ancient wisdom meets cutting-edge innovation.</p>
+        </div>
+    </section>
+
+    <!-- Brand Strategy Section -->
+    <section class="section section-dark">
+        <div class="container">
+            <h2>2. Brand Strategy</h2>
+            
+            <h3>2.1 Vision</h3>
+            <p>To be the digital cornerstone of a borderless, technologically sovereign Africa, where ancient wisdom powers the innovations of the next millennium.</p>
+
+            <h3>2.2 Mission</h3>
+            <p>To engineer bespoke IT ecosystems and AI-driven solutions that automate progress, elevate African brands, and build the infrastructure for the continent's digital empire.</p>
+
+            <h3>2.3 Core Values</h3>
+            <ul>
+                <li><strong>Heritage-Driven Innovation</strong> — We look back at our roots to see further into the future</li>
+                <li><strong>Architectural Precision</strong> — Like the stone-masons of ancient Samaria, our code and designs are built to last generations</li>
+                <li><strong>Sovereign Intelligence</strong> — Empowering African businesses to own their data, their narrative, and their destiny</li>
+                <li><strong>Bespoke Craftsmanship</strong> — No off-the-shelf thinking; every solution is a custom-carved masterpiece</li>
+            </ul>
+
+            <h3>2.4 Brand Motto</h3>
+            <div class="motto">
+                <blockquote>"By wisdom a house is built, and through understanding it is established; through knowledge its rooms are filled with rare and beautiful treasures."</blockquote>
+                <cite>— Proverbs 24:3-4</cite>
+            </div>
+            <p>This scripture anchors our brand in timeless wisdom, strategic thinking, and the belief that technology should build lasting value.</p>
+        </div>
+    </section>
+
+    <!-- Logo System Section -->
+    <section class="section section-accent">
+        <div class="container">
+            <h2>3. Logo System</h2>
+            
+            <h3>3.1 Logo Anatomy</h3>
+            <p>The Samaria Tech logo system is designed to communicate both heritage and innovation through carefully balanced elements:</p>
+
+            <div class="logo-showcase">
+                <div class="logo-card">
+                    <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/3aa9d826-0f78-4aae-ade7-ca05a9efd4a7" alt="Samaria Tech Primary Logo">
+                    <h4>Primary Full Color Logo</h4>
+                    <p>Metallic Brass (#C5A059) on light backgrounds</p>
+                </div>
+            </div>
+
+            <p><strong>The Samaria Tech wordmark features:</strong></p>
+            <ul>
+                <li><strong>The Goddess Figure</strong> — A classical feminine silhouette crowned with a laurel wreath, representing wisdom, sovereignty, and ancient knowledge. She holds a laptop radiating light, symbolizing the fusion of timeless wisdom with modern technology.</li>
+                <li><strong>Circuit Halo</strong> — Flowing circuit pathways arc above her, forming a modern halo that represents data flow, AI intelligence, and digital transformation.</li>
+                <li><strong>SAMARiA Wordmark</strong> — Set in bold, wide geometric sans-serif typography with distinctive lowercase 'i', conveying strength, modernity, and architectural precision.</li>
+                <li><strong>Color Palette</strong> — Metallic Brass (<code>#C5A059</code>) for the primary mark, representing African gold heritage and premium positioning.</li>
+            </ul>
+
+            <p><strong>Symbol Meaning:</strong></p>
+            <ul>
+                <li><strong>Ancient Wisdom</strong> — The crowned goddess figure evokes classical African and Mediterranean heritage, referencing the ancient city of Samaria</li>
+                <li><strong>Digital Sovereignty</strong> — The laptop symbolizes technological empowerment and modern solutions</li>
+                <li><strong>Divine Innovation</strong> — The circuit halo merges spiritual enlightenment with AI/data intelligence</li>
+                <li><strong>Bespoke Craftsmanship</strong> — Every detail is intentionally designed to communicate precision and excellence</li>
+            </ul>
+
+            <h3>3.2 Logo Lockup Variations</h3>
+            
+            <div class="logo-showcase">
+                <div class="logo-card">
+                    <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/3aa9d826-0f78-4aae-ade7-ca05a9efd4a7" alt="Full Color Logo">
+                    <h4>Full Color Lockup (Primary)</h4>
+                    <p>Complete Samaria logo with goddess figure and wordmark in Metallic Brass. This is the primary brand mark for all official applications.</p>
+                </div>
+
+                <div class="logo-card">
+                    <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/d26d3aef-74da-4d37-aa45-d9e838cd048c" alt="Monotone Logo">
+                    <h4>Monotone Lockup (Secondary)</h4>
+                    <p>Single-color grayscale for simplified reproduction, embossing, debossing, or low-ink printing.</p>
+                </div>
+            </div>
+
+            <p><strong>Full Color - Best for:</strong></p>
+            <ul>
+                <li>First brand introductions to new audiences</li>
+                <li>Website headers and primary navigation</li>
+                <li>Print materials (business cards, letterhead, brochures)</li>
+                <li>Official presentations and proposals</li>
+                <li>Large format applications (signage, banners)</li>
+            </ul>
+
+            <p><strong>Monotone - Best for:</strong></p>
+            <ul>
+                <li>Embossed or debossed printing (letterhead, business cards)</li>
+                <li>Single-color reproduction (stamps, seals, embroidery)</li>
+                <li>Fax, photocopy, or low-ink printing environments</li>
+                <li>Engraving on metal, wood, or glass</li>
+                <li>Black-and-white publications or newspapers</li>
+            </ul>
+
+            <h3>3.3 Logo Usage Guidelines</h3>
+            
+            <p><strong>Clear Space:</strong> Maintain a clear space around the logo equal to the height of the letter "S" in Samaria. No text, graphics, or competing elements should enter this zone.</p>
+
+            <p><strong>Minimum Size:</strong></p>
+            <ul>
+                <li>Digital applications: 120px width minimum</li>
+                <li>Print applications: 1 inch (2.54cm) width minimum</li>
+            </ul>
+
+            <p><strong>What NOT to Do:</strong></p>
+            <ul>
+                <li>Do not change logo colors outside the approved palette</li>
+                <li>Do not apply drop shadows, gradients, or effects to the logo</li>
+                <li>Do not place logo on busy backgrounds that compromise legibility</li>
+                <li>Do not recreate or redraw the logo—always use official files</li>
+                <li>Do not rotate, stretch, or compress the logo disproportionately</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Color Palette Section -->
+    <section class="section section-light">
+        <div class="container">
+            <h2>4. Color Palette</h2>
+            <p>The Samaria Tech color system is inspired by <strong>The Digital Ivory Palace</strong>—a fusion of Biblical Samaria's ivory richness, African cultural vibrancy, and futuristic AI aesthetics.</p>
+
+            <h3>4.1 Primary Colors</h3>
+            <div class="color-grid">
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #1A1A1B; color: #F5F5F0;">Royal Obsidian</div>
+                    <div class="color-name">Royal Obsidian</div>
+                    <div class="color-hex">#1A1A1B</div>
+                    <p style="margin-top: 10px; font-size: 0.9rem;">50% - Backgrounds, dark sections</p>
+                </div>
+
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #C5A059; color: #1A1A1B;">Metallic Brass</div>
+                    <div class="color-name">Metallic Brass</div>
+                    <div class="color-hex">#C5A059</div>
+                    <p style="margin-top: 10px; font-size: 0.9rem;">20% - Primary accent, CTAs, icons</p>
+                </div>
+
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #F5F5F0; color: #1A1A1B; border: 1px solid #ccc;">Ivory Glow</div>
+                    <div class="color-name">Ivory Glow</div>
+                    <div class="color-hex">#F5F5F0</div>
+                    <p style="margin-top: 10px; font-size: 0.9rem;">30% - Light backgrounds, text</p>
+                </div>
+            </div>
+
+            <h3>4.2 Supporting Colors</h3>
+            <div class="color-grid">
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #40061B; color: #F5F5F0;">Toledo</div>
+                    <div class="color-name">Toledo</div>
+                    <div class="color-hex">#40061B</div>
+                    <p style="margin-top: 10px; font-size: 0.9rem;">Overlays, gradients, emphasis</p>
+                </div>
+
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #031812; color: #F5F5F0;">Black Bean</div>
+                    <div class="color-name">Black Bean</div>
+                    <div class="color-hex">#031812</div>
+                    <p style="margin-top: 10px; font-size: 0.9rem;">Royal green for data/AI motifs</p>
+                </div>
+            </div>
+
+            <h3>4.3 Color Shades</h3>
+            <div class="color-grid">
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #F6BD67; color: #1A1A1B;">Brass Light</div>
+                    <div class="color-name">Metallic Brass Light</div>
+                    <div class="color-hex">#F6BD67</div>
+                </div>
+
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #F9CC88; color: #1A1A1B;">Brass Lighter</div>
+                    <div class="color-name">Metallic Brass Lighter</div>
+                    <div class="color-hex">#F9CC88</div>
+                </div>
+
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #20605B; color: #F5F5F0;">Bean Mid</div>
+                    <div class="color-name">Black Bean Mid</div>
+                    <div class="color-hex">#20605B</div>
+                </div>
+
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #0D8980; color: #F5F5F0;">Bean Light</div>
+                    <div class="color-name">Black Bean Light</div>
+                    <div class="color-hex">#0D8980</div>
+                </div>
+            </div>
+
+            <h3>4.4 CSS Color Variables</h3>
+            <pre><code>:root {
+  /* Primary Colors */
+  --color-royal-obsidian: #1A1A1B;
+  --color-metallic-brass: #C5A059;
+  --color-ivory-glow: #F5F5F0;
+  --color-toledo: #40061B;
+  --color-black-bean: #031812;
+
+  /* Functional Colors */
+  --color-background-dark: var(--color-royal-obsidian);
+  --color-background-light: var(--color-ivory-glow);
+  --color-accent-gold: var(--color-metallic-brass);
+  --color-text-primary: var(--color-ivory-glow);
+  --color-text-secondary: var(--color-metallic-brass);
+}</code></pre>
+        </div>
+    </section>
+
+    <!-- Typography Section -->
+    <section class="section section-brass">
+        <div class="container">
+            <h2>5. Typography</h2>
+            <p>Typography creates the visual contrast between Old World stone-cut elegance and New World futuristic technology, reinforcing the Neo-Ancient brand aesthetic.</p>
+
+            <h3>5.1 Font Families</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Role</th>
+                        <th>Font</th>
+                        <th>Rationale</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Primary Headings</td>
+                        <td>Cinzel Decorative</td>
+                        <td>Stone-cut serifs reminiscent of palace inscriptions; elegant and timeless</td>
+                    </tr>
+                    <tr>
+                        <td>Secondary Headings</td>
+                        <td>Orbitron</td>
+                        <td>Geometric, wide-set, futuristic; conveys space-age technology</td>
+                    </tr>
+                    <tr>
+                        <td>Body Text</td>
+                        <td>Montserrat</td>
+                        <td>High readability, clean, professional; modern sans-serif</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>5.2 Type Scale Examples</h3>
+            <div class="type-showcase">
+                <div class="type-example">
+                    <div class="type-label">H1 - Cinzel Decorative (48px)</div>
+                    <div class="h1-example">The Digital Ivory Palace</div>
+                </div>
+
+                <div class="type-example">
+                    <div class="type-label">H2 - Cinzel Decorative (36px)</div>
+                    <div class="h2-example">Engineering Africa's Future</div>
+                </div>
+
+                <div class="type-example">
+                    <div class="type-label">H3 - Orbitron (24px)</div>
+                    <div class="h3-example">Bespoke IT Solutions</div>
+                </div>
+
+                <div class="type-example">
+                    <div class="type-label">Body - Montserrat (16px)</div>
+                    <div class="body-example">We engineer bespoke IT ecosystems and AI-driven solutions that automate progress, elevate African brands, and build the infrastructure for the continent's digital empire. Our approach combines ancient wisdom with cutting-edge technology.</div>
+                </div>
+            </div>
+
+            <h3>5.3 Typography Rules</h3>
+            <ul>
+                <li><strong>H1 and H2</strong> — Use Cinzel Decorative only for major headings; conveys authority and heritage</li>
+                <li><strong>H3 and labels</strong> — Use Orbitron for subheadings and UI labels; balances tradition with modernity</li>
+                <li><strong>Body text</strong> — Use Montserrat at minimum 16px for readability across all devices</li>
+                <li><strong>Do not substitute fonts</strong> without brand approval—consistency is critical</li>
+                <li><strong>Maintain clear hierarchy</strong> — Only one H1 per page; use H2, H3 for content structure</li>
+                <li><strong>Line height</strong> — Set to 1.5–1.7 for body text to ensure readability</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Design Elements Section -->
+    <section class="section section-dark">
+        <div class="container">
+            <h2>6. Design Elements</h2>
+
+            <h3>6.1 The Circuit-Tribal Motif</h3>
+            <p>The <strong>Circuit-Tribal Motif</strong> is Samaria Tech's signature design pattern, merging traditional African geometric structures with modern circuit board aesthetics.</p>
+
+            <p><strong>Visual Concept:</strong></p>
+            <ul>
+                <li>Motherboard traces forming the shape of traditional African shields, Mudcloth patterns, or Kente weaves</li>
+                <li>Hills of ancient Samaria integrated into digital pathways</li>
+                <li>Data nodes at pattern intersections representing AI intelligence and connectivity</li>
+            </ul>
+
+            <p><strong>Usage Guidelines:</strong></p>
+            <ul>
+                <li>Use in background layers at 10–20% opacity to avoid interfering with text readability</li>
+                <li>Apply to section dividers, hero illustrations, and page transitions</li>
+                <li>Limit to one major motif per viewport to prevent visual clutter</li>
+                <li>Do not place directly behind body copy—readability is paramount</li>
+            </ul>
+
+            <h3>6.2 Imagery Style</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Element</th>
+                        <th>Treatment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Textures</td>
+                        <td>High-resolution macros of polished marble, raw earth, brushed gold, and circuitry</td>
+                    </tr>
+                    <tr>
+                        <td>Photography</td>
+                        <td>African professionals in high-tech environments; Golden Hour lighting; neon blue accents</td>
+                    </tr>
+                    <tr>
+                        <td>Icons</td>
+                        <td>Blend ancient motifs (columns, shields) with modern tech (circuits, data nodes)</td>
+                    </tr>
+                    <tr>
+                        <td>Illustrations</td>
+                        <td>Circuit-Tribal motif, architectural line art, data visualizations with cultural patterns</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>6.3 Iconography</h3>
+            <p><strong>Icon Examples:</strong></p>
+            <ul>
+                <li><strong>Software Design</strong> — Code brackets merged with architectural blueprint lines</li>
+                <li><strong>Automation</strong> — Gears integrated with circuit pathways</li>
+                <li><strong>AI Solutions</strong> — Brain outline with data nodes at synapses</li>
+                <li><strong>Bespoke IT</strong> — Hammer and chisel merged with digital wrench</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Brand Applications Section -->
+    <section class="section section-light">
+        <div class="container">
+            <h2>7. Brand Applications</h2>
+
+            <div class="applications-grid">
+                <div class="app-card">
+                    <h4>Business Cards</h4>
+                    <p><strong>Front:</strong> Full logo lockup, name (Orbitron 18pt), title (Montserrat 12pt), contact info on Royal Obsidian background.</p>
+                    <p><strong>Back:</strong> Brand motto in Cinzel Decorative, Metallic Brass.</p>
+                </div>
+
+                <div class="app-card">
+                    <h4>Letterhead</h4>
+                    <p><strong>Header:</strong> Full logo (left), contact details (right), Metallic Brass separator line.</p>
+                    <p><strong>Body:</strong> Montserrat 11pt, Royal Obsidian on Ivory Glow.</p>
+                </div>
+
+                <div class="app-card">
+                    <h4>Email Signature</h4>
+                    <p>Name in Orbitron 14pt, title/company in Montserrat 12pt Metallic Brass, contact info, tagline.</p>
+                </div>
+
+                <div class="app-card">
+                    <h4>Presentations</h4>
+                    <p><strong>Background:</strong> Royal Obsidian with Circuit-Tribal motif at 15% opacity.</p>
+                    <p><strong>Title Slide:</strong> Cinzel Decorative 48pt in Metallic Brass.</p>
+                </div>
+
+                <div class="app-card">
+                    <h4>Social Media</h4>
+                    <p><strong>Profile:</strong> Symbol only or simplified wordmark.</p>
+                    <p><strong>Posts:</strong> Maintain brand colors, include watermark logo.</p>
+                </div>
+
+                <div class="app-card">
+                    <h4>Website</h4>
+                    <p><strong>Hero:</strong> H1 Cinzel Decorative 48–60px on Royal Obsidian.</p>
+                    <p><strong>CTAs:</strong> Metallic Brass background, Royal Obsidian text.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Voice and Tone Section -->
+    <section class="section section-accent">
+        <div class="container">
+            <h2>8. Voice and Tone</h2>
+
+            <h3>8.1 Brand Voice Attributes</h3>
+            <ul>
+                <li><strong>Confident</strong> — We speak with authority backed by expertise</li>
+                <li><strong>Heritage-Aware</strong> — We honor African wisdom and culture in our language</li>
+                <li><strong>Visionary</strong> — We articulate a bold future for African technology</li>
+                <li><strong>Precise</strong> — Like architects, our language is deliberate and clear</li>
+                <li><strong>Empowering</strong> — We position clients as owners of their digital destiny</li>
+            </ul>
+
+            <h3>8.2 Tone Guidelines</h3>
+            <p><strong>For Marketing and Sales:</strong></p>
+            <p style="font-style: italic; color: var(--color-brass-light);">"By wisdom a house is built. Let us architect your digital future with bespoke IT solutions rooted in African excellence."</p>
+
+            <p><strong>For Technical Documentation:</strong></p>
+            <p style="font-style: italic; color: var(--color-brass-light);">"Our custom API integration leverages RESTful architecture to ensure seamless data flow between your legacy systems and modern cloud infrastructure."</p>
+
+            <p><strong>For Client Communication:</strong></p>
+            <p style="font-style: italic; color: var(--color-brass-light);">"We're excited to partner with you on this journey. Your success is our blueprint."</p>
+        </div>
+    </section>
+
+    <!-- Brand Checklist Section -->
+    <section class="section section-dark">
+        <div class="container">
+            <h2>10. Brand Checklist</h2>
+            <p>Before publishing any brand material, verify:</p>
+
+            <ul class="checklist">
+                <li>Logo is official file (not recreated)</li>
+                <li>Logo has adequate clear space</li>
+                <li>Colors match approved palette (Royal Obsidian, Metallic Brass, Ivory Glow)</li>
+                <li>Typography uses Cinzel Decorative, Orbitron, and Montserrat correctly</li>
+                <li>Text contrast meets WCAG AA standards</li>
+                <li>Circuit-Tribal motif is subtle and does not interfere with readability</li>
+                <li>Imagery aligns with brand aesthetic (heritage + technology)</li>
+                <li>Voice and tone match brand attributes (confident, heritage-aware, visionary)</li>
+                <li>All content is proofread and error-free</li>
+                <li>Accessibility requirements are met (alt text, semantic HTML, keyboard navigation)</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <h3>Contact and Approvals</h3>
+            <p><strong>Document Prepared By:</strong> Edward, Full-Stack Software Engineer, Samaria Tech</p>
+            <p><strong>For Questions or Brand Asset Requests:</strong></p>
+            <p>Email: <a href="mailto:brand@samaria.tech">brand@samaria.tech</a></p>
+            <p>Website: <a href="https://www.samaria.tech">www.samaria.tech</a></p>
+            <p style="margin-top: 30px; font-size: 0.9rem;">Status: Official Brand Standard | Next Review Date: August 2026</p>
+            <p style="margin-top: 20px; color: var(--color-metallic-brass); font-family: 'Cinzel Decorative', serif;">End of Samaria Tech Brand Guidelines v1.0</p>
+        </div>
+    </footer>
+
+</body>
+</html>
