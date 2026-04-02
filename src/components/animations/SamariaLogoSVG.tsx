@@ -80,9 +80,9 @@ export function SamariaLogoSVG({ progress, className = "w-full h-auto" }: Samari
             <div className="absolute inset-0 rounded-full border-[6px] border-[#D4AF37]/40 scale-[0.85]" />
             <div className="absolute inset-0 rounded-full border-2 border-dashed border-[#D4AF37]/20 scale-[0.82]" />
             
-            {/* THE ICON AS WEBP */}
+            {/* THE ICON */}
             <img 
-              src="/logo_icon.webp" 
+              src="/logo_icon.png" 
               alt="Samaria Logo" 
               className="w-[85%] h-[85%] object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]"
             />
