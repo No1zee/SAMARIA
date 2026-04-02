@@ -17,7 +17,15 @@ export default function WarriorLogo() {
     const height = 120;
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    let frameId: number;
+    let renderer: THREE.WebGLRenderer;
+    
+    try {
+      renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    } catch (e) {
+      console.error("WarriorLogo: Failed to create WebGL context", e);
+      return;
+    }
     
     renderer.setSize(width, height);
     containerRef.current.appendChild(renderer.domElement);
@@ -46,15 +54,19 @@ export default function WarriorLogo() {
       mesh.rotation.y += 0.01;
       mesh.rotation.x += 0.005;
       renderer.render(scene, camera);
-      requestAnimationFrame(animate);
+      frameId = requestAnimationFrame(animate);
     };
 
     animate();
 
     return () => {
-      if (containerRef.current) {
+      cancelAnimationFrame(frameId);
+      if (containerRef.current && renderer.domElement) {
         containerRef.current.removeChild(renderer.domElement);
       }
+      geometry.dispose();
+      material.dispose();
+      renderer.dispose();
     };
   }, []);
 

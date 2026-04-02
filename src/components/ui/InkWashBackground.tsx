@@ -16,7 +16,15 @@ export default function InkWashBackground() {
 
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    let frameId: number;
+    let renderer: THREE.WebGLRenderer;
+    
+    try {
+      renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    } catch (e) {
+      console.error("InkWashBackground: Failed to create WebGL context", e);
+      return;
+    }
     
     // Case 3: Create a canvas for Pretext text rendering
     const textCanvas = document.createElement('canvas');
@@ -127,17 +135,23 @@ export default function InkWashBackground() {
     const animate = (time: number) => {
       material.uniforms.uTime.value = time * 0.001;
       renderer.render(scene, camera);
-      requestAnimationFrame(animate);
+      frameId = requestAnimationFrame(animate);
     };
 
-    requestAnimationFrame(animate);
+    frameId = requestAnimationFrame(animate);
 
     return () => {
+      cancelAnimationFrame(frameId);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", handleResize);
-      if (containerRef.current) {
+      if (containerRef.current && renderer.domElement) {
         containerRef.current.removeChild(renderer.domElement);
       }
+      
+      geometry.dispose();
+      material.dispose();
+      textTexture.dispose();
+      renderer.dispose();
     };
   }, []);
 
