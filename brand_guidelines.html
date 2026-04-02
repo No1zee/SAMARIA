@@ -527,6 +527,23 @@
             color: var(--color-brass-light);
             padding: 0;
         }
+
+        /* Color swatch boxes */
+        .swatch-obsidian  { background: #1A1A1B; color: #F5F5F0; }
+        .swatch-brass     { background: #C5A059; color: #1A1A1B; }
+        .swatch-ivory     { background: #F5F5F0; color: #1A1A1B; border: 1px solid #ccc; }
+        .swatch-toledo    { background: #40061B; color: #F5F5F0; }
+        .swatch-bean      { background: #031812; color: #F5F5F0; }
+        .swatch-brass-lt  { background: #F6BD67; color: #1A1A1B; }
+        .swatch-brass-ltr { background: #F9CC88; color: #1A1A1B; }
+        .swatch-bean-mid  { background: #20605B; color: #F5F5F0; }
+        .swatch-bean-lt   { background: #0D8980; color: #F5F5F0; }
+
+        /* Inline-style helpers */
+        .swatch-note      { margin-top: 10px; font-size: 0.9rem; }
+        .tone-quote       { font-style: italic; color: var(--color-brass-light); }
+        .footer-status    { margin-top: 30px; font-size: 0.9rem; }
+        .footer-end       { margin-top: 20px; color: var(--color-metallic-brass); font-family: 'Cinzel Decorative', serif; }
     </style>
 </head>
 <body>
@@ -678,66 +695,66 @@
             <h3>4.1 Primary Colors</h3>
             <div class="color-grid">
                 <div class="color-swatch">
-                    <div class="color-box" style="background: #1A1A1B; color: #F5F5F0;">Royal Obsidian</div>
+                    <div class="color-box swatch-obsidian">Royal Obsidian</div>
                     <div class="color-name">Royal Obsidian</div>
                     <div class="color-hex">#1A1A1B</div>
-                    <p style="margin-top: 10px; font-size: 0.9rem;">50% - Backgrounds, dark sections</p>
+                    <p class="swatch-note">50% - Backgrounds, dark sections</p>
                 </div>
 
                 <div class="color-swatch">
-                    <div class="color-box" style="background: #C5A059; color: #1A1A1B;">Metallic Brass</div>
+                    <div class="color-box swatch-brass">Metallic Brass</div>
                     <div class="color-name">Metallic Brass</div>
                     <div class="color-hex">#C5A059</div>
-                    <p style="margin-top: 10px; font-size: 0.9rem;">20% - Primary accent, CTAs, icons</p>
+                    <p class="swatch-note">20% - Primary accent, CTAs, icons</p>
                 </div>
 
                 <div class="color-swatch">
-                    <div class="color-box" style="background: #F5F5F0; color: #1A1A1B; border: 1px solid #ccc;">Ivory Glow</div>
+                    <div class="color-box swatch-ivory">Ivory Glow</div>
                     <div class="color-name">Ivory Glow</div>
                     <div class="color-hex">#F5F5F0</div>
-                    <p style="margin-top: 10px; font-size: 0.9rem;">30% - Light backgrounds, text</p>
+                    <p class="swatch-note">30% - Light backgrounds, text</p>
                 </div>
             </div>
 
             <h3>4.2 Supporting Colors</h3>
             <div class="color-grid">
                 <div class="color-swatch">
-                    <div class="color-box" style="background: #40061B; color: #F5F5F0;">Toledo</div>
+                    <div class="color-box swatch-toledo">Toledo</div>
                     <div class="color-name">Toledo</div>
                     <div class="color-hex">#40061B</div>
-                    <p style="margin-top: 10px; font-size: 0.9rem;">Overlays, gradients, emphasis</p>
+                    <p class="swatch-note">Overlays, gradients, emphasis</p>
                 </div>
 
                 <div class="color-swatch">
-                    <div class="color-box" style="background: #031812; color: #F5F5F0;">Black Bean</div>
+                    <div class="color-box swatch-bean">Black Bean</div>
                     <div class="color-name">Black Bean</div>
                     <div class="color-hex">#031812</div>
-                    <p style="margin-top: 10px; font-size: 0.9rem;">Royal green for data/AI motifs</p>
+                    <p class="swatch-note">Royal green for data/AI motifs</p>
                 </div>
             </div>
 
             <h3>4.3 Color Shades</h3>
             <div class="color-grid">
                 <div class="color-swatch">
-                    <div class="color-box" style="background: #F6BD67; color: #1A1A1B;">Brass Light</div>
+                    <div class="color-box swatch-brass-lt">Brass Light</div>
                     <div class="color-name">Metallic Brass Light</div>
                     <div class="color-hex">#F6BD67</div>
                 </div>
 
                 <div class="color-swatch">
-                    <div class="color-box" style="background: #F9CC88; color: #1A1A1B;">Brass Lighter</div>
+                    <div class="color-box swatch-brass-ltr">Brass Lighter</div>
                     <div class="color-name">Metallic Brass Lighter</div>
                     <div class="color-hex">#F9CC88</div>
                 </div>
 
                 <div class="color-swatch">
-                    <div class="color-box" style="background: #20605B; color: #F5F5F0;">Bean Mid</div>
+                    <div class="color-box swatch-bean-mid">Bean Mid</div>
                     <div class="color-name">Black Bean Mid</div>
                     <div class="color-hex">#20605B</div>
                 </div>
 
                 <div class="color-swatch">
-                    <div class="color-box" style="background: #0D8980; color: #F5F5F0;">Bean Light</div>
+                    <div class="color-box swatch-bean-lt">Bean Light</div>
                     <div class="color-name">Black Bean Light</div>
                     <div class="color-hex">#0D8980</div>
                 </div>
@@ -953,13 +970,13 @@
 
             <h3>8.2 Tone Guidelines</h3>
             <p><strong>For Marketing and Sales:</strong></p>
-            <p style="font-style: italic; color: var(--color-brass-light);">"By wisdom a house is built. Let us architect your digital future with bespoke IT solutions rooted in African excellence."</p>
+            <p class="tone-quote">"By wisdom a house is built. Let us architect your digital future with bespoke IT solutions rooted in African excellence."</p>
 
             <p><strong>For Technical Documentation:</strong></p>
-            <p style="font-style: italic; color: var(--color-brass-light);">"Our custom API integration leverages RESTful architecture to ensure seamless data flow between your legacy systems and modern cloud infrastructure."</p>
+            <p class="tone-quote">"Our custom API integration leverages RESTful architecture to ensure seamless data flow between your legacy systems and modern cloud infrastructure."</p>
 
             <p><strong>For Client Communication:</strong></p>
-            <p style="font-style: italic; color: var(--color-brass-light);">"We're excited to partner with you on this journey. Your success is our blueprint."</p>
+            <p class="tone-quote">"We're excited to partner with you on this journey. Your success is our blueprint."</p>
         </div>
     </section>
 
@@ -992,8 +1009,8 @@
             <p><strong>For Questions or Brand Asset Requests:</strong></p>
             <p>Email: <a href="mailto:brand@samaria.tech">brand@samaria.tech</a></p>
             <p>Website: <a href="https://www.samaria.tech">www.samaria.tech</a></p>
-            <p style="margin-top: 30px; font-size: 0.9rem;">Status: Official Brand Standard | Next Review Date: August 2026</p>
-            <p style="margin-top: 20px; color: var(--color-metallic-brass); font-family: 'Cinzel Decorative', serif;">End of Samaria Tech Brand Guidelines v1.0</p>
+            <p class="footer-status">Status: Official Brand Standard | Next Review Date: August 2026</p>
+            <p class="footer-end">End of Samaria Tech Brand Guidelines v1.0</p>
         </div>
     </footer>
 

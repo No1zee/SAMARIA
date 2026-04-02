@@ -1,7 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  cacheComponents: true,
+  devIndicators: false,
+  experimental: {
+    optimizePackageImports: ['lucide-react', 'framer-motion', 'gsap'],
+  },
 };
 
 export default nextConfig;

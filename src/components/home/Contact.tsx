@@ -1,130 +1,164 @@
 "use client";
-
-import { motion } from "framer-motion";
-import { Send, Mail, MapPin, Phone } from "lucide-react";
-
+ 
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, Check } from "lucide-react";
+ 
+const STEPS = [
+  { id: "identity", label: "01 // IDENTITY", question: "Who initiates this build?", placeholder: "Your Name / Organization", type: "text" },
+  { id: "nexus", label: "02 // NEXUS", question: "Where do we reach you?", placeholder: "Email Protocol (@)", type: "email" },
+  { id: "architecture", label: "03 // ARCHITECTURE", question: "What system are we forging?", placeholder: "Describe the operational complexity...", type: "textarea" },
+];
+ 
 export default function Contact() {
+  const [currentStep, setCurrentStep] = useState(0);
+  const [formData, setFormData] = useState({ identity: "", nexus: "", architecture: "" });
+  const [submitted, setSubmitted] = useState(false);
+ 
+  const handleNext = () => {
+    if (currentStep < STEPS.length - 1) {
+      setCurrentStep(currentStep + 1);
+    } else {
+      setSubmitted(true);
+    }
+  };
+ 
   return (
-    <section id="contact" className="py-24 bg-royal-obsidian relative border-t border-brand-gold/10">
-      <div className="container max-w-[1200px] mx-auto px-6 grid md:grid-cols-2 gap-16">
+    <section id="contact" className="py-fb9 bg-black-bean relative overflow-hidden">
+      
+      {/* 62/38 Split Watermark */}
+      <div className="absolute top-fb4 right-0 opacity-[0.02] pointer-events-none select-none overflow-hidden">
+          <span className="text-[40vw] font-heading font-black tracking-tighter leading-none">SIGNAL</span>
+      </div>
+
+      <div className="container max-w-[1500px] mx-auto px-fb3 md:px-fb4 relative z-10">
         
-        {/* Contact Info */}
-        <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-        >
-            <span className="font-ui text-xs text-brand-gold tracking-[0.3em] uppercase block mb-4">
-                Initialize Protocol
-            </span>
-            <h2 className="text-off-white mb-8">
-                Ready to Ascend?
-            </h2>
-            <p className="text-off-white/70 text-lg mb-12">
-                The future favors the bold. Whether you need a digital fortress or an empire-scale ecosystem, we are ready to engineer it.
-            </p>
-
-            <div className="space-y-6">
-                <div className="flex items-start gap-4 group">
-                    <div className="p-3 rounded-full bg-brand-gold/5 border border-brand-gold/20 text-brand-gold group-hover:bg-brand-gold group-hover:text-royal-obsidian transition-colors">
-                        <Mail className="w-5 h-5" />
-                    </div>
-                    <div className="flex flex-col gap-1">
-                        <span className="font-ui text-xs uppercase tracking-wider text-brand-gold/60">Email</span>
-                        <a 
-                            href="mailto:mission@samaria.tech" 
-                            className="font-ui text-sm text-off-white hover:text-brand-gold transition-colors"
-                        >
-                            mission@samaria.tech
-                        </a>
-                    </div>
-                </div>
-                
-                <div className="flex items-start gap-4 group">
-                    <div className="p-3 rounded-full bg-brand-gold/5 border border-brand-gold/20 text-brand-gold group-hover:bg-brand-gold group-hover:text-royal-obsidian transition-colors">
-                        <Phone className="w-5 h-5" />
-                    </div>
-                    <div className="flex flex-col gap-1">
-                        <span className="font-ui text-xs uppercase tracking-wider text-brand-gold/60">Phone</span>
-                        <a 
-                            href="tel:+263700000000" 
-                            className="font-ui text-sm text-off-white hover:text-brand-gold transition-colors"
-                        >
-                            +263 700 000 000
-                        </a>
-                    </div>
-                </div>
-
-                <div className="flex items-start gap-4 group">
-                    <div className="p-3 rounded-full bg-brand-gold/5 border border-brand-gold/20 text-brand-gold group-hover:bg-brand-gold group-hover:text-royal-obsidian transition-colors">
-                        <MapPin className="w-5 h-5" />
-                    </div>
-                    <div className="flex flex-col gap-1">
-                        <span className="font-ui text-xs uppercase tracking-wider text-brand-gold/60">Location</span>
-                        <span className="font-ui text-sm text-off-white">
-                            Harare, Zimbabwe
-                        </span>
-                        <span className="font-ui text-xs text-off-white/50">
-                            Serving clients globally
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </motion.div>
-
-        {/* Form */}
-        <motion.form
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-deep-green/50 backdrop-blur-sm p-8 rounded-lg border border-brand-gold/10"
-        >
-            <div className="space-y-6">
-                <div className="space-y-2">
-                    <label className="font-ui text-xs uppercase text-brand-gold tracking-widest">Identity *</label>
-                    <p className="font-ui text-xs text-off-white/40 -mt-1">Your name or company</p>
-                    <input 
-                        type="text" 
-                        placeholder="Name / Organization"
-                        required
-                        className="w-full bg-royal-obsidian border-b border-brand-gold/30 focus:border-brand-gold text-off-white p-3 outline-none transition-colors placeholder:text-off-white/20"
-                    />
-                </div>
-
-                <div className="space-y-2">
-                    <label className="font-ui text-xs uppercase text-brand-gold tracking-widest">Coordinates *</label>
-                    <p className="font-ui text-xs text-off-white/40 -mt-1">Best email to reach you</p>
-                    <input 
-                        type="email" 
-                        placeholder="Email Address"
-                        required
-                        className="w-full bg-royal-obsidian border-b border-brand-gold/30 focus:border-brand-gold text-off-white p-3 outline-none transition-colors placeholder:text-off-white/20"
-                    />
-                </div>
-
-                <div className="space-y-2">
-                    <label className="font-ui text-xs uppercase text-brand-gold tracking-widest">Transmission *</label>
-                    <p className="font-ui text-xs text-off-white/40 -mt-1">Tell us about your project</p>
-                    <textarea 
-                        rows={4}
-                        placeholder="Project Details..."
-                        required
-                        className="w-full bg-royal-obsidian border-b border-brand-gold/30 focus:border-brand-gold text-off-white p-3 outline-none transition-colors placeholder:text-off-white/20 resize-none"
-                    ></textarea>
-                </div>
-
-                <button 
-                    type="submit"
-                    className="w-full bg-gold-metallic font-ui font-bold uppercase tracking-widest py-4 hover:brightness-110 transition-all clip-path-slant flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 focus:ring-offset-royal-obsidian"
+        {/* Movement X Header */}
+        <div className="mb-fb8 border-l border-metallic-brass/40 pl-fb3">
+          <div className="flex items-center gap-fb2 mb-fb3">
+              <span className="text-silence text-metallic-brass">Movement 05 — The War Council</span>
+          </div>
+          <h2 className="text-5xl md:text-[8rem] text-off-white font-heading uppercase tracking-tighter leading-[0.85]">
+            Initiate <br/>
+            The Build.
+          </h2>
+        </div>
+ 
+        {/* 62/38 Golden Ratio Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-10 gap-fb7 items-start">
+          
+          {/* One-Question Duel (61.8%) */}
+          <div className="md:col-span-6 min-h-[500px] flex flex-col justify-center">
+            <AnimatePresence mode="wait">
+              {!submitted ? (
+                <motion.div 
+                  key={STEPS[currentStep].id}
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 50 }}
+                  transition={{ duration: 0.6, ease: "circOut" }}
+                  className="w-full"
                 >
-                    <Send className="w-4 h-4 text-royal-obsidian" />
-                    <span className="text-royal-obsidian">Send Inquiry</span>
-                </button>
+                  <span className="text-silence text-metallic-brass mb-fb4 block opacity-100">{STEPS[currentStep].label}</span>
+                  <h3 className="text-4xl md:text-7xl font-heading text-off-white mb-fb5 leading-none uppercase tracking-tighter">
+                    {STEPS[currentStep].question}
+                  </h3>
+                  
+                  <div className="relative group max-w-2xl">
+                    {STEPS[currentStep].type === "textarea" ? (
+                      <textarea 
+                        autoFocus
+                        placeholder={STEPS[currentStep].placeholder}
+                        className="w-full bg-transparent border-b border-white/10 p-fb2 md:p-fb3 outline-none text-2xl md:text-4xl font-heading text-off-white focus:border-metallic-brass transition-all duration-500 placeholder:text-off-white/10 resize-none h-48"
+                        onChange={(e) => setFormData({ ...formData, [STEPS[currentStep].id]: e.target.value })}
+                      />
+                    ) : (
+                      <input 
+                        autoFocus
+                        type={STEPS[currentStep].type}
+                        placeholder={STEPS[currentStep].placeholder}
+                        className="w-full bg-transparent border-b border-white/10 p-fb2 md:p-fb3 outline-none text-2xl md:text-5xl font-heading text-off-white focus:border-metallic-brass transition-all duration-500 placeholder:text-off-white/10"
+                        onChange={(e) => setFormData({ ...formData, [STEPS[currentStep].id]: e.target.value })}
+                        onKeyDown={(e) => e.key === "Enter" && handleNext()}
+                      />
+                    )}
+                    
+                    {/* The Signature Line Animation */}
+                    <motion.div 
+                      layoutId="signature-line"
+                      className="absolute bottom-0 left-0 h-px bg-metallic-brass shadow-[0_0_20px_rgba(197,160,89,0.4)]"
+                      style={{ width: "100%" }}
+                    />
+                  </div>
+ 
+                  <div className="mt-fb5 flex items-center gap-fb4">
+                    <button 
+                      onClick={handleNext}
+                      className="btn-warrior flex items-center gap-4"
+                    >
+                      {currentStep === STEPS.length - 1 ? "SEND THE SIGNAL" : "NEXT PROTOCOL"}
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                    <span className="text-[10px] tracking-widest text-off-white/20 uppercase font-ui">
+                      {currentStep + 1} / {STEPS.length}
+                    </span>
+                  </div>
+                </motion.div>
+              ) : (
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="flex flex-col items-start gap-fb4 p-fb6 border border-metallic-brass/20 blade-motif bg-metallic-brass/5"
+                >
+                  <div className="w-16 h-16 rounded-full border border-metallic-brass flex items-center justify-center mb-fb2">
+                    <Check className="text-metallic-brass w-8 h-8" />
+                  </div>
+                  <h3 className="text-4xl md:text-6xl font-heading text-off-white uppercase leading-none tracking-tighter">
+                    Signal <br /> Received.
+                  </h3>
+                  <p className="text-off-white/40 text-xl font-body italic leading-relaxed max-w-sm">
+                    The forge remains silent. <br /> 
+                    Our lead architect will contact you <br /> 
+                    within one operational cycle.
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+  
+          {/* Strategic Context (38.2%) */}
+          <div className="md:col-span-4 flex flex-col gap-fb7 h-full pt-fb6 md:pt-0">
+            
+            {/* Minimal FAQ Strip */}
+            <div className="space-y-fb6 border-l border-white/5 pl-fb4 md:pl-fb5">
+              <div className="group">
+                <span className="text-[10px] tracking-[0.4em] font-ui text-metallic-brass/40 uppercase mb-2 block">01 // Cycle Time</span>
+                <p className="text-off-white text-lg md:text-xl font-body leading-relaxed opacity-60 group-hover:opacity-100 transition-opacity">
+                  Architectures ship in 4–12 weeks depending on systemic depth.
+                </p>
+              </div>
+ 
+              <div className="group">
+                <span className="text-[10px] tracking-[0.4em] font-ui text-metallic-brass/40 uppercase mb-2 block">02 // Governance</span>
+                <p className="text-off-white text-lg md:text-xl font-body leading-relaxed opacity-60 group-hover:opacity-100 transition-opacity">
+                  Every build is operator-led. No middlemen. Direct access to the architects.
+                </p>
+              </div>
             </div>
-        </motion.form>
-
+  
+            {/* Quick Resolution Pod — Truncation Fixed */}
+            <div className="p-fb5 border border-white/5 bg-royal-obsidian/40 blade-motif mt-auto">
+                <p className="text-metallic-brass font-ui text-[10px] tracking-[0.5em] mb-fb3 uppercase">Direct Line — Africa HQ</p>
+                <div className="overflow-hidden">
+                  <a href="mailto:architect@samaria.tech" className="text-xl md:text-[2rem] text-off-white font-heading hover:text-metallic-brass transition-colors tracking-tighter block break-all">
+                    architect@samaria.tech
+                  </a>
+                </div>
+            </div>
+  
+          </div>
+  
+        </div>
       </div>
     </section>
   );
