@@ -42,12 +42,7 @@ export default function About() {
         <div className="grid grid-cols-1 md:grid-cols-10 gap-fb6 items-start">
           
           {/* 34% Sidebar — The Vertical Inscriptions */}
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="md:col-span-3 flex md:flex-col gap-fb5 md:gap-fb7"
-          >
+          <div className="md:col-span-3 flex md:flex-col gap-fb5 md:gap-fb7 opacity-0 pointer-events-none">
              <div className="flex flex-col gap-2">
                 <span className="[writing-mode:vertical-rl] text-[10px] md:text-sm font-ui text-metallic-brass tracking-[0.5em] uppercase h-32">FORGE</span>
                 <div className="w-px h-fb4 bg-metallic-brass/20 hidden md:block" />
@@ -60,7 +55,7 @@ export default function About() {
                 <span className="[writing-mode:vertical-rl] text-[10px] md:text-sm font-ui text-metallic-brass tracking-[0.5em] uppercase h-32">SYSTEM</span>
                 <div className="w-px h-fb4 bg-metallic-brass/20 hidden md:block" />
              </div>
-          </motion.div>
+          </div>
  
           {/* 66% Main Content — The Inscribed Text */}
           <div className="md:col-span-7 flex flex-col items-start gap-fb7">
@@ -112,7 +107,7 @@ export default function About() {
                 
                 <div className="md:text-right">
                    <p className="text-silence text-white/20 mb-1">Status: Operational</p>
-                   <p className="font-ui text-xs text-metallic-brass/60 tracking-widest uppercase">Est. 2026 // The Ancient Future</p>
+                   <p className="font-ui text-xs text-metallic-brass/60 tracking-widest uppercase text-nowrap">Est. MMXXV // The Ancient Future</p>
                 </div>
              </div>
  

@@ -4,6 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import LoadingScreen from "@/components/ui/LoadingScreen";
 import MarginalGraphics from "@/components/ui/MarginalGraphics";
+import ScrollIndicator from "@/components/ui/ScrollIndicator";
 import SamuraiJackBackground from "@/components/ui/SamuraiJackBackground";
 import ViewTransitionsProvider from "@/components/providers/ViewTransitionsProvider";
 import { CelestialProvider } from "@/components/providers/CelestialProvider";
@@ -182,6 +183,7 @@ export default function RootLayout({
         <MarginalGraphics />
         <LoadingScreen />
         <Navbar />
+        <ScrollIndicator />
         <CelestialProvider>
           <SamuraiJackBackground />
           <ViewTransitionsProvider>

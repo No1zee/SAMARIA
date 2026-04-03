@@ -103,7 +103,7 @@ export default function Hero() {
       </AnimatePresence>
  
       {/* Movement VI: The Hero Blade (Spine) */}
-      {!showSplash && <div className="absolute left-[38.2%] top-0 w-px bg-metallic-brass/40 z-40 hero-blade-spine" />}
+      {!showSplash && <div className="absolute left-[38.2%] top-0 w-px bg-metallic-brass/5 z-40 hero-blade-spine" />}
 
       {/* Movement VII: The Horizon Line (61.8vh) */}
       <div className="absolute top-[61.8vh] left-0 w-full h-px bg-white/5 z-0 origin-left horizon-line" />

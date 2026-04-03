@@ -7,6 +7,7 @@ import { useHaptics } from "@/hooks/useHaptics";
 
 export default function WarCouncilContact() {
   const { clink, slash } = useHaptics();
+    const [activeField, setActiveField] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     identity: "",
     architecture: "",
@@ -15,6 +16,57 @@ export default function WarCouncilContact() {
   const [submitted, setSubmitted] = useState(false);
 
   const isFormValid = formData.identity && formData.architecture && formData.nexus;
+
+  const FormInput = ({ id, placeholder, type = "text", value, onChange }: any) => {
+    const isFocused = activeField === id;
+    const hasValue = value.length > 0;
+
+    return (
+      <span className="relative inline-block mx-2 group">
+        <input 
+          type={type}
+          value={value}
+          aria-label={placeholder}
+          onFocus={() => setActiveField(id)}
+          onBlur={() => setActiveField(null)}
+          onChange={(e) => onChange(e.target.value)}
+          className="bg-transparent border-b border-metallic-brass/10 text-metallic-brass focus:border-metallic-brass focus:outline-none px-2 py-1 transition-all duration-700 min-w-[280px] relative z-10"
+        />
+        
+        {/* Animated Bracket Placeholder */}
+        <AnimatePresence>
+          {!hasValue && (
+            <motion.span 
+              initial={{ opacity: 1 }}
+              animate={{ 
+                opacity: isFocused ? 0 : 0.3,
+                x: isFocused ? 20 : 0
+              }}
+              exit={{ opacity: 0 }}
+              className="absolute left-2 top-1 pointer-events-none text-metallic-brass italic font-ui text-xl md:text-3xl tracking-widest uppercase"
+            >
+              {placeholder}
+            </motion.span>
+          )}
+        </AnimatePresence>
+
+        {/* Blinking Cursor (visible only on focus and empty) */}
+        {isFocused && !hasValue && (
+          <motion.div 
+            animate={{ opacity: [0, 1, 0] }}
+            transition={{ duration: 0.8, repeat: Infinity }}
+            className="absolute left-2 top-1 h-8 w-[2px] bg-metallic-brass/60 z-0"
+          />
+        )}
+
+        <motion.div 
+          initial={{ width: 0 }}
+          animate={{ width: (isFocused || hasValue) ? "100%" : "0%" }}
+          className="absolute bottom-0 left-0 h-px bg-metallic-brass shadow-[0_0_10px_rgba(201,168,76,0.5)] z-20"
+        />
+      </span>
+    );
+  };
 
   return (
     <section id="alliance" className="py-fb9 relative overflow-hidden border-t border-white/5">
@@ -50,51 +102,31 @@ export default function WarCouncilContact() {
                 >
                   <div className="text-2xl md:text-5xl font-heading text-off-white/80 leading-[1.4] md:leading-[1.6] tracking-tight">
                     I am <br className="md:hidden" />
-                    <span className="relative inline-block mx-2 group">
-                      <input 
-                        type="text"
-                        placeholder="[ THE INITIATOR ]"
-                        className="bg-transparent border-b border-metallic-brass/20 text-metallic-brass placeholder:text-white/5 focus:border-metallic-brass focus:outline-none px-2 py-1 transition-all duration-700 min-w-[280px]"
-                        onChange={(e) => setFormData({ ...formData, identity: e.target.value })}
-                      />
-                      <motion.div 
-                        initial={{ width: 0 }}
-                        whileInView={{ width: "100%" }}
-                        className="absolute bottom-0 left-0 h-px bg-metallic-brass/40 shadow-[0_0_10px_rgba(201,168,76,0.3)]"
-                      />
-                    </span>
+                    <FormInput 
+                      id="identity"
+                      placeholder="[ THE INITIATOR ]"
+                      value={formData.identity}
+                      onChange={(val: string) => setFormData({ ...formData, identity: val })}
+                    />
                     seeking to architect a 
                     <br className="hidden md:block" />
                     system to <br className="md:hidden" />
-                    <span className="relative inline-block mx-2 group">
-                      <input 
-                        type="text"
-                        placeholder="[ THE OBJECTIVE ]"
-                        className="bg-transparent border-b border-metallic-brass/20 text-metallic-brass placeholder:text-white/5 focus:border-metallic-brass focus:outline-none px-2 py-1 transition-all duration-700 min-w-[320px]"
-                        onChange={(e) => setFormData({ ...formData, architecture: e.target.value })}
-                      />
-                      <motion.div 
-                        initial={{ width: 0 }}
-                        whileInView={{ width: "100%" }}
-                        className="absolute bottom-0 left-0 h-px bg-metallic-brass/40 shadow-[0_0_10px_rgba(201,168,76,0.3)]"
-                      />
-                    </span>
+                    <FormInput 
+                      id="architecture"
+                      placeholder="[ THE OBJECTIVE ]"
+                      value={formData.architecture}
+                      onChange={(val: string) => setFormData({ ...formData, architecture: val })}
+                    />
                     .
                     <br />
                     Reach my nexus at <br className="md:hidden" />
-                    <span className="relative inline-block mx-2 group">
-                      <input 
-                        type="email"
-                        placeholder="[ EMAIL PROTOCOL ]"
-                        className="bg-transparent border-b border-metallic-brass/20 text-metallic-brass placeholder:text-white/5 focus:border-metallic-brass focus:outline-none px-2 py-1 transition-all duration-700 min-w-[350px]"
-                        onChange={(e) => setFormData({ ...formData, nexus: e.target.value })}
-                      />
-                      <motion.div 
-                        initial={{ width: 0 }}
-                        whileInView={{ width: "100%" }}
-                        className="absolute bottom-0 left-0 h-px bg-metallic-brass/40 shadow-[0_0_10px_rgba(201,168,76,0.3)]"
-                      />
-                    </span>
+                    <FormInput 
+                      id="nexus"
+                      placeholder="[ EMAIL PROTOCOL ]"
+                      type="email"
+                      value={formData.nexus}
+                      onChange={(val: string) => setFormData({ ...formData, nexus: val })}
+                    />
                     .
                   </div>
 

@@ -72,12 +72,12 @@ export default function TabletCard({ title, description, icon, deliverables, del
         </h3>
 
         {/* Description */}
-        <p 
+        <motion.p 
           className="text-off-white/70 leading-relaxed mb-6 transition-[font-size] duration-300"
-          style={{ fontSize: `${fittedDescSize}px` } as any}
+          style={{ fontSize: fittedDescSize }}
         >
           {description}
-        </p>
+        </motion.p>
 
         {/* Deliverables */}
         {deliverables && deliverables.length > 0 && (

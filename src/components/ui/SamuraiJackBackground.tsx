@@ -286,8 +286,11 @@ export default function SamuraiJackBackground() {
     >
       <style jsx global>{`
         @keyframes twinkle {
-          0%, 100% { opacity: 0.3; }
-          50% { opacity: 0.9; }
+          0%, 100% { opacity: 0.3; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.2); }
+        }
+        .star-twinkle {
+          animation: twinkle var(--twinkle-duration) ease-in-out infinite;
         }
         @keyframes cloud-drift {
           from { transform: translateX(100vw); }
@@ -315,10 +318,11 @@ export default function SamuraiJackBackground() {
             r={star.size}
             fill="white"
             filter="url(#starBlur)"
+            className="star-twinkle"
             style={{
-              animation: `twinkle ${star.twinkleDuration} ease-in-out infinite`,
-              animationDelay: star.twinkleDelay
-            }}
+              "--twinkle-duration": star.twinkleDuration,
+              "--twinkle-delay": star.twinkleDelay
+            } as any}
           />
         ))}
       </motion.svg>

@@ -48,13 +48,13 @@ export default function IntroHero() {
           </div>
 
           {/* New Hook Headline */}
-          <h2 
-            className="font-heading text-4xl md:text-6xl text-off-white mb-10 leading-tight mx-auto transition-[max-width] duration-500 max-w-(--balanced-width)"
-            style={{ "--balanced-width": maxWidth > 0 ? `${balancedWidth}px` : "none" } as any}
+          <motion.h2 
+            className="font-heading text-4xl md:text-6xl text-off-white mb-10 leading-tight mx-auto transition-[max-width] duration-500"
+            style={{ maxWidth: maxWidth > 0 ? balancedWidth : "none" }}
           >
             ENGINEERING YOUR <br />
             <span className="text-brand-gold">DIGITAL ECOSYSTEM</span>
-          </h2>
+          </motion.h2>
 
           {/* Description */}
           <p className="text-lg md:text-xl text-off-white/70 font-light max-w-3xl mx-auto mb-16 leading-relaxed">

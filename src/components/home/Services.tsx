@@ -135,8 +135,14 @@ export default function Services() {
                   Visual systems that command <br /> immediate tribal authority.
                 </p>
               </div>
-              <div className="relative z-10 text-[10px] tracking-[0.5em] text-metallic-brass/20 pt-fb3 border-t border-white/5 group-hover:text-metallic-brass/60 transition-colors uppercase font-ui">
-                Ancient Discipline // Future UI
+              <div className="relative z-10 flex items-center justify-between mt-fb3 pt-fb2 border-t border-white/5 opacity-40 group-hover:opacity-100 transition-opacity">
+                <div className="flex flex-col">
+                   <span className="text-[8px] font-ui text-metallic-brass tracking-[0.3em] uppercase">Investment</span>
+                   <span className="text-off-white text-xs font-heading">By Architecture Scope</span>
+                </div>
+                <div className="text-[10px] tracking-[0.5em] text-metallic-brass/60 uppercase font-ui">
+                  Ancient Discipline // Future UI
+                </div>
               </div>
             </motion.div>
   
@@ -159,8 +165,14 @@ export default function Services() {
                   Unified technical lattices that <br /> bridge every business node.
                 </p>
               </div>
-              <div className="relative z-10 text-[10px] tracking-[0.5em] text-metallic-brass/20 pt-fb3 border-t border-white/5 group-hover:text-metallic-brass/60 transition-colors uppercase font-ui">
-                Holistic Infrastructure
+              <div className="relative z-10 flex items-center justify-between mt-fb3 pt-fb2 border-t border-white/5 opacity-40 group-hover:opacity-100 transition-opacity">
+                <div className="flex flex-col">
+                   <span className="text-[8px] font-ui text-metallic-brass tracking-[0.3em] uppercase">Investment</span>
+                   <span className="text-off-white text-xs font-heading">By Architecture Scope</span>
+                </div>
+                <div className="text-[10px] tracking-[0.5em] text-metallic-brass/60 uppercase font-ui">
+                  Holistic Infrastructure
+                </div>
               </div>
             </motion.div>
   

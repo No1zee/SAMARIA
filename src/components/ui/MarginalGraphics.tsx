@@ -74,7 +74,7 @@ export default function MarginalGraphics() {
 
         {/* Top Label */}
         <div className="text-silence text-[9px] tracking-widest text-metallic-brass/30">
-          EST. 2026
+          EST. MMXXV
         </div>
 
         {/* Vertical Text */}

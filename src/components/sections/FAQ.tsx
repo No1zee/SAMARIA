@@ -74,7 +74,7 @@ export default function FAQ() {
               <button
                 className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left cursor-pointer focus:outline-none focus:ring-1 focus:ring-brand-red/40"
                 onClick={() => toggle(i)}
-                aria-expanded={String(openIndex === i) as "true" | "false"}
+                aria-expanded={openIndex === i}
                 aria-controls={`faq-answer-${i}`}
                 id={`faq-question-${i}`}
               >

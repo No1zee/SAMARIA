@@ -84,7 +84,7 @@ export default function ProjectsTeaser() {
               onClick={() => openProject(project)}
             >
               {/* Left Zone: Metadata (38.2% Split) */}
-              <div className="md:col-span-4 p-fb5 md:p-fb6 flex flex-col justify-between relative z-20 bg-obsidian-layered/40">
+              <div className="md:col-span-4 p-fb5 md:p-fb6 flex flex-col justify-between relative z-20 bg-obsidian-layered/60 backdrop-blur-sm shadow-2xl">
                 <div className="relative">
                   <span className="text-silence text-metallic-brass mb-fb4 block opacity-100">{project.tag}</span>
                   <h3 className="text-4xl md:text-6xl font-heading text-off-white mb-fb3 leading-none uppercase tracking-tighter">
@@ -115,8 +115,8 @@ export default function ProjectsTeaser() {
                   src={project.image} 
                   alt={project.name}
                   fill
-                  className="object-cover opacity-50 grayscale transition-all duration-1000 group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-100"
-                  style={{ filter: "sepia(0.3) contrast(1.5) brightness(0.8) grayscale(0.2)" }}
+                  className="object-cover opacity-80 grayscale-0 transition-all duration-1000 group-hover:scale-105 group-hover:opacity-100"
+                  style={{ filter: "sepia(0.1) contrast(1.1) brightness(0.9)" }}
                 />
                 
                 {/* Ukiyo-e Texture Overlay */}
