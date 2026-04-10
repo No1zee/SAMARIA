@@ -7,7 +7,10 @@ interface CelestialContextType {
   progress: MotionValue<number>;
   x: MotionValue<number>;
   y: MotionValue<number>;
+  lightX: MotionValue<number>; // Normalized screen X
+  lightY: MotionValue<number>; // Normalized screen Y
   glow: MotionValue<number>;
+  starFlash: MotionValue<number>; // 0 to 1 for shooting star brightness impact
 }
 
 const CelestialContext = createContext<CelestialContextType | null>(null);
@@ -16,10 +19,12 @@ export function CelestialProvider({ children }: { children: ReactNode }) {
   const { scrollYProgress } = useScroll();
   
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
+    stiffness: 80,
+    damping: 80,
     restDelta: 0.001
   });
+
+  const starFlash = useSpring(0, { stiffness: 100, damping: 30 });
 
   const lerp = (input: number, inputRange: number[], outputRange: number[]) => {
     for (let i = 0; i < inputRange.length - 1; i++) {
@@ -45,6 +50,14 @@ export function CelestialProvider({ children }: { children: ReactNode }) {
     return lerp(p, [0.55, 0.77, 1], [95, 0, 32]);
   });
 
+  // Normalized coordinates for lighting calculations (relative to screen)
+  const lightX = useTransform(x, (v) => v / 100);
+  const lightY = useTransform(y, (p) => {
+    // Convert vh-based y to 0-1 range
+    const py = p / 100;
+    return py;
+  });
+
   const glow = useTransform(smoothProgress, (p) => {
     if (p < 0.45) return 1 - (p / 0.45);
     if (p < 0.55) return 0;
@@ -55,8 +68,11 @@ export function CelestialProvider({ children }: { children: ReactNode }) {
     progress: smoothProgress,
     x,
     y,
+    lightX,
+    lightY,
     glow,
-  }), [smoothProgress, x, y, glow]);
+    starFlash
+  }), [smoothProgress, x, y, lightX, lightY, glow, starFlash]);
 
   return (
     <CelestialContext.Provider value={value}>

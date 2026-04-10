@@ -2,37 +2,39 @@
 
 import { motion } from "framer-motion";
 import { Search, Pencil, Rocket, GraduationCap, Headphones } from "lucide-react";
+import { PretextSmoky } from "@/components/animations/PretextSmoky";
+import { CelestialText } from "@/components/ui/CelestialText";
 
 const APPROACH_STEPS = [
   {
     number: "01",
     icon: Search,
-    title: "ASSESS",
-    description: "We map your current systems and pain points"
+    title: "THE AUDIT",
+    description: "We begin with a thorough audit of your digital surface—identifying gaps and mapping the route to your next expansion."
   },
   {
     number: "02",
     icon: Pencil,
-    title: "DESIGN",
-    description: "Custom solutions built for your workflow"
+    title: "THE ARCHITECTURE",
+    description: "We don't just 'design'; we architect systems. Every pixel and line of code is forged to support your unique operational load."
   },
   {
     number: "03",
     icon: Rocket,
-    title: "IMPLEMENT",
-    description: "Seamless deployment with zero disruption"
+    title: "THE BUILD",
+    description: "High-fidelity engineering in action. We deploy resilient, scalable assets that integrate seamlessly into your existing nexus."
   },
   {
     number: "04",
     icon: GraduationCap,
-    title: "TRAIN",
-    description: "Your team becomes self-sufficient"
+    title: "THE HANDOVER",
+    description: "You retain total command. We provide the technical enabling your team needs to manage and scale your internal ecosystem."
   },
   {
     number: "05",
     icon: Headphones,
-    title: "SUPPORT",
-    description: "Ongoing partnership, not one-time delivery"
+    title: "CONTINUITY",
+    description: "Elite engineering never sleeps. We remain as your strategic reinforcement, ensuring your technology evolves as fast as you do."
   }
 ];
 
@@ -54,11 +56,14 @@ export default function ApproachSteps() {
           transition={{ duration: 0.8 }}
         >
           <h2 className="font-heading text-4xl md:text-6xl font-bold text-off-white mb-4 uppercase text-balance">
-            How Samaria Helps
+            <CelestialText intensity={1.2}>A Proven Methodology</CelestialText>
           </h2>
-          <p className="text-off-white/60 text-lg max-w-2xl mx-auto">
-            Our proven 5-step process for digital transformation
-          </p>
+          <span className="block text-off-white/60 text-lg max-w-2xl mx-auto">
+            <CelestialText intensity={0.6}>Our five-stage protocol for</CelestialText> 
+            <span className="inline-block min-w-[300px] md:min-w-[400px]">
+              <PretextSmoky text="digital excellence" className="text-brand-gold/90" maxWidth={1000} />
+            </span>
+          </span>
         </motion.div>
 
         {/* Steps - Horizontal on desktop, vertical on mobile */}
@@ -77,7 +82,7 @@ export default function ApproachSteps() {
                   transition={{ duration: 0.6, delay: index * 0.15 }}
                 >
                   {/* Step card */}
-                  <div className="bg-black-bean border border-brand-gold/20 p-8 hover:border-brand-gold/60 transition-all duration-300 group">
+                  <div className="bg-black-bean border border-brand-gold/20 p-8 hover:border-brand-gold/60 transition-all duration-300 group min-h-[320px] flex flex-col">
                     {/* Number */}
                     <div className="text-6xl font-heading font-bold text-brand-gold/20 group-hover:text-brand-gold/40 transition-colors mb-4">
                       {step.number}
@@ -90,13 +95,13 @@ export default function ApproachSteps() {
 
                     {/* Title */}
                     <h3 className="font-heading text-2xl font-bold text-off-white mb-3 uppercase">
-                      {step.title}
+                      <CelestialText intensity={0.8}>{step.title}</CelestialText>
                     </h3>
 
                     {/* Description */}
-                    <p className="text-off-white/70 text-sm leading-relaxed">
-                      {step.description}
-                    </p>
+                    <span className="block text-off-white/70 text-sm leading-relaxed">
+                      <CelestialText intensity={0.4}>{step.description}</CelestialText>
+                    </span>
                   </div>
                 </motion.div>
 

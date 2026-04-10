@@ -1,45 +1,44 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Server, Clock, Database, Shield, Zap, CheckCircle, AlertCircle } from "lucide-react";
+import { Server, Clock, Database, Shield, Zap, CheckCircle } from "lucide-react";
 
 const CHALLENGES = [
   {
     icon: Server,
-    title: "Legacy Friction",
-    description: "Systems that fail when you scale, inherited from a pre-digital era.",
+    title: "Pre-Agentic Debt",
+    description: "Systems inherited from a pre-agentic era that begin to rot the moment they are deployed.",
     color: "text-red-500"
   },
   {
     icon: Clock,
-    title: "Manual Chaos",
-    description: "Hours lost to repetitive bureaucracy and paper-heavy workflows.",
+    title: "Black-Box Process",
+    description: "Legacy entities where you pay for hours, not outcomes, losing all visibility into the forge.",
     color: "text-orange-500"
   },
   {
     icon: Database,
-    title: "Data Silos",
-    description: "Critical business intelligence trapped in disconnected tools.",
+    title: "Fragmentation",
+    description: "Disconnected tools that create more work instead of solving it, trapping your business intelligence.",
     color: "text-yellow-500"
   },
   {
     icon: Shield,
-    title: "Security Gaps",
-    description: "Vulnerabilities in non-hardened infrastructure risking your legacy.",
+    title: "Non-Hardened Tech",
+    description: "Vulnerabilities in legacy infrastructure that risk your expansion and institutional legacy.",
     color: "text-purple-500"
   }
 ];
 
 const SOLUTIONS = [
   {
-    title: "Bespoke Architectures",
-    description: "Custom-forged systems designed for 99.99% uptime and infinite scale.",
+    title: "Agentic-First Architecture",
+    description: "We don't just build for your team; we build for the AI agents that will soon run your business.",
     icon: <Zap className="w-5 h-5 text-green-400" />
   },
   {
-    // Pricing Signal integrated here
-    title: "Intelligent Automation",
-    description: "Streamlined protocols starting from $2,500 that reclaim your team's time.",
+    title: "High-Fidelity Resilience",
+    description: "Precision-forged systems designed for 99.99% uptime and extreme operational load.",
     icon: <CheckCircle className="w-5 h-5 text-green-400" />
   }
 ];
@@ -55,7 +54,7 @@ export default function ChallengeImpact() {
       <div className="container max-w-[1200px] mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           
-          {/* Left: The Challenge */}
+          {/* Left: The Old Guard */}
           <div className="space-y-8">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -64,14 +63,14 @@ export default function ChallengeImpact() {
               transition={{ duration: 0.8 }}
             >
               <span className="font-ui text-xs text-spirit-red tracking-[0.3em] uppercase block mb-4">
-                The Friction
+                The Old Guard
               </span>
               <h2 className="text-off-white mb-6">
-                Common Roadblocks to Expansion
+                The Failure of <br /> Static Systems.
               </h2>
               <p className="text-off-white/60 text-lg leading-relaxed mb-10">
-                Most African businesses aren't limited by their vision, but by the performance 
-                limitations of their existing digital tools.
+                Most businesses aren&apos;t limited by their vision, but by the performance 
+                limitations of agencies still building for the 2010s.
               </p>
             </motion.div>
 
@@ -96,7 +95,7 @@ export default function ChallengeImpact() {
             </div>
           </div>
 
-          {/* Right: The Clarity */}
+          {/* Right: The New Standard */}
           <div className="relative">
             <motion.div
               className="bg-black-bean border border-brand-red/20 p-10 md:p-14 relative z-10 clip-blade shadow-2xl"
@@ -106,10 +105,10 @@ export default function ChallengeImpact() {
               transition={{ duration: 0.8 }}
             >
               <span className="font-ui text-xs text-brand-gold tracking-[0.3em] uppercase block mb-4">
-                The Clarity
+                The New Standard
               </span>
               <h2 className="text-off-white mb-10">
-                Precision-Engineered Solutions
+                High-Fidelity Intelligence <br /> & Institutional Architecture.
               </h2>
 
               <ul className="space-y-10">
@@ -124,14 +123,15 @@ export default function ChallengeImpact() {
                 ))}
               </ul>
 
-              {/* Pricing Signal Callout */}
+              {/* Strategic Exception Callout */}
               <div className="mt-12 p-6 border-t border-brand-red/10 bg-brand-red/5 rounded-b-lg">
                 <p className="text-spirit-red font-ui text-xs uppercase tracking-widest mb-2 font-bold">
-                  Expansion Readiness
+                  The Strategic Exception
                 </p>
                 <p className="text-off-white text-base font-light italic">
-                  "We specialize in modular growth. Start with a focused system overhaul and 
-                  scale into an enterprise ecosystem as your revenue grows."
+                  &quot;You don&apos;t hire us to &apos;build features.&apos; You hire us to architect 
+                  your identity. We specialize in modular growth—overhauling silos 
+                  into enterprise ecosystems that handle the weight of expansion.&quot;
                 </p>
               </div>
             </motion.div>

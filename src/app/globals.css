@@ -80,12 +80,15 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   body {
     background: var(--color-royal-obsidian);
     color: var(--color-ivory-glow);
     font-family: var(--font-body);
+    overflow-x: hidden;
+    max-width: 100vw;
     font-size: 16px;
     line-height: var(--phi);
     @media (min-width: 768px) {
@@ -360,6 +363,9 @@ body::before {
   left: 38.2%;
   top: 0;
   z-index: 40;
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 .btn-ghost {

@@ -1,12 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { X, ArrowRight } from "lucide-react";
 import { useHaptics } from "@/hooks/useHaptics";
 import WarriorLogo from "@/components/ui/WarriorLogo";
-import Image from "next/image";
 
 const navItems = [
   { name: "Services", href: "#services" },
@@ -18,8 +17,6 @@ const navItems = [
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { scrollY } = useScroll();
-  const rotate = useTransform(scrollY, [0, 1000], [0, 360]);
   const { clink } = useHaptics();
 
   useEffect(() => {
@@ -45,31 +42,24 @@ export default function Navbar() {
       />
       <div className="container max-w-[1200px] mx-auto px-6 flex items-center justify-between">
 
-        {/* Logo Icon */}
-        <div className="flex items-center gap-3">
-          <div
-            className="relative h-10 w-10 md:h-12 md:w-12 flex items-center justify-center overflow-visible"
-          >
+        {/* Official Logo Integration */}
+        <Link 
+          href="/" 
+          className="flex items-center gap-3 group"
+          onClick={(e) => {
+            if (window.location.pathname === '/') {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+          }}
+        >
+          <div className="relative h-10 w-28 md:h-16 md:w-48 overflow-visible flex items-center">
             <WarriorLogo />
           </div>
-          <Link 
-            href="/" 
-            className="flex items-center gap-3 group"
-            onClick={(e) => {
-              if (window.location.pathname === '/') {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }
-            }}
-          >
-            <span className="font-heading text-xl md:text-2xl tracking-widest text-off-white group-hover:text-metallic-brass transition-colors duration-300">
-              SAMARIA <span className="text-metallic-brass">/&gt;</span>
-            </span>
-          </Link>
-        </div>
+        </Link>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden xl:flex items-center gap-fb4">
           {navItems.map((item) => (
             <Link
               key={item.name}
@@ -83,7 +73,7 @@ export default function Navbar() {
         </div>
 
         {/* Desktop CTA */}
-        <div className="hidden md:flex items-center">
+        <div className="hidden xl:flex items-center">
           <Link
             href="#contact"
             className="btn-warrior text-xs inline-flex items-center gap-2"
@@ -95,7 +85,7 @@ export default function Navbar() {
 
         {/* Mobile Menu Toggle — Torii Gate Ideogram */}
         <button
-          className="md:hidden flex flex-col gap-1.5 p-2"
+          className="xl:hidden flex flex-col gap-1.5 p-2 z-[60]"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -110,35 +100,50 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
-      {mobileMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          className="md:hidden bg-royal-obsidian/98 backdrop-blur-lg border-b border-brand-red/20"
-        >
-          <div className="flex flex-col p-6 gap-5">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="font-ui text-sm uppercase tracking-widest text-off-white/80 hover:text-metallic-brass transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed inset-0 xl:hidden bg-royal-obsidian/95 backdrop-blur-2xl z-50 flex flex-col items-center justify-center"
+          >
+            <div className="flex flex-col items-center gap-8 text-center">
+              {navItems.map((item, i) => (
+                <motion.div
+                  key={item.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                >
+                  <Link
+                    href={item.href}
+                    className="font-heading text-3xl uppercase tracking-[0.2em] text-off-white hover:text-metallic-brass transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                </motion.div>
+              ))}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: navItems.length * 0.1 }}
+                className="mt-8"
               >
-                {item.name}
-              </Link>
-            ))}
-            <Link
-              href="#contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className="btn-warrior text-xs inline-flex items-center gap-2 w-fit mt-2"
-            >
-              Start a Project <ArrowRight className="w-3 h-3" />
-            </Link>
-          </div>
-        </motion.div>
-      )}
+                <Link
+                  href="#contact"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="btn-warrior"
+                >
+                  Start a Project
+                </Link>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

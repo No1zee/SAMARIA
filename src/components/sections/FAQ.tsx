@@ -6,25 +6,21 @@ import { Plus, Minus } from "lucide-react";
 
 const faqs = [
   {
-    q: "How long does a project typically take?",
-    a: "Most projects are delivered in 6–12 weeks depending on scope. A brand identity + landing page can be done in 3 weeks; a full SaaS or enterprise system takes 2–4 months. We give you a detailed timeline before any work begins.",
+    q: "What are the investment parameters for an architectural engagement?",
+    a: "Our systems start at a $2,500 baseline for focused overhauls. For full-scale institutional infrastructure, we provide custom quotes based on the complexity and the operational load of the required ecosystem."
   },
   {
-    q: "Do you work with early-stage startups?",
-    a: "Absolutely. We love working with founders early. We can help validate your idea with a lean MVP, build your brand from scratch, and scale the tech as you grow. Flexible engagement models available.",
+    q: "How does Samaria differ from legacy digital agencies?",
+    a: "Legacy agencies focus on 'deliverables.' Samaria focuses on 'Architecture.' We are born in the agentic era, meaning we build for the high-fidelity, autonomous future of 2026, not the static web of the past."
   },
   {
-    q: "What does your pricing model look like?",
-    a: "We work on a project-based model — you get a fixed quote after a discovery call, not an hourly bill that balloons. For ongoing partnerships, we offer retainer packages for continued development and support.",
+    q: "What is the standard duration for a technical build?",
+    a: "A standard high-impact presence or modular system typically requires 3-5 operational cycles (weeks). Complex enterprise data temples may scale depending on the depth of the integration."
   },
   {
-    q: "Can you integrate with our existing systems?",
-    a: "Yes. API integration is one of our core competencies. We've connected legacy ERPs, payment gateways, CRMs, and third-party SaaS platforms. We'll assess your current stack in the discovery phase and map out the integration.",
-  },
-  {
-    q: "Do you offer post-launch support?",
-    a: "Every project includes a 30-day post-launch support window at no extra cost. After that, you can subscribe to one of our maintenance and growth retainer plans, which include monitoring, updates, and priority support.",
-  },
+    q: "Do you provide ongoing technical reinforcement?",
+    a: "We remain as your strategic reinforcement long after initial deployment through our Continuity protocol, ensuring your architecture evolves alongside your expansion."
+  }
 ];
 
 export default function FAQ() {
@@ -46,12 +42,12 @@ export default function FAQ() {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <span className="font-ui text-xs text-spirit-red tracking-[0.35em] uppercase block mb-4">
-            Common Questions
+          <span className="font-ui text-xs text-spirit-red tracking-[0.4em] uppercase block mb-4">
+            Briefing
           </span>
-          <h2 className="text-off-white text-balance">Frequently Asked</h2>
-          <p className="text-off-white/50 mt-4 text-base max-w-xl mx-auto leading-relaxed">
-            Everything you need to know before we start building together.
+          <h2 className="text-off-white text-balance uppercase">Protocol Clarification</h2>
+          <p className="text-off-white/40 mt-4 text-base max-w-xl mx-auto leading-relaxed">
+            Addressing the most common points of strategic friction.
           </p>
         </motion.div>
 
@@ -74,7 +70,7 @@ export default function FAQ() {
               <button
                 className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left cursor-pointer focus:outline-none focus:ring-1 focus:ring-brand-red/40"
                 onClick={() => toggle(i)}
-                aria-expanded={openIndex === i}
+                aria-expanded={openIndex === i ? "true" : "false"}
                 aria-controls={`faq-answer-${i}`}
                 id={`faq-question-${i}`}
               >

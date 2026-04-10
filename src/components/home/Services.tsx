@@ -1,6 +1,6 @@
 "use client";
  
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -51,19 +51,10 @@ export default function Services() {
     <section ref={sectionRef} id="services" className="py-fb8 relative overflow-hidden">
       
       <div className="container max-w-[1500px] mx-auto px-fb3 md:px-fb4 relative z-10">
-        
-        {/* Section Header — Movement II */}
         <div className="mb-fb7 text-left">
-          <div className="flex items-center gap-fb2 mb-fb3">
-              <div className="w-fb3 h-px bg-metallic-brass/40" />
-              <span className="text-silence text-metallic-brass opacity-100">Mastery — Movement 02</span>
-          </div>
           <h2 className="text-5xl md:text-[8rem] text-off-white font-heading uppercase tracking-tighter leading-[0.85] mb-fb2">
-            Digital Blade Forge.
+            Systemic <br className="md:hidden"/> Capabilities.
           </h2>
-          <p className="text-silence text-metallic-brass/60 tracking-[0.6em] text-xs md:text-sm">
-            Architecture. Systems. Permanent Expansion.
-          </p>
         </div>
   
         {/* 62/38 Asymmetric Grid (φ-Enforced) */}
@@ -94,11 +85,12 @@ export default function Services() {
                   <FortressIcon />
                 </div>
                 <h3 className="text-5xl md:text-[5.5rem] text-off-white mb-fb4 font-heading tracking-tighter leading-none uppercase">
-                  Bespoke <br/> Web Systems.
+                  High-Fidelity <br/> Web Architectures.
                 </h3>
                 <p className="text-off-white/40 max-w-lg mb-fb6 text-xl md:text-2xl font-body leading-relaxed border-l border-metallic-brass/40 pl-fb3 ml-fb1">
-                  We engineer high-performance systems <br className="hidden md:block" /> 
-                  that scale faster than your operational complexity.
+                  We engineer resilient, high-performance systems <br className="hidden md:block" /> 
+                  designed to absorb operational complexity while <br className="hidden md:block" />
+                  accelerating global expansion.
                 </p>
                 
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-fb4 pt-fb5 border-t border-white/5">
@@ -129,10 +121,10 @@ export default function Services() {
                   <BladeIcon />
                 </div>
                 <h4 className="text-3xl md:text-4xl text-off-white mb-fb2 font-heading uppercase tracking-tighter leading-none">
-                  Brand <br/> Identity.
+                  Institutional <br/> Identity.
                 </h4>
                 <p className="text-off-white/30 text-base md:text-lg italic leading-relaxed">
-                  Visual systems that command <br /> immediate tribal authority.
+                  Visual systems forged to establish <br /> immediate market authority and recognition.
                 </p>
               </div>
               <div className="relative z-10 flex items-center justify-between mt-fb3 pt-fb2 border-t border-white/5 opacity-40 group-hover:opacity-100 transition-opacity">
@@ -159,10 +151,10 @@ export default function Services() {
                   <SpiralIcon />
                 </div>
                 <h4 className="text-3xl md:text-4xl text-off-white mb-fb2 font-heading uppercase tracking-tighter leading-none">
-                  Digital <br/> Ecosystems.
+                  Operational <br/> Ecosystems.
                 </h4>
                 <p className="text-off-white/30 text-base md:text-lg italic leading-relaxed">
-                  Unified technical lattices that <br /> bridge every business node.
+                  Unified technical lattices that synchronize <br /> business nodes into a single reactive layer.
                 </p>
               </div>
               <div className="relative z-10 flex items-center justify-between mt-fb3 pt-fb2 border-t border-white/5 opacity-40 group-hover:opacity-100 transition-opacity">

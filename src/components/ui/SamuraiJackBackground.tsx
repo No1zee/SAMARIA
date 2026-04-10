@@ -1,8 +1,8 @@
 // components/ui/SamuraiJackBackground.tsx
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
-import { motion, useTransform, MotionValue } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, useTransform, MotionValue, useScroll } from "framer-motion";
 import { useCelestial } from "@/components/providers/CelestialProvider";
 import { SamariaLogoSVG } from "@/components/animations/SamariaLogoSVG";
 
@@ -110,7 +110,7 @@ function UkiyoCloud({ cloud, progress }: { cloud: CloudData; progress: MotionVal
         opacity: cloud.opacity,
         animation: `cloud-drift ${cloud.duration} linear infinite`,
         animationDelay: cloud.delay,
-        color: cloudColor as any
+        color: (cloudColor as unknown) as string
       }}
     >
       {design.layers.map((layer: LayerData, j) => (
@@ -147,7 +147,7 @@ function MistBand({ mist, progress }: { mist: MistData; progress: MotionValue<nu
         opacity: mist.opacity,
         animation: `mist-drift ${mist.duration} linear infinite`,
         animationDelay: mist.delay,
-        color: mistColor as any
+        color: (mistColor as unknown) as string
       }}
     >
       <path 
@@ -170,8 +170,63 @@ function MistBand({ mist, progress }: { mist: MistData; progress: MotionValue<nu
   );
 }
 
+function ShootingStar() {
+  const { starFlash } = useCelestial();
+  const [active, setActive] = useState(false);
+  const [position, setPosition] = useState({ top: "0%", left: "-10%", rotate: "25deg" });
+
+  useEffect(() => {
+    const trigger = () => {
+      if (Math.random() < 0.20) { // Slightly increased chance
+        const startTop = Math.random() * 30; // Top 30%
+        setPosition({
+          top: `${startTop}%`,
+          left: `-10%`,
+          rotate: `${Math.random() * 20 + 20}deg`
+        });
+        setActive(true);
+        
+        // Trigger global flash mid-flight
+        setTimeout(() => starFlash.set(0.6), 150);
+        setTimeout(() => starFlash.set(0), 600);
+        
+        setTimeout(() => setActive(false), 1200);
+      }
+    };
+
+    const interval = setInterval(trigger, 12000);
+    return () => clearInterval(interval);
+  }, [starFlash]);
+
+  if (!active) return null;
+
+  return (
+    <motion.div
+      initial={{ x: "0vw", y: "0vh", opacity: 0, scaleX: 1 }}
+      animate={{ 
+        x: "120vw", 
+        y: "40vh", 
+        opacity: [0, 1, 1, 0.4, 0],
+        scaleX: [1, 2, 1.5, 1] 
+      }}
+      transition={{ duration: 1.0, ease: "linear" }}
+      className="fixed h-[1.5px] bg-linear-to-r from-transparent via-ivory-glow to-transparent z-15"
+      style={{
+        top: position.top,
+        left: position.left,
+        rotate: position.rotate,
+        width: "220px",
+        transformOrigin: "left center",
+        boxShadow: "0 0 15px rgba(242,237,216,0.9)",
+        filter: "blur(0.5px)"
+      }}
+    />
+  );
+}
+
 export default function SamuraiJackBackground() {
   const [isMounted, setIsMounted] = useState(false);
+  const { scrollYProgress } = useScroll();
   const { x, y, progress } = useCelestial();
 
   // 1. POSITIONING (Synchronized)
@@ -219,9 +274,12 @@ export default function SamuraiJackBackground() {
   const hazeOpacity = useTransform(progress, [0.55, 0.8, 1], [0, 0.4, 0.2]);
 
 
-  // 6. GLOW AURA
   const sunGlowOpacity = useTransform(progress, [0.85, 1.0], [0.2, 0]);
   const sunGlowScale = useTransform(progress, [0.85, 1.0], [1.2, 0.8]);
+
+  // [FIXED] Deep Stellar Parallax (Linked to raw scroll for zero-oscillation stability)
+  const starsParallaxX = useTransform(scrollYProgress, [0, 1], ["-15px", "15px"]);
+  const starsParallaxY = useTransform(scrollYProgress, [0, 1], ["-10vh", "10vh"]);
 
   const [stars, setStars] = useState<Star[]>([]);
   const [clouds, setClouds] = useState<CloudData[]>([]);
@@ -229,51 +287,54 @@ export default function SamuraiJackBackground() {
   const [particles, setParticles] = useState<Particle[]>([]);
 
   useEffect(() => {
-    setIsMounted(true);
-    
-    // Night Stars (Static & Twinkling)
-    setStars([...Array(40)].map(() => ({
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 80}%`,
-      size: Math.random() * 2.2 + 0.5,
-      twinkleDelay: `${Math.random() * 5}s`,
-      twinkleDuration: `${Math.random() * 4 + 2}s`
-    })));
+    // Async mount to comply with React 19 cascading render safeguards
+    queueMicrotask(() => {
+      setIsMounted(true);
+      
+      // Night Stars (Static & Twinkling)
+      setStars([...Array(40)].map(() => ({
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 80}%`,
+        size: Math.random() * 2.2 + 0.5,
+        twinkleDelay: `${Math.random() * 5}s`,
+        twinkleDuration: `${Math.random() * 4 + 2}s`
+      })));
 
-    // [UPGRADED] Premium Cloud State
-    setClouds([...Array(8)].map((_, i) => ({
-      id: i,
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 50 + 10}%`,
-      scale: Math.random() * 1.5 + 1.2,
-      opacity: Math.random() * 0.4 + 0.3,
-      duration: `${Math.random() * 40 + 80}s`,
-      delay: `${Math.random() * -120}s`,
-      pathIndex: Math.floor(Math.random() * CLOUD_DESIGNS.length),
-      speedMultiplier: Math.random() * 0.5 + 0.5,
-      bobOffset: Math.random() * 15 + 5
-    })));
+      // [UPGRADED] Premium Cloud State
+      setClouds([...Array(8)].map((_, i) => ({
+        id: i,
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 50 + 10}%`,
+        scale: Math.random() * 1.5 + 1.2,
+        opacity: Math.random() * 0.4 + 0.3,
+        duration: `${Math.random() * 40 + 80}s`,
+        delay: `${Math.random() * -120}s`,
+        pathIndex: Math.floor(Math.random() * CLOUD_DESIGNS.length),
+        speedMultiplier: Math.random() * 0.5 + 0.5,
+        bobOffset: Math.random() * 15 + 5
+      })));
 
-    // [NEW] Dynamic Kasumi Mist Bands
-    setMistBands([...Array(6)].map((_, i) => ({
-      id: i,
-      left: `${Math.random() * 80}%`,
-      top: `${Math.random() * 30 + 55}%`, // Concentrated at bottom 45% (lower)
-      width: `${Math.random() * 400 + 300}px`,
-      opacity: Math.random() * 0.3 + 0.1,
-      duration: `${Math.random() * 30 + 50}s`,
-      delay: `${Math.random() * -60}s`
-    })));
+      // [NEW] Dynamic Kasumi Mist Bands
+      setMistBands([...Array(6)].map((_, i) => ({
+        id: i,
+        left: `${Math.random() * 80}%`,
+        top: `${Math.random() * 30 + 55}%`, // Concentrated at bottom 45% (lower)
+        width: `${Math.random() * 400 + 300}px`,
+        opacity: Math.random() * 0.3 + 0.1,
+        duration: `${Math.random() * 30 + 50}s`,
+        delay: `${Math.random() * -60}s`
+      })));
 
-    setParticles([...Array(30)].map(() => ({
-      width: `${Math.random() * 3 + 1}px`,
-      height: `${Math.random() * 3 + 1}px`,
-      left: `${Math.random() * 100}%`,
-      opacity: Math.random() * 0.5 + 0.2,
-      blur: `${Math.random() * 1.5}px`,
-      duration: `${Math.random() * 10 + 15}s`,
-      delay: `${Math.random() * 20}s`
-    })));
+      setParticles([...Array(30)].map(() => ({
+        width: `${Math.random() * 3 + 1}px`,
+        height: `${Math.random() * 3 + 1}px`,
+        left: `${Math.random() * 100}%`,
+        opacity: Math.random() * 0.5 + 0.2,
+        blur: `${Math.random() * 1.5}px`,
+        duration: `${Math.random() * 10 + 15}s`,
+        delay: `${Math.random() * 20}s`
+      })));
+    });
   }, []);
 
   return (
@@ -303,29 +364,36 @@ export default function SamuraiJackBackground() {
       `}</style>
       
       {/* 1. SCATTERED STARS (z-0) */}
-      <motion.svg 
-        style={{ opacity: starsOpacity }}
-        className="absolute inset-0 w-full h-full z-0"
+      <motion.div
+        style={{ 
+          opacity: starsOpacity,
+          translateX: starsParallaxX,
+          translateY: starsParallaxY
+        }}
+        className="absolute inset-0 w-full h-full z-0 pointer-events-none"
       >
-        <filter id="starBlur">
-          <feGaussianBlur stdDeviation="0.4" />
-        </filter>
-        {stars.map((star, i) => (
-          <circle
-            key={i}
-            cx={star.left}
-            cy={star.top}
-            r={star.size}
-            fill="white"
-            filter="url(#starBlur)"
-            className="star-twinkle"
-            style={{
-              "--twinkle-duration": star.twinkleDuration,
-              "--twinkle-delay": star.twinkleDelay
-            } as any}
-          />
-        ))}
-      </motion.svg>
+        <svg className="w-full h-full">
+          <filter id="starBlur">
+            <feGaussianBlur stdDeviation="0.4" />
+          </filter>
+          {stars.map((star, i) => (
+            <circle
+              key={i}
+              cx={star.left}
+              cy={star.top}
+              r={star.size}
+              fill="white"
+              filter="url(#starBlur)"
+              className="star-twinkle"
+              style={{
+                "--twinkle-duration": star.twinkleDuration,
+                "--twinkle-delay": star.twinkleDelay
+              } as React.CSSProperties}
+            />
+          ))}
+        </svg>
+        <ShootingStar />
+      </motion.div>
 
       {/* 2. PREMIUM UKIYO-E CLOUDS (z-5) */}
       <motion.div 
@@ -475,8 +543,8 @@ export default function SamuraiJackBackground() {
               height: p.height,
               left: p.left,
               bottom: `-20px`,
-              backgroundColor: embersColor as any,
-              opacity: embersOpacity as any,
+              backgroundColor: (embersColor as unknown) as string,
+              opacity: (embersOpacity as unknown) as number,
               filter: `blur(${p.blur})`,
               animation: `ember-drift ${p.duration} linear infinite`,
               animationDelay: p.delay
@@ -485,13 +553,6 @@ export default function SamuraiJackBackground() {
         ))}
       </div>
 
-      {/* 8. GOLDEN RATIO Φ GRID (z-30) */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.10] z-30">
-        <div className="absolute top-[38.2%] left-0 w-full h-px bg-metallic-brass" />
-        <div className="absolute top-[61.8%] left-0 w-full h-px bg-metallic-brass" />
-        <div className="absolute top-0 left-[38.2%] w-px h-full bg-metallic-brass" />
-        <div className="absolute top-0 left-[61.8%] w-px h-full bg-metallic-brass" />
-      </div>
 
     </motion.div>
   );

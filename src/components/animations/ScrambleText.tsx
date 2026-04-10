@@ -1,63 +1,82 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// Register plugin globally (safe to do multiple times)
+// Register plugin globally
 gsap.registerPlugin(ScrollTrigger);
 
 interface ScrambleTextProps {
   text: string;
   className?: string;
   duration?: number;
-  chars?: string;
   delay?: number;
 }
 
+/**
+ * ArchitecturalBloom / ElegantReveal
+ * Replaces the 'Scramble' effect with a sophisticated vertical reveal.
+ * Characters slide up, fade in, and sharpen with a staggered rhythm.
+ */
 export default function ScrambleText({
   text,
   className = "",
   duration = 1.2,
-  chars = "01<>/*#@",
   delay = 0,
 }: ScrambleTextProps) {
-  const [displayText, setDisplayText] = useState(chars.substring(0, Math.min(chars.length, text.length)));
   const containerRef = useRef<HTMLSpanElement>(null);
+  const charsRef = useRef<(HTMLSpanElement | null)[]>([]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const scrambleObj = { value: 0 };
+      const chars = charsRef.current.filter(Boolean);
       
-      gsap.to(scrambleObj, {
-        duration: duration,
-        delay: delay,
-        value: 1,
-        ease: "power2.out",
-        scrollTrigger: {
+      if (chars.length === 0) return;
+
+      gsap.fromTo(
+        chars,
+        {
+          opacity: 0,
+          y: 20,
+          filter: "blur(10px)",
+        },
+        {
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+          duration: duration,
+          delay: delay,
+          stagger: {
+            each: 0.1,
+            from: "start",
+          },
+          ease: "power3.out",
+          scrollTrigger: {
             trigger: containerRef.current,
-            start: "top 85%", // Start when text is near bottom of viewport
-            toggleActions: "play none none none" 
-        },
-        onUpdate: () => {
-          const progress = scrambleObj.value;
-          let result = "";
-          for (let i = 0; i < text.length; i++) {
-            if (progress >= (i + 1) / text.length) {
-              result += text[i];
-            } else {
-              result += chars[Math.floor(Math.random() * chars.length)];
-            }
-          }
-          setDisplayText(result);
-        },
-      });
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
     }, containerRef);
 
     return () => ctx.revert();
-  }, [text, duration, chars, delay]);
+  }, [text, duration, delay]);
+
+  // Split text into characters, treating spaces as non-breakable spans to preserve layout
+  const characters = text.split("").map((char, index) => (
+    <span
+      key={`${char}-${index}`}
+      ref={(el) => (charsRef.current[index] = el)}
+      className="inline-block"
+      style={{ whiteSpace: char === " " ? "pre" : "normal" }}
+    >
+      {char}
+    </span>
+  ));
 
   return (
-    <span ref={containerRef} className={className}>
-      {displayText}
+    <span ref={containerRef} className={`${className} inline-block whitespace-nowrap`}>
+      {characters}
     </span>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import { prepare, layout } from '@chenglou/pretext';
 
 interface TextFitOptions {
@@ -13,40 +13,32 @@ interface TextFitOptions {
 }
 
 export function useTextFit(text: string, options: TextFitOptions) {
-  const [fontSize, setFontSize] = useState(options.initialFontSize);
   const minFontSize = options.minFontSize || 10;
 
-  useEffect(() => {
-    if (!text || options.maxWidth <= 0) return;
+  const fontSize = useMemo(() => {
+    if (!text || options.maxWidth <= 0) return options.initialFontSize;
 
     let currentSize = options.initialFontSize;
     const step = 1;
 
-    const findFittingSize = () => {
-      while (currentSize > minFontSize) {
-        // Construct font string for pretext (e.g. "16px Inter")
-        // We assume the font family is passed in the options
-        const fontSpec = `${currentSize}px ${options.font}`;
-        
-        try {
-          const prepared = prepare(text, fontSpec);
-          const { height } = layout(prepared, options.maxWidth, options.lineHeight * (currentSize / options.initialFontSize));
+    while (currentSize > minFontSize) {
+      const fontSpec = `${currentSize}px ${options.font}`;
+      
+      try {
+        const prepared = prepare(text, fontSpec);
+        const { height } = layout(prepared, options.maxWidth, options.lineHeight * (currentSize / options.initialFontSize));
 
-          if (height <= options.maxHeight) {
-            return currentSize;
-          }
-        } catch (e) {
-          console.error("Pretext measurement failed:", e);
-          break;
+        if (height <= options.maxHeight) {
+          return currentSize;
         }
-        
-        currentSize -= step;
+      } catch (e) {
+        console.error("Pretext measurement failed:", e);
+        break;
       }
-      return currentSize;
-    };
-
-    const fittedSize = findFittingSize();
-    setFontSize(fittedSize);
+      
+      currentSize -= step;
+    }
+    return currentSize;
   }, [text, options.maxWidth, options.maxHeight, options.font, options.lineHeight, options.initialFontSize, minFontSize]);
 
   return fontSize;

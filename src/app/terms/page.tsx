@@ -39,7 +39,7 @@ export default function TermsPage() {
               <section>
                 <h2 className="text-off-white font-ui text-xs uppercase tracking-[0.4em] mb-fb3 border-b border-metallic-brass/20 pb-2">01 // Engagement Logic</h2>
                 <p>
-                  By initiating a project, you agree to our phased deployment workflow. We operate on a 'Build to Finish' 
+                  By initiating a project, you agree to our phased deployment workflow. We operate on a &apos;Build to Finish&apos; 
                   principle, requiring documented project specifications before the forge begins.
                 </p>
               </section>

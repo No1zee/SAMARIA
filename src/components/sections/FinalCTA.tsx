@@ -35,34 +35,35 @@ export default function FinalCTA() {
           transition={{ duration: 0.8 }}
         >
           {/* Eyebrow */}
-          <span className="font-ui text-xs text-spirit-red tracking-[0.4em] uppercase block mb-6">
-            Ready to Build?
+          <span className="font-ui text-xs text-brand-gold tracking-[0.4em] uppercase block mb-6">
+            The Final Step is a Dialogue
           </span>
 
-          <h2 className="text-off-white mb-6 leading-tight">
+          <h2 className="text-off-white mb-6 leading-tight uppercase">
             Your Digital Legacy<br />
-            <span className="text-spirit-red">Starts Here.</span>
+            <span className="text-brand-gold">Starts Now.</span>
           </h2>
 
           <p className="text-lg text-off-white/60 mb-12 leading-relaxed">
-            Let&apos;s discuss how custom IT solutions can transform your business. 
-            Get a free strategy session and discover what&apos;s possible.
+            You&apos;ve seen the architecture. You&apos;ve heard our ideology. 
+            If you are ready to depart from the status quo and build for the expansion ahead, let&apos;s talk.
+            We only accept a limited number of high-stakes engagements each quarter to ensure total focus.
           </p>
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
             <Link
               href="#contact"
-              className="btn-warrior px-10 py-4 text-sm inline-flex items-center gap-2"
+              className="btn-warrior px-10 py-4 text-sm inline-flex items-center gap-2 uppercase tracking-widest"
             >
-              Book a Free Call
+              Begin the Dialogue
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
-              href="#projects"
-              className="btn-ghost px-10 py-4 text-sm inline-flex items-center gap-2"
+              href="#artifacts"
+              className="btn-ghost px-10 py-4 text-sm inline-flex items-center gap-2 uppercase tracking-widest"
             >
-              See Our Work
+              View the Artifacts
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

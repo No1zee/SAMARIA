@@ -53,8 +53,6 @@ export default function CircuitBlob({
 
     const states = morphStates[variant];
     const stateKeys = ['state1', 'state2', 'state3', 'initial'] as const;
-    let currentStateIndex = 0;
-
     const morphTimeline = gsap.timeline({ 
       repeat: -1,
       defaults: { duration: 4, ease: "power1.inOut" }

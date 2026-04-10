@@ -168,7 +168,7 @@ export default function RootLayout({
   const fontClasses = `${cinzel.variable} ${orbitron.variable} ${montserrat.variable}`;
 
   return (
-    <html lang="en" className={fontClasses}>
+    <html lang="en" className={fontClasses} suppressHydrationWarning>
       <head>
         {/* Preconnect for Google Fonts (performance) */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -11,7 +11,7 @@ export const useHaptics = () => {
     if (typeof window !== 'undefined' && 'vibrate' in navigator) {
       try {
         navigator.vibrate(pattern);
-      } catch (e) {
+      } catch {
         // Silently fail if blocked by user preference
       }
     }

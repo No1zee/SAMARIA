@@ -45,7 +45,8 @@ export default function Footer() {
   );
 
   useEffect(() => {
-    setYear(new Date().getFullYear());
+    // Async update to satisfy React 19 cascading render checks
+    queueMicrotask(() => setYear(new Date().getFullYear()));
   }, []);
 
   return (

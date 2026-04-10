@@ -11,11 +11,11 @@ export default function WarriorLogo() {
       <div className="absolute inset-0 rounded-full bg-metallic-brass/5 blur-xl group-hover:bg-metallic-brass/10 transition-all duration-500" />
       
       <Image 
-        src="/logo_icon.png" 
-        alt="Samaria Logo Icon" 
+        src="/logo.png" 
+        alt="Samaria Logo" 
         width={100}
         height={100}
-        className="w-[90%] h-[90%] object-contain drop-shadow-[0_0_15px_rgba(201,168,76,0.2)]"
+        className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(201,168,76,0.2)]"
         priority
       />
     </div>

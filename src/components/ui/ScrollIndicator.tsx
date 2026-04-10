@@ -12,7 +12,7 @@ export default function ScrollIndicator() {
       style={{ opacity }}
       className="fixed bottom-12 left-1/2 -translate-x-1/2 z-40 pointer-events-none flex flex-col items-center gap-2"
     >
-      <span className="text-[10px] tracking-[0.5em] font-ui text-metallic-brass/40 uppercase">Scroll to Forge</span>
+
       <motion.div
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}

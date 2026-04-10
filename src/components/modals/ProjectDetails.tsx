@@ -1,14 +1,25 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, TrendingUp } from "lucide-react";
 import { prepare, layout } from "@chenglou/pretext";
 
+interface Project {
+  id: string;
+  name: string;
+  type: string;
+  teaser: string;
+  metric: string;
+  metricLabel: string;
+  tag: string;
+  image: string;
+}
+
 interface ProjectDetailsProps {
   isOpen: boolean;
   onClose: () => void;
-  project: any;
+  project: Project | null;
 }
 
 export default function ProjectDetails({ isOpen, onClose, project }: ProjectDetailsProps) {
@@ -28,10 +39,10 @@ export default function ProjectDetails({ isOpen, onClose, project }: ProjectDeta
       const { height } = layout(prepared, width, lineHeight);
       
       // Add extra height for title, metrics, and padding
-      setContentHeight(height + 300); 
+      queueMicrotask(() => setContentHeight(height + 300));
     } catch (e) {
       console.error("Layout calculation failed for modal:", e);
-      setContentHeight(600); // Fallback
+      queueMicrotask(() => setContentHeight(600)); // Fallback
     }
   }, [project, isOpen]);
 
@@ -89,7 +100,7 @@ export default function ProjectDetails({ isOpen, onClose, project }: ProjectDeta
                 <p className="font-light">
                   Our involvement in this project centered on creating a robust digital infrastructure 
                   that prioritized both speed and security. By leveraging cutting-edge web technologies, 
-                  we transformed the client's operational model into a precision-driven ecosystem.
+                  we transformed the client&apos;s operational model into a precision-driven ecosystem.
                 </p>
               </div>
 

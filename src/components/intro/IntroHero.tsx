@@ -20,7 +20,7 @@ export default function IntroHero() {
 
   // Use Case 2: Balanced Typography
   // We want to find the tightest width for the headline to avoid orphans.
-  const headline = "ENGINEERING YOUR DIGITAL ECOSYSTEM";
+  const headline = "You have the vision. We have the forge to build it.";
   const balancedWidth = useBalancedWidth(
     headline,
     "900 48px Cinzel", // Approximate font for measurement
@@ -44,37 +44,37 @@ export default function IntroHero() {
         >
           {/* Section Label */}
           <div className="font-ui text-xs md:text-sm text-brand-gold tracking-[0.4em] uppercase mb-8">
-            What We Do
+            The Philosophy
           </div>
 
           {/* New Hook Headline */}
           <motion.h2 
-            className="font-heading text-4xl md:text-6xl text-off-white mb-10 leading-tight mx-auto transition-[max-width] duration-500"
+            className="font-heading text-4xl md:text-6xl text-off-white mb-10 leading-tight mx-auto transition-[max-width] duration-500 uppercase"
             style={{ maxWidth: maxWidth > 0 ? balancedWidth : "none" }}
           >
-            ENGINEERING YOUR <br />
-            <span className="text-brand-gold">DIGITAL ECOSYSTEM</span>
+            {headline}
           </motion.h2>
 
           {/* Description */}
           <p className="text-lg md:text-xl text-off-white/70 font-light max-w-3xl mx-auto mb-16 leading-relaxed">
-            We don't just write code; we forge solutions. Whether you need a high-impact bespoke website, 
-            a mission-critical custom system, or a comprehensive IT strategy, 
-            Samaria delivers precision-engineered technology tailored to your exact needs.
+            Most digital infrastructure is built to survive. We build yours to lead. 
+            You aren&apos;t looking for a &quot;dev shop&quot;—you&apos;re looking for an architectural partner 
+            that understands how software becomes the nervous system of an elite business. 
+            We handle the technical complexity so you can focus on the expansion.
           </p>
 
           {/* Services Grid Small */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto text-left">
              <div className="p-8 border border-white/5 bg-white/2 rounded-lg backdrop-blur-xs hover:border-brand-gold/30 transition-colors">
-                <h3 className="font-heading text-xl text-off-white mb-3">Bespoke Websites</h3>
+                <h3 className="font-heading text-xl text-off-white mb-3">Digital Presence</h3>
                 <p className="text-sm text-off-white/60">Pixel-perfect, high-performance web experiences designed to captivate and convert.</p>
              </div>
              <div className="p-8 border border-white/5 bg-white/2 rounded-lg backdrop-blur-xs hover:border-brand-gold/30 transition-colors">
-                <h3 className="font-heading text-xl text-off-white mb-3">Custom Systems</h3>
+                <h3 className="font-heading text-xl text-off-white mb-3">Operational Systems</h3>
                 <p className="text-sm text-off-white/60">Tailor-made software architectures built to streamline complex business operations.</p>
              </div>
              <div className="p-8 border border-white/5 bg-white/2 rounded-lg backdrop-blur-xs hover:border-brand-gold/30 transition-colors">
-                <h3 className="font-heading text-xl text-off-white mb-3">IT Solutions</h3>
+                <h3 className="font-heading text-xl text-off-white mb-3">Strategic Consulting</h3>
                 <p className="text-sm text-off-white/60">End-to-end technology consulting and infrastructure to future-proof your business.</p>
              </div>
           </div>

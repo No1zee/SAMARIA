@@ -1,30 +1,26 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 import { prepareWithSegments, walkLineRanges } from '@chenglou/pretext';
 
 export function useBalancedWidth(text: string, font: string, maxWidth: number) {
-  const [balancedWidth, setBalancedWidth] = useState(maxWidth);
-
-  useEffect(() => {
-    if (!text || maxWidth <= 0) return;
+  const balancedWidth = useMemo(() => {
+    if (!text || maxWidth <= 0) return maxWidth;
 
     try {
       const prepared = prepareWithSegments(text, font);
       let tightestWidth = 0;
       
-      // walkLineRanges calls the callback for each line to find the widest line
       walkLineRanges(prepared, maxWidth, (line) => {
         if (line.width > tightestWidth) {
           tightestWidth = line.width;
         }
       });
 
-      if (tightestWidth > 0) {
-        setBalancedWidth(tightestWidth);
-      }
+      return tightestWidth > 0 ? tightestWidth : maxWidth;
     } catch (e) {
       console.error("Pretext balanced width calculation failed:", e);
+      return maxWidth;
     }
   }, [text, font, maxWidth]);
 

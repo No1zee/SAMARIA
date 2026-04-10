@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 
 // Dynamic imports
 const Hero = dynamic(() => import("@/components/home/Hero"));
+const ApproachSteps = dynamic(() => import("@/components/intro/ApproachSteps"));
 const Services = dynamic(() => import("@/components/home/Services"));
 const ProjectsTeaser = dynamic(() => import("@/components/sections/ProjectsTeaser"));
 const About = dynamic(() => import("@/components/home/About"));
@@ -17,7 +18,10 @@ export default function Home() {
       {/* 1. THE STRIKE (Movement 1: Hero) */}
       <Hero />
 
-      {/* 2. THE MASTERY (Movement 2: Capabilities) */}
+      {/* 2. THE PATH (Movement 1.5: Process) */}
+      <ApproachSteps />
+
+      {/* 3. THE MASTERY (Movement 2: Capabilities) */}
       <Services />
 
       {/* 3. THE ARTIFACTS (Movement 3: Work) */}

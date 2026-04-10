@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useSpring, MotionValue, useTransform } from "framer-motion";
+import { motion, useSpring, useTransform, useMotionTemplate } from "framer-motion";
 import { useMemo, useRef, useState, useLayoutEffect } from "react";
 import { useCelestial } from "@/components/providers/CelestialProvider";
 
@@ -21,16 +21,25 @@ function CharacterWarp({
   targetX: number; 
   targetY: number 
 }) {
-  const { x, y, glow } = useCelestial();
+  const { x, y, glow, lightX, lightY, starFlash } = useCelestial();
+
+  // Shadow Offset (Points away from light source)
+  const shadowX = useTransform(lightX, [0, 1], [15, -15]);
+  const shadowY = useTransform(lightY, [0, 1], [20, -20]);
+  const shadowBlur = useTransform(glow, [0, 0.5, 1], [2, 6, 12]);
+  const shadowOpacity = useTransform(glow, [0, 1], [0.1, 0.35]);
+
+  // Star Flash Reactivity
+  const flashBrightness = useTransform(starFlash, [0, 1], [1, 2.8]);
 
   const celestialState = useTransform([x, y, glow], ([currentX, currentY, currentGlow]) => {
     const cx = currentX as number;
     const cy = currentY as number;
     const cg = currentGlow as number;
 
-    const isSun = cg > 0; // Simplified phase check
+    const isSun = cg > 0;
     const glowColor = isSun 
-      ? `rgba(201, 168, 76, ${cg * 0.9})`
+      ? `rgba(201, 168, 76, ${cg * 0.95})`
       : `rgba(242, 237, 216, ${cg * 0.9})`;
 
     // --- 2D GRAVITATIONAL WARP ---
@@ -38,9 +47,8 @@ function CharacterWarp({
     const dy = targetY - cy;
     const distance = Math.sqrt(dx * dx + dy * dy);
     
-    // Increased radius and Intensity for better 'felt' experience
     const maxDisplacement = 45; 
-    const falloffRadius = 25; // 25% of viewport
+    const falloffRadius = 25; 
     
     const intensity = distance < falloffRadius 
       ? maxDisplacement * Math.exp(-Math.pow(distance, 2) / (2 * Math.pow(falloffRadius/2.5, 2)))
@@ -75,7 +83,9 @@ function CharacterWarp({
         display: "inline-block",
         x: springX,
         y: springY,
-        whiteSpace: "pre"
+        whiteSpace: "pre",
+        textShadow: useMotionTemplate`${shadowX}px ${shadowY}px ${shadowBlur}px rgba(0,0,0,${shadowOpacity})`,
+        filter: useMotionTemplate`brightness(${flashBrightness})`
       }}
     >
       {char}

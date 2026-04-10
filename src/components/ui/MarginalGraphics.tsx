@@ -15,7 +15,8 @@ export default function MarginalGraphics() {
   });
 
   useEffect(() => {
-    setIsMounted(true);
+    // Defer mounting to next tick to avoid synchronous cascading render in React 19
+    queueMicrotask(() => setIsMounted(true));
   }, []);
 
   if (!isMounted) return null;
@@ -40,12 +41,8 @@ export default function MarginalGraphics() {
           </svg>
         </motion.div>
 
-        {/* Vertical Text */}
-        <div className="flex-1 flex items-center">
-          <span className="text-vertical text-silence tracking-[0.6em] text-metallic-brass/40 text-[10px] uppercase">
-            SAMARIA // ELITE DIGITAL ARCHITECTURE
-          </span>
-        </div>
+        {/* Vertical Text Removed for Editorial Luxury */}
+
 
         {/* Bottom Sigil */}
         <motion.div 
@@ -72,21 +69,16 @@ export default function MarginalGraphics() {
           />
         </div>
 
-        {/* Top Label */}
-        <div className="text-silence text-[9px] tracking-widest text-metallic-brass/30">
-          EST. MMXXV
-        </div>
+        {/* Top Label Removed */}
 
-        {/* Vertical Text */}
-        <div className="flex-1 flex items-center justify-center">
-          <span className="text-vertical text-silence tracking-[0.8em] text-metallic-brass/40 text-[10px] uppercase">
-            BUILT FOR AFRICA // FORGED IN CODE
-          </span>
-        </div>
+
+        {/* Vertical Text Removed */}
+
 
         {/* Scroll Label */}
         <div className="flex flex-col items-center gap-4">
-          <span className="text-vertical text-silence text-[8px] opacity-20">SCROLL TO FORGE</span>
+          <span className="text-vertical text-silence text-[8px] opacity-20 invisible">SCROLL TO FORGE</span>
+
           <motion.div 
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}

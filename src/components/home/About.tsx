@@ -8,26 +8,11 @@ export default function About() {
   return (
     <section id="manifesto" className="py-fb8 relative overflow-hidden">
       
-      {/* Structural Watermark — Movement IV */}
-      <div className="absolute top-1/2 left-0 w-full h-[150%] -translate-y-1/2 flex items-center opacity-[0.02] pointer-events-none select-none z-0 overflow-hidden">
-          <motion.div 
-            initial={{ x: "0%" }}
-            animate={{ x: "-50%" }}
-            transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
-            className="flex whitespace-nowrap"
-          >
-            <span className="text-[40vw] font-heading font-bold text-off-white pr-fb7">COLLECTIVE</span>
-            <span className="text-[40vw] font-heading font-bold text-off-white pr-fb7">COLLECTIVE</span>
-          </motion.div>
-      </div>
  
       <div className="container max-w-[1500px] mx-auto px-fb3 md:px-fb4 relative z-10">
         
         {/* The Horizon Header */}
         <div className="mb-fb7 border-l border-metallic-brass/40 pl-fb3">
-          <div className="flex items-center gap-fb2 mb-fb3">
-              <span className="text-silence text-metallic-brass">Movement 04 — The Covenant</span>
-          </div>
           <h2 className="text-5xl md:text-[8rem] font-heading uppercase tracking-tighter leading-[0.85] flex flex-col">
             <EclipseText baseColor="rgba(242, 237, 216, 0.4)">
               THE ANCIENT
@@ -105,10 +90,9 @@ export default function About() {
                    </div>
                 </div>
                 
-                <div className="md:text-right">
-                   <p className="text-silence text-white/20 mb-1">Status: Operational</p>
-                   <p className="font-ui text-xs text-metallic-brass/60 tracking-widest uppercase text-nowrap">Est. MMXXV // The Ancient Future</p>
-                </div>
+                <div className="md:text-right invisible">
+                    <p className="text-silence text-white/20 mb-1">Status: Operational</p>
+                 </div>
              </div>
  
           </div>

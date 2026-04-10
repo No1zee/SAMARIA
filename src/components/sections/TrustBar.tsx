@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 import { TrendingUp, Users, Star, Clock } from "lucide-react";
 
 const stats = [
-  { value: "100+", label: "Projects Delivered", icon: <TrendingUp className="w-5 h-5" /> },
-  { value: "50+", label: "Happy Clients", icon: <Users className="w-5 h-5" /> },
-  { value: "100%", label: "Client Satisfaction", icon: <Star className="w-5 h-5" /> },
-  { value: "5+", label: "Years Building", icon: <Clock className="w-5 h-5" /> },
+  { value: "01 //", label: "Genesis Era", icon: <TrendingUp className="w-5 h-5" /> },
+  { value: "50+", label: "Vetted Entities", icon: <Users className="w-5 h-5" /> },
+  { value: "100%", label: "Architectural Integrity", icon: <Star className="w-5 h-5" /> },
+  { value: "2026 //", label: "The New Standard", icon: <Clock className="w-5 h-5" /> },
 ];
 
 const CLIENTS = [
@@ -58,7 +58,7 @@ export default function TrustBar() {
         <div className="mt-16 pt-12 border-t border-brand-red/10 overflow-hidden">
           <div className="text-center mb-8">
             <span className="font-ui text-[10px] text-off-white/30 uppercase tracking-[0.4em]">
-              Trusted By Expansion-Ready Entities
+              The Next Generation of Infrastructure // Built for the African Century
             </span>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-12 md:gap-20 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
@@ -72,19 +72,20 @@ export default function TrustBar() {
 
         {/* Testimonial Snippet */}
         <motion.div 
-          className="mt-16 text-center max-w-2xl mx-auto"
+          className="mt-16 text-center max-w-3xl mx-auto"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
         >
-          <p className="text-off-white/60 italic text-sm md:text-base leading-relaxed">
-            "Samaria didn't just build us a website; they forged a digital ecosystem that 
-            now handles 40% of our automated logic. Their 'Warrior Tech' philosophy is real."
+          <p className="text-off-white/60 italic text-sm md:text-lg leading-relaxed">
+            &quot;Samaria isn&apos;t a legacy firm trying to adapt; it was born in the agentic era. 
+            They architect digital nervous systems for those who realize the old blueprints no longer work. 
+            Our ideology is built on radical transparency and high-fidelity resilience.&quot;
           </p>
           <div className="mt-4 flex items-center justify-center gap-2">
             <div className="w-6 h-px bg-brand-red/30" />
-            <span className="font-ui text-[10px] text-spirit-red uppercase tracking-widest">CEO, LumiStream</span>
+            <span className="font-ui text-[10px] text-spirit-red uppercase tracking-widest">Digital Strategist, LumiStream</span>
             <div className="w-6 h-px bg-brand-red/30" />
           </div>
         </motion.div>
