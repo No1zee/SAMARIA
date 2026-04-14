@@ -74,6 +74,8 @@ export default function WarCouncilContact() {
     identity: "",
     architecture: "",
     nexus: "",
+    budget: "",
+    message: "",
   });
   const [submitted, setSubmitted] = useState(false);
 
