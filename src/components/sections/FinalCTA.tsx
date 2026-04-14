@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import CircuitBlob from "@/components/animations/CircuitBlob";
 import { ArrowRight, Zap, Clock, Shield } from "lucide-react";
 import Link from "next/link";
+import { useCelestial } from "@/components/providers/CelestialProvider";
 
 const guarantees = [
   { icon: <Zap className="w-4 h-4" />, text: "Free Discovery Call" },
@@ -12,6 +13,7 @@ const guarantees = [
 ];
 
 export default function FinalCTA() {
+  const { setIsCinematicMode } = useCelestial();
   return (
     <section className="relative py-36 bg-royal-obsidian overflow-hidden">
       {/* Background blobs */}
@@ -53,7 +55,8 @@ export default function FinalCTA() {
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
             <Link
-              href="#contact"
+              href="/start-project"
+              onClick={() => setIsCinematicMode(true)}
               className="btn-warrior px-10 py-4 text-sm inline-flex items-center gap-2 uppercase tracking-widest"
             >
               Begin the Dialogue

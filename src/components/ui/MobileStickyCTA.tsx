@@ -3,9 +3,12 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Phone, ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useCelestial } from "@/components/providers/CelestialProvider";
 
 export default function MobileStickyCTA() {
   const [isVisible, setIsVisible] = useState(false);
+  const { setIsCinematicMode } = useCelestial();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,8 +29,9 @@ export default function MobileStickyCTA() {
           transition={{ duration: 0.5, ease: "circOut" }}
           className="fixed bottom-6 left-6 right-6 z-60 md:hidden"
         >
-          <a
-            href="#contact"
+          <Link
+            href="/start-project"
+            onClick={() => setIsCinematicMode(true)}
             className="flex items-center justify-between bg-brand-gold text-royal-obsidian px-5 py-4 rounded-2xl shadow-[0_10px_30px_rgba(197,160,89,0.3)] font-ui font-bold text-sm tracking-wide transition-transform active:scale-95"
           >
             <div className="flex items-center gap-3">
@@ -37,7 +41,7 @@ export default function MobileStickyCTA() {
               <span>START A PROJECT</span>
             </div>
             <ArrowRight className="w-5 h-5" />
-          </a>
+          </Link>
         </motion.div>
       )}
     </AnimatePresence>

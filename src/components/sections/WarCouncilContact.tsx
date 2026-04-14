@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
 import { useHaptics } from "@/hooks/useHaptics";
+import CelestialHeading from "@/components/ui/CelestialHeading";
 
 interface FormInputProps {
   id: string;
@@ -50,14 +51,14 @@ const FormInput = ({ id, placeholder, type = "text", value, onChange, activeFiel
 
       {/* Blinking Cursor (visible only on focus and empty) */}
       {isFocused && !hasValue && (
-        <motion.div 
+        <motion.span 
           animate={{ opacity: [0, 1, 0] }}
           transition={{ duration: 0.8, repeat: Infinity }}
-          className="absolute left-2 top-1 h-8 w-[2px] bg-metallic-brass/60 z-0"
+          className="absolute left-2 top-1 h-8 w-[2px] bg-metallic-brass/60 z-0 inline-block"
         />
       )}
 
-      <motion.div 
+      <motion.span 
         initial={{ width: 0 }}
         animate={{ width: (isFocused || hasValue) ? "100%" : "0%" }}
         className="absolute bottom-0 left-0 h-px bg-metallic-brass shadow-[0_0_10px_rgba(201,168,76,0.5)] z-20"
@@ -89,12 +90,17 @@ export default function WarCouncilContact() {
         {/* Section Header (Fibonacci Alignment) */}
         <div className="mb-fb8 border-l border-metallic-brass/40 pl-fb3">
           <div className="flex items-center gap-fb2 mb-fb3">
-            <span className="text-[10px] tracking-[0.3em] font-ui text-metallic-brass uppercase">Movement 05 // Contact</span>
+            <span className="text-[10px] tracking-[0.3em] font-ui text-metallic-brass uppercase">START HERE</span>
           </div>
-          <h2 className="text-5xl md:text-[8rem] text-off-white font-heading uppercase tracking-tighter leading-[0.85]">
-            Let&apos;s <br/>
-            Work.
-          </h2>
+          <CelestialHeading 
+            text={"LET'S FIND OUT\nIF WE'RE THE\nRIGHT FIT."}
+            as="h2"
+            fontSize={128}
+            className="text-5xl md:text-[8rem]"
+            intensity={1.2}
+          />
+            We are intentionally selective. We only take on two new projects per quarter to ensure every build receives our absolute focus. 
+            If you&apos;re building for the long run and value architectural excellence over shortcuts, tell us about your project below.
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-10 gap-fb7 items-start">
@@ -110,39 +116,63 @@ export default function WarCouncilContact() {
                    transition={{ duration: 1 }}
                    className="space-y-12"
                 >
-                  <div className="text-2xl md:text-5xl font-heading text-off-white/80 leading-[1.4] md:leading-[1.6] tracking-tight">
-                    I represent <br className="md:hidden" />
-                    <FormInput 
-                      id="identity"
-                      placeholder="[ THE VISION ]"
-                      value={formData.identity}
-                      onChange={(val: string) => setFormData({ ...formData, identity: val })}
-                      activeField={activeField}
-                      setActiveField={setActiveField}
-                    />
-                    and we are looking to <br className="md:hidden" />
-                    solve for <br className="hidden md:block" />
-                    <FormInput 
-                      id="architecture"
-                      placeholder="[ THE ARCHITECTURE ]"
-                      value={formData.architecture}
-                      onChange={(val: string) => setFormData({ ...formData, architecture: val })}
-                      activeField={activeField}
-                      setActiveField={setActiveField}
-                    />
-                    .
-                    <br />
-                    Reach me directly at <br className="md:hidden" />
-                    <FormInput 
-                      id="nexus"
-                      placeholder="[ THE REINFORCEMENT ]"
-                      type="email"
-                      value={formData.nexus}
-                      onChange={(val: string) => setFormData({ ...formData, nexus: val })}
-                      activeField={activeField}
-                      setActiveField={setActiveField}
-                    />
-                    to begin the dialogue.
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-xl md:text-2xl font-heading text-off-white/80">
+                    <div className="flex flex-col gap-2">
+                      <span className="text-[10px] uppercase tracking-widest text-metallic-brass/40 font-ui">Name</span>
+                      <FormInput 
+                        id="name"
+                        placeholder="Your Name"
+                        value={formData.identity}
+                        onChange={(val: string) => setFormData({ ...formData, identity: val })}
+                        activeField={activeField}
+                        setActiveField={setActiveField}
+                      />
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <span className="text-[10px] uppercase tracking-widest text-metallic-brass/40 font-ui">Work Email</span>
+                      <FormInput 
+                        id="email"
+                        placeholder="Work Email"
+                        type="email"
+                        value={formData.nexus}
+                        onChange={(val: string) => setFormData({ ...formData, nexus: val })}
+                        activeField={activeField}
+                        setActiveField={setActiveField}
+                      />
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <span className="text-[10px] uppercase tracking-widest text-metallic-brass/40 font-ui">Project Type</span>
+                      <FormInput 
+                        id="architecture"
+                        placeholder="What are we building?"
+                        value={formData.architecture}
+                        onChange={(val: string) => setFormData({ ...formData, architecture: val })}
+                        activeField={activeField}
+                        setActiveField={setActiveField}
+                      />
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <span className="text-[10px] uppercase tracking-widest text-metallic-brass/40 font-ui">Investment Range</span>
+                      <FormInput 
+                        id="budget"
+                        placeholder="Investment Range"
+                        value={formData.budget || ""}
+                        onChange={(val: string) => setFormData({ ...formData, budget: val })}
+                        activeField={activeField}
+                        setActiveField={setActiveField}
+                      />
+                    </div>
+                    <div className="md:col-span-2 flex flex-col gap-2">
+                      <span className="text-[10px] uppercase tracking-widest text-metallic-brass/40 font-ui">Message</span>
+                      <FormInput 
+                        id="message"
+                        placeholder="Tell us about the project and the timeline."
+                        value={formData.message || ""}
+                        onChange={(val: string) => setFormData({ ...formData, message: val })}
+                        activeField={activeField}
+                        setActiveField={setActiveField}
+                      />
+                    </div>
                   </div>
 
                   <div className="flex flex-col md:flex-row items-start md:items-center gap-fb4 pt-fb4">
@@ -152,11 +182,11 @@ export default function WarCouncilContact() {
                       onClick={() => { slash(); setSubmitted(true); }}
                       className="btn-warrior flex items-center gap-4 group disabled:opacity-30 disabled:cursor-not-allowed"
                     >
-                      INITIATE ENGAGEMENT
+                      INITIATE THE BUILD
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </button>
                     <p className="text-[10px] tracking-[0.3em] font-ui text-off-white/20 uppercase">
-                      One operational cycle response time.
+                      &lt; 24 Hours response time.
                     </p>
                   </div>
                 </motion.div>
@@ -172,9 +202,13 @@ export default function WarCouncilContact() {
                     </div>
                     <span className="text-[10px] tracking-[0.4em] font-ui text-metallic-brass uppercase">Dialogue Initiated</span>
                   </div>
-                  <h3 className="text-4xl md:text-6xl font-heading text-off-white uppercase leading-none tracking-tighter mb-4">
-                    Signal <br /> Received.
-                  </h3>
+                  <CelestialHeading 
+                    text={"Signal\nReceived."}
+                    as="h3"
+                    fontSize={64}
+                    className="text-4xl md:text-6xl mb-4"
+                    intensity={0.8}
+                  />
                   <p className="text-off-white/40 text-lg md:text-xl font-body leading-relaxed max-w-sm italic">
                     We are currently analyzing your requirements and will provide an 
                     architectural response within one sunrise.
@@ -190,12 +224,12 @@ export default function WarCouncilContact() {
                 <p className="text-metallic-brass font-ui text-[10px] tracking-[0.5em] mb-fb3 uppercase">Status Report</p>
                 <div className="space-y-4">
                    <div className="flex justify-between items-center border-b border-white/5 pb-2">
-                      <span className="text-off-white/20 text-xs">Allocation Availability</span>
-                      <span className="text-brand-red text-xs transition-pulse">LOW [2 Slots]</span>
+                      <span className="text-off-white/20 text-xs">SELECTIVITY</span>
+                      <span className="text-metallic-brass text-xs transition-pulse">2 SPOTS REMAINING</span>
                    </div>
                    <div className="flex justify-between items-center border-b border-white/5 pb-2">
-                      <span className="text-off-white/20 text-xs">Engagement Logic</span>
-                      <span className="text-off-white/60 text-xs">Direct // <span className="text-metallic-brass">Vocal</span></span>
+                      <span className="text-off-white/20 text-xs">CURRENT FOCUS</span>
+                      <span className="text-off-white/60 text-xs">HIGH-PERFORMANCE INFRASTRUCTURE</span>
                    </div>
                 </div>
              </div>

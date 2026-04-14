@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Server, Clock, Database, Shield, Zap, CheckCircle } from "lucide-react";
+import CelestialHeading from "@/components/ui/CelestialHeading";
 
 const CHALLENGES = [
   {
@@ -65,9 +66,13 @@ export default function ChallengeImpact() {
               <span className="font-ui text-xs text-spirit-red tracking-[0.3em] uppercase block mb-4">
                 The Old Guard
               </span>
-              <h2 className="text-off-white mb-6">
-                The Failure of <br /> Static Systems.
-              </h2>
+              <CelestialHeading 
+                text={"The Failure of\nStatic Systems."}
+                as="h2"
+                fontSize={48}
+                className="mb-6"
+                intensity={0.8}
+              />
               <p className="text-off-white/60 text-lg leading-relaxed mb-10">
                 Most businesses aren&apos;t limited by their vision, but by the performance 
                 limitations of agencies still building for the 2010s.
@@ -107,9 +112,13 @@ export default function ChallengeImpact() {
               <span className="font-ui text-xs text-brand-gold tracking-[0.3em] uppercase block mb-4">
                 The New Standard
               </span>
-              <h2 className="text-off-white mb-10">
-                High-Fidelity Intelligence <br /> & Institutional Architecture.
-              </h2>
+              <CelestialHeading 
+                text={"High-Fidelity Intelligence\n& Institutional Architecture."}
+                as="h2"
+                fontSize={48}
+                className="mb-10 text-off-white"
+                intensity={1.0}
+              />
 
               <ul className="space-y-10">
                 {SOLUTIONS.map((sol, index) => (

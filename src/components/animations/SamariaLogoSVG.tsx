@@ -7,11 +7,15 @@ interface SamariaLogoSVGProps {
   className?: string;
 }
 
+import { useCelestial } from "@/components/providers/CelestialProvider";
+
 export function SamariaLogoSVG({ progress, className = "w-full h-auto" }: SamariaLogoSVGProps) {
+  const { isCinematicMode } = useCelestial();
   const fallbackProgress = useMotionValue(1);
   const activeProgress = progress || fallbackProgress;
   
-  const [showSeal, setShowSeal] = useState(false);
+  const [isScrolledToBottom, setIsScrolledToBottom] = useState(false);
+  const showSeal = isCinematicMode || isScrolledToBottom;
 
   useEffect(() => {
     let timeout: NodeJS.Timeout | undefined;
@@ -19,18 +23,17 @@ export function SamariaLogoSVG({ progress, className = "w-full h-auto" }: Samari
     const unsubscribe = activeProgress.on("change", (latest) => {
       // Threshold for "End of Page"
       if (latest >= 0.99) {
-        if (!showSeal && !timeout) {
+        if (!isScrolledToBottom && !timeout) {
           timeout = setTimeout(() => {
-            setShowSeal(true);
-          }, 400); // Reduced delay for more responsive punch
+            setIsScrolledToBottom(true);
+          }, 400); 
         }
       } else if (latest < 0.97) {
-        // Reset if we scroll away
         if (timeout) {
           clearTimeout(timeout);
           timeout = undefined;
         }
-        setShowSeal(false);
+        setIsScrolledToBottom(false);
       }
     });
 
@@ -38,7 +41,7 @@ export function SamariaLogoSVG({ progress, className = "w-full h-auto" }: Samari
       unsubscribe();
       if (timeout) clearTimeout(timeout);
     };
-  }, [activeProgress, showSeal]);
+  }, [activeProgress, isScrolledToBottom]);
 
   return (
     <div className={`relative ${className} flex items-center justify-center`}>
@@ -53,10 +56,11 @@ export function SamariaLogoSVG({ progress, className = "w-full h-auto" }: Samari
             style={{ 
               width: "80%", // Parity with Seal bounds
               height: "80%",
-              background: "radial-gradient(circle, #D4AF37 0%, #CB984A 70%, transparent 100%)",
+              background: "radial-gradient(circle at center, #FFF8D0 0%, #F4A820 45%, #7B3A10 100%)",
               borderRadius: "50%",
-              filter: "blur(8px)",
-              position: "absolute"
+              filter: "blur(4px)", // Reduced blur for limb sharpening
+              position: "absolute",
+              boxShadow: "0 0 40px rgba(244, 168, 32, 0.3)"
             }}
           />
         ) : (

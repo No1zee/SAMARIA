@@ -5,114 +5,154 @@ import { Search, Pencil, Rocket, GraduationCap, Headphones } from "lucide-react"
 import { PretextSmoky } from "@/components/animations/PretextSmoky";
 import { CelestialText } from "@/components/ui/CelestialText";
 
+const AuditIcon = () => (
+  <svg viewBox="0 0 100 100" className="w-12 h-12 stroke-current fill-none" strokeWidth="1.2">
+    <path d="M20 50 L50 20 L80 50 L50 80 Z" />
+    <circle cx="50" cy="50" r="15" />
+    <path d="M50 35 V65 M35 50 H65" />
+  </svg>
+);
+
+const ArchIcon = () => (
+  <svg viewBox="0 0 100 100" className="w-12 h-12 stroke-current fill-none" strokeWidth="1.2">
+    <rect x="20" y="20" width="60" height="60" />
+    <path d="M20 20 L80 80 M80 20 L20 80" />
+    <circle cx="50" cy="50" r="20" />
+  </svg>
+);
+
+const BuildIcon = () => (
+  <svg viewBox="0 0 100 100" className="w-12 h-12 stroke-current fill-none" strokeWidth="1.2">
+    <path d="M10 80 L50 20 L90 80 Z" />
+    <path d="M30 80 V50 M70 80 V50 M50 20 V80" />
+  </svg>
+);
+
+const HandoverIcon = () => (
+  <svg viewBox="0 0 100 100" className="w-12 h-12 stroke-current fill-none" strokeWidth="1.2">
+    <path d="M20 30 h60 v40 h-60 z" />
+    <path d="M20 40 h60 M20 50 h60 M20 60 h60" />
+    <path d="M50 30 V70" />
+  </svg>
+);
+
+const UnityIcon = () => (
+  <svg viewBox="0 0 100 100" className="w-12 h-12 stroke-current fill-none" strokeWidth="1.2">
+    <circle cx="40" cy="50" r="20" />
+    <circle cx="60" cy="50" r="20" />
+    <path d="M50 30 V70" />
+  </svg>
+);
+
 const APPROACH_STEPS = [
   {
     number: "01",
-    icon: Search,
-    title: "THE AUDIT",
-    description: "We begin with a thorough audit of your digital surface—identifying gaps and mapping the route to your next expansion."
+    icon: AuditIcon,
+    title: "AUDIT",
+    description: "We map every edge case, every dependency, and every piece of legacy friction before we write a single line of new code."
   },
   {
     number: "02",
-    icon: Pencil,
-    title: "THE ARCHITECTURE",
-    description: "We don't just 'design'; we architect systems. Every pixel and line of code is forged to support your unique operational load."
+    icon: ArchIcon,
+    title: "ARCHITECTURE",
+    description: "Structure comes before surface. We blueprint the data flows and system constraints that will hold your growth for the next decade."
   },
   {
     number: "03",
-    icon: Rocket,
-    title: "THE BUILD",
-    description: "High-fidelity engineering in action. We deploy resilient, scalable assets that integrate seamlessly into your existing nexus."
+    icon: BuildIcon,
+    title: "BUILD",
+    description: "Engineering, not assembly. Every component is stress-tested and refined until it performs at the limit of current technology."
   },
   {
     number: "04",
-    icon: GraduationCap,
-    title: "THE HANDOVER",
-    description: "You retain total command. We provide the technical enabling your team needs to manage and scale your internal ecosystem."
+    icon: HandoverIcon,
+    title: "TRANSFER",
+    description: "We don't keep secrets. You receive the full documentation and the technical training to own your system entirely."
   },
   {
     number: "05",
-    icon: Headphones,
+    icon: UnityIcon,
     title: "CONTINUITY",
-    description: "Elite engineering never sleeps. We remain as your strategic reinforcement, ensuring your technology evolves as fast as you do."
+    description: "Growth creates new friction. When the system needs to expand, we're here to reinforce the architecture we built together."
   }
 ];
 
 export default function ApproachSteps() {
   return (
-    <section className="py-24 bg-royal-obsidian relative overflow-hidden border-y border-brand-gold/10">
-      {/* Background decoration */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-brand-gold rounded-full blur-3xl" />
-      </div>
+    <section id="discipline" className="py-24 bg-transparent relative overflow-hidden border-y border-metallic-brass/10">
+      {/* Section background deliberately kept transparent so the SamuraiJackBackground skyline shows through */}
 
-      <div className="container max-w-[1400px] mx-auto px-6 relative z-10">
+      <div className="container max-w-[1500px] mx-auto px-6 relative z-10">
         {/* Section header */}
         <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          className="text-left mb-16 ml-2 md:ml-[5vw] max-w-4xl"
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="font-heading text-4xl md:text-6xl font-bold text-off-white mb-4 uppercase text-balance">
-            <CelestialText intensity={1.2}>A Proven Methodology</CelestialText>
+          <motion.span 
+            className="text-[10px] md:text-xs font-ui text-metallic-brass tracking-[0.5em] uppercase block mb-fb3 opacity-40"
+          >
+            HOW WE WORK
+          </motion.span>
+          <h2 className="font-heading text-4xl md:text-8xl font-bold text-off-white mb-6 uppercase leading-[0.9]">
+            <CelestialText intensity={1.2}>FIVE STEPS. ZERO SHORTCUTS.</CelestialText>
           </h2>
-          <span className="block text-off-white/60 text-lg max-w-2xl mx-auto">
-            <CelestialText intensity={0.6}>Our five-stage protocol for</CelestialText> 
-            <span className="inline-block min-w-[300px] md:min-w-[400px]">
-              <PretextSmoky text="digital excellence" className="text-brand-gold/90" maxWidth={1000} />
-            </span>
-          </span>
+          <div className="text-off-white/40 text-lg md:text-2xl font-body leading-relaxed max-w-2xl border-l border-metallic-brass/10 pl-6 italic">
+            <CelestialText intensity={0.6}>
+              Most agencies rush to the "visuals" because they're easy to sell. We start with the architecture because it's what keeps the system alive. 
+              Every engagement follows the same sequence—the only honest way to build for the long run.
+            </CelestialText> 
+          </div>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 0.4 }}
+            className="text-metallic-brass font-ui text-[10px] tracking-[0.6em] uppercase mt-8"
+          >
+            Slow is smooth. Smooth is permanent.
+          </motion.p>
         </motion.div>
 
-        {/* Steps - Horizontal on desktop, vertical on mobile */}
-        <div className="flex flex-col lg:flex-row gap-0 lg:gap-0">
+        {/* Steps Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-px bg-white/5 border border-white/5">
           {APPROACH_STEPS.map((step, index) => {
             const Icon = step.icon;
-            const isLast = index === APPROACH_STEPS.length - 1;
 
             return (
-              <div key={step.number} className="flex-1 flex flex-col lg:flex-row items-center">
-                <motion.div
-                  className="relative w-full"
-                  initial={{ opacity: 0, y: 60 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.6, delay: index * 0.15 }}
-                >
-                  {/* Step card */}
-                  <div className="bg-black-bean border border-brand-gold/20 p-8 hover:border-brand-gold/60 transition-all duration-300 group min-h-[320px] flex flex-col">
-                    {/* Number */}
-                    <div className="text-6xl font-heading font-bold text-brand-gold/20 group-hover:text-brand-gold/40 transition-colors mb-4">
-                      {step.number}
-                    </div>
+              <motion.div
+                key={step.number}
+                className="bg-obsidian-layered/40 p-8 hover:bg-obsidian-layered/60 transition-all duration-500 group flex flex-col min-h-[450px]"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                {/* Number */}
+                <div className="text-4xl font-heading font-black text-metallic-brass/10 group-hover:text-metallic-brass/20 transition-colors mb-8">
+                  {step.number}
+                </div>
 
-                    {/* Icon */}
-                    <div className="mb-4">
-                      <Icon className="w-10 h-10 text-brand-gold" strokeWidth={1.5} />
-                    </div>
+                {/* Icon */}
+                <div className="mb-8 text-metallic-brass/60 group-hover:text-metallic-brass group-hover:scale-110 transition-all duration-700 origin-left">
+                  <Icon />
+                </div>
 
-                    {/* Title */}
-                    <h3 className="font-heading text-2xl font-bold text-off-white mb-3 uppercase">
-                      <CelestialText intensity={0.8}>{step.title}</CelestialText>
-                    </h3>
+                {/* Title */}
+                <h3 className="font-heading text-xl md:text-2xl font-black text-off-white mb-4 uppercase tracking-tighter">
+                  <CelestialText intensity={0.8}>{step.title}</CelestialText>
+                </h3>
 
-                    {/* Description */}
-                    <span className="block text-off-white/70 text-sm leading-relaxed">
-                      <CelestialText intensity={0.4}>{step.description}</CelestialText>
-                    </span>
-                  </div>
-                </motion.div>
-
-                {/* Connector line (hidden on last item and mobile) */}
-                {!isLast && (
-                  <div className="hidden lg:block w-12 h-px bg-brand-gold/30 mx-0" />
-                )}
-                {!isLast && (
-                  <div className="lg:hidden h-8 w-px bg-brand-gold/30 mx-auto" />
-                )}
-              </div>
+                {/* Description */}
+                <p className="text-off-white/40 text-base md:text-lg leading-relaxed font-body">
+                  <CelestialText intensity={0.4}>{step.description}</CelestialText>
+                </p>
+                
+                {/* Decorative scanning line */}
+                <div className="mt-auto pt-8">
+                  <div className="h-px w-0 group-hover:w-full bg-linear-to-r from-metallic-brass/40 to-transparent transition-all duration-1000" />
+                </div>
+              </motion.div>
             );
           })}
         </div>

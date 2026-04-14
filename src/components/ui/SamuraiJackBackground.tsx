@@ -2,7 +2,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, useTransform, MotionValue, useScroll } from "framer-motion";
+import { motion, useTransform, MotionValue, useScroll, useSpring, AnimatePresence, useMotionTemplate } from "framer-motion";
 import { useCelestial } from "@/components/providers/CelestialProvider";
 import { SamariaLogoSVG } from "@/components/animations/SamariaLogoSVG";
 
@@ -23,8 +23,11 @@ interface CloudData {
   duration: string;
   delay: string;
   pathIndex: number;
-  speedMultiplier: number;
   bobOffset: number;
+}
+
+interface CustomCSS extends React.CSSProperties {
+  [key: string]: unknown;
 }
 
 interface Particle {
@@ -47,28 +50,57 @@ interface MistData {
   delay: string;
 }
 
-// ☁️ [PREMIUM] Authentic Ukiyo-e Cloud Designs
 const CLOUD_DESIGNS = [
-  { // Type 1: Imperial Kumo (Scrolled Scallop)
-    viewBox: "0 0 180 80",
+  // Design 1: The Massive Cumulus Anvil (Classic Samurai Jack deep overlapping scallops)
+  {
+    viewBox: "0 0 900 350",
     layers: [
-      { path: "M20 50 C20 30 45 30 45 45 C45 25 75 25 75 45 C75 20 105 20 105 45 C105 30 130 30 130 50 L130 55 C130 40 105 35 105 55 C105 35 75 40 75 55 C75 40 45 45 45 55 C45 45 20 50 20 55 Z", opacity: 0.15, offset: [2, 5] as [number, number] },
-      { path: "M10 45 C10 25 35 25 35 40 C35 20 65 20 65 40 C65 15 95 15 95 40 C95 25 120 25 120 45 L120 50 C120 35 95 30 95 50 C95 30 65 35 65 50 C65 35 35 40 35 50 C35 40 10 45 10 50 Z", opacity: 1 },
-      { path: "M30 40 A5 5 0 1 1 35 45 M60 38 A6 6 0 1 1 68 45 M90 40 A5 5 0 1 1 95 45", opacity: 0.3, stroke: true } // Internal scrolls
+      {
+        // Shadow silhouette (pushed down and right)
+        path: "M 150 280 L 750 280 C 850 280 880 210 800 180 C 780 170 750 180 730 180 C 750 120 650 60 550 90 C 530 50 400 10 320 80 C 250 40 120 70 150 160 C 80 130 20 180 60 240 C 20 270 80 280 150 280 Z",
+        opacity: 0.15, offset: [15, 20]
+      },
+      {
+        // Core cloud body
+        path: "M 150 280 L 750 280 C 850 280 880 210 800 180 C 780 170 750 180 730 180 C 750 120 650 60 550 90 C 530 50 400 10 320 80 C 250 40 120 70 150 160 C 80 130 20 180 60 240 C 20 270 80 280 150 280 Z",
+        opacity: 1
+      },
+      {
+        // Sweeping detached mist bars beneath the body
+        path: "M 100 310 L 400 310 M 480 305 L 850 305 M 50 330 L 250 330 M 600 325 L 900 325",
+        stroke: true, strokeWidth: 15, opacity: 0.8
+      },
+      {
+        // Inner highlighted structural rim contours (classic Ukiyo-e detailing)
+        path: "M 600 105 C 670 90 730 130 715 170 M 360 85 C 420 50 500 50 540 85 M 170 165 C 150 110 220 70 280 90 M 120 280 L 780 280",
+        stroke: true, strokeWidth: 4, opacity: 0.4
+      }
     ]
   },
-  { // Type 2: Kasumi Band (Trailing Mist)
-    viewBox: "0 0 240 40",
+  // Design 2: The Sweeping Kasumi (Low altitude stretching wind cloud)
+  {
+    viewBox: "0 0 1100 350",
     layers: [
-      { path: "M10 20 H200 C220 20 220 5 200 5 H180 M210 20 H230 C245 20 245 35 230 35 H150", opacity: 0.2, offset: [0, 4] as [number, number] },
-      { path: "M0 15 H190 C210 15 210 0 190 0 H170 M200 15 H220 C235 15 235 30 220 30 H140", opacity: 1 }
-    ]
-  },
-  { // Type 3: The Swallow Wisp (Sharp T-Scroll)
-    viewBox: "0 0 140 60",
-    layers: [
-      { path: "M5 30 Q35 5 70 30 Q105 5 135 30 L135 32 Q105 10 70 35 Q35 10 5 35 Z M80 25 C95 20 95 40 80 40", opacity: 0.2, offset: [1, 3] as [number, number] },
-      { path: "M0 25 Q30 0 65 25 Q100 0 130 25 L130 27 Q100 5 65 30 Q30 5 0 30 Z M75 20 C90 15 90 35 75 35", opacity: 1 }
+      {
+        // Shadow silhouette (pushed down and left for high altitude depth)
+        path: "M 150 220 L 950 220 C 1050 220 1060 170 980 150 C 990 120 950 90 900 110 C 850 130 780 130 730 110 C 680 50 500 60 450 120 C 370 50 200 70 180 150 C 110 110 30 150 80 200 C 40 220 80 220 150 220 Z",
+        opacity: 0.15, offset: [-20, 15]
+      },
+      {
+        // Core cloud body
+        path: "M 150 220 L 950 220 C 1050 220 1060 170 980 150 C 990 120 950 90 900 110 C 850 130 780 130 730 110 C 680 50 500 60 450 120 C 370 50 200 70 180 150 C 110 110 30 150 80 200 C 40 220 80 220 150 220 Z",
+        opacity: 1
+      },
+      {
+        // High-speed separated mist blocks dragging behind
+        path: "M 80 250 L 500 250 M 580 260 L 1050 260 M 200 285 L 850 285",
+        stroke: true, strokeWidth: 12, opacity: 0.8
+      },
+      {
+        // Deep internal swoops acting as shadow/highlight curves
+        path: "M 920 120 C 960 100 1000 150 970 190 M 480 120 C 520 80 620 70 680 100 M 230 140 C 270 90 350 90 400 130 M 120 220 L 980 220",
+        stroke: true, strokeWidth: 4, opacity: 0.4
+      }
     ]
   }
 ] as const;
@@ -76,12 +108,12 @@ const CLOUD_DESIGNS = [
 interface LayerData {
   path: string;
   opacity: number;
-  offset?: [number, number];
+  offset?: readonly [number, number];
   stroke?: boolean;
+  strokeWidth?: number;
 }
 
 function UkiyoCloud({ cloud, progress }: { cloud: CloudData; progress: MotionValue<number> }) {
-  // Sync cloud color with transition (More vibrant gold at day, pink at twilight)
   const cloudColor = useTransform(
     progress,
     [0.4, 0.6, 0.8, 1],
@@ -94,14 +126,8 @@ function UkiyoCloud({ cloud, progress }: { cloud: CloudData; progress: MotionVal
     <motion.svg
       viewBox={design.viewBox}
       className="absolute"
-      animate={{ 
-        y: [0, -cloud.bobOffset, 0],
-      }}
-      transition={{ 
-        duration: 8 + cloud.bobOffset, 
-        repeat: Infinity, 
-        ease: "easeInOut" 
-      }}
+      animate={{ y: [0, -cloud.bobOffset, 0] }}
+      transition={{ duration: 8 + cloud.bobOffset, repeat: Infinity, ease: "easeInOut" }}
       style={{
         left: cloud.left,
         top: cloud.top,
@@ -110,7 +136,7 @@ function UkiyoCloud({ cloud, progress }: { cloud: CloudData; progress: MotionVal
         opacity: cloud.opacity,
         animation: `cloud-drift ${cloud.duration} linear infinite`,
         animationDelay: cloud.delay,
-        color: (cloudColor as unknown) as string
+        color: cloudColor
       }}
     >
       {design.layers.map((layer: LayerData, j) => (
@@ -119,10 +145,11 @@ function UkiyoCloud({ cloud, progress }: { cloud: CloudData; progress: MotionVal
           d={layer.path}
           fill={layer.stroke ? "none" : "currentColor"}
           stroke={layer.stroke ? "currentColor" : "none"}
-          strokeWidth={layer.stroke ? "1.5" : "0"}
+          strokeWidth={layer.stroke ? (layer.strokeWidth || 3) : 0}
+          strokeLinecap="round"
+          strokeLinejoin="round"
           opacity={layer.opacity}
           transform={layer.offset ? `translate(${layer.offset[0]}, ${layer.offset[1]})` : undefined}
-          strokeLinecap="round"
         />
       ))}
     </motion.svg>
@@ -147,139 +174,176 @@ function MistBand({ mist, progress }: { mist: MistData; progress: MotionValue<nu
         opacity: mist.opacity,
         animation: `mist-drift ${mist.duration} linear infinite`,
         animationDelay: mist.delay,
-        color: (mistColor as unknown) as string
+        color: mistColor
       }}
     >
-      <path 
-        d="M0 10 H100 C150 10 150 0 200 0 H300 C350 0 350 20 400 20" 
-        fill="none" 
-        stroke="currentColor" 
-        strokeWidth="1.5" 
-        strokeLinecap="round"
-        opacity="0.6"
-      />
-      <path 
-        d="M50 15 H150 C200 15 200 5 250 5 H350" 
-        fill="none" 
-        stroke="currentColor" 
-        strokeWidth="1" 
-        strokeLinecap="round"
-        opacity="0.3"
-      />
+      <path d="M0 10 H100 C150 10 150 0 200 0 H300 C350 0 350 20 400 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.6" />
+      <path d="M50 15 H150 C200 15 200 5 250 5 H350" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.3" />
     </motion.svg>
   );
 }
 
 function ShootingStar() {
-  const { starFlash } = useCelestial();
-  const [active, setActive] = useState(false);
-  const [position, setPosition] = useState({ top: "0%", left: "-10%", rotate: "25deg" });
-
-  useEffect(() => {
-    const trigger = () => {
-      if (Math.random() < 0.20) { // Slightly increased chance
-        const startTop = Math.random() * 30; // Top 30%
-        setPosition({
-          top: `${startTop}%`,
-          left: `-10%`,
-          rotate: `${Math.random() * 20 + 20}deg`
-        });
-        setActive(true);
-        
-        // Trigger global flash mid-flight
-        setTimeout(() => starFlash.set(0.6), 150);
-        setTimeout(() => starFlash.set(0), 600);
-        
-        setTimeout(() => setActive(false), 1200);
-      }
-    };
-
-    const interval = setInterval(trigger, 12000);
-    return () => clearInterval(interval);
-  }, [starFlash]);
-
-  if (!active) return null;
-
-  return (
-    <motion.div
-      initial={{ x: "0vw", y: "0vh", opacity: 0, scaleX: 1 }}
-      animate={{ 
-        x: "120vw", 
-        y: "40vh", 
-        opacity: [0, 1, 1, 0.4, 0],
-        scaleX: [1, 2, 1.5, 1] 
-      }}
-      transition={{ duration: 1.0, ease: "linear" }}
-      className="fixed h-[1.5px] bg-linear-to-r from-transparent via-ivory-glow to-transparent z-15"
-      style={{
-        top: position.top,
-        left: position.left,
-        rotate: position.rotate,
-        width: "220px",
-        transformOrigin: "left center",
-        boxShadow: "0 0 15px rgba(242,237,216,0.9)",
-        filter: "blur(0.5px)"
-      }}
-    />
-  );
+  // Removed for Tartakovsky clarity.
+  return null;
 }
 
 export default function SamuraiJackBackground() {
   const [isMounted, setIsMounted] = useState(false);
   const { scrollYProgress } = useScroll();
-  const { x, y, progress } = useCelestial();
+  const { 
+    progress, isCinematicMode, interactionMode,
+    sunX, sunY: celestialSunY, moonX, moonY: celestialMoonY, 
+    cinematicInteraction,
+    skyColor, zenithColor: celestialZenith, horizonColor: celestialHorizon, bodyScale, lunarProgress
+  } = useCelestial();
+  
+  const isZen = interactionMode === "zen";
 
-  // 1. POSITIONING (Synchronized)
-  const celestialX = useTransform(x, (v: number) => `${v}%`);
-  const celestialY = useTransform(y, (v: number) => `${v}vh`);
+  const zenithColor = useTransform(celestialZenith, (c) => isZen ? "#000000" : c);
+  const horizonColor = useTransform(celestialHorizon, (c) => isZen ? "#05070A" : c);
+
+  const skyBackground = useMotionTemplate`linear-gradient(to bottom, ${zenithColor}, ${horizonColor})`;
+  
+  const rimLightOpacity = useTransform(progress, [0.75, 1], [0, 0.4]);
+
+  const sunXPos = useTransform(sunX, (v) => `${v}%`);
+  const sunYPos = useTransform(celestialSunY, (v) => `${v}vh`);
+  const moonXPos = useTransform(moonX, (v) => `${v}%`);
+  const moonYPos = useTransform(celestialMoonY, (v) => `${v + 15}vh`);
+
+  // Consolidated high-performance spring for celestial weighting
+  const mouseXValue = useSpring(0, { stiffness: 40, damping: 25 });
+  const mouseYValue = useSpring(0, { stiffness: 40, damping: 25 });
 
   // 2. ATMOSPHERE TRANSFORMATION
-  const bgColor = useTransform(
-    progress,
-    [0, 0.4, 0.7, 1],
-    ["#09090A", "#1A0F1A", "#2D162D", "#4A2511"]
+  // We now use the unified vertical linear gradient from the provider
+
+  // ── VISIBILITY ENGINE ─────────────────────────────────────────────────────
+  // Moon: visible at NIGHT (0-25% and 75-100%), hidden during DAY
+  const moonOpacity = useTransform(progress, (p) => {
+    if (isZen) return 0.2; // Dim in Zen mode
+    if (p < 0.05) return 0.9;                      // Deep Night
+    if (p < 0.12) return 0.9 * (1 - (p-0.05)/0.07); // Morning fade-out
+    if (p < 0.60) return 0;                        // High Day
+    if (p < 0.75) return 0.9 * ((p-0.60)/0.15);    // Evening rise
+    return 0.9;                                    // Blood Moon Night
+  });
+
+  const moonGlowColor = useTransform(
+    lunarProgress,
+    (lunar) => {
+      if (lunar > 0.1) return `rgba(139, 0, 0, ${0.4 * lunar})`;
+      return `rgba(242, 237, 216, 0.4)`;
+    }
   );
 
-  const moonOpacity = useTransform(progress, [0, 0.22, 0.45], [0.8, 0.5, 0]);
-  const moonScale = useTransform(progress, [0, 0.45], [1, 0.8]);
-  
-  const sunOpacity = useTransform(progress, [0.55, 0.77, 1], [0, 1, 1]);
-  const sunScale = useTransform(progress, [0.55, 0.77, 1], [0.8, 1.2, 1.1]);
+  const moonColor = useTransform(
+    lunarProgress,
+    (lunar) => {
+      const baseColor = "#F2EDD8";
+      if (lunar > 0.1) return interpolateHex(baseColor, "#8B0000", lunar);
+      return baseColor;
+    }
+  );
 
-  // 3. MORPH LOGIC (Calibrated to 100% scroll)
-  const morphProgress = useTransform(progress, [0.85, 1.0], [0, 1]);
+  const craterOpacity = useTransform(
+    lunarProgress,
+    (lunar) => {
+      if (lunar > 0.1) return 0.1 * (1 - lunar); 
+      return 0.15;
+    }
+  );
 
-  // 4. WEATHER & PARTICLES
-  const starsOpacity = useTransform(progress, [0, 0.3], [0.6, 0]);
-  const cloudsOpacity = useTransform(progress, [0.4, 0.6, 1], [0, 0.6, 0.4]); 
+  // Helper for Blood Moon blending
+  function interpolateHex(hex1: string, hex2: string, weight: number) {
+    const parse = (h: string) => h.replace("#", "").match(/.{2}/g)?.map(x => parseInt(x, 16)) || [0,0,0];
+    const [r1, g1, b1] = parse(hex1);
+    const [r2, g2, b2] = parse(hex2);
+    const r = Math.round(r1 * (1-weight) + r2 * weight);
+    const g = Math.round(g1 * (1-weight) + g2 * weight);
+    const b = Math.round(b1 * (1-weight) + b2 * weight);
+    return `#${[r, g, b].map(x => x.toString(16).padStart(2, "0")).join("")}`;
+  }
+  // Sun: hidden at night, rises at dawn, sets at dusk
+  const sunOpacity = useTransform(progress, (p) => {
+    if (isZen) return 0.1; // Dim in Zen mode
+    if (p < 0.05) return 0;                        // Night
+    if (p < 0.15) return (p - 0.05) / 0.10;       // Sunrise
+    if (p < 0.60) return 1;                        // Full Day
+    if (p < 0.75) return 1 - (p - 0.60) / 0.15;   // Sunset
+    return 0;                                      // Night
+  });
+
+  const sunScale = bodyScale;
+  const moonScale = bodyScale;
+
+  const morphProgress = useTransform(
+    [progress, cinematicInteraction] as [MotionValue<number>, MotionValue<number>],
+    (latest: number[]) => {
+      const [p, i] = latest;
+      return (i > 0 ? 1 : (p > 0.85 ? (p - 0.85) / 0.15 : 0));
+    }
+  );
+
+  // Stars: visible during BOTH night phases (start and end of scroll)
+  const starsOpacity = useTransform(
+    progress,
+    [0, 0.05, 0.12, 0.65, 0.75, 1.0],
+    [0.85, 0.85, 0, 0, 0.85, 0.85]
+  );
+  const cloudsOpacity = useTransform(
+    [progress, cinematicInteraction] as [MotionValue<number>, MotionValue<number>],
+    (latest: any) => {
+      if (isZen) return 0.05; // Almost invisible in Zen mode
+      const p = latest[0];
+      const i = latest[1];
+      const natural = p > 0.4 ? (p < 0.6 ? 0.6 : 0.4) : 0;
+      return i > 0.5 ? natural * (1 - (i - 0.5) * 2) : natural;
+    }
+  );
   const cloudsY = useTransform(progress, [0.4, 1], [40, 0]);
 
-  const embersOpacity = useTransform(progress, [0, 0.4, 0.8, 1], [0.4, 0.2, 0.6, 0.3]);
-  const embersColor = useTransform(
-    progress,
-    [0, 0.5, 1],
-    ["#C42B2B", "#C9A84C", "#F2EDD8"]
+  const embersOpacity = useTransform(
+    [progress, cinematicInteraction] as [MotionValue<number>, MotionValue<number>],
+    (latest: any) => {
+      const p = latest[0];
+      const i = latest[1];
+      const natural = p < 0.4 ? 0.4 : p > 0.8 ? 0.6 : 0.3;
+      return i > 0.5 ? natural * (1 - (i - 0.5) * 1.5) : natural;
+    }
+  );
+  const embersColor = useTransform(progress, [0, 0.5, 1], ["#C42B2B", "#C9A84C", "#F2EDD8"]);
+
+  const mountainBrightness = useTransform(progress, [0.5, 1], [1, 1.6]);
+  const mountainFilter = useTransform(
+    mountainBrightness, 
+    (brightness) => `brightness(${brightness})`
   );
 
-  // Depth Reaction
-  const mountainBrightness = useTransform(progress, [0.5, 1], [1, 1.6]);
-  const mountainFilter = useTransform(mountainBrightness, (v) => `brightness(${v})`);
-  
-  // Parallax Offsets (Increased Travel for more depth)
   const mountainBackY = useTransform(progress, [0, 1], [0, -60]);
   const mountainMidY = useTransform(progress, [0, 1], [0, -100]);
   const mountainFrontY = useTransform(progress, [0, 1], [0, -150]);
 
-  // Mist/Haze Opacity (z-gap visibility)
   const hazeOpacity = useTransform(progress, [0.55, 0.8, 1], [0, 0.4, 0.2]);
 
-
-  const sunGlowOpacity = useTransform(progress, [0.85, 1.0], [0.2, 0]);
-  const sunGlowScale = useTransform(progress, [0.85, 1.0], [1.2, 0.8]);
-
-  // [FIXED] Deep Stellar Parallax (Linked to raw scroll for zero-oscillation stability)
   const starsParallaxX = useTransform(scrollYProgress, [0, 1], ["-15px", "15px"]);
   const starsParallaxY = useTransform(scrollYProgress, [0, 1], ["-10vh", "10vh"]);
+
+  const mouseX = mouseXValue;
+  const mouseY = mouseYValue;
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const { clientX, clientY } = e;
+      const moveX = (clientX / window.innerWidth - 0.5) * 35;
+      const moveY = (clientY / window.innerHeight - 0.5) * 35;
+      mouseXValue.set(moveX);
+      mouseYValue.set(moveY);
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [mouseXValue, mouseYValue]);
 
   const [stars, setStars] = useState<Star[]>([]);
   const [clouds, setClouds] = useState<CloudData[]>([]);
@@ -287,95 +351,52 @@ export default function SamuraiJackBackground() {
   const [particles, setParticles] = useState<Particle[]>([]);
 
   useEffect(() => {
-    // Async mount to comply with React 19 cascading render safeguards
     queueMicrotask(() => {
       setIsMounted(true);
       
-      // Night Stars (Static & Twinkling)
-      setStars([...Array(40)].map(() => ({
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 80}%`,
-        size: Math.random() * 2.2 + 0.5,
-        twinkleDelay: `${Math.random() * 5}s`,
-        twinkleDuration: `${Math.random() * 4 + 2}s`
+      // We are forcing 3 massive, monolithic cloud structures
+      setClouds([
+        {
+          id: 0, left: "-20%", top: "45%", scale: 2.5, opacity: 0.85,
+          duration: "160s", delay: "0s", pathIndex: 0, bobOffset: 8
+        },
+        {
+          id: 1, left: "40%", top: "30%", scale: 3.5, opacity: 0.7,
+          duration: "240s", delay: "-40s", pathIndex: 1, bobOffset: 12
+        },
+        {
+          id: 2, left: "10%", top: "60%", scale: 1.8, opacity: 0.6,
+          duration: "120s", delay: "-80s", pathIndex: 0, bobOffset: 5
+        }
+      ]);
+      
+      // Few, stark mist bands
+      setMistBands([...Array(3)].map((_, i) => ({
+        id: i, left: `${Math.random() * 80}%`, top: `${Math.random() * 10 + 60}%`,
+        width: `${Math.random() * 800 + 400}px`, opacity: Math.random() * 0.2 + 0.1,
+        duration: `${Math.random() * 60 + 80}s`, delay: `${Math.random() * -60}s`
       })));
-
-      // [UPGRADED] Premium Cloud State
-      setClouds([...Array(8)].map((_, i) => ({
-        id: i,
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 50 + 10}%`,
-        scale: Math.random() * 1.5 + 1.2,
-        opacity: Math.random() * 0.4 + 0.3,
-        duration: `${Math.random() * 40 + 80}s`,
-        delay: `${Math.random() * -120}s`,
-        pathIndex: Math.floor(Math.random() * CLOUD_DESIGNS.length),
-        speedMultiplier: Math.random() * 0.5 + 0.5,
-        bobOffset: Math.random() * 15 + 5
-      })));
-
-      // [NEW] Dynamic Kasumi Mist Bands
-      setMistBands([...Array(6)].map((_, i) => ({
-        id: i,
-        left: `${Math.random() * 80}%`,
-        top: `${Math.random() * 30 + 55}%`, // Concentrated at bottom 45% (lower)
-        width: `${Math.random() * 400 + 300}px`,
-        opacity: Math.random() * 0.3 + 0.1,
-        duration: `${Math.random() * 30 + 50}s`,
-        delay: `${Math.random() * -60}s`
-      })));
-
-      setParticles([...Array(30)].map(() => ({
-        width: `${Math.random() * 3 + 1}px`,
-        height: `${Math.random() * 3 + 1}px`,
-        left: `${Math.random() * 100}%`,
-        opacity: Math.random() * 0.5 + 0.2,
-        blur: `${Math.random() * 1.5}px`,
-        duration: `${Math.random() * 10 + 15}s`,
-        delay: `${Math.random() * 20}s`
-      })));
+      setParticles([]); // No floating particles
+      setStars([]); // Minimalist sky
     });
   }, []);
 
   return (
     <motion.div 
-      style={{ 
-        backgroundColor: bgColor,
-        opacity: isMounted ? 1 : 0 
-      }}
-      className="fixed inset-0 -z-10 pointer-events-none overflow-hidden select-none font-sans"
+      style={{ background: skyBackground, opacity: isMounted ? 1 : 0 }}
+      className={`fixed inset-0 -z-10 pointer-events-none overflow-hidden select-none font-sans transition-colors duration-1000 ${isCinematicMode ? "cinematic-mode" : ""}`}
     >
       <style jsx global>{`
-        @keyframes twinkle {
-          0%, 100% { opacity: 0.3; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.2); }
-        }
-        .star-twinkle {
-          animation: twinkle var(--twinkle-duration) ease-in-out infinite;
-        }
-        @keyframes cloud-drift {
-          from { transform: translateX(100vw); }
-          to { transform: translateX(-150%); }
-        }
-        @keyframes mist-drift {
-          from { transform: translateX(100vw); }
-          to { transform: translateX(-200%); }
-        }
+        @keyframes twinkle { 0%, 100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 1; transform: scale(1.2); } }
+        .star-twinkle { animation: twinkle var(--twinkle-duration) ease-in-out infinite; }
+        @keyframes cloud-drift { from { transform: translateX(100vw); } to { transform: translateX(-150%); } }
+        @keyframes mist-drift { from { transform: translateX(100vw); } to { transform: translateX(-200%); } }
       `}</style>
       
-      {/* 1. SCATTERED STARS (z-0) */}
-      <motion.div
-        style={{ 
-          opacity: starsOpacity,
-          translateX: starsParallaxX,
-          translateY: starsParallaxY
-        }}
-        className="absolute inset-0 w-full h-full z-0 pointer-events-none"
-      >
+      {/* 1. SCATTERED STARS */}
+      <motion.div style={{ opacity: starsOpacity as any, translateX: starsParallaxX as any, translateY: starsParallaxY as any } as any} className="absolute inset-0 w-full h-full z-0 pointer-events-none">
         <svg className="w-full h-full">
-          <filter id="starBlur">
-            <feGaussianBlur stdDeviation="0.4" />
-          </filter>
+          <filter id="starBlur"><feGaussianBlur stdDeviation="0.4" /></filter>
           {stars.map((star, i) => (
             <circle
               key={i}
@@ -387,173 +408,157 @@ export default function SamuraiJackBackground() {
               className="star-twinkle"
               style={{
                 "--twinkle-duration": star.twinkleDuration,
-                "--twinkle-delay": star.twinkleDelay
-              } as React.CSSProperties}
+                "--twinkle-delay": star.twinkleDelay,
+              } as any}
             />
           ))}
         </svg>
         <ShootingStar />
       </motion.div>
 
-      {/* 2. PREMIUM UKIYO-E CLOUDS (z-5) */}
-      <motion.div 
-        style={{ opacity: cloudsOpacity, y: cloudsY }}
-        className="absolute inset-0 z-5"
-      >
-        {clouds.map((cloud) => (
-          <UkiyoCloud 
-            key={cloud.id} 
-            cloud={cloud} 
-            progress={progress}
-          />
-        ))}
+      <motion.div style={{ opacity: cloudsOpacity as any, y: cloudsY as any } as any} className="absolute inset-0 z-0">
+        {clouds.map((cloud) => ( <UkiyoCloud key={cloud.id} cloud={cloud} progress={progress} /> ))}
       </motion.div>
 
-      {/* 3. THE MOON (z-10) */}
-      <motion.div 
+      {/* 3. THE MOON (Tartakovsky Vector Art) */}
+       <motion.div 
         style={{ 
-          left: celestialX,
-          top: celestialY, 
-          opacity: moonOpacity, 
-          scale: moonScale,
-          translateX: "-50%",
-          translateY: "-50%"
-        }}
-        className="absolute w-64 h-64 flex items-center justify-center z-10"
+          left: moonXPos as any, 
+          top: moonYPos as any, 
+          opacity: moonOpacity as any, 
+          scale: moonScale as any,
+          translateX: mouseXValue as any, 
+          translateY: mouseYValue as any,
+          x: "-50%", 
+          y: "-50%",
+          zIndex: 10 
+        } as any}
+        className="absolute w-[80px] h-[80px] md:w-[120px] md:h-[120px] flex items-center justify-center pointer-events-none"
       >
-        <div className="w-32 h-32 rounded-full bg-ivory-glow/20 blur-xl absolute" />
-        <div className="w-24 h-24 rounded-full bg-ivory-glow shadow-[0_0_40px_rgba(242,237,216,0.3)]" />
+        <motion.div 
+          style={{ backgroundColor: moonColor as any }}
+          className="w-[85%] h-[85%] rounded-full relative overflow-hidden"
+        >
+          {/* Tartakovsky Styled Lunar Mare (Abstract jagged shapes) */}
+          <motion.svg viewBox="0 0 200 200" style={{ opacity: craterOpacity as any }} className="absolute w-full h-full text-black">
+             <path d="M 40,60 Q 70,20 120,40 Q 150,20 160,70 Q 120,100 80,120 Q 30,100 40,60 Z" fill="currentColor" />
+             <path d="M 110,140 Q 150,110 170,140 Q 150,180 120,170 Q 90,150 110,140 Z" fill="currentColor" />
+             <path d="M 30,110 Q 60,90 70,130 Q 50,160 30,140 Z" fill="currentColor" />
+             <circle cx="140" cy="90" r="14" fill="currentColor" />
+             <circle cx="75" cy="155" r="9" fill="currentColor" />
+          </motion.svg>
+          
+          {/* Stylized Flat Crescent Shadow Arc */}
+          <div className="absolute inset-0 rounded-full border-12 border-black opacity-15 translate-x-[18px] translate-y-[6px] pointer-events-none" />
+        </motion.div>
       </motion.div>
 
-      {/* 4. THE SUN / SEAL (z-10) */}
+      {/* 4. THE SUN / SEAL (z-35) */}
       <motion.div 
         style={{ 
-          left: celestialX,
-          top: celestialY, 
-          opacity: sunOpacity, 
-          scale: sunScale,
-          translateX: "-50%",
-          translateY: "-50%"
-        }}
-        className="absolute w-[400px] h-[400px] md:w-[600px] md:h-[600px] flex items-center justify-center overflow-visible z-10"
+          left: sunXPos as any, 
+          top: sunYPos as any, 
+          opacity: sunOpacity as any, 
+          scale: sunScale as any,
+          translateX: mouseX as any, 
+          translateY: mouseY as any,
+          x: "-50%", 
+          y: "-50%",
+          zIndex: 10
+        } as any}
+        className="absolute w-[90px] h-[90px] md:w-[140px] md:h-[140px] flex items-center justify-center overflow-visible pointer-events-none"
       >
         <div className="w-full h-full relative flex items-center justify-center">
+            <motion.div 
+              style={{ opacity: sunOpacity as any }}
+              className="absolute inset-[0%] z-0 flex items-center justify-center"
+            >
+              <svg viewBox="0 0 200 200" className="w-[180%] h-[180%] absolute opacity-100">
+                 <g className="animate-[spin_120s_linear_infinite] origin-center">
+                   {/* 12 Major Sun Rays (Thick, majestic, extending far outward) */}
+                   {Array.from({ length: 12 }).map((_, i) => (
+                     <g key={`major-ray-${i}`} transform={`rotate(${i * 30} 100 100)`}>
+                        <polygon points="96,48 104,48 101,15 99,15" fill="#FFE270" opacity="0.7" />
+                     </g>
+                   ))}
+                   {/* 12 Minor Sun Rays (Accents in deeper gold, slightly shorter and narrower) */}
+                   {Array.from({ length: 12 }).map((_, i) => (
+                     <g key={`minor-ray-${i}`} transform={`rotate(${i * 30 + 15} 100 100)`}>
+                        <polygon points="98,48 102,48 100.5,25 99.5,25" fill="#E8A317" opacity="0.5" />
+                     </g>
+                   ))}
+                 </g>
+                 
+                 {/* Solid Multi-Ring Core */}
+                 <circle cx="100" cy="100" r="50" fill="#FFE270" />
+                 <circle cx="100" cy="100" r="40" fill="#E8A317" />
+                 <circle cx="100" cy="100" r="28" fill="#FFE270" />
+              </svg>
+            </motion.div>
+
             <SamariaLogoSVG 
-                progress={morphProgress} 
-                className="w-full h-full drop-shadow-[0_0_50px_rgba(201,168,76,0.4)]" 
+              progress={cinematicInteraction as any} 
+              className="w-full h-full drop-shadow-[0_0_15px_rgba(201,168,76,0.8)] relative z-10" 
             />
             
-            <motion.div 
-              style={{ 
-                  opacity: sunGlowOpacity,
-                  scale: sunGlowScale
-              }}
-              className="absolute inset-0 rounded-full bg-radial from-metallic-brass/20 via-transparent to-transparent blur-3xl -z-1"
-            />
+            <AnimatePresence>
+              {isCinematicMode && (
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0, rotate: -45 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  exit={{ opacity: 0, scale: 0.5 }}
+                  transition={{ delay: 0.2, duration: 1.2, ease: "circOut" }}
+                  style={{ opacity: 0.9 } as any}
+                  className="absolute top-[-5%] right-[-5%] w-32 h-32 z-50 pointer-events-none"
+                >
+                  <div className="absolute inset-0 bg-radial from-white via-ivory-glow/40 to-transparent blur-xl" />
+                  <div className="absolute inset-[42%] bg-white rounded-full shadow-[0_0_20px_white]" />
+                  <div className="absolute top-1/2 left-0 w-full h-px bg-linear-to-r from-transparent via-white to-transparent scale-x-150 rotate-45" />
+                  <div className="absolute top-1/2 left-0 w-full h-px bg-linear-to-r from-transparent via-white to-transparent scale-x-150 -rotate-45" />
+                </motion.div>
+              )}
+            </AnimatePresence>
         </div>
       </motion.div>
 
-      {/* 5. DYNAMIC KASUMI MIST (z-15) - Passing in front of Clouds & Sun */}
-      <motion.div 
-        className="absolute inset-0 z-15"
-      >
-        {mistBands.map((mist) => (
-          <MistBand 
-            key={mist.id} 
-            mist={mist} 
-            progress={progress}
-          />
-        ))}
+      <motion.div className="absolute inset-0 z-10">
+        {mistBands.map((mist) => ( <MistBand key={mist.id} mist={mist} progress={progress} /> ))}
       </motion.div>
 
-      {/* 5. LAYERED OBSIDIAN MOUNTAINS (z-20) */}
-      <motion.div 
-        style={{ filter: mountainFilter }}
-        className="absolute inset-x-0 bottom-0 w-full h-[45vh] md:h-[75vh] z-20"
-      >
-        {/* Back Row - Farthest/Lightest Obsidian */}
-        <motion.div 
-            style={{ y: mountainBackY }} 
-            className="absolute bottom-0 left-0 w-[140%] h-[50%] translate-x-[-20%]"
-        >
-          <svg viewBox="0 0 1000 300" preserveAspectRatio="none" className="w-full h-full">
-            <path d="M0 300 L0 220 L150 160 L350 240 L550 140 L750 220 L900 180 L1000 240 L1000 300 Z" fill="#1A1A1D" stroke="rgba(255,255,255,0.08)" strokeWidth="0.5" />
+      {/* 5. LAYERED OBSIDIAN MOUNTAINS */}
+      <motion.div style={{ filter: mountainFilter as any }} className="absolute inset-x-0 bottom-0 w-full h-[38.2vh] z-20 pointer-events-none">
+        
+        <motion.div style={{ y: mountainBackY }} className="absolute inset-x-0 bottom-[-600px] w-[140%] h-[calc(100%+600px)] translate-x-[-20%]">
+          <svg viewBox="0 0 1000 1200" preserveAspectRatio="none" className="w-full h-full">
+            <path d="M0 1200 L0 220 L150 160 L350 240 L550 140 L750 220 L900 180 L1000 240 L1000 1200 Z" fill="#2E1C33" stroke="#1A0F1A" strokeWidth="2" />
           </svg>
-          {/* Atmospheric Mist 1 */}
-          <motion.div 
-            style={{ opacity: hazeOpacity }}
-            className="absolute inset-0 bg-linear-to-t from-metallic-brass/5 via-transparent to-transparent"
-          />
+          <motion.div style={{ opacity: hazeOpacity as any }} className="absolute inset-0 bg-linear-to-t from-metallic-brass/10 via-transparent to-transparent" />
         </motion.div>
 
-        {/* Mid Row - Middle Ground */}
-        <motion.div 
-            style={{ y: mountainMidY }} 
-            className="absolute bottom-0 left-0 w-[120%] h-[75%] translate-x-[-10%]"
-        >
-          <svg viewBox="0 0 1000 300" preserveAspectRatio="none" className="w-full h-full">
-            <path d="M0 300 L0 260 L120 190 L280 260 L450 150 L650 240 L800 140 L950 250 L1000 210 L1000 300 Z" fill="#121214" stroke="rgba(255,255,255,0.04)" strokeWidth="0.5" />
+        <motion.div style={{ y: mountainMidY }} className="absolute inset-x-0 bottom-[-600px] w-[120%] h-[calc(100%+600px)] translate-x-[-10%]">
+          <svg viewBox="0 0 1000 1200" preserveAspectRatio="none" className="w-full h-full">
+            <path d="M0 1200 L0 260 L120 190 L280 260 L450 150 L650 240 L800 140 L950 250 L1000 210 L1000 1200 Z" fill="#1C1021" stroke="#09050A" strokeWidth="2" />
           </svg>
-          {/* Atmospheric Mist 2 */}
-          <motion.div 
-            style={{ opacity: hazeOpacity }}
-            className="absolute inset-0 bg-linear-to-t from-[#1A0F1A]/40 via-transparent to-transparent" 
-          />
+          <motion.div style={{ opacity: hazeOpacity as any }} className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent" />
         </motion.div>
 
-        {/* Front Row - Closest/Darkest */}
-        <motion.div 
-            style={{ y: mountainFrontY }} 
-            className="absolute bottom-0 left-0 w-full h-full"
-        >
-          <svg viewBox="0 0 1000 300" preserveAspectRatio="none" className="w-full h-full">
-            {/* Main Peak Body */}
-            <path d="M0 300 L0 270 L100 160 L240 250 L400 90 L550 210 L720 110 L880 240 L950 140 L1000 260 L1000 300 Z" fill="#080809" />
-            
-            {/* Rim-Light Peak Highlights (Reacts to Sun) */}
-            <motion.path 
-              d="M100 160 L120 180 M400 90 L430 120 M720 110 L750 140" 
-              fill="none" 
-              stroke="white" 
-              strokeWidth="2" 
-              style={{ opacity: useTransform(progress, [0.75, 1], [0, 0.4]) }}
-              className="drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]"
-            />
-            
-            {/* Front Silhouette Stroke */}
-            <path d="M0 270 L100 160 L240 250 L400 90 L550 210 L720 110 L880 240 L950 140 L1000 260" fill="none" stroke="rgba(201,168,76,0.15)" strokeWidth="1" />
+        <motion.div style={{ y: mountainFrontY }} className="absolute inset-x-0 bottom-[-600px] w-full h-[calc(100%+600px)]">
+          <svg viewBox="0 0 1000 1200" preserveAspectRatio="none" className="w-full h-full">
+            <path d="M0 1200 L0 270 L100 160 L240 250 L400 90 L550 210 L720 110 L880 240 L950 140 L1000 260 L1000 1200 Z" fill="#040205" />
+            <motion.path d="M100 160 L120 180 M400 120 L430 150 M720 110 L750 140" fill="none" stroke="white" strokeWidth="3" style={{ opacity: rimLightOpacity as any }} />
+            <path d="M0 270 L100 160 L240 250 L400 90 L550 210 L720 110 L880 240 L950 140 L1000 260" fill="none" stroke="rgba(201,168,76,0.3)" strokeWidth="2" />
           </svg>
         </motion.div>
       </motion.div>
 
-      {/* 6. TORII GATE (z-30) */}
-      <svg viewBox="0 0 100 100" className="absolute bottom-[14.6%] left-[9%] w-32 h-32 text-metallic-brass opacity-25 z-30">
-        <path fill="currentColor" d="M10 25h80v5H10zM25 20l5-8h40l5 8zM20 35h60v3H20zM35 30v60h5V30zM60 30v60h5V30z" />
-        <path fill="currentColor" d="M15 22c5-3 15-5 35-5s30 2 35 5l-2 3c-5-2-15-4-33-4s-28 2-33 4z" />
-      </svg>
+      {/* Digital Atmosphere (Optional overlays could go here) */}
 
-      {/* 7. DIGITAL EMBERS (z-30) */}
+      {/* 7. DIGITAL EMBERS */}
       <div className="absolute inset-0 pointer-events-none z-30">
-        {particles.map((p, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full"
-            style={{
-              width: p.width,
-              height: p.height,
-              left: p.left,
-              bottom: `-20px`,
-              backgroundColor: (embersColor as unknown) as string,
-              opacity: (embersOpacity as unknown) as number,
-              filter: `blur(${p.blur})`,
-              animation: `ember-drift ${p.duration} linear infinite`,
-              animationDelay: p.delay
-            }}
-          />
+        {particles.map((p: Particle, i: number) => (
+          <motion.div key={i} className="absolute rounded-full" style={{ width: p.width, height: p.height, left: p.left, bottom: `-20px`, backgroundColor: (embersColor as unknown) as string, opacity: (embersOpacity as unknown) as number, filter: `blur(${p.blur})`, animation: `ember-drift ${p.duration} linear infinite`, animationDelay: p.delay }} />
         ))}
       </div>
-
-
     </motion.div>
   );
 }

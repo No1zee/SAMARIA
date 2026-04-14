@@ -9,11 +9,14 @@ interface Project {
   id: string;
   name: string;
   type: string;
+  category: string;
   teaser: string;
-  metric: string;
+  metricValue: number;
+  metricSuffix: string;
   metricLabel: string;
   tag: string;
   image: string;
+  status?: string;
 }
 
 interface ProjectDetailsProps {
@@ -78,25 +81,25 @@ export default function ProjectDetails({ isOpen, onClose, project }: ProjectDeta
 
             <div className="relative z-10">
               <span className="font-ui text-xs text-spirit-red tracking-[0.3em] uppercase block mb-6">
-                Case Study: {project.tag}
+                Case Study: {project?.tag}
               </span>
               
               <h2 className="font-heading text-3xl md:text-5xl text-off-white mb-6">
-                {project.name}
+                {project?.name}
               </h2>
 
               <div className="flex items-center gap-4 mb-8">
-                <div className="flex items-center gap-2 px-3 py-1 bg-brand-red/10 border border-brand-red/20 text-spirit-red rounded-full text-xs font-ui">
+                <div className="flex items-center gap-2 px-3 py-1 bg-metallic-brass/10 border border-metallic-brass/20 text-metallic-brass rounded-full text-xs font-ui">
                   <TrendingUp className="w-3.5 h-3.5" />
-                  {project.metric}
+                  {project?.metricValue}{project?.metricSuffix}
                 </div>
                 <span className="text-off-white/40 text-sm font-ui uppercase tracking-widest">
-                  {project.status}
+                  {project?.category}
                 </span>
               </div>
 
               <div className="space-y-6 text-off-white/70 leading-relaxed text-lg">
-                <p>{project.teaser}</p>
+                <p>{project?.teaser}</p>
                 <p className="font-light">
                   Our involvement in this project centered on creating a robust digital infrastructure 
                   that prioritized both speed and security. By leveraging cutting-edge web technologies, 

@@ -66,9 +66,8 @@ export default function ScrambleText({
   const characters = text.split("").map((char, index) => (
     <span
       key={`${char}-${index}`}
-      ref={(el) => (charsRef.current[index] = el)}
-      className="inline-block"
-      style={{ whiteSpace: char === " " ? "pre" : "normal" }}
+      ref={(el) => { charsRef.current[index] = el; }}
+      className={`inline-block ${char === " " ? "whitespace-pre" : ""}`}
     >
       {char}
     </span>

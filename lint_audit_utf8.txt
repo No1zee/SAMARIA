@@ -1,0 +1,334 @@
+﻿
+> samaria-web@0.1.0 lint
+> eslint
+
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\app\terms\page.tsx
+  42:105  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  42:121  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\animations\CircuitBlob.tsx
+  56:9  error    'currentStateIndex' is never reassigned. Use 'const' instead                                                    prefer-const
+  56:9  warning  'currentStateIndex' is assigned a value but never used                                                          @typescript-eslint/no-unused-vars
+  73:6  warning  React Hook useEffect has a missing dependency: 'morphStates'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\animations\PretextSmoky.tsx
+   38:20  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                @typescript-eslint/no-explicit-any
+   41:28  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                @typescript-eslint/no-explicit-any
+   50:52  warning  'charIdx' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     @typescript-eslint/no-unused-vars
+  140:34  error    Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\animations\PretextSmoky.tsx:140:34
+  138 |             transition={{ 
+  139 |               opacity: { duration: 0.5, delay: i * 0.02 },
+> 140 |               x: { duration: 2 + Math.random(), repeat: Infinity, ease: "easeInOut" },
+      |                                  ^^^^^^^^^^^^^ Cannot call impure function
+  141 |               y: { duration: 2 + Math.random(), repeat: Infinity, ease: "easeInOut" },
+  142 |               rotate: { duration: 3 + Math.random(), repeat: Infinity, ease: "easeInOut" }
+  143 |             }}                                    react-hooks/purity
+  141:34  error    Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\animations\PretextSmoky.tsx:141:34
+  139 |               opacity: { duration: 0.5, delay: i * 0.02 },
+  140 |               x: { duration: 2 + Math.random(), repeat: Infinity, ease: "easeInOut" },
+> 141 |               y: { duration: 2 + Math.random(), repeat: Infinity, ease: "easeInOut" },
+      |                                  ^^^^^^^^^^^^^ Cannot call impure function
+  142 |               rotate: { duration: 3 + Math.random(), repeat: Infinity, ease: "easeInOut" }
+  143 |             }}
+  144 |             className="absolute inline-block whitespace-pre"  react-hooks/purity
+  142:39  error    Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\animations\PretextSmoky.tsx:142:39
+  140 |               x: { duration: 2 + Math.random(), repeat: Infinity, ease: "easeInOut" },
+  141 |               y: { duration: 2 + Math.random(), repeat: Infinity, ease: "easeInOut" },
+> 142 |               rotate: { duration: 3 + Math.random(), repeat: Infinity, ease: "easeInOut" }
+      |                                       ^^^^^^^^^^^^^ Cannot call impure function
+  143 |             }}
+  144 |             className="absolute inline-block whitespace-pre"
+  145 |             style={{                                   react-hooks/purity
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\animations\SamariaLogoMotion.tsx
+  3:18  warning  'useEffect' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\animations\SamariaLogoSVG.tsx
+   2:18  warning  'useTransform' is defined but never used                                                                                                                                                                                                                                                 @typescript-eslint/no-unused-vars
+   2:61  warning  'useSpring' is defined but never used                                                                                                                                                                                                                                                    @typescript-eslint/no-unused-vars
+  31:34  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                 @typescript-eslint/no-explicit-any
+  81:13  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\animations\SmokyText.tsx
+  4:28  warning  'useEffect' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\home\Services.tsx
+  3:10  warning  'useEffect' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\intro\IntroHero.tsx
+  61:19  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\layout\Footer.tsx
+  48:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\layout\Footer.tsx:48:5
+  46 |
+  47 |   useEffect(() => {
+> 48 |     setYear(new Date().getFullYear());
+     |     ^^^^^^^ Avoid calling setState() directly within an effect
+  49 |   }, []);
+  50 |
+  51 |   return (  react-hooks/set-state-in-effect
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\layout\Navbar.tsx
+   6:10  warning  'Menu' is defined but never used             @typescript-eslint/no-unused-vars
+   9:8   warning  'Image' is defined but never used            @typescript-eslint/no-unused-vars
+  22:9   warning  'rotate' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\modals\ProjectDetails.tsx
+   3:31  warning  'useMemo' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-unused-vars
+  11:12  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        @typescript-eslint/no-explicit-any
+  31:7   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\modals\ProjectDetails.tsx:31:7
+  29 |       
+  30 |       // Add extra height for title, metrics, and padding
+> 31 |       setContentHeight(height + 300); 
+     |       ^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  32 |     } catch (e) {
+  33 |       console.error("Layout calculation failed for modal:", e);
+  34 |       setContentHeight(600); // Fallback  react-hooks/set-state-in-effect
+  92:44  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 react/no-unescaped-entities
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\providers\ViewTransitionsProvider.tsx
+  16:9  warning  'router' is assigned a value but never used                                                                          @typescript-eslint/no-unused-vars
+  23:9  error    Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\sections\ChallengeImpact.tsx
+    4:61  warning  'AlertCircle' is defined but never used                          @typescript-eslint/no-unused-vars
+   73:45  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  133:19  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  134:76  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\sections\TrustBar.tsx
+  82:13  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  82:26  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  83:59  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  83:72  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  83:93  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\sections\WarCouncilContact.tsx
+   20:75  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     @typescript-eslint/no-explicit-any
+  105:22  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\sections\WarCouncilContact.tsx:105:22
+  103 |                   <div className="text-2xl md:text-5xl font-heading text-off-white/80 leading-[1.4] md:leading-[1.6] tracking-tight">
+  104 |                     I am <br className="md:hidden" />
+> 105 |                     <FormInput 
+      |                      ^^^^^^^^^ This component is created during render
+  106 |                       id="identity"
+  107 |                       placeholder="[ THE INITIATOR ]"
+  108 |                       value={formData.identity}
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\sections\WarCouncilContact.tsx:20:21
+  18 |   const isFormValid = formData.identity && formData.architecture && formData.nexus;
+  19 |
+> 20 |   const FormInput = ({ id, placeholder, type = "text", value, onChange }: any) => {
+     |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 21 |     const isFocused = activeField === id;
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 22 |     const hasValue = value.length > 0;
+     ÔÇª
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 68 |     );
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 69 |   };
+     | ^^^^ The component is created during render here
+  70 |
+  71 |   return (
+  72 |     <section id="alliance" className="py-fb9 relative overflow-hidden border-t border-white/5">  react-hooks/static-components
+  114:22  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\sections\WarCouncilContact.tsx:114:22
+  112 |                     <br className="hidden md:block" />
+  113 |                     system to <br className="md:hidden" />
+> 114 |                     <FormInput 
+      |                      ^^^^^^^^^ This component is created during render
+  115 |                       id="architecture"
+  116 |                       placeholder="[ THE OBJECTIVE ]"
+  117 |                       value={formData.architecture}
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\sections\WarCouncilContact.tsx:20:21
+  18 |   const isFormValid = formData.identity && formData.architecture && formData.nexus;
+  19 |
+> 20 |   const FormInput = ({ id, placeholder, type = "text", value, onChange }: any) => {
+     |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 21 |     const isFocused = activeField === id;
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 22 |     const hasValue = value.length > 0;
+     ÔÇª
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 68 |     );
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 69 |   };
+     | ^^^^ The component is created during render here
+  70 |
+  71 |   return (
+  72 |     <section id="alliance" className="py-fb9 relative overflow-hidden border-t border-white/5">                                                                    react-hooks/static-components
+  123:22  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\sections\WarCouncilContact.tsx:123:22
+  121 |                     <br />
+  122 |                     Reach my nexus at <br className="md:hidden" />
+> 123 |                     <FormInput 
+      |                      ^^^^^^^^^ This component is created during render
+  124 |                       id="nexus"
+  125 |                       placeholder="[ EMAIL PROTOCOL ]"
+  126 |                       type="email"
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\sections\WarCouncilContact.tsx:20:21
+  18 |   const isFormValid = formData.identity && formData.architecture && formData.nexus;
+  19 |
+> 20 |   const FormInput = ({ id, placeholder, type = "text", value, onChange }: any) => {
+     |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 21 |     const isFocused = activeField === id;
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 22 |     const hasValue = value.length > 0;
+     ÔÇª
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 68 |     );
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 69 |   };
+     | ^^^^ The component is created during render here
+  70 |
+  71 |   return (
+  72 |     <section id="alliance" className="py-fb9 relative overflow-hidden border-t border-white/5">                                                                                                               react-hooks/static-components
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\ui\CelestialText.tsx
+   3:17  warning  'useRef' is defined but never used              @typescript-eslint/no-unused-vars
+   3:25  warning  'useMemo' is defined but never used             @typescript-eslint/no-unused-vars
+   4:51  warning  'MotionValue' is defined but never used         @typescript-eslint/no-unused-vars
+  41:7   warning  'Component' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  51:12  error    Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\ui\CustomCursor.tsx
+  3:31  warning  'useRef' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\ui\EclipseText.tsx
+  3:29  warning  'MotionValue' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\ui\InkWashBackground.tsx
+  148:22  warning  The ref value 'containerRef.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'containerRef.current' to a variable inside the effect, and use that variable in the cleanup function  react-hooks/exhaustive-deps
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\ui\LiquidButton.tsx
+  3:10  warning  'useRef' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\ui\MarginalGraphics.tsx
+  18:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\ui\MarginalGraphics.tsx:18:5
+  16 |
+  17 |   useEffect(() => {
+> 18 |     setIsMounted(true);
+     |     ^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  19 |   }, []);
+  20 |
+  21 |   if (!isMounted) return null;  react-hooks/set-state-in-effect
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\ui\SamuraiJackBackground.tsx
+    4:31  warning  'useMemo' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 @typescript-eslint/no-unused-vars
+  113:30  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+  150:29  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+  290:5   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\ui\SamuraiJackBackground.tsx:290:5
+  288 |
+  289 |   useEffect(() => {
+> 290 |     setIsMounted(true);
+      |     ^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  291 |     
+  292 |     // Night Stars (Static & Twinkling)
+  293 |     setStars([...Array(40)].map(() => ({  react-hooks/set-state-in-effect
+  388:20  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+  543:47  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+  544:41  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\components\ui\TabletCard.tsx
+  22:16  error  'entry' is never reassigned. Use 'const' instead  prefer-const
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\hooks\useBalancedWidth.ts
+  24:9  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\hooks\useBalancedWidth.ts:24:9
+  22 |
+  23 |       if (tightestWidth > 0) {
+> 24 |         setBalancedWidth(tightestWidth);
+     |         ^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  25 |       }
+  26 |     } catch (e) {
+  27 |       console.error("Pretext balanced width calculation failed:", e);  react-hooks/set-state-in-effect
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\hooks\useHaptics.ts
+  14:16  warning  'e' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\hooks\useTextFit.ts
+   3:31  warning  'useMemo' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+  49:5   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\Edward Magejo\OneDrive\Desktop\SAMARIA\src\hooks\useTextFit.ts:49:5
+  47 |
+  48 |     const fittedSize = findFittingSize();
+> 49 |     setFontSize(fittedSize);
+     |     ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  50 |   }, [text, options.maxWidth, options.maxHeight, options.font, options.lineHeight, options.initialFontSize, minFontSize]);
+  51 |
+  52 |   return fontSize;  react-hooks/set-state-in-effect
+
+Ô£û 64 problems (38 errors, 26 warnings)
+  2 errors and 0 warnings potentially fixable with the `--fix` option.
+

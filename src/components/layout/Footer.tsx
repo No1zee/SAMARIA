@@ -33,15 +33,15 @@ export default function Footer() {
     restDelta: 0.001
   });
 
-  // Backlight intensity: triggers at the very end of the scroll (92% to 100%)
-  const glowOpacity = useTransform(smoothProgress, [0.92, 0.98, 1], [0, 0.8, 0.4]);
-  const glowScaleY = useTransform(smoothProgress, [0.92, 1], [0, 1]);
+  // Backlight intensity: telegraphs the Blood Moon early (70% to 100%)
+  const glowOpacity = useTransform(smoothProgress, [0.70, 0.85, 0.95, 1], [0, 0.3, 0.8, 0.4]);
+  const glowScaleY = useTransform(smoothProgress, [0.70, 1], [0.2, 1]);
   
   // Simulated subsurface scattering colors: Blood Crimson to Dawn Amber
   const glowColor = useTransform(
     smoothProgress,
-    [0.92, 0.96, 1],
-    ["rgba(139, 0, 0, 0)", "rgba(139, 0, 0, 0.6)", "rgba(201, 168, 76, 0.3)"]
+    [0.70, 0.85, 0.96, 1],
+    ["rgba(139, 0, 0, 0)", "rgba(139, 0, 0, 0.3)", "rgba(139, 0, 0, 0.6)", "rgba(201, 168, 76, 0.3)"]
   );
 
   useEffect(() => {
@@ -73,10 +73,18 @@ export default function Footer() {
                 SAMARIA
               </span>
             </Link>
-            <p className="text-off-white/40 text-xl md:text-2xl leading-[1.4] max-w-2xl mb-fb6 font-body">
-              Engineering Africa’s digital future. <br className="hidden md:block" />
-              Built for permanence. Licensed for expansion.
+            <p className="text-off-white/60 text-xl md:text-[2.5rem] leading-none max-w-2xl mb-fb4 font-heading uppercase tracking-tighter">
+              FORGING THE <br className="hidden md:block" />
+              LONG GAME.
             </p>
+            <div className="flex flex-col gap-2 mb-fb6">
+              <a href="mailto:mission@samaria.tech" className="text-metallic-brass/60 hover:text-metallic-brass transition-colors uppercase tracking-[0.2em] text-[10px] md:text-xs font-ui">
+                mission@samaria.tech
+              </a>
+              <span className="text-off-white/20 uppercase tracking-[0.2em] text-[10px] md:text-xs font-ui">
+                HQ // Gaborone, Botswana
+              </span>
+            </div>
           </div>
 
           {/* Links Grid (38%) */}
@@ -85,7 +93,7 @@ export default function Footer() {
               <ul className="space-y-fb2">
                 {footerLinks.Company.map((link) => (
                   <li key={link.name}>
-                    <Link href={link.href} className="text-[10px] md:text-xs text-off-white/20 hover:text-metallic-brass transition-colors uppercase tracking-[0.3em] font-ui">
+                    <Link href={link.href} className="text-[10px] md:text-xs text-off-white/60 hover:text-metallic-brass transition-colors uppercase tracking-[0.3em] font-ui">
                       {link.name}
                     </Link>
                   </li>
@@ -96,7 +104,7 @@ export default function Footer() {
               <ul className="space-y-fb2">
                 {socials.map((social) => (
                   <li key={social.label}>
-                    <a href={social.href} className="text-[10px] md:text-xs text-off-white/20 hover:text-metallic-brass transition-colors uppercase tracking-[0.3em] font-ui">
+                    <a href={social.href} className="text-[10px] md:text-xs text-off-white/60 hover:text-metallic-brass transition-colors uppercase tracking-[0.3em] font-ui">
                       {social.label}
                     </a>
                   </li>
@@ -111,11 +119,11 @@ export default function Footer() {
         <div className="pt-fb5 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-fb4">
           <div className="flex items-center gap-fb3">
             <div className="w-1.5 h-1.5 rounded-full bg-metallic-brass/40 animate-pulse" />
-            <span className="text-[9px] md:text-xs font-ui text-off-white/10 uppercase tracking-[0.4em]">
-              © {year} Samaria Tech Ltd. // Gaborone, Botswana
+            <span className="text-[9px] md:text-xs font-ui text-off-white/40 uppercase tracking-[0.4em]">
+              © {year} SAMARIA ARCHITECTURAL SYSTEMS.
             </span>
           </div>
-          <div className="flex items-center gap-fb5 text-[9px] md:text-xs font-ui text-off-white/10 uppercase tracking-[0.4em]">
+          <div className="flex items-center gap-fb5 text-[9px] md:text-xs font-ui text-off-white/40 uppercase tracking-[0.4em]">
             <Link href="/privacy" className="hover:text-off-white transition-colors">Privacy Protocol</Link>
             <Link href="/terms" className="hover:text-off-white transition-colors">Terms of Service</Link>
           </div>

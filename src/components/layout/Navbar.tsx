@@ -6,18 +6,21 @@ import { useState, useEffect } from "react";
 import { X, ArrowRight } from "lucide-react";
 import { useHaptics } from "@/hooks/useHaptics";
 import WarriorLogo from "@/components/ui/WarriorLogo";
+import { useCelestial } from "@/components/providers/CelestialProvider";
 
 const navItems = [
-  { name: "Services", href: "#services" },
-  { name: "Manifesto", href: "#manifesto" },
-  { name: "Work", href: "#projects" },
-  { name: "Contact", href: "#contact" },
+  { name: "Services", href: "/#services" },
+  { name: "Work", href: "/#projects" },
+  { name: "FAQ", href: "/#faq" },
+  { name: "Contact", href: "/#contact" },
 ];
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { clink } = useHaptics();
+  const { isCinematicMode, setIsCinematicMode, interactionMode } = useCelestial();
+  const isZen = interactionMode === "zen";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,26 +43,27 @@ export default function Navbar() {
         transition={{ duration: 0.8, ease: "circOut" }}
         className={`absolute bottom-0 left-0 h-px bg-linear-to-r from-transparent via-metallic-brass/30 to-transparent transition-opacity duration-500 ${scrolled ? "opacity-100" : "opacity-0"}`}
       />
-      <div className="container max-w-[1200px] mx-auto px-6 flex items-center justify-between">
+      <div className="container max-w-[1200px] mx-auto px-6 grid grid-cols-2 xl:grid-cols-3 items-center">
 
         {/* Official Logo Integration */}
         <Link 
           href="/" 
-          className="flex items-center gap-3 group"
+          className="flex items-center gap-3 group justify-self-start"
           onClick={(e) => {
+            setIsCinematicMode(false);
             if (window.location.pathname === '/') {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }
           }}
         >
-          <div className="relative h-10 w-28 md:h-16 md:w-48 overflow-visible flex items-center">
+          <div className="relative h-10 w-28 md:h-16 md:w-32 overflow-visible flex items-center">
             <WarriorLogo />
           </div>
         </Link>
 
         {/* Desktop Links */}
-        <div className="hidden xl:flex items-center gap-fb4">
+        <div className={`hidden xl:flex items-center justify-center gap-fb4 transition-all duration-1000 ${isZen ? "opacity-0 pointer-events-none scale-95" : "opacity-100"}`}>
           {navItems.map((item) => (
             <Link
               key={item.name}
@@ -73,19 +77,20 @@ export default function Navbar() {
         </div>
 
         {/* Desktop CTA */}
-        <div className="hidden xl:flex items-center">
+        <div className={`hidden xl:flex items-center justify-self-end transition-all duration-1000 ${isZen ? "opacity-0 pointer-events-none scale-95 translate-x-10" : "opacity-100 translate-x-0"}`}>
           <Link
-            href="#contact"
+            href="/start-project"
+            onClick={() => setIsCinematicMode(true)}
             className="btn-warrior text-xs inline-flex items-center gap-2"
           >
-            Start a Project
+            BEGIN YOUR BUILD
             <ArrowRight className="w-3 h-3" />
           </Link>
         </div>
 
-        {/* Mobile Menu Toggle — Torii Gate Ideogram */}
+        {/* Mobile Menu Toggle — Minimalist Horizon Icon */}
         <button
-          className="xl:hidden flex flex-col gap-1.5 p-2 z-[60]"
+          className="xl:hidden flex flex-col gap-1.5 p-2 z-60"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -120,7 +125,10 @@ export default function Navbar() {
                   <Link
                     href={item.href}
                     className="font-heading text-3xl uppercase tracking-[0.2em] text-off-white hover:text-metallic-brass transition-colors"
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      setIsCinematicMode(item.name === "Contact");
+                    }}
                   >
                     {item.name}
                   </Link>
@@ -133,11 +141,14 @@ export default function Navbar() {
                 className="mt-8"
               >
                 <Link
-                  href="#contact"
-                  onClick={() => setMobileMenuOpen(false)}
+                  href="/start-project"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    setIsCinematicMode(true);
+                  }}
                   className="btn-warrior"
                 >
-                  Start a Project
+                  BEGIN YOUR BUILD
                 </Link>
               </motion.div>
             </div>

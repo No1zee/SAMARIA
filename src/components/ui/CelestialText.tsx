@@ -29,7 +29,7 @@ export function useCelestialShadow(intensity: number = 1) {
   // Star Flash Reactivity (Briefly highlights the text)
   const flashBrightness = useTransform(starFlash, [0, 1], [1, 2]);
 
-  const shadow = useMotionTemplate`drop-shadow(${shadowX}px ${shadowY}px ${shadowBlur}px rgba(0,0,0,${shadowOpacity}))`;
+  const shadow = useMotionTemplate`${shadowX}px ${shadowY}px ${shadowBlur}px rgba(0,0,0,${shadowOpacity})`;
   
   return { shadow, flashBrightness };
 }
@@ -37,25 +37,29 @@ export function useCelestialShadow(intensity: number = 1) {
 export function CelestialText({ 
   children, 
   className = "", 
-  intensity = 1
-}: Omit<CelestialTextProps, "as">) {
+  intensity = 1,
+  as = "span"
+}: CelestialTextProps) {
   const { shadow, flashBrightness } = useCelestialShadow(intensity);
+  const brightnessFilter = useMotionTemplate`brightness(${flashBrightness})`;
+
+  const Component = motion[as as keyof typeof motion] || motion.span;
 
   return (
-    <motion.div
+    <Component
       className={`inline-block ${className}`}
       style={{ 
-        filter: shadow
-      } as React.CSSProperties}
+        textShadow: shadow
+      }}
     >
       <motion.span
         className="inline-block"
         style={{ 
-          filter: useMotionTemplate`brightness(${flashBrightness})`
+          filter: brightnessFilter
         }}
       >
         {children}
       </motion.span>
-    </motion.div>
+    </Component>
   );
 }

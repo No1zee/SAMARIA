@@ -69,7 +69,7 @@ export default function Contact() {
                       <textarea 
                         autoFocus
                         placeholder={STEPS[currentStep].placeholder}
-                        className="w-full bg-transparent border-b border-white/10 p-fb2 md:p-fb3 outline-none text-2xl md:text-4xl font-heading text-off-white focus:border-metallic-brass transition-all duration-500 placeholder:text-off-white/10 resize-none h-48"
+                        className="w-full bg-transparent border-b-[1.5px] border-metallic-brass/45 p-fb2 md:p-fb3 outline-none text-2xl md:text-4xl font-heading text-metallic-brass focus:border-metallic-brass focus:border-b-2 transition-all duration-500 placeholder:text-metallic-brass/40 italic min-w-[180px] text-center resize-none h-48"
                         onChange={(e) => setFormData({ ...formData, [STEPS[currentStep].id]: e.target.value })}
                       />
                     ) : (
@@ -77,7 +77,7 @@ export default function Contact() {
                         autoFocus
                         type={STEPS[currentStep].type}
                         placeholder={STEPS[currentStep].placeholder}
-                        className="w-full bg-transparent border-b border-white/10 p-fb2 md:p-fb3 outline-none text-2xl md:text-5xl font-heading text-off-white focus:border-metallic-brass transition-all duration-500 placeholder:text-off-white/10"
+                        className="w-full bg-transparent border-b-[1.5px] border-metallic-brass/45 p-fb2 md:p-fb3 outline-none text-2xl md:text-5xl font-heading text-metallic-brass focus:border-metallic-brass focus:border-b-2 transition-all duration-500 placeholder:text-metallic-brass/40 italic min-w-[180px] text-center"
                         onChange={(e) => setFormData({ ...formData, [STEPS[currentStep].id]: e.target.value })}
                         onKeyDown={(e) => e.key === "Enter" && handleNext()}
                       />
@@ -132,15 +132,15 @@ export default function Contact() {
             {/* Minimal FAQ Strip */}
             <div className="space-y-fb6 border-l border-white/5 pl-fb4 md:pl-fb5">
               <div className="group">
-                <span className="text-[10px] tracking-[0.4em] font-ui text-metallic-brass/40 uppercase mb-2 block">01 // Cycle Time</span>
-                <p className="text-off-white text-lg md:text-xl font-body leading-relaxed opacity-60 group-hover:opacity-100 transition-opacity">
+                <span className="section-label mb-2 block tracking-[0.22em]">01 // Cycle Time</span>
+                <p className="text-white/85 text-lg md:text-xl font-body leading-relaxed group-hover:text-white transition-colors no-prose">
                   Architectures ship in 4–12 weeks depending on systemic depth.
                 </p>
               </div>
  
               <div className="group">
-                <span className="text-[10px] tracking-[0.4em] font-ui text-metallic-brass/40 uppercase mb-2 block">02 // Governance</span>
-                <p className="text-off-white text-lg md:text-xl font-body leading-relaxed opacity-60 group-hover:opacity-100 transition-opacity">
+                <span className="section-label mb-2 block tracking-[0.22em]">02 // Governance</span>
+                <p className="text-white/85 text-lg md:text-xl font-body leading-relaxed group-hover:text-white transition-colors no-prose">
                   Every build is operator-led. No middlemen. Direct access to the architects.
                 </p>
               </div>

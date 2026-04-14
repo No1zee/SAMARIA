@@ -8,6 +8,11 @@ import ScrollIndicator from "@/components/ui/ScrollIndicator";
 import SamuraiJackBackground from "@/components/ui/SamuraiJackBackground";
 import ViewTransitionsProvider from "@/components/providers/ViewTransitionsProvider";
 import { CelestialProvider } from "@/components/providers/CelestialProvider";
+import { AdaptiveProvider } from "@/components/providers/AdaptiveProvider";
+import { GrainOverlay } from "@/components/ui/GrainOverlay";
+import { Cursor } from "@/components/ui/Cursor";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
+import ClientHooks from "@/components/layout/ClientHooks";
 import "./globals.css";
 
 const cinzel = Cinzel_Decorative({
@@ -34,11 +39,11 @@ const BASE_URL = "https://www.samaria.tech";
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "Samaria Tech | Custom IT Solutions for African Businesses",
-    template: "%s | Samaria Tech",
+    default: "Samaria | Built for Permanence",
+    template: "%s | Samaria",
   },
   description:
-    "Samaria Technology builds bespoke web applications, brand identities, and digital ecosystems that help African businesses grow. Web architecture, AI-driven automation, and enterprise solutions — engineered for Africa.",
+    "Digital infrastructure for African businesses with long memory and larger ambition. Precision architecture for the institutional age.",
   keywords: [
     "IT solutions Africa",
     "web development Botswana",
@@ -69,10 +74,10 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_ZA",
     url: BASE_URL,
-    siteName: "Samaria Tech",
-    title: "Samaria Tech | Custom IT Solutions for African Businesses",
+    siteName: "Samaria",
+    title: "Samaria | Built for Permanence",
     description:
-      "Bespoke web applications, brand identities & digital ecosystems for African businesses. Engineering Africa's digital future.",
+      "Digital infrastructure for African businesses with long memory and larger ambition. Precision architecture for the institutional age.",
     images: [
       {
         url: "/og-image.png",
@@ -107,7 +112,7 @@ const jsonLd = {
     {
       "@type": "Organization",
       "@id": `${BASE_URL}/#organization`,
-      name: "Samaria Technology",
+      name: "Samaria",
       url: BASE_URL,
       logo: {
         "@type": "ImageObject",
@@ -116,7 +121,7 @@ const jsonLd = {
         height: 64,
       },
       description:
-        "Custom IT solutions, web architecture, brand identity, and digital ecosystems for African businesses.",
+        "Digital infrastructure for African businesses with long memory and larger ambition. Precision architecture for the institutional age.",
       foundingDate: "2019",
       areaServed: ["Africa", "Botswana", "Zimbabwe", "Kenya", "South Africa"],
       contactPoint: {
@@ -135,7 +140,7 @@ const jsonLd = {
       "@type": "WebSite",
       "@id": `${BASE_URL}/#website`,
       url: BASE_URL,
-      name: "Samaria Tech",
+      name: "Samaria",
       publisher: { "@id": `${BASE_URL}/#organization` },
       potentialAction: {
         "@type": "SearchAction",
@@ -179,18 +184,32 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${fontClasses} antialiased`}>
-        <MarginalGraphics />
-        <LoadingScreen />
-        <Navbar />
-        <ScrollIndicator />
+      <body className={`${fontClasses} antialiased`} suppressHydrationWarning>
+        <GrainOverlay />
+        <Cursor />
+        <ScrollProgress />
+        <ClientHooks />
+        <a 
+          href="#main-content" 
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:px-6 focus:py-3 focus:bg-metallic-brass focus:text-royal-obsidian focus:font-heading focus:uppercase focus:tracking-widest focus:rounded-sm"
+        >
+          Skip to Content
+        </a>
         <CelestialProvider>
-          <SamuraiJackBackground />
-          <ViewTransitionsProvider>
-            {children}
-          </ViewTransitionsProvider>
+          <LoadingScreen />
+          <AdaptiveProvider>
+            <MarginalGraphics />
+            <Navbar />
+            <ScrollIndicator />
+            <SamuraiJackBackground />
+            <ViewTransitionsProvider>
+              <main id="main-content">
+                {children}
+              </main>
+            </ViewTransitionsProvider>
+            <Footer />
+          </AdaptiveProvider>
         </CelestialProvider>
-        <Footer />
       </body>
     </html>
   );

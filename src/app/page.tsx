@@ -5,33 +5,84 @@ import dynamic from "next/dynamic";
 
 // Dynamic imports
 const Hero = dynamic(() => import("@/components/home/Hero"));
+const TransitionBridge = dynamic(() => import("@/components/ui/TransitionBridge"));
+const Philosophy = dynamic(() => import("@/components/home/Philosophy"));
+const TrustBar = dynamic(() => import("@/components/sections/TrustBar"));
 const ApproachSteps = dynamic(() => import("@/components/intro/ApproachSteps"));
-const Services = dynamic(() => import("@/components/home/Services"));
+const Capabilities = dynamic(() => import("@/components/home/Capabilities"));
 const ProjectsTeaser = dynamic(() => import("@/components/sections/ProjectsTeaser"));
+const InteractionLab = dynamic(() => import("@/components/sections/InteractionLab"));
+const GravityOrbit = dynamic(() => import("@/components/animations/GravityOrbit"));
 const About = dynamic(() => import("@/components/home/About"));
-const Contact = dynamic(() => import("@/components/sections/WarCouncilContact"));
+const FAQ = dynamic(() => import("@/components/sections/FAQ"));
+const WarCouncilContact = dynamic(() => import("@/components/sections/WarCouncilContact"));
 const MobileStickyCTA = dynamic(() => import("@/components/ui/MobileStickyCTA"));
 
 export default function Home() {
   return (
-    <main className="">
-      {/* 1. THE STRIKE (Movement 1: Hero) */}
-      <Hero />
+    <main className="bg-transparent">
+      <GravityOrbit />
+      <div className="skew-target">
+        {/* 1. ARRIVAL */}
+        <Hero />
 
-      {/* 2. THE PATH (Movement 1.5: Process) */}
-      <ApproachSteps />
+        {/* NARRATIVE BRIDGE 01 */}
+        <TransitionBridge 
+          text="The launch is easy. The decade after is where most agencies leave you alone."
+          intensity={0.4}
+        />
 
-      {/* 3. THE MASTERY (Movement 2: Capabilities) */}
-      <Services />
+        {/* 2. THE WORLDVIEW (Philosophy) */}
+        <Philosophy />
+        
+        {/* 2.5 THE TRUST (Social Proof) */}
+        <TrustBar />
 
-      {/* 3. THE ARTIFACTS (Movement 3: Work) */}
-      <ProjectsTeaser />
+        {/* NARRATIVE BRIDGE 02 */}
+        <TransitionBridge 
+          text="Permanence is earned slowly, then maintained aggressively."
+          intensity={0.5}
+        />
 
-      {/* 4. THE COVENANT (Movement 4: Manifesto) */}
-      <About />
+        {/* 3. THE DISCIPLINE (Methodology) */}
+        <ApproachSteps />
 
-      {/* 5. THE ALLIANCE (Movement 5: Contact & Decision) */}
-      <Contact />
+        {/* NARRATIVE BRIDGE 03 */}
+        <TransitionBridge 
+          text="The work is the argument."
+          intensity={0.6}
+        />
+
+        {/* 4. THE SYSTEMS (Capabilities) */}
+        <Capabilities />
+
+        {/* NARRATIVE BRIDGE 04 */}
+        <TransitionBridge 
+          text="From discipline comes structure. From structure comes advantage."
+          intensity={0.7}
+        />
+
+        {/* 5. THE PROOF (Case Studies) */}
+        <ProjectsTeaser />
+
+        {/* EXPERIMENT: THE CRUCIBLE */}
+        <InteractionLab />
+
+        {/* NARRATIVE BRIDGE 05 */}
+        <TransitionBridge 
+          text="What we build reflects what we believe."
+          intensity={0.8}
+        />
+
+        {/* 6. THE BELIEF & TRUST (Manifesto / Founders) */}
+        <About />
+
+        {/* 7. THE CLARITY (FAQ) */}
+        <FAQ />
+
+        {/* 8. THE INVITATION (Contact) */}
+        <WarCouncilContact />
+      </div>
 
       <MobileStickyCTA />
     </main>

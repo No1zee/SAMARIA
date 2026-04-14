@@ -19,7 +19,6 @@ export default function ViewTransitionsProvider({
     // We only trigger the transition when the actual route changes
     if (currentPath.current !== pathname) {
       if (typeof document !== 'undefined' && 'startViewTransition' in document) {
-        // @ts-expect-error - startViewTransition is a new browser API
         document.startViewTransition(async () => {
           // View Transitions API handles the snapshot automatically.
           // We wait for a tick to ensure the DOM has updated.
