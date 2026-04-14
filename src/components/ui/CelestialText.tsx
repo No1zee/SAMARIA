@@ -43,7 +43,16 @@ export function CelestialText({
   const { shadow, flashBrightness } = useCelestialShadow(intensity);
   const brightnessFilter = useMotionTemplate`brightness(${flashBrightness})`;
 
-  const Component = motion[as as keyof typeof motion] || motion.span;
+  const motionComponents = {
+    h1: motion.h1,
+    h2: motion.h2,
+    h3: motion.h3,
+    h4: motion.h4,
+    p: motion.p,
+    span: motion.span,
+  };
+
+  const Component = motionComponents[as] || motion.span;
 
   return (
     <Component
