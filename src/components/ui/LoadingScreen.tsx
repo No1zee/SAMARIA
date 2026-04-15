@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { useCelestial } from "@/components/providers/CelestialProvider";
 
 export default function LoadingScreen() {
@@ -90,11 +91,15 @@ export default function LoadingScreen() {
               animate={isCollapsing ? { rotate: 180, scale: 0 } : { rotate: 0, scale: 1 }}
               transition={{ duration: 0.8, ease: "circIn" }}
             >
-              <img
-                src="/logo.png"
-                alt="Samaria Logo"
-                className="w-48 h-auto drop-shadow-[0_0_30px_rgba(196,147,58,0.4)]"
-              />
+              <div className="relative w-48 h-32">
+                <Image
+                  src="/logo.png"
+                  alt="Samaria Logo"
+                  fill
+                  priority
+                  className="object-contain drop-shadow-[0_0_30px_rgba(196,147,58,0.4)]"
+                />
+              </div>
             </motion.div>
 
             {/* Implosion Singularity Element */}

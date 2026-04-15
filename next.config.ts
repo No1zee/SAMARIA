@@ -6,6 +6,20 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion', 'gsap'],
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'www.samaria.tech',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'samaria.tech',
+        pathname: '**',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

@@ -26,9 +26,6 @@ interface CloudData {
   bobOffset: number;
 }
 
-interface CustomCSS extends React.CSSProperties {
-  [key: string]: unknown;
-}
 
 interface Particle {
   width: string;
@@ -195,7 +192,7 @@ export default function SamuraiJackBackground() {
     progress, isCinematicMode, interactionMode,
     sunX, sunY: celestialSunY, moonX, moonY: celestialMoonY, 
     cinematicInteraction,
-    skyColor, zenithColor: celestialZenith, horizonColor: celestialHorizon, bodyScale, lunarProgress
+    zenithColor: celestialZenith, horizonColor: celestialHorizon, bodyScale, lunarProgress
   } = useCelestial();
   
   const isZen = interactionMode === "zen";
@@ -383,7 +380,10 @@ export default function SamuraiJackBackground() {
 
   return (
     <motion.div 
-      style={{ background: skyBackground, opacity: isMounted ? 1 : 0 }}
+      style={{ 
+        background: skyBackground, 
+        opacity: isMounted ? 1 : 0 
+      } as any}
       className={`fixed inset-0 -z-10 pointer-events-none overflow-hidden select-none font-sans transition-colors duration-1000 ${isCinematicMode ? "cinematic-mode" : ""}`}
     >
       <style jsx global>{`
@@ -394,11 +394,18 @@ export default function SamuraiJackBackground() {
       `}</style>
       
       {/* 1. SCATTERED STARS */}
-      <motion.div style={{ opacity: starsOpacity as any, translateX: starsParallaxX as any, translateY: starsParallaxY as any } as any} className="absolute inset-0 w-full h-full z-0 pointer-events-none">
+      <motion.div 
+        style={{ 
+          opacity: starsOpacity as any, 
+          translateX: starsParallaxX as any, 
+          translateY: starsParallaxY as any 
+        } as any} 
+        className="absolute inset-0 w-full h-full z-0 pointer-events-none"
+      >
         <svg className="w-full h-full">
           <filter id="starBlur"><feGaussianBlur stdDeviation="0.4" /></filter>
           {stars.map((star, i) => (
-            <circle
+            <motion.circle
               key={i}
               cx={star.left}
               cy={star.top}

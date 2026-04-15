@@ -1,18 +1,12 @@
 "use client";
  
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { useHaptics } from "@/hooks/useHaptics";
 import ProjectDetails from "@/components/modals/ProjectDetails";
-import Image from "next/image";
 import ScrambleText from "@/components/animations/ScrambleText";
-import CountUp from "@/components/ui/CountUp";
- 
-const PROJECTS: Project[] = [];
- 
 import CinematicText from "@/components/ui/CinematicText";
-
+ 
 interface Project {
   id: string;
   name: string;
@@ -30,12 +24,6 @@ export default function ProjectsTeaser() {
   const { clink } = useHaptics();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
- 
-  const openProject = (project: Project) => {
-    clink();
-    setSelectedProject(project);
-    setIsModalOpen(true);
-  };
  
   return (
     <section id="artifacts" className="py-fb8 relative overflow-hidden">

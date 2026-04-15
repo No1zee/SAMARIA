@@ -19,7 +19,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { clink } = useHaptics();
-  const { isCinematicMode, setIsCinematicMode, interactionMode } = useCelestial();
+  const { setIsCinematicMode, interactionMode } = useCelestial();
   const isZen = interactionMode === "zen";
 
   useEffect(() => {

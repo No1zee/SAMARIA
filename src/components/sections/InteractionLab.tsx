@@ -1,10 +1,9 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useCelestial } from "@/components/providers/CelestialProvider";
+import { useCelestial, InteractionMode } from "@/components/providers/CelestialProvider";
 import { Zap, Globe, EyeOff, LayoutGrid } from "lucide-react";
 import ScrambleText from "@/components/animations/ScrambleText";
-import CinematicText from "@/components/ui/CinematicText";
 
 const MODES = [
   {
@@ -60,7 +59,7 @@ export default function InteractionLab() {
             </h2>
             
             <p className="text-off-white/40 text-sm font-body leading-relaxed mb-fb6 max-w-sm">
-              We don't just build websites; we design digital environments. Use this panel to toggle the gravitational 
+              We don&apos;t just build websites; we design digital environments. Use this panel to toggle the gravitational 
               and atmospheric constants of the Samaria architecture.
             </p>
           </div>
@@ -74,7 +73,7 @@ export default function InteractionLab() {
               return (
                 <button
                   key={mode.id}
-                  onClick={() => setInteractionMode(mode.id as any)}
+                  onClick={() => setInteractionMode(mode.id as InteractionMode)}
                   className={`relative p-6 text-left border transition-all duration-700 group clip-blade-sm overflow-hidden ${
                     isActive 
                       ? "bg-metallic-brass/10 border-metallic-brass shadow-[0_0_30px_rgba(232,133,58,0.1)]" 

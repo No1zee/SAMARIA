@@ -29,7 +29,7 @@ export default function Philosophy() {
           <div className="space-y-fb4">
             <p className="text-white/85 text-xl md:text-[2.5rem] font-body leading-[1.3] tracking-tight max-w-4xl no-prose italic">
               <CelestialText intensity={0.8}>
-                The agency that built your last website is probably gone. If they're still around, they likely don't remember how your system works.
+                The agency that built your last website is probably gone. If they&apos;re still around, they likely don&apos;t remember how your system works.
                 We build differently. We architect digital assets that are meant to be owned, maintained, and scaled for a decade, not a quarter.
               </CelestialText>
             </p>

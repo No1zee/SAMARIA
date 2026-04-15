@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useTransform } from "framer-motion";
-import { useMemo, useRef, useState, useEffect, useId } from "react";
+import { useMemo, useRef, useState, useEffect } from "react";
 import { useCelestial } from "@/components/providers/CelestialProvider";
 import { prepareWithSegments, layoutWithLines } from "@chenglou/pretext";
 import { useAdaptive } from "@/components/providers/AdaptiveProvider";
@@ -54,7 +54,6 @@ export default function CinematicText({
 }: CinematicTextProps) {
   const containerRef = useRef<HTMLSpanElement>(null);
   const [fontsReady, setFontsReady] = useState(false);
-  const filterId = `cinematic-halo-${useId().replace(/[^a-zA-Z0-9]/g, "")}`;
 
   // Celestial context — scroll-driven light source
   const { sunX, sunY, lightX, lightY, glow, starFlash } = useCelestial();

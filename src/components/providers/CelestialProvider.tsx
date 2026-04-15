@@ -163,22 +163,6 @@ export function CelestialProvider({ children }: { children: ReactNode }) {
   
   const skyColor = zenithColor; // Alias for backward compatibility
 
-  // HELPER: Simple HEX Interpolation for high-performance sky transitions
-  function interpolateHex(hex1: string, hex2: string, weight: number) {
-    const w2 = weight;
-    const w1 = 1 - w2;
-    
-    // Parse hex
-    const parse = (h: string) => h.replace("#", "").match(/.{2}/g)?.map(x => parseInt(x, 16)) || [0,0,0];
-    const [r1, g1, b1] = parse(hex1);
-    const [r2, g2, b2] = parse(hex2);
-    
-    const r = Math.round(r1 * w1 + r2 * w2);
-    const g = Math.round(g1 * w1 + g2 * w2);
-    const b = Math.round(b1 * w1 + b2 * w2);
-    
-    return `#${[r, g, b].map(x => x.toString(16).padStart(2, "0")).join("")}`;
-  }
 
 
 

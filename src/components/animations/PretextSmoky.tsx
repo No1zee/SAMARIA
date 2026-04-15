@@ -68,19 +68,17 @@ export function PretextSmoky({
     }
   });
 
-  const smokyStyles = {
-    "--smoky-width": textGeometry ? `${textGeometry.width}px` : "auto",
-    "--fs": fontSize ? `${fontSize}px` : "inherit",
-    "--ff": fontFamily,
-    "--filter-url": `url(#${filterId})`,
-  };
-
   return (
-    <span
+    <motion.span
       className={`smoky-container ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      style={smokyStyles as CustomCSS}
+      style={{
+        "--smoky-width": textGeometry ? `${textGeometry.width}px` : "auto",
+        "--fs": fontSize ? `${fontSize}px` : "inherit",
+        "--ff": fontFamily,
+        "--filter-url": `url(#${filterId})`,
+      } as any}
     >
       {/* SVG filter definition — bounds informed by Pretext geometry */}
       <svg className="absolute opacity-0 pointer-events-none w-0 h-0 overflow-hidden" aria-hidden>
@@ -128,7 +126,7 @@ export function PretextSmoky({
           ))}
         </span>
       )}
-    </span>
+    </motion.span>
   );
 }
 

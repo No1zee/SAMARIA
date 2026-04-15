@@ -1,10 +1,18 @@
 "use client";
 
-import { motion, useSpring, useTransform, useMotionValue } from "framer-motion";
+import { motion, useSpring, useMotionValue, MotionValue } from "framer-motion";
 import { useCelestial } from "@/components/providers/CelestialProvider";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 
-const ITEMS = [
+interface GravityItem {
+  id: number;
+  label: string;
+  x: number;
+  y: number;
+  mass: number;
+}
+
+const ITEMS: GravityItem[] = [
   { id: 1, label: "Infrastructure", x: 20, y: 15, mass: 1.2 },
   { id: 2, label: "Cinematic UI", x: 70, y: 25, mass: 0.8 },
   { id: 3, label: "Advisory", x: 40, y: 65, mass: 1.5 },
@@ -41,7 +49,15 @@ export default function GravityOrbit() {
   );
 }
 
-function GravityNode({ item, mouseX, mouseY }: { item: any, mouseX: any, mouseY: any }) {
+function GravityNode({ 
+  item, 
+  mouseX, 
+  mouseY 
+}: { 
+  item: GravityItem; 
+  mouseX: MotionValue<number>; 
+  mouseY: MotionValue<number>; 
+}) {
   const nodeX = useMotionValue(item.x * (typeof window !== 'undefined' ? window.innerWidth / 100 : 800));
   const nodeY = useMotionValue(item.y * (typeof window !== 'undefined' ? window.innerHeight / 100 : 600));
 

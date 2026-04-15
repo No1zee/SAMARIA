@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import FloatingCircuits from "@/components/animations/FloatingCircuits";
 import WarriorLogo from "@/components/ui/WarriorLogo";
 import { useHaptics } from "@/hooks/useHaptics";
-import { ArrowRight, ChevronDown, Play, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useCelestial } from "@/components/providers/CelestialProvider";
 import CinematicText from "@/components/ui/CinematicText";
@@ -21,7 +21,7 @@ if (typeof window !== "undefined") {
 export default function Hero() {
   const [showSplash, setShowSplash] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
-  const { clink, slash } = useHaptics();
+  const { clink } = useHaptics();
   const { setIsCinematicMode } = useCelestial();
   
   // TRACKING & SCALING CONSTANTS

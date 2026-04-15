@@ -32,7 +32,7 @@ export function AdaptiveProvider({ children }: { children: React.ReactNode }) {
       if (typeof navigator === "undefined") return "medium";
 
       const cores = navigator.hardwareConcurrency || 4;
-      // @ts-ignore - deviceMemory is Chromium only
+      // @ts-expect-error - deviceMemory is Chromium only and not in standard Navigator type
       const memory = navigator.deviceMemory || 4;
       
       const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(

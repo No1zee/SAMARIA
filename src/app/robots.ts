@@ -1,6 +1,8 @@
 import { MetadataRoute } from "next";
 
-const BASE_URL = "https://www.samaria.tech";
+const BASE_URL = process.env.NODE_ENV === "development"
+  ? "http://localhost:3000"
+  : "https://www.samaria.tech";
 
 export default function robots(): MetadataRoute.Robots {
   return {

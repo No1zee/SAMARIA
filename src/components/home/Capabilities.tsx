@@ -6,7 +6,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import CinematicText from "@/components/ui/CinematicText";
-import CelestialHeading from "@/components/ui/CelestialHeading";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
@@ -53,13 +52,16 @@ export default function Capabilities() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Parallax effect for images
-      gsap.utils.toArray(".chapter-image-container").forEach((container: any) => {
-        const img = container.querySelector("img");
+      gsap.utils.toArray(".chapter-image-container").forEach((container) => {
+        const item = container as HTMLElement;
+        const img = item.querySelector("img");
+        if (!img) return;
+        
         gsap.to(img, {
           y: "-15%",
           ease: "none",
           scrollTrigger: {
-            trigger: container,
+            trigger: item,
             start: "top bottom",
             end: "bottom top",
             scrub: true

@@ -7,6 +7,7 @@ interface SamariaLogoSVGProps {
   className?: string;
 }
 
+import Image from "next/image";
 import { useCelestial } from "@/components/providers/CelestialProvider";
 
 export function SamariaLogoSVG({ progress, className = "w-full h-auto" }: SamariaLogoSVGProps) {
@@ -45,7 +46,7 @@ export function SamariaLogoSVG({ progress, className = "w-full h-auto" }: Samari
 
   return (
     <div className={`relative ${className} flex items-center justify-center`}>
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {!showSeal ? (
           <motion.div 
             key="sun"
@@ -82,11 +83,15 @@ export function SamariaLogoSVG({ progress, className = "w-full h-auto" }: Samari
             <div className="absolute inset-0 rounded-full border-2 border-dashed border-[#D4AF37]/20 scale-[0.98]" />
             
             {/* THE ICON */}
-            <img 
-              src="/logo.png" 
-              alt="Samaria Logo" 
-              className="w-[85%] h-[85%] object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]"
-            />
+            <div className="relative w-[85%] h-[85%]">
+              <Image 
+                src="/logo.png" 
+                alt="Samaria Logo" 
+                fill
+                sizes="200px"
+                className="object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]"
+              />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

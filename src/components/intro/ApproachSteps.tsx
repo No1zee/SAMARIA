@@ -1,8 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Search, Pencil, Rocket, GraduationCap, Headphones } from "lucide-react";
-import { PretextSmoky } from "@/components/animations/PretextSmoky";
 import { CelestialText } from "@/components/ui/CelestialText";
 
 const AuditIcon = () => (
@@ -101,7 +99,7 @@ export default function ApproachSteps() {
           </h2>
           <div className="text-off-white/40 text-lg md:text-2xl font-body leading-relaxed max-w-2xl border-l border-metallic-brass/10 pl-6 italic">
             <CelestialText intensity={0.6}>
-              Most agencies rush to the "visuals" because they're easy to sell. We start with the architecture because it's what keeps the system alive. 
+              Most agencies rush to the &quot;visuals&quot; because they&apos;re easy to sell. We start with the architecture because it&apos;s what keeps the system alive. 
               Every engagement follows the same sequence—the only honest way to build for the long run.
             </CelestialText> 
           </div>

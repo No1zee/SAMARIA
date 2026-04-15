@@ -1,7 +1,7 @@
 "use client";
  
 import { motion } from "framer-motion";
-import { User, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import CinematicText from "@/components/ui/CinematicText";
 import CelestialHeading from "@/components/ui/CelestialHeading";
@@ -86,7 +86,7 @@ export default function About() {
                     intensity={0.6}
                   />
                   <p className="text-white/85 text-2xl md:text-[2.5rem] font-body leading-relaxed italic border-r border-white/10 pr-fb4 text-right no-prose">
-                    We don't believe in "vendor lock-in" or proprietary secrets. When we finish a build, we hand you everything. 
+                    We don&apos;t believe in &quot;vendor lock-in&quot; or proprietary secrets. When we finish a build, we hand you everything. 
                     The code, the documentation, and the keys. It is your infrastructure. It should belong to you entirely.
                   </p>
                 </div>
