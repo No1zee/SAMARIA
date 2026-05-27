@@ -99,7 +99,41 @@ export default function CinematicText({
         } else {
           const pretextWidthValue = (maxWidth * 0.92 - 4) - (block.length - 1) * trackingPx;
           const blockResult = layoutWithLines(blockMeasure, Math.max(1, pretextWidthValue), lineHeight);
-          allLines.push(...blockResult.lines);
+          
+          // Re-assemble lines to ensure no words are cut in half.
+          // If a line does not end with space/hyphen and next doesn't start with space, they might be split.
+          // Alternatively, we can inspect blockResult.lines and merge any split words.
+          const processedLines: { text: string; width: number }[] = [];
+          for (let i = 0; i < blockResult.lines.length; i++) {
+            const line = blockResult.lines[i];
+            if (i > 0 && processedLines.length > 0) {
+              const prevLine = processedLines[processedLines.length - 1];
+              // If previous line does not end with space/hyphen/punctuation, and current line doesn't start with space/hyphen/punctuation,
+              // or if the text was split mid-word, merge the first word of current line back into the previous line.
+              const prevText = prevLine.text;
+              const currText = line.text;
+              
+              const prevEndsWithAlphanum = /[a-zA-Z0-9]$/.test(prevText);
+              const currStartsWithAlphanum = /^[a-zA-Z0-9]/.test(currText);
+              
+              if (prevEndsWithAlphanum && currStartsWithAlphanum) {
+                // Find the first word of current line to merge it back
+                const match = currText.match(/^([a-zA-Z0-9]+)/);
+                if (match) {
+                  const firstWord = match[1];
+                  prevLine.text += firstWord;
+                  // recalculate width roughly or treat as same
+                  prevLine.width += (firstWord.length * (fontSize * 0.5));
+                  line.text = currText.slice(firstWord.length);
+                }
+              }
+            }
+            if (line.text.trim().length > 0) {
+              processedLines.push({ text: line.text, width: line.width });
+            }
+          }
+          
+          allLines.push(...processedLines);
         }
       }
 
