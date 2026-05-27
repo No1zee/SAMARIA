@@ -18,16 +18,16 @@
   --color-dawn-crimson: #2D162D;
 
   /* === FIBONACCI SPACING (Golden Ratio — Tightened) === */
-  --spacing-fb1: 0.75rem;   /* 12px */
-  --spacing-fb2: 1.25rem;   /* 20px */
-  --spacing-fb3: 2.0rem;    /* 32px */
-  --spacing-fb4: 3.0rem;    /* 48px */
-  --spacing-fb5: 4.5rem;    /* 72px */
-  --spacing-fb6: 6.5rem;    /* 104px */
-  --spacing-fb7: 9.5rem;    /* 152px */
-  --spacing-fb8: 13.0rem;   /* 208px */
-  --spacing-fb9: 18.0rem;   /* 288px */
-  --spacing-fb10: 24.0rem;  /* 384px */
+  --spacing-fb1: 0.5rem;    /* 8px */
+  --spacing-fb2: 1.0rem;    /* 16px */
+  --spacing-fb3: 1.5rem;    /* 24px */
+  --spacing-fb4: 2.25rem;   /* 36px */
+  --spacing-fb5: 3.25rem;   /* 52px */
+  --spacing-fb6: 4.5rem;    /* 72px */
+  --spacing-fb7: 6.0rem;    /* 96px */
+  --spacing-fb8: 8.5rem;    /* 136px */
+  --spacing-fb9: 11.5rem;   /* 184px */
+  --spacing-fb10: 15.0rem;  /* 240px */
 
   /* === TYPOGRAPHY === */
   --font-heading: var(--font-cinzel), serif;        /* Cinzel Decorative — H1/H2 */
