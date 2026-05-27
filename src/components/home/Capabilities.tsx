@@ -16,32 +16,32 @@ if (typeof window !== "undefined") {
 const chapters = [
   {
     id: "01",
-    label: "INFRASTRUCTURE",
-    name: "BESPOKE DIGITAL INFRASTRUCTURE",
-    description: "Systems that handle the heavy lifting.",
-    expanded: "Custom web applications designed for high-load operations. We build for performance, security, and absolute reliability. Your business shouldn't outgrow its foundation.",
-    image: "/assets/capabilities/web-architecture.png",
-    tags: ["SaaS Platforms", "Marketplaces", "Custom CRM/ERP", "High-Performance Backends"],
+    label: "WEBSITES",
+    name: "CUSTOM WEBSITES & APPLICATIONS",
+    description: "Digital experiences that capture attention and build authority.",
+    expanded: "We design and develop high-end bespoke websites and web applications tailored to your brand. From corporate platforms to custom SaaS applications, our code is optimized for SEO, speed, and conversion.",
+    image: "/assets/capabilities/websites-apps.png",
+    tags: ["Next.js & React", "E-commerce Platforms", "SaaS Applications", "SEO & Performance Optimization"],
     align: "left"
   },
   {
     id: "02",
-    label: "INTELLIGENCE",
-    name: "AGENTIC & AI SYSTEMS",
-    description: "Logic that works while you sleep.",
-    expanded: "We integrate advanced LLMs and agentic workflows directly into your operational core. Automating the complex, not just the simple.",
-    image: "/assets/capabilities/brand-identity.png",
-    tags: ["Custom GPTs", "Workflow Automation", "AI-Native SaaS", "Cognitive Architecture"],
+    label: "IT SERVICES",
+    name: "IT SERVICES & DIGITAL OPERATIONS",
+    description: "Secure, scalable systems that power your daily business operations.",
+    expanded: "Enterprise-grade IT consultancy, system integration, cloud deployments, and custom database solutions. We construct the reliable backbones that support your growth without interruption.",
+    image: "/assets/capabilities/it-services.png",
+    tags: ["Cloud Infrastructure", "System Integrations", "Database Design", "Security & Auditing"],
     align: "right"
   },
   {
     id: "03",
-    label: "GROWTH",
-    name: "PERFORMANCE GROWTH ENGINES",
-    description: "Websites that convert by default.",
-    expanded: "High-fidelity, cinematic web experiences engineered for one purpose: credibility. We build the digital environments that make your competition look like they're still in the last decade.",
-    image: "/assets/capabilities/digital-infrastructure.png",
-    tags: ["Premium Portfolio", "Interactive Experience", "SEO Mastery", "Conversion Optimization"],
+    label: "STRATEGY",
+    name: "STRATEGIC CUSTOM DIGITAL SOLUTIONS",
+    description: "Innovative tech tailored specifically to solve your business bottlenecks.",
+    expanded: "Workflow automation, interactive customer portals, custom CRM/ERP integration, and advanced AI-assisted processes. We build the exact tools you need to optimize productivity and outperform your competition.",
+    image: "/assets/capabilities/strategic-solutions.png",
+    tags: ["Custom ERP/CRM", "Workflow Automation", "API Development", "AI Integrations"],
     align: "left"
   }
 ];
@@ -77,24 +77,30 @@ export default function Capabilities() {
       <div className="container max-w-[1500px] mx-auto px-fb3 md:px-fb4 relative z-10">
         
         {/* Section Header — Editorial Style */}
-        <div className="mb-fb8 max-w-4xl">
-          <motion.span 
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="section-label block mb-fb3"
-          >
-            WHAT WE BUILD
-          </motion.span>
-          <CinematicText 
-            fontSize={128}
-            className="text-5xl md:text-[8rem] text-white/95 font-heading uppercase tracking-tighter leading-[0.85] block mb-fb4 no-prose"
-            maxWidth={1200}
-          >
-            THREE THINGS. Done completely.
-          </CinematicText>
-          <p className="text-white/85 text-xl md:text-3xl font-body leading-tight max-w-2xl border-l border-metallic-brass/20 pl-fb4 italic">
-            We don&apos;t do everything. We do three things that change the trajectory of a business: we build the logic, we design the interaction, and we engineer the growth. We do not compromise on the execution of any of them.
-          </p>
+        <div className="mb-fb8 border-l border-metallic-brass/40 pl-6 md:pl-8">
+          <div className="grid grid-cols-1 md:grid-cols-10 gap-fb4 items-end">
+            <div className="md:col-span-6">
+              <motion.span 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                className="section-label block mb-fb3"
+              >
+                WHAT WE BUILD
+              </motion.span>
+              <CinematicText 
+                fontSize={128}
+                className="text-5xl md:text-[8rem] text-white/95 font-heading uppercase tracking-tighter leading-[0.85] block no-prose"
+                maxWidth={1200}
+              >
+                THREE THINGS. Done completely.
+              </CinematicText>
+            </div>
+            <div className="md:col-span-4 pl-fb3 md:border-l border-metallic-brass/20">
+              <p className="text-white/85 text-base md:text-lg font-body leading-relaxed italic no-prose">
+                We don&apos;t do everything. We focus on custom websites, robust IT systems, and strategic digital operations. We design the interaction, secure the infrastructure, and automate the workflow to change the trajectory of your business.
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Chapters List */}
@@ -120,9 +126,12 @@ export default function Capabilities() {
                   </p>
                 </div>
 
-                <div className="flex flex-wrap gap-x-fb4 gap-y-2 pt-2">
+                <div className="flex flex-wrap gap-x-fb4 gap-y-2 pt-2 group/tags">
                   {chapter.tags.map(tag => (
-                    <span key={tag} className="text-[10px] uppercase tracking-[0.3em] text-metallic-brass/60 font-ui px-4 py-1.5 border border-metallic-brass/10 rounded-full">
+                    <span 
+                      key={tag} 
+                      className="text-[10px] uppercase tracking-[0.3em] text-metallic-brass/60 font-ui px-4 py-1.5 border border-metallic-brass/10 rounded-full transition-all duration-300 hover:scale-105 group-hover/tags:opacity-30 hover:!opacity-100 hover:border-metallic-brass hover:text-metallic-brass hover:shadow-[0_0_12px_rgba(201,168,76,0.3)] cursor-default"
+                    >
                       {tag}
                     </span>
                   ))}
@@ -167,9 +176,12 @@ export default function Capabilities() {
         {/* Arsenal (Simplified & Integrated) */}
         <div className="mt-fb10 pt-fb6 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-fb4 text-white/20">
           <span className="text-[10px] font-ui tracking-[0.6em] uppercase">THE STACK.</span>
-          <div className="flex flex-wrap justify-center gap-x-fb5 gap-y-fb2">
+          <div className="flex flex-wrap justify-center gap-x-fb5 gap-y-fb2 group/arsenal">
             {['Next.js', 'React', 'TypeScript', 'Node.js', 'Supabase', 'Vercel', 'GSAP'].map((tech) => (
-              <span key={tech} className="text-[10px] font-ui tracking-[0.4em] uppercase hover:text-metallic-brass transition-colors">
+              <span 
+                key={tech} 
+                className="text-[10px] font-ui tracking-[0.4em] uppercase transition-all duration-300 hover:scale-105 hover:text-metallic-brass group-hover/arsenal:opacity-30 hover:!opacity-100 cursor-default"
+              >
                 {tech}
               </span>
             ))}

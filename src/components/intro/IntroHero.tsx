@@ -21,7 +21,7 @@ export default function IntroHero() {
 
   // Use Case 2: Balanced Typography
   // We want to find the tightest width for the headline to avoid orphans.
-  const headline = "You have the vision. We have the forge to build it.";
+  const headline = "You have the vision. We have the systems to build it.";
   const balancedWidth = useBalancedWidth(
     headline,
     "900 48px Cinzel", // Approximate font for measurement

@@ -7,14 +7,14 @@ import { useHaptics } from "@/hooks/useHaptics";
 export default function TermsPage() {
   const { clink } = useHaptics();
   return (
-    <main className="min-h-screen text-off-white pt-fb9 pb-fb8 px-fb4 md:px-fb5 relative overflow-hidden">
+    <main className="min-h-screen text-off-white pt-fb9 pb-fb8 relative overflow-hidden">
       
       {/* Structural Watermark */}
       <div className="absolute top-fb4 right-0 opacity-[0.02] pointer-events-none select-none overflow-hidden">
           <span className="text-[40vw] font-heading font-black tracking-tighter leading-none">TERMS</span>
       </div>
 
-      <div className="container max-w-[1200px] mx-auto relative z-10">
+      <div className="container max-w-[1500px] mx-auto px-fb3 md:px-fb4 relative z-10">
         
         {/* Navigation */}
         <Link 
@@ -27,7 +27,7 @@ export default function TermsPage() {
         </Link>
 
         {/* 62/38 Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-10 gap-fb7 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-10 gap-fb7 items-start border-l border-metallic-brass/40 pl-6 md:pl-8">
           
           {/* Main Content (62%) */}
           <div className="md:col-span-6">
@@ -35,12 +35,12 @@ export default function TermsPage() {
               Terms of <br /> Service.
             </h1>
             
-            <div className="space-y-fb6 text-off-white/40 text-lg md:text-xl font-body leading-relaxed">
+            <div className="space-y-fb6 text-off-white/80 text-lg md:text-xl font-body leading-relaxed no-prose">
               <section>
                 <h2 className="text-off-white font-ui text-xs uppercase tracking-[0.4em] mb-fb3 border-b border-metallic-brass/20 pb-2">01 // Engagement Logic</h2>
                 <p>
                   By initiating a project, you agree to our phased deployment workflow. We operate on a &apos;Build to Finish&apos; 
-                  principle, requiring documented project specifications before the forge begins.
+                  principle, requiring documented project specifications before the build begins.
                 </p>
               </section>
 

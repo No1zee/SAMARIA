@@ -80,10 +80,10 @@ export default function ApproachSteps() {
     <section id="discipline" className="py-24 bg-transparent relative overflow-hidden border-y border-metallic-brass/10">
       {/* Section background deliberately kept transparent so the SamuraiJackBackground skyline shows through */}
 
-      <div className="container max-w-[1500px] mx-auto px-6 relative z-10">
+      <div className="container max-w-[1500px] mx-auto px-fb3 md:px-fb4 relative z-10">
         {/* Section header */}
         <motion.div
-          className="text-left mb-16 ml-2 md:ml-[5vw] max-w-4xl"
+          className="text-left mb-16 border-l border-metallic-brass/40 pl-6 md:pl-8 max-w-4xl"
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -97,7 +97,7 @@ export default function ApproachSteps() {
           <h2 className="font-heading text-4xl md:text-8xl font-bold text-off-white mb-6 uppercase leading-[0.9]">
             <CelestialText intensity={1.2}>FIVE STEPS. ZERO SHORTCUTS.</CelestialText>
           </h2>
-          <div className="text-off-white/40 text-lg md:text-2xl font-body leading-relaxed max-w-2xl border-l border-metallic-brass/10 pl-6 italic">
+          <div className="text-off-white/80 text-lg md:text-2xl font-body leading-relaxed max-w-2xl italic no-prose">
             <CelestialText intensity={0.6}>
               Most agencies rush to the &quot;visuals&quot; because they&apos;re easy to sell. We start with the architecture because it&apos;s what keeps the system alive. 
               Every engagement follows the same sequence—the only honest way to build for the long run.
@@ -142,7 +142,7 @@ export default function ApproachSteps() {
                 </h3>
 
                 {/* Description */}
-                <p className="text-off-white/40 text-base md:text-lg leading-relaxed font-body">
+                <p className="text-off-white/80 text-base md:text-lg leading-relaxed font-body no-prose">
                   <CelestialText intensity={0.4}>{step.description}</CelestialText>
                 </p>
                 

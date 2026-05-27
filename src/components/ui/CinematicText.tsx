@@ -82,25 +82,31 @@ export default function CinematicText({
     }
 
     try {
-      const numChars = children.length;
       const trackingPx = letterSpacing || 0;
-      
-      // If maxLines is 1, we use a massive width to prevent Pretext from breaking syllables.
-      // We still use current width for multi-line layout.
-      const pretextWidthValue = maxLines === 1 
-        ? 10000 
-        : (maxWidth * 0.92 - 4) - (numChars - 1) * trackingPx;
+      const computedLineHeight = fontSize * lineHeight;
 
-      const result = layoutWithLines(preparedMeasure, Math.max(1, pretextWidthValue), lineHeight);
+      // Split the text by explicit newlines if any
+      const rawBlocks = children.split("\n");
+      const allLines: { text: string; width: number }[] = [];
 
-      // If maxLines is 1, we ignore Pretext's breaking decisions for the text segments.
-      // This forces the text to stay on one line even if it exceeds pretextWidth.
-      const finalLines = (maxLines === 1 && result.lines.length > 1) 
-        ? [{ text: children, width: result.lines.reduce((acc, l) => acc + l.width, 0) }]
-        : result.lines;
+      for (const block of rawBlocks) {
+        const fontSpec = `${Math.floor(fontSize)}px ${fontFamily}`;
+        const blockMeasure = prepareWithSegments(block, fontSpec);
+
+        if (maxLines === 1) {
+          const blockResult = layoutWithLines(blockMeasure, 10000, lineHeight);
+          allLines.push({ text: block, width: blockResult.lines.reduce((acc, l) => acc + l.width, 0) });
+        } else {
+          const pretextWidthValue = (maxWidth * 0.92 - 4) - (block.length - 1) * trackingPx;
+          const blockResult = layoutWithLines(blockMeasure, Math.max(1, pretextWidthValue), lineHeight);
+          allLines.push(...blockResult.lines);
+        }
+      }
+
+      // Constrain lines by maxLines if present
+      const finalLines = maxLines ? allLines.slice(0, maxLines) : allLines;
 
       const totalWidth = finalLines.reduce((acc, line) => Math.max(acc, line.width), 0);
-      const computedLineHeight = fontSize * lineHeight;
       const totalHeight = finalLines.length * computedLineHeight;
 
       const lines: LayoutLine[] = finalLines.map((line, idx) => {
@@ -122,7 +128,7 @@ export default function CinematicText({
       console.error("[CinematicText] Layout failed:", e);
       return { lines: [] as LayoutLine[], totalWidth: 0, totalHeight: 0 };
     }
-  }, [preparedMeasure, fontSize, maxWidth, horizontalAlign, letterSpacing, lineHeight]);
+  }, [preparedMeasure, children, fontSize, fontFamily, maxWidth, horizontalAlign, letterSpacing, lineHeight, maxLines]);
 
   const { mode } = useAdaptive();
 

@@ -34,10 +34,10 @@ export default function FAQ() {
       {/* Subtle gradient */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(201,168,76,0.04)_0%,transparent_60%)] pointer-events-none" />
 
-      <div className="container max-w-[860px] mx-auto px-6 relative z-10">
+      <div className="container max-w-[1500px] mx-auto px-fb3 md:px-fb4 relative z-10">
         {/* Header */}
         <motion.div
-          className="text-center mb-14"
+          className="text-left mb-14 border-l border-metallic-brass/40 pl-6 md:pl-8 max-w-4xl"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -52,85 +52,87 @@ export default function FAQ() {
             fontSize={56}
             className="text-balance"
           />
-          <p className="text-white/85 mt-4 text-xl max-w-xl mx-auto leading-relaxed no-prose">
+          <p className="text-white/85 mt-4 text-xl max-w-xl leading-relaxed no-prose">
             Honest answers to the questions serious clients always ask.
           </p>
         </motion.div>
 
         {/* Accordion */}
-        <div className="space-y-3">
-          {faqs.map((faq, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className={`group relative bg-obsidian-layered/40 border rounded-lg overflow-hidden transition-colors duration-300 ${
-                openIndex === i
-                  ? "border-metallic-brass/40"
-                  : "border-metallic-brass/10 hover:border-metallic-brass/25"
-              }`}
-            >
-              {/* Question row */}
-              <button
-                className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left cursor-pointer focus:outline-none focus:ring-1 focus:ring-brand-red/40"
-                onClick={() => toggle(i)}
-                aria-expanded={openIndex === i ? "true" : "false"}
-                aria-controls={`faq-answer-${i}`}
-                id={`faq-question-${i}`}
+        <div className="max-w-4xl border-l border-white/5 pl-6 md:pl-8">
+          <div className="space-y-3">
+            {faqs.map((faq, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className={`group relative bg-obsidian-layered/40 border rounded-lg overflow-hidden transition-colors duration-300 ${
+                  openIndex === i
+                    ? "border-metallic-brass/40"
+                    : "border-metallic-brass/10 hover:border-metallic-brass/25"
+                }`}
               >
-                <span className="font-heading text-lg md:text-xl text-white/95">
-                  {faq.q}
-                </span>
-                <span className="shrink-0 text-metallic-brass">
-                  {openIndex === i ? (
-                    <Minus className="w-4 h-4" />
-                  ) : (
-                    <Plus className="w-4 h-4" />
+                {/* Question row */}
+                <button
+                  className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left cursor-pointer focus:outline-none focus:ring-1 focus:ring-brand-red/40"
+                  onClick={() => toggle(i)}
+                  aria-expanded={openIndex === i ? "true" : "false"}
+                  aria-controls={`faq-answer-${i}`}
+                  id={`faq-question-${i}`}
+                >
+                  <span className="font-heading text-lg md:text-xl text-white/95">
+                    {faq.q}
+                  </span>
+                  <span className="shrink-0 text-metallic-brass">
+                    {openIndex === i ? (
+                      <Minus className="w-4 h-4" />
+                    ) : (
+                      <Plus className="w-4 h-4" />
+                    )}
+                  </span>
+                </button>
+
+                {/* Answer */}
+                <AnimatePresence initial={false}>
+                  {openIndex === i && (
+                    <motion.div
+                      key="answer"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.35, ease: "easeInOut" }}
+                      id={`faq-answer-${i}`}
+                      role="region"
+                      aria-labelledby={`faq-question-${i}`}
+                    >
+                      <div className="px-6 pb-6 text-white/82 text-base md:text-lg leading-relaxed border-t border-white/5 pt-4">
+                        {faq.a}
+                      </div>
+                    </motion.div>
                   )}
-                </span>
-              </button>
+                </AnimatePresence>
+              </motion.div>
+            ))}
+          </div>
 
-              {/* Answer */}
-              <AnimatePresence initial={false}>
-                {openIndex === i && (
-                  <motion.div
-                    key="answer"
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.35, ease: "easeInOut" }}
-                    id={`faq-answer-${i}`}
-                    role="region"
-                    aria-labelledby={`faq-question-${i}`}
-                  >
-                    <div className="px-6 pb-6 text-white/82 text-base md:text-lg leading-relaxed border-t border-white/5 pt-4">
-                      {faq.a}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* CTA nudge */}
-        <motion.p
-          className="text-center mt-10 text-off-white/40 text-sm font-ui"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          Still have questions?{" "}
-          <a
-            href="#contact"
-            className="text-metallic-brass hover:text-off-white transition-colors underline underline-offset-2"
+          {/* CTA nudge */}
+          <motion.p
+            className="text-left mt-10 text-off-white/40 text-sm font-ui"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
           >
-            Send us a message →
-          </a>
-        </motion.p>
+            Still have questions?{" "}
+            <a
+              href="#contact"
+              className="text-metallic-brass hover:text-off-white transition-colors underline underline-offset-2"
+            >
+              Send us a message →
+            </a>
+          </motion.p>
+        </div>
       </div>
     </section>
   );

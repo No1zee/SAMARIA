@@ -7,7 +7,7 @@ import { ArrowRight, Check } from "lucide-react";
 const STEPS = [
   { id: "identity", label: "01 // IDENTITY", question: "Who initiates this build?", placeholder: "Your Name / Organization", type: "text" },
   { id: "nexus", label: "02 // NEXUS", question: "Where do we reach you?", placeholder: "Email Protocol (@)", type: "email" },
-  { id: "architecture", label: "03 // ARCHITECTURE", question: "What system are we forging?", placeholder: "Describe the operational complexity...", type: "textarea" },
+  { id: "architecture", label: "03 // ARCHITECTURE", question: "What system are we building?", placeholder: "Describe the operational complexity...", type: "textarea" },
 ];
  
 export default function Contact() {
@@ -116,8 +116,8 @@ export default function Contact() {
                   <h3 className="text-4xl md:text-6xl font-heading text-off-white uppercase leading-none tracking-tighter">
                     Signal <br /> Received.
                   </h3>
-                  <p className="text-off-white/40 text-xl font-body italic leading-relaxed max-w-sm">
-                    The forge remains silent. <br /> 
+                  <p className="text-off-white/80 text-xl font-body italic leading-relaxed max-w-sm no-prose">
+                    The transmission is secure. <br /> 
                     Our lead architect will contact you <br /> 
                     within one operational cycle.
                   </p>

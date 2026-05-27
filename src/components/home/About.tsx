@@ -8,13 +8,13 @@ import CelestialHeading from "@/components/ui/CelestialHeading";
  
 export default function About() {
   return (
-    <section id="manifesto" className="py-fb8 relative overflow-hidden">
+    <section id="about" className="py-fb8 relative overflow-hidden">
       
  
       <div className="container max-w-[1500px] mx-auto px-fb3 md:px-fb4 relative z-10">
         
         {/* The Horizon Header — The Inscribed Manifesto */}
-        <div className="mb-fb7 border-l border-metallic-brass/40 pl-fb3">
+        <div className="mb-fb7 border-l border-metallic-brass/40 pl-6 md:pl-8">
           <h2 className="text-5xl md:text-[8rem] font-heading uppercase tracking-tighter leading-[0.85] flex flex-col">
             <CinematicText 
               baseColor="rgba(255, 255, 255, 0.95)"
@@ -24,7 +24,7 @@ export default function About() {
               lineHeight={0.85}
               className="no-prose"
             >
-              THE ANCIENT
+              BUILT TO
             </CinematicText>
             <CinematicText 
               baseColor="rgba(255, 255, 255, 0.95)"
@@ -34,7 +34,7 @@ export default function About() {
               lineHeight={0.85}
               className="no-prose"
             >
-              FUTURE.
+              LAST.
             </CinematicText>
           </h2>
         </div>
@@ -62,32 +62,31 @@ export default function About() {
                initial={{ opacity: 0, y: 30 }}
                whileInView={{ opacity: 1, y: 0 }}
                viewport={{ once: true }}
-               className="space-y-fb6"
+               className="space-y-fb6 border-l border-white/5 pl-6 md:pl-8"
              >
+                <div className="max-w-2xl">
+                   <CelestialHeading 
+                     as="h3"
+                     text="BUILT FOR THE LONG RUN."
+                     fontSize={48}
+                     className="mb-fb4 no-prose"
+                     intensity={0.6}
+                   />
+                   <p className="text-white/85 text-xl md:text-2xl font-body leading-relaxed italic no-prose">
+                     We build high-performance web systems engineered for longevity and stability. Every codebase we ship is clean, fully documented, and built to support your operations for the next ten years.
+                   </p>
+                </div>
+ 
                 <div className="max-w-2xl">
                   <CelestialHeading 
                     as="h3"
-                    text="THE LONG GAME."
+                    text="COMPLETE OWNERSHIP."
                     fontSize={48}
                     className="mb-fb4 no-prose"
                     intensity={0.6}
                   />
-                  <p className="text-white/85 text-2xl md:text-[2.5rem] font-body leading-relaxed italic border-l border-white/10 pl-fb4 no-prose">
-                    The tools we use are new. The principles we use are ancient. We build with the same philosophy as the architects of cathedrals: we build for a time we will not see. Every system we deploy is designed to outlast its creators.
-                  </p>
-                </div>
- 
-                <div className="max-w-2xl ml-auto">
-                  <CelestialHeading 
-                    as="h3"
-                    text="YOURS. PERMANENTLY."
-                    fontSize={48}
-                    className="mb-fb4 text-right no-prose"
-                    intensity={0.6}
-                  />
-                  <p className="text-white/85 text-2xl md:text-[2.5rem] font-body leading-relaxed italic border-r border-white/10 pr-fb4 text-right no-prose">
-                    We don&apos;t believe in &quot;vendor lock-in&quot; or proprietary secrets. When we finish a build, we hand you everything. 
-                    The code, the documentation, and the keys. It is your infrastructure. It should belong to you entirely.
+                  <p className="text-white/85 text-xl md:text-2xl font-body leading-relaxed italic no-prose">
+                    Full ownership. Zero vendor lock-in. When the project is complete, you receive all IP, source code, hosting credentials, and documentation. The infrastructure belongs entirely to you.
                   </p>
                 </div>
              </motion.div>

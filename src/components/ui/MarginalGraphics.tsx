@@ -77,7 +77,7 @@ export default function MarginalGraphics() {
 
         {/* Scroll Label */}
         <div className="flex flex-col items-center gap-4">
-          <span className="text-vertical text-silence text-[8px] opacity-20 invisible">SCROLL TO FORGE</span>
+          <span className="text-vertical text-silence text-[8px] opacity-20 invisible">SCROLL TO BUILD</span>
 
           <motion.div 
             animate={{ y: [0, 10, 0] }}

@@ -14,7 +14,7 @@ const CHALLENGES = [
   {
     icon: Clock,
     title: "Black-Box Process",
-    description: "Legacy entities where you pay for hours, not outcomes, losing all visibility into the forge.",
+    description: "Legacy entities where you pay for hours, not outcomes, losing all visibility into the process.",
     color: "text-orange-500"
   },
   {
@@ -39,7 +39,7 @@ const SOLUTIONS = [
   },
   {
     title: "High-Fidelity Resilience",
-    description: "Precision-forged systems designed for 99.99% uptime and extreme operational load.",
+    description: "Precision-built systems designed for 99.99% uptime and extreme operational load.",
     icon: <CheckCircle className="w-5 h-5 text-green-400" />
   }
 ];

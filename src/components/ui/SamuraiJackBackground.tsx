@@ -295,7 +295,20 @@ export default function SamuraiJackBackground() {
       if (isZen) return 0.05; // Almost invisible in Zen mode
       const p = latest[0];
       const i = latest[1];
-      const natural = p > 0.4 ? (p < 0.6 ? 0.6 : 0.4) : 0;
+      
+      // Natural opacity based on scroll:
+      // - 0 at top (p=0)
+      // - peaks around middle (p=0.5)
+      // - fades out towards bottom (p=0.8 to 1.0) to keep contact/footer legible
+      let natural = 0;
+      if (p > 0.3 && p < 0.8) {
+        natural = p < 0.5 ? 0.6 : 0.4;
+      } else if (p >= 0.8) {
+        // Fade from 0.4 down to 0.05 at the very bottom
+        natural = 0.4 * (1 - (p - 0.8) / 0.2) + 0.05;
+        if (natural < 0.05) natural = 0.05;
+      }
+      
       return i > 0.5 ? natural * (1 - (i - 0.5) * 2) : natural;
     }
   );
@@ -318,9 +331,9 @@ export default function SamuraiJackBackground() {
     (brightness) => `brightness(${brightness})`
   );
 
-  const mountainBackY = useTransform(progress, [0, 1], [0, -60]);
-  const mountainMidY = useTransform(progress, [0, 1], [0, -100]);
-  const mountainFrontY = useTransform(progress, [0, 1], [0, -150]);
+  const mountainBackY = useTransform(progress, [0, 1], [0, -20]);
+  const mountainMidY = useTransform(progress, [0, 1], [0, -40]);
+  const mountainFrontY = useTransform(progress, [0, 1], [0, -60]);
 
   const hazeOpacity = useTransform(progress, [0.55, 0.8, 1], [0, 0.4, 0.2]);
 

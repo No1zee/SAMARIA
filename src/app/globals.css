@@ -17,15 +17,17 @@
   --color-dawn-amber: #4A2511;
   --color-dawn-crimson: #2D162D;
 
-  /* === FIBONACCI SPACING (Golden Ratio) === */
-  --spacing-fb1: 1rem;    /* 16px */
-  --spacing-fb2: 1.5rem;  /* 24px */
-  --spacing-fb3: 2.5rem;  /* 40px */
-  --spacing-fb4: 4rem;    /* 64px */
-  --spacing-fb5: 6.5rem;  /* 104px */
-  --spacing-fb6: 10.5rem; /* 168px */
-  --spacing-fb7: 17rem;   /* 272px */
-  --spacing-fb8: 27.5rem; /* 440px */
+  /* === FIBONACCI SPACING (Golden Ratio — Tightened) === */
+  --spacing-fb1: 0.75rem;   /* 12px */
+  --spacing-fb2: 1.25rem;   /* 20px */
+  --spacing-fb3: 2.0rem;    /* 32px */
+  --spacing-fb4: 3.0rem;    /* 48px */
+  --spacing-fb5: 4.5rem;    /* 72px */
+  --spacing-fb6: 6.5rem;    /* 104px */
+  --spacing-fb7: 9.5rem;    /* 152px */
+  --spacing-fb8: 13.0rem;   /* 208px */
+  --spacing-fb9: 18.0rem;   /* 288px */
+  --spacing-fb10: 24.0rem;  /* 384px */
 
   /* === TYPOGRAPHY === */
   --font-heading: var(--font-cinzel), serif;        /* Cinzel Decorative — H1/H2 */
@@ -81,13 +83,9 @@
   html {
     scroll-behavior: smooth;
     overflow-x: hidden;
-    cursor: none !important;
   }
 
-  /* Force cursor none on all interactive elements for custom cursor */
-  a, button, input, textarea, [role="button"] {
-    cursor: none !important;
-  }
+
 
   body {
     background: var(--color-royal-obsidian);
@@ -104,6 +102,7 @@
 
   p:not(.no-prose) {
     max-width: 65ch; /* FIX 3: Line length cap */
+    width: 100%;
   }
 
   h1, h2, h3, h4 {
@@ -540,4 +539,68 @@ body::before {
   pointer-events: none;
   z-index: -5;
   animation: corona-pulse 5s ease-in-out infinite;
+}
+
+/* ============================================================
+   ZEN MODE OVERRIDES (Printed Manuscript / Premium Book Aesthetics)
+   ============================================================ */
+.mode-zen {
+  --color-royal-obsidian: #0c0b0a; /* Deep charcoal parchment */
+  --color-obsidian-layered: #141312;
+  --color-off-white: #f7f5ef; /* High contrast ivory white */
+  --color-ivory-glow: #f7f5ef;
+  --color-metallic-brass: #c5a059; /* Bright burnished gold */
+  
+  /* Smooth parchment transition */
+  transition: background-color 1.5s cubic-bezier(0.22, 1, 0.36, 1), color 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Global body overrides during Zen Mode */
+.mode-zen body {
+  background-color: var(--color-royal-obsidian) !important;
+  color: var(--color-off-white) !important;
+  font-family: var(--font-heading), serif !important;
+  line-height: 1.8 !important;
+}
+
+/* Parchment texture enhancement in Zen mode */
+.mode-zen body::before {
+  opacity: 0.055 !important;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E") !important;
+}
+
+/* Book reading line length limits */
+.mode-zen p:not(.no-prose) {
+  max-width: 58ch !important;
+  font-size: 1.15rem !important;
+  color: var(--color-off-white) !important;
+  line-height: 1.85 !important;
+  letter-spacing: 0.015em !important;
+}
+
+/* Silencing elements / Hiding non-text clutter */
+.mode-zen .hero-blade-spine,
+.mode-zen .bg-grid-subtle,
+.mode-zen .bg-circuit-grid,
+.mode-zen .circuit-bg,
+.mode-zen [class*="MarginalGraphics"],
+.mode-zen [class*="AmbientBackground"],
+.mode-zen .absolute.top-0.right-0.w-24.h-24,
+.mode-zen .absolute.bottom-0.left-0.w-24.h-24,
+.mode-zen .absolute.left-fb3.md\:left-fb4.top-0.bottom-0 {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+/* Dim outline structural watermarks to avoid visual distraction */
+.mode-zen [class*="Watermark"],
+.mode-zen .absolute.top-fb4.right-0.opacity-\[0\.02\] {
+  opacity: 0.005 !important;
+}
+
+/* Keep form input fields and critical action buttons fully functional but clean */
+.mode-zen input, 
+.mode-zen textarea, 
+.mode-zen select {
+  font-family: var(--font-body) !important;
 }

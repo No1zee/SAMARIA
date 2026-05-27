@@ -12,7 +12,7 @@ const footerLinks = {
     { name: "Digital Ecosystems", href: "#services" },
   ],
   Company: [
-    { name: "Manifesto", href: "#manifesto" },
+    { name: "About Us", href: "#about" },
     { name: "Case Studies", href: "#projects" },
     { name: "Contact", href: "#contact" },
   ],
@@ -50,7 +50,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="border-t border-metallic-brass/20 relative overflow-hidden py-fb8 md:py-fb9">
+    <footer className="border-t border-metallic-brass/20 relative overflow-hidden pt-fb6 md:pt-fb8 pb-fb3 md:pb-fb4 bg-royal-obsidian/75 backdrop-blur-lg z-10">
       {/* SUBSURFACE BACKLIGHT GLOW (The "Torch Through Fingers" Effect) */}
       <motion.div 
         style={{ 
@@ -74,7 +74,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-off-white/60 text-xl md:text-[2.5rem] leading-none max-w-2xl mb-fb4 font-heading uppercase tracking-tighter">
-              FORGING THE <br className="hidden md:block" />
+              ENGINEERING THE <br className="hidden md:block" />
               LONG GAME.
             </p>
             <div className="flex flex-col gap-2 mb-fb6">

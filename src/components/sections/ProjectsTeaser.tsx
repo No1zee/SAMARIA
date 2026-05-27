@@ -32,7 +32,7 @@ export default function ProjectsTeaser() {
       <div className="container max-w-[1500px] mx-auto px-fb3 md:px-fb4 relative z-10">
         
         {/* Section Header */}
-        <div className="mb-fb7 flex flex-col md:flex-row md:items-end md:justify-between gap-6 border-l border-metallic-brass/40 pl-fb3">
+        <div className="mb-fb7 flex flex-col md:flex-row md:items-end md:justify-between gap-6 border-l border-metallic-brass/40 pl-6 md:pl-8">
           <div>
             <div className="flex items-center gap-fb1 mb-fb2">
                 <ScrambleText 
@@ -51,7 +51,7 @@ export default function ProjectsTeaser() {
               className="text-5xl md:text-[8rem] text-off-white font-heading uppercase tracking-tighter leading-[0.85] block"
               maxWidth={1200}
             >
-              FORGE ACTIVE.
+              BUILD ACTIVE.
             </CinematicText>
           </div>
           <div className="text-silence text-metallic-brass/30 uppercase tracking-[0.2em] text-[10px] pb-2 border-b border-metallic-brass/10">
@@ -84,7 +84,7 @@ export default function ProjectsTeaser() {
             <div className="relative z-10 max-w-2xl">
                <div className="inline-block px-4 py-1 border border-metallic-brass/40 rounded-full mb-fb4">
                   <span className="text-[10px] font-ui text-metallic-brass tracking-[0.5em] uppercase">
-                    FORGE STATUS: ACTIVE
+                    BUILD STATUS: ACTIVE
                   </span>
                </div>
                
@@ -93,29 +93,8 @@ export default function ProjectsTeaser() {
                </h3>
                
                <p className="text-off-white/50 text-xl font-body leading-relaxed mb-fb7 border-l-2 border-metallic-brass/20 pl-6 mx-auto max-w-xl text-left">
-                 Our technical archives are currently under maintenance. We are documenting several 
-                 <span className="text-off-white mx-1.5">high-integrity deployments</span> 
-                 from 2024 across core systems, global infrastructure, and cinematic digital experiences.
+                 Throughout 2026 we have been working on a lot of exciting projects and can&apos;t wait to show you. This area is under construction.
                </p>
-
-               <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-[10px] font-ui text-white/30 tracking-[0.3em] uppercase">
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-metallic-brass animate-pulse" />
-                    <span>Websites</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
-                    <span>Systems</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
-                    <span>Infrastructure</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
-                    <span>Advisory</span>
-                  </div>
-               </div>
             </div>
 
             {/* Background design elements */}

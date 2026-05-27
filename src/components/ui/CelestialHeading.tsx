@@ -29,10 +29,19 @@ export default function CelestialHeading({
   intensity = 1,
   baseColor,
   lineHeight = 1.05,
-  maxLines = 1,
+  maxLines,
 }: CelestialHeadingProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [availableWidth, setAvailableWidth] = useState(1500);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    setIsMobile(window.innerWidth < 768);
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -49,7 +58,8 @@ export default function CelestialHeading({
 
   // Responsive defaults based on heading level
   const defaultSize = Tag === "h1" ? 128 : Tag === "h2" ? 80 : Tag === "h3" ? 48 : 36;
-  const size = fontSize || defaultSize;
+  const rawSize = fontSize || defaultSize;
+  const size = isMobile ? Math.max(28, rawSize * 0.55) : rawSize;
 
   return (
     <div ref={containerRef} className="w-full">

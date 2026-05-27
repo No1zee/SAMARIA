@@ -182,6 +182,13 @@ export function CelestialProvider({ children }: { children: ReactNode }) {
 
   const [interactionMode, setInteractionMode] = useState<InteractionMode>("standard");
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      document.body.classList.remove("mode-standard", "mode-gravity", "mode-zen");
+      document.body.classList.add(`mode-${interactionMode}`);
+    }
+  }, [interactionMode]);
+
   const value = useMemo<CelestialContextType>(() => {
     if (!smoothProgress || !x || !y) return {} as CelestialContextType;
 

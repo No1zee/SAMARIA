@@ -8,23 +8,23 @@ import ScrambleText from "@/components/animations/ScrambleText";
 const MODES = [
   {
     id: "standard",
-    name: "Architectural Standard",
+    name: "Standard Mode",
     icon: LayoutGrid,
-    desc: "The baseline digital experience. Precise, stable, and rigid.",
+    desc: "The default digital experience. Clean, stable, and easy to navigate.",
     color: "metallic-brass"
   },
   {
     id: "gravity",
-    name: "Gravitational Orbit",
+    name: "Gravity Mode",
     icon: Globe,
-    desc: "Physics-driven navigation. Elements react to cursor mass.",
+    desc: "Interactive navigation. Page elements pull toward your mouse cursor.",
     color: "blue-400"
   },
   {
     id: "zen",
-    name: "Absolute Zen",
+    name: "Zen Mode",
     icon: EyeOff,
-    desc: "Atmospheric strip-down. Zero noise. Only the core mission.",
+    desc: "Minimalist viewing experience. Deep focus, zero noise, only the core text.",
     color: "white"
   }
 ];
@@ -44,23 +44,22 @@ export default function InteractionLab() {
         <div className="flex flex-col md:flex-row gap-fb7 items-start">
           
           {/* Header Panel */}
-          <div className="md:w-1/3">
+          <div className="md:w-1/3 border-l border-metallic-brass/40 pl-6 md:pl-8">
             <div className="flex items-center gap-fb1 mb-fb2">
                <Zap className="w-3 h-3 text-metallic-brass" />
                <ScrambleText 
-                 text="EXPERIMENT 01" 
+                 text="INTERACT" 
                  className="text-metallic-brass font-ui text-[10px] tracking-[0.5em] uppercase"
                  duration={2}
                />
             </div>
             
-            <h2 className="text-4xl md:text-6xl font-heading text-off-white uppercase tracking-tighter mb-fb4 leading-[0.9]">
-              The <span className="text-metallic-brass">Crucible.</span>
+            <h2 className="text-4xl md:text-5xl font-heading text-off-white uppercase tracking-tighter mb-fb4 leading-[1.0] no-prose">
+              Play around with <br /><span className="text-metallic-brass">our website.</span>
             </h2>
             
-            <p className="text-off-white/40 text-sm font-body leading-relaxed mb-fb6 max-w-sm">
-              We don&apos;t just build websites; we design digital environments. Use this panel to toggle the gravitational 
-              and atmospheric constants of the Samaria architecture.
+            <p className="text-off-white/80 text-sm font-body leading-relaxed mb-fb6 max-w-sm no-prose">
+              Choose an interaction model below to change how elements and gravity behave across the entire platform.
             </p>
           </div>
 

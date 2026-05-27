@@ -10,7 +10,6 @@ import ViewTransitionsProvider from "@/components/providers/ViewTransitionsProvi
 import { CelestialProvider } from "@/components/providers/CelestialProvider";
 import { AdaptiveProvider } from "@/components/providers/AdaptiveProvider";
 import { GrainOverlay } from "@/components/ui/GrainOverlay";
-import { Cursor } from "@/components/ui/Cursor";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import ClientHooks from "@/components/layout/ClientHooks";
 import "./globals.css";
@@ -188,7 +187,6 @@ export default function RootLayout({
       </head>
       <body className={`${fontClasses} antialiased`} suppressHydrationWarning>
         <GrainOverlay />
-        <Cursor />
         <ScrollProgress />
         <ClientHooks />
         <a 
