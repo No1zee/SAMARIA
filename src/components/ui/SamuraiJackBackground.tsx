@@ -187,6 +187,7 @@ function ShootingStar() {
 
 export default function SamuraiJackBackground() {
   const [isMounted, setIsMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const { scrollYProgress } = useScroll();
   const { 
     progress, isCinematicMode, interactionMode,
@@ -194,6 +195,13 @@ export default function SamuraiJackBackground() {
     cinematicInteraction,
     zenithColor: celestialZenith, horizonColor: celestialHorizon, bodyScale, lunarProgress
   } = useCelestial();
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   
   const isZen = interactionMode === "zen";
 
@@ -204,9 +212,9 @@ export default function SamuraiJackBackground() {
   
   const rimLightOpacity = useTransform(progress, [0.75, 1], [0, 0.4]);
 
-  const sunXPos = useTransform(sunX, (v) => `${v}%`);
+  const sunXPos = useTransform(sunX, (v) => isMobile ? `${Math.min(85, v + 22)}%` : `${v}%`);
   const sunYPos = useTransform(celestialSunY, (v) => `${v}vh`);
-  const moonXPos = useTransform(moonX, (v) => `${v}%`);
+  const moonXPos = useTransform(moonX, (v) => isMobile ? `${Math.min(85, v + 22)}%` : `${v}%`);
   const moonYPos = useTransform(celestialMoonY, (v) => `${v + 15}vh`);
 
   // Consolidated high-performance spring for celestial weighting
@@ -226,6 +234,8 @@ export default function SamuraiJackBackground() {
     if (p < 0.75) return 0.9 * ((p-0.60)/0.15);    // Evening rise
     return 0.9;                                    // Blood Moon Night
   });
+
+  const moonOpacityResponsive = useTransform(moonOpacity, (o) => isMobile ? o * 0.45 : o);
 
   const moonGlowColor = useTransform(
     lunarProgress,
@@ -271,6 +281,8 @@ export default function SamuraiJackBackground() {
     if (p < 0.75) return 1 - (p - 0.60) / 0.15;   // Sunset
     return 0;                                      // Night
   });
+
+  const sunOpacityResponsive = useTransform(sunOpacity, (o) => isMobile ? o * 0.45 : o);
 
   const sunScale = bodyScale;
   const moonScale = bodyScale;
@@ -445,13 +457,13 @@ export default function SamuraiJackBackground() {
         style={{ 
           left: moonXPos as any, 
           top: moonYPos as any, 
-          opacity: moonOpacity as any, 
+          opacity: moonOpacityResponsive as any, 
           scale: moonScale as any,
           translateX: mouseXValue as any, 
           translateY: mouseYValue as any,
           x: "-50%", 
           y: "-50%",
-          zIndex: 10 
+          zIndex: 1 
         } as any}
         className="absolute w-[80px] h-[80px] md:w-[120px] md:h-[120px] flex items-center justify-center pointer-events-none"
       >
@@ -472,25 +484,25 @@ export default function SamuraiJackBackground() {
           <div className="absolute inset-0 rounded-full border-12 border-black opacity-15 translate-x-[18px] translate-y-[6px] pointer-events-none" />
         </motion.div>
       </motion.div>
-
+ 
       {/* 4. THE SUN / SEAL (z-35) */}
       <motion.div 
         style={{ 
           left: sunXPos as any, 
           top: sunYPos as any, 
-          opacity: sunOpacity as any, 
+          opacity: sunOpacityResponsive as any, 
           scale: sunScale as any,
           translateX: mouseX as any, 
           translateY: mouseY as any,
           x: "-50%", 
           y: "-50%",
-          zIndex: 10
+          zIndex: 1
         } as any}
         className="absolute w-[90px] h-[90px] md:w-[140px] md:h-[140px] flex items-center justify-center overflow-visible pointer-events-none"
       >
         <div className="w-full h-full relative flex items-center justify-center">
             <motion.div 
-              style={{ opacity: sunOpacity as any }}
+              style={{ opacity: sunOpacityResponsive as any }}
               className="absolute inset-[0%] z-0 flex items-center justify-center"
             >
               <svg viewBox="0 0 200 200" className="w-[180%] h-[180%] absolute opacity-100">

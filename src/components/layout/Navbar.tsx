@@ -9,8 +9,8 @@ import WarriorLogo from "@/components/ui/WarriorLogo";
 import { useCelestial } from "@/components/providers/CelestialProvider";
 
 const navItems = [
-  { name: "Services", href: "/#services" },
-  { name: "Work", href: "/#projects" },
+  { name: "Services", href: "/#capabilities" },
+  { name: "Work", href: "/#artifacts" },
   { name: "FAQ", href: "/#faq" },
   { name: "Contact", href: "/#contact" },
 ];
@@ -43,7 +43,7 @@ export default function Navbar() {
         transition={{ duration: 0.8, ease: "circOut" }}
         className={`absolute bottom-0 left-0 h-px bg-linear-to-r from-transparent via-metallic-brass/30 to-transparent transition-opacity duration-500 ${scrolled ? "opacity-100" : "opacity-0"}`}
       />
-      <div className="container max-w-[1200px] mx-auto px-6 grid grid-cols-2 xl:grid-cols-3 items-center">
+      <div className="container max-w-[1200px] mx-auto px-6 grid grid-cols-2 lg:grid-cols-3 items-center">
 
         {/* Official Logo Integration */}
         <Link 
@@ -63,7 +63,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Links */}
-        <div className={`hidden xl:flex items-center justify-center gap-fb4 transition-all duration-1000 ${isZen ? "opacity-0 pointer-events-none scale-95" : "opacity-100"}`}>
+        <div className={`hidden lg:flex items-center justify-center gap-fb4 transition-all duration-1000 ${isZen ? "opacity-0 pointer-events-none scale-95" : "opacity-100"}`}>
           {navItems.map((item) => (
             <Link
               key={item.name}
@@ -77,7 +77,7 @@ export default function Navbar() {
         </div>
 
         {/* Desktop CTA */}
-        <div className={`hidden xl:flex items-center justify-self-end transition-all duration-1000 ${isZen ? "opacity-0 pointer-events-none scale-95 translate-x-10" : "opacity-100 translate-x-0"}`}>
+        <div className={`hidden lg:flex items-center justify-self-end transition-all duration-1000 ${isZen ? "opacity-0 pointer-events-none scale-95 translate-x-10" : "opacity-100 translate-x-0"}`}>
           <Link
             href="/start-project"
             onClick={() => setIsCinematicMode(true)}
@@ -90,18 +90,26 @@ export default function Navbar() {
 
         {/* Mobile Menu Toggle — Minimalist Horizon Icon */}
         <button
-          className="xl:hidden flex flex-col gap-1.5 p-2 z-60"
+          className="lg:hidden flex items-center gap-2.5 p-2.5 z-60 cursor-pointer justify-self-end"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
         >
-          {mobileMenuOpen ? (
-            <X className="w-5 h-5 text-metallic-brass" />
-          ) : (
-            <>
-              <div className="w-6 h-0.5 bg-metallic-brass rounded-full" />
-              <div className="w-4 h-0.5 bg-metallic-brass rounded-full ml-auto" />
-            </>
-          )}
+          <span className="font-ui text-[10px] tracking-widest text-metallic-brass uppercase font-bold select-none">
+            {mobileMenuOpen ? "CLOSE" : "MENU"}
+          </span>
+          <div className="flex flex-col gap-1.5 w-5 items-end justify-center">
+            {mobileMenuOpen ? (
+              <div className="relative w-4 h-4 flex items-center justify-center">
+                <div className="absolute w-4 h-0.5 bg-metallic-brass rotate-45" />
+                <div className="absolute w-4 h-0.5 bg-metallic-brass -rotate-45" />
+              </div>
+            ) : (
+              <>
+                <div className="w-5 h-0.5 bg-metallic-brass rounded-full" />
+                <div className="w-3.5 h-0.5 bg-metallic-brass rounded-full" />
+              </>
+            )}
+          </div>
         </button>
       </div>
 
@@ -112,7 +120,7 @@ export default function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 xl:hidden bg-royal-obsidian/95 backdrop-blur-2xl z-50 flex flex-col items-center justify-center"
+            className="fixed inset-0 lg:hidden bg-royal-obsidian/95 backdrop-blur-2xl z-50 flex flex-col items-center justify-center"
           >
             <div className="flex flex-col items-center gap-8 text-center">
               {navItems.map((item, i) => (

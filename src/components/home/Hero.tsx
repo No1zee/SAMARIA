@@ -248,13 +248,14 @@ export default function Hero() {
                 </Link>
               </CelestialText>
               <CelestialText intensity={0.3}>
-                <button 
+                <Link 
+                  href="#artifacts"
                   onMouseEnter={clink}
                   onClick={clink}
-                  className="btn-ghost border border-white/10 hover:border-metallic-brass/40 px-6 py-3 transition-all duration-500 uppercase tracking-widest text-[10px] w-full sm:w-auto text-center"
+                  className="btn-ghost border border-white/10 hover:border-metallic-brass/40 px-6 py-3 transition-all duration-500 uppercase tracking-widest text-[10px] w-full sm:w-auto text-center flex items-center justify-center"
                 >
                   VIEW THE SYSTEMS
-                </button>
+                </Link>
               </CelestialText>
             </div>
           </div>

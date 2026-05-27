@@ -16,6 +16,10 @@ interface Project {
   metricLabel: string;
   tag: string;
   image: string;
+  techStack?: string[];
+  problem?: string;
+  solution?: string;
+  result?: string;
   status?: string;
 }
 

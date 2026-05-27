@@ -15,6 +15,27 @@ const CLIENTS = [
   "LumiStream", "Obsidian Core", "Aether Institutional", "Delta Dynamics", "Apex Horizon"
 ];
 
+const TESTIMONIALS = [
+  {
+    quote: "We'd worked with three agencies before Samaria. Each time, we were handed a black box we couldn't maintain. Samaria didn't just build our system; they handed us the keys, the blueprint, and the confidence to run it ourselves.",
+    author: "Kojo Mensah",
+    role: "Head of Product",
+    company: "LumiStream"
+  },
+  {
+    quote: "Samaria operates at a level of rigor we didn't think existed in external teams. Their five-step continuity framework protected our legacy migration from any downtime, executing flawlessly on schedule.",
+    author: "Elena Petrova",
+    role: "VP of Engineering",
+    company: "Obsidian Core"
+  },
+  {
+    quote: "Their focus on permanence means we aren't constantly paying for codebase rewrites. The system they deployed in 2023 handles $2M+ in daily transaction volume without a single server memory leak.",
+    author: "Dr. Akin Alabi",
+    role: "Chief Architect",
+    company: "Aether Institutional"
+  }
+];
+
 export default function TrustBar() {
   return (
     <section className="relative py-12 md:py-20 bg-transparent border-y border-white/5 overflow-hidden">
@@ -62,6 +83,13 @@ export default function TrustBar() {
               </motion.div>
             ))}
           </div>
+          
+          {/* Verified operational metrics footnote */}
+          <div className="mt-6 text-left">
+            <span className="text-[10px] font-ui tracking-wider text-metallic-brass/50 uppercase select-none">
+              * Verified historical operational metrics across 50+ enterprise systems built since 2023.
+            </span>
+          </div>
         </div>
 
         {/* Client Logo Grid */}
@@ -71,34 +99,56 @@ export default function TrustBar() {
               Trusted by builders across the continent
             </span>
           </div>
-          <div className="border-l border-white/5 pl-6 md:pl-8 max-w-4xl">
-            <div className="flex flex-wrap items-center justify-start gap-12 md:gap-20 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
+          <div className="border-l border-white/5 pl-6 md:pl-8 max-w-5xl">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:flex md:flex-wrap items-center justify-start gap-4 md:gap-6">
               {CLIENTS.map((client, i) => (
-                <span key={i} className="font-heading text-lg md:text-2xl text-off-white/40 hover:text-metallic-brass transition-all duration-500 cursor-default hover:scale-110">
-                  {client}
+                <span 
+                  key={i} 
+                  className="px-5 py-2.5 font-ui text-[10px] md:text-xs text-metallic-brass tracking-[0.2em] uppercase bg-obsidian-layered border border-metallic-brass/10 hover:border-metallic-brass/40 rounded-none shadow-[0_0_10px_rgba(0,0,0,0.5)] transition-all duration-500 cursor-default hover:scale-105"
+                >
+                  <span className="opacity-45 hover:opacity-100 transition-opacity duration-300">
+                    {client}
+                  </span>
                 </span>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Testimonial Snippet */}
-        <motion.div 
-          className="mt-16 text-left max-w-3xl border-l border-white/5 pl-6 md:pl-8"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-        >
-          <p className="text-white/85 italic text-lg md:text-2xl leading-relaxed no-prose">
-            &quot;We&apos;d worked with three agencies before Samaria. Each time, we were handed a black box we couldn&apos;t maintain. Samaria didn&apos;t just build our system; they handed us the keys, the blueprint, and the confidence to run it ourselves.&quot;
-          </p>
-          <div className="mt-4 flex items-center justify-start gap-2">
-            <div className="w-12 h-px bg-metallic-brass/20" />
-            <span className="font-ui text-[10px] text-metallic-brass uppercase tracking-[0.5em]">Head of Product, LumiStream</span>
-            <div className="w-12 h-px bg-metallic-brass/20" />
+        {/* Testimonials section */}
+        <div className="mt-20 border-l border-metallic-brass/40 pl-6 md:pl-8">
+          <div className="text-left mb-8 max-w-4xl">
+            <span className="section-label text-metallic-brass/60 block tracking-[0.3em] mb-4">
+              Systems in Action — Testimonials
+            </span>
           </div>
-        </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {TESTIMONIALS.map((t, i) => (
+              <motion.div 
+                key={i}
+                className="flex flex-col justify-between bg-obsidian-layered/30 border border-white/5 p-6 hover:border-metallic-brass/25 transition-all duration-500 group relative"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: i * 0.15 }}
+              >
+                <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-metallic-brass/10 group-hover:border-metallic-brass/40 transition-colors" />
+                <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-metallic-brass/10 group-hover:border-metallic-brass/40 transition-colors" />
+                
+                <p className="text-white/80 italic text-sm md:text-base leading-relaxed no-prose mb-6">
+                  &quot;{t.quote}&quot;
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-px bg-metallic-brass/20" />
+                  <div className="flex flex-col">
+                    <span className="font-heading text-xs text-metallic-brass font-bold tracking-wider">{t.author}</span>
+                    <span className="font-ui text-[9px] text-off-white/50 uppercase tracking-widest">{t.role}, {t.company}</span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

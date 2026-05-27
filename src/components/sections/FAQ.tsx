@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     q: "What is your pricing model?",
-    a: "We operate on a fixed-bid project basis. The scope is blueprinted upfront, and the budget we agree upon is final. We do not charge hidden fees or surprise hourly overages. Transparency is a prerequisite of partnership."
+    a: "We operate on a fixed-bid project basis. The scope is blueprinted upfront, and the budget we agree upon is final. We do not charge hidden fees or surprise hourly overages. For context: high-end corporate websites range from $5,000 to $12,000; custom web applications and SaaS systems range from $15,000 to $45,000; and complex enterprise integrations or custom databases start at $50,000. Transparency is a prerequisite of partnership."
   },
   {
     q: "What is your communication and sprint rhythm?",

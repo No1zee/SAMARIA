@@ -118,8 +118,8 @@ export default function About() {
                         />
                     </div>
                     <div>
-                        <h4 className="text-off-white font-ui text-xl md:text-3xl uppercase tracking-[0.4em] font-black group-hover/founder:text-metallic-brass transition-colors duration-500">EDWARD MAGEJO</h4>
-                        <p className="text-metallic-brass/40 text-[10px] md:text-xs uppercase tracking-[0.6em] font-ui mt-2">FOUNDER & LEAD ARCHITECT</p>
+                        <h4 className="text-off-white font-ui text-xl md:text-3xl uppercase tracking-[0.18em] md:tracking-[0.4em] font-black group-hover/founder:text-metallic-brass transition-colors duration-500">EDWARD MAGEJO</h4>
+                        <p className="text-metallic-brass/40 text-[10px] md:text-xs uppercase tracking-[0.25em] md:tracking-[0.6em] font-ui mt-2">FOUNDER & LEAD ARCHITECT</p>
                         <div className="mt-4 max-w-sm overflow-hidden h-0 group-hover/founder:h-auto transition-all duration-700 opacity-0 group-hover/founder:opacity-100">
                           <p className="text-off-white/60 text-sm italic font-body leading-relaxed">
                             &quot;I&apos;ve spent a decade watching businesses get burned by &apos;fast&apos; agencies. I founded Samaria to prove there&apos;s a better way: building for permanence, not just for the next invoice.&quot;
@@ -146,8 +146,8 @@ export default function About() {
                         />
                     </div>
                     <div>
-                        <h4 className="text-off-white font-ui text-xl md:text-3xl uppercase tracking-[0.4em] font-black group-hover/founder-dm:text-metallic-brass transition-colors duration-500">DIVINE MWALE</h4>
-                        <p className="text-metallic-brass/40 text-[10px] md:text-xs uppercase tracking-[0.6em] font-ui mt-2">CO-FOUNDER & SYSTEMS ENGINEER</p>
+                        <h4 className="text-off-white font-ui text-xl md:text-3xl uppercase tracking-[0.18em] md:tracking-[0.4em] font-black group-hover/founder-dm:text-metallic-brass transition-colors duration-500">DIVINE MWALE</h4>
+                        <p className="text-metallic-brass/40 text-[10px] md:text-xs uppercase tracking-[0.25em] md:tracking-[0.6em] font-ui mt-2">CO-FOUNDER & SYSTEMS ENGINEER</p>
                         <div className="mt-4 max-w-sm overflow-hidden h-0 group-hover/founder-dm:h-auto transition-all duration-700 opacity-0 group-hover/founder-dm:opacity-100">
                           <p className="text-off-white/60 text-sm italic font-body leading-relaxed">
                             &quot;Architecture isn&apos;t just about code; it&apos;s about clarity. We build the systems that remove friction from your growth so you can focus on building what matters.&quot;
@@ -158,11 +158,16 @@ export default function About() {
 
                 </div>
 
-                <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-fb4">
-                  <p className="text-[10px] md:text-xs font-ui text-white/20 uppercase tracking-[0.4em]">Currently accepting 2 new engagements.</p>
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-fb4 border-t border-white/5 w-full">
+                  <div className="flex items-center gap-3">
+                    <span className="w-2 h-2 rounded-full bg-brand-red animate-pulse shadow-[0_0_8px_var(--color-brand-red)]" />
+                    <span className="px-4 py-2 font-ui text-[10px] md:text-xs text-metallic-brass tracking-[0.2em] uppercase bg-brand-red/10 border border-brand-red/30 select-none">
+                      SCARCITY REGISTRY: 2 OPEN SLOTS
+                    </span>
+                  </div>
                   <Link 
                     href="/start-project"
-                    className="inline-flex items-center gap-4 text-metallic-brass hover:text-off-white transition-colors uppercase tracking-[0.3em] font-ui text-xs md:text-sm group"
+                    className="inline-flex items-center gap-4 text-metallic-brass hover:text-white transition-colors uppercase tracking-[0.3em] font-ui text-xs md:text-sm group border-b border-metallic-brass/30 hover:border-white pb-1"
                   >
                     Join the War Council <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
                   </Link>

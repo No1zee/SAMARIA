@@ -20,7 +20,7 @@ const chapters = [
     name: "CUSTOM WEBSITES & APPLICATIONS",
     description: "Digital experiences that capture attention and build authority.",
     expanded: "We design and develop high-end bespoke websites and web applications tailored to your brand. From corporate platforms to custom SaaS applications, our code is optimized for SEO, speed, and conversion.",
-    image: "/assets/capabilities/websites-apps.png",
+    image: "/the-oracle.png",
     tags: ["Next.js & React", "E-commerce Platforms", "SaaS Applications", "SEO & Performance Optimization"],
     align: "left"
   },
@@ -30,7 +30,7 @@ const chapters = [
     name: "IT SERVICES & DIGITAL OPERATIONS",
     description: "Secure, scalable systems that power your daily business operations.",
     expanded: "Enterprise-grade IT consultancy, system integration, cloud deployments, and custom database solutions. We construct the reliable backbones that support your growth without interruption.",
-    image: "/assets/capabilities/it-services.png",
+    image: "/the-data-temple.png",
     tags: ["Cloud Infrastructure", "System Integrations", "Database Design", "Security & Auditing"],
     align: "right"
   },
@@ -40,7 +40,7 @@ const chapters = [
     name: "STRATEGIC CUSTOM DIGITAL SOLUTIONS",
     description: "Innovative tech tailored specifically to solve your business bottlenecks.",
     expanded: "Workflow automation, interactive customer portals, custom CRM/ERP integration, and advanced AI-assisted processes. We build the exact tools you need to optimize productivity and outperform your competition.",
-    image: "/assets/capabilities/strategic-solutions.png",
+    image: "/the-guardian.png",
     tags: ["Custom ERP/CRM", "Workflow Automation", "API Development", "AI Integrations"],
     align: "left"
   }
@@ -140,9 +140,12 @@ export default function Capabilities() {
                 <div className="pt-fb4">
                   <Link 
                     href="/start-project" 
-                    className="inline-flex items-center gap-3 text-metallic-brass hover:text-off-white transition-colors uppercase tracking-[0.4em] text-[10px] font-ui group"
+                    className="inline-flex items-center gap-3 text-metallic-brass hover:text-white transition-all uppercase tracking-[0.25em] text-[10px] font-ui group border border-metallic-brass/30 hover:border-metallic-brass/80 px-5 py-2.5 bg-metallic-brass/5"
                   >
-                    START YOUR BUILD <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <span className="relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-metallic-brass group-hover:after:w-full after:transition-all after:duration-300">
+                      START YOUR BUILD
+                    </span>
+                    <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </Link>
                 </div>
               </div>
@@ -173,18 +176,62 @@ export default function Capabilities() {
           ))}
         </div>
 
-        {/* Arsenal (Simplified & Integrated) */}
-        <div className="mt-fb10 pt-fb6 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-fb4 text-white/20">
-          <span className="text-[10px] font-ui tracking-[0.6em] uppercase">THE STACK.</span>
-          <div className="flex flex-wrap justify-center gap-x-fb4 gap-y-2 group/arsenal">
-            {['Next.js', 'React', 'TypeScript', 'Node.js', 'Supabase', 'Vercel', 'GSAP'].map((tech) => (
-              <span 
-                key={tech} 
-                className="text-[10px] font-ui tracking-[0.3em] uppercase transition-all duration-300 hover:scale-105 border border-white/10 bg-white/2 px-4 py-1.5 rounded-full text-off-white/80 hover:text-metallic-brass hover:border-metallic-brass/40 group-hover/arsenal:opacity-30 hover:!opacity-100 cursor-default"
-              >
-                {tech}
+        {/* Categorized Enterprise Stack Section */}
+        <div className="mt-fb10 pt-fb6 border-t border-white/5">
+          <div className="text-left mb-8 max-w-4xl">
+            <span className="text-[10px] font-ui tracking-[0.6em] uppercase text-metallic-brass/60">
+              THE ARSENAL • ENTERPRISE CAPABILITIES
+            </span>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div>
+              <span className="font-heading text-xs text-metallic-brass tracking-wider block mb-4 uppercase">
+                Frontend Systems
               </span>
-            ))}
+              <ul className="space-y-2 font-ui text-[10px] text-off-white/60 tracking-widest uppercase">
+                <li>• Next.js / React 19</li>
+                <li>• TypeScript</li>
+                <li>• Tailwind CSS v4</li>
+                <li>• GSAP & Motion Engine</li>
+              </ul>
+            </div>
+            
+            <div>
+              <span className="font-heading text-xs text-metallic-brass tracking-wider block mb-4 uppercase">
+                Backend Services
+              </span>
+              <ul className="space-y-2 font-ui text-[10px] text-off-white/60 tracking-widest uppercase">
+                <li>• Node.js & Go</li>
+                <li>• REST & GraphQL APIs</li>
+                <li>• Prisma ORM</li>
+                <li>• Web Sockets</li>
+              </ul>
+            </div>
+            
+            <div>
+              <span className="font-heading text-xs text-metallic-brass tracking-wider block mb-4 uppercase">
+                Cloud & Databases
+              </span>
+              <ul className="space-y-2 font-ui text-[10px] text-off-white/60 tracking-widest uppercase">
+                <li>• AWS (Lambda/S3/RDS)</li>
+                <li>• PostgreSQL / Supabase</li>
+                <li>• Vercel Deployment</li>
+                <li>• Docker Orchestration</li>
+              </ul>
+            </div>
+            
+            <div>
+              <span className="font-heading text-xs text-metallic-brass tracking-wider block mb-4 uppercase">
+                Security & Continuity
+              </span>
+              <ul className="space-y-2 font-ui text-[10px] text-off-white/60 tracking-widest uppercase">
+                <li>• JWT & OAuth2 Identity</li>
+                <li>• OWASP Hardening</li>
+                <li>• Automated Backups</li>
+                <li>• SSL & CDN Edge Shields</li>
+              </ul>
+            </div>
           </div>
         </div>
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { CelestialText } from "@/components/ui/CelestialText";
 
@@ -76,6 +77,8 @@ const APPROACH_STEPS = [
 ];
 
 export default function ApproachSteps() {
+  const [activeStep, setActiveStep] = useState(0);
+
   return (
     <section id="discipline" className="py-12 md:py-24 bg-transparent relative overflow-hidden border-y border-metallic-brass/10">
       {/* Section background deliberately kept transparent so the SamuraiJackBackground skyline shows through */}
@@ -112,15 +115,15 @@ export default function ApproachSteps() {
           </motion.p>
         </motion.div>
 
-        {/* Steps Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-px bg-white/5 border border-white/5">
+        {/* Steps Grid - Desktop (hidden on mobile) */}
+        <div className="hidden md:grid grid-cols-5 gap-px bg-white/5 border border-white/5">
           {APPROACH_STEPS.map((step, index) => {
             const Icon = step.icon;
 
             return (
               <motion.div
                 key={step.number}
-                className="bg-obsidian-layered/95 p-8 hover:bg-obsidian-layered transition-all duration-500 group flex flex-col min-h-[280px] md:min-h-[450px]"
+                className="bg-obsidian-layered/95 p-8 hover:bg-obsidian-layered transition-all duration-500 group flex flex-col min-h-[450px]"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -151,6 +154,55 @@ export default function ApproachSteps() {
                   <div className="h-px w-0 group-hover:w-full bg-linear-to-r from-metallic-brass/40 to-transparent transition-all duration-1000" />
                 </div>
               </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Steps Accordion - Mobile (hidden on desktop) */}
+        <div className="md:hidden flex flex-col border border-white/5 divide-y divide-white/5">
+          {APPROACH_STEPS.map((step, index) => {
+            const Icon = step.icon;
+            const isOpen = activeStep === index;
+
+            return (
+              <div 
+                key={step.number}
+                className="bg-obsidian-layered/95 overflow-hidden transition-all duration-500"
+              >
+                <button
+                  onClick={() => setActiveStep(isOpen ? -1 : index)}
+                  className="w-full flex items-center justify-between p-6 text-left cursor-pointer focus:outline-none"
+                >
+                  <div className="flex items-center gap-4">
+                    <span className="text-xl font-heading font-bold text-metallic-brass/35">
+                      {step.number}
+                    </span>
+                    <h3 className="font-heading text-base font-bold text-off-white uppercase tracking-wider">
+                      {step.title}
+                    </h3>
+                  </div>
+                  <div className={`text-metallic-brass/60 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}>
+                    <svg viewBox="0 0 24 24" className="w-5 h-5 stroke-current fill-none" strokeWidth="2">
+                      <path d="M6 9l6 6 6-6" />
+                    </svg>
+                  </div>
+                </button>
+                <motion.div
+                  initial={false}
+                  animate={{ height: isOpen ? "auto" : 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="overflow-hidden"
+                >
+                  <div className="p-6 pt-0 space-y-4">
+                    <div className="text-metallic-brass/60">
+                      <Icon />
+                    </div>
+                    <p className="text-off-white/80 text-sm leading-relaxed font-body no-prose">
+                      {step.description}
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
             );
           })}
         </div>

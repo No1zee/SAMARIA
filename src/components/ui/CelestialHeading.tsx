@@ -63,11 +63,30 @@ export default function CelestialHeading({
     ? (availableWidth < 400 ? Math.max(22, rawSize * 0.38) : Math.max(24, rawSize * 0.45)) 
     : rawSize;
 
+  // Word overflow prevention engine
+  let finalSize = size;
+  if (availableWidth > 0 && text) {
+    const words = text.split(/\s+/);
+    let longestWord = "";
+    for (const w of words) {
+      if (w.length > longestWord.length) longestWord = w;
+    }
+    // Estimated width of the longest word at finalSize
+    const charFactor = 0.75;
+    let estimatedWordWidth = longestWord.length * finalSize * charFactor;
+    
+    // Scale down if estimated word width exceeds container width
+    while (estimatedWordWidth > availableWidth && finalSize > 14) {
+      finalSize -= 2;
+      estimatedWordWidth = longestWord.length * finalSize * charFactor;
+    }
+  }
+
   return (
     <div ref={containerRef} className="w-full">
       <Tag className={`font-heading uppercase ${className}`}>
         <CinematicText
-          fontSize={size}
+          fontSize={finalSize}
           maxWidth={availableWidth}
           intensity={intensity}
           baseColor={baseColor}

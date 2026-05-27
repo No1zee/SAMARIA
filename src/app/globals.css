@@ -447,7 +447,7 @@ body::before {
   align-items: center;
   gap: 0.5rem;
   padding: 1.25rem 3rem;
-  background: transparent;
+  background: var(--color-brand-red);
   color: #fff;
   font-family: var(--font-ui);
   font-size: 0.75rem;
@@ -457,7 +457,7 @@ body::before {
   border: 1px solid var(--color-brand-red);
   position: relative;
   overflow: hidden;
-  transition: color 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+  transition: color 0.4s cubic-bezier(0.76, 0, 0.24, 1), border-color 0.4s ease;
   cursor: pointer;
 }
  
@@ -468,13 +468,14 @@ body::before {
   left: 0;
   width: 0;
   height: 100%;
-  background: var(--color-brand-red);
+  background: #fff;
   z-index: -1;
   transition: width 0.4s cubic-bezier(0.76, 0, 0.24, 1);
 }
  
 .btn-warrior:hover {
   color: #000;
+  border-color: #fff;
 }
  
 .btn-warrior:hover::before {

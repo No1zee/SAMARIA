@@ -19,6 +19,10 @@ interface Project {
   metricLabel: string;
   tag: string;
   image: string;
+  techStack: string[];
+  problem: string;
+  solution: string;
+  result: string;
 }
 
 const projects: Project[] = [
@@ -32,7 +36,11 @@ const projects: Project[] = [
     metricSuffix: "%",
     metricLabel: "Operational Efficiency Gain",
     tag: "Logistics ERP",
-    image: "/the-architect.png"
+    image: "/the-architect.png",
+    techStack: ["React", "Node.js", "PostgreSQL", "Docker", "REST API"],
+    problem: "Client ran 14 isolated legacy databases, causing constant transit delays and manual dispatch bottlenecks.",
+    solution: "Constructed a monolithic, real-time dispatch dashboard and synchronized Postgres database to unify fleet operations.",
+    result: "Unified dispatch workflows, processing $12M+ annual transit volume with a 140% operational efficiency gain."
   },
   {
     id: "the-data-temple",
@@ -44,7 +52,11 @@ const projects: Project[] = [
     metricSuffix: "%",
     metricLabel: "System Uptime Maintained",
     tag: "Cloud Infrastructure",
-    image: "/the-data-temple.png"
+    image: "/the-data-temple.png",
+    techStack: ["AWS (RDS/S3)", "Terraform", "PostgreSQL", "Python", "IAM"],
+    problem: "Legacy core banking database suffered from frequent latency spikes and high risk during high-volume periods.",
+    solution: "Architected a highly-available, multi-AZ PostgreSQL setup on AWS RDS with structured replication and custom schemas.",
+    result: "Successfully migrated 100% of transaction ledgers to the cloud while maintaining 99.999% system uptime."
   },
   {
     id: "the-guardian",
@@ -56,7 +68,11 @@ const projects: Project[] = [
     metricSuffix: "%",
     metricLabel: "Threat Protection Success",
     tag: "Security Hardening",
-    image: "/the-guardian.png"
+    image: "/the-guardian.png",
+    techStack: ["OWASP Hardening", "JWT Auth", "Cloudflare WAF", "Nginx", "System Audit"],
+    problem: "Fast-growing fintech app had unpatched API endpoints, presenting vulnerabilities to automated credential stuffing attacks.",
+    solution: "Executed a full penetration audit, hardened JWT authentication flow, and configured a custom perimeter web firewall.",
+    result: "Secured 2M+ customer wallets with 100% threat mitigation and zero breach attempts since deployment."
   }
 ];
  
@@ -94,7 +110,7 @@ export default function ProjectsTeaser() {
             </CinematicText>
           </div>
           <div className="text-silence text-metallic-brass/30 uppercase tracking-[0.2em] text-[10px] pb-2 border-b border-metallic-brass/10">
-            [ ARCHIVES ACTIVE ]
+            RECENT REGISTRY
           </div>
         </div>
  
@@ -122,7 +138,7 @@ export default function ProjectsTeaser() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-royal-obsidian via-royal-obsidian/90 to-transparent" />
               </div>
-
+ 
               <div className="relative z-10 flex flex-col h-full justify-between">
                 <div>
                   <div className="flex justify-between items-center mb-6">
@@ -133,16 +149,37 @@ export default function ProjectsTeaser() {
                       {project.category}
                     </span>
                   </div>
-
+ 
                   <h3 className="text-2xl md:text-3xl font-heading text-off-white uppercase mb-4 group-hover:text-metallic-brass transition-colors duration-300">
                     {project.name}
                   </h3>
+ 
+                  {/* Problem / Solution / Result Bullet Points */}
+                  <div className="space-y-4 my-6 font-body text-xs text-off-white/70 leading-relaxed">
+                    <div>
+                      <span className="font-ui text-[9px] uppercase tracking-wider text-metallic-brass block font-bold mb-0.5">Problem</span>
+                      <p className="no-prose">{project.problem}</p>
+                    </div>
+                    <div>
+                      <span className="font-ui text-[9px] uppercase tracking-wider text-metallic-brass block font-bold mb-0.5">Solution</span>
+                      <p className="no-prose">{project.solution}</p>
+                    </div>
+                    <div>
+                      <span className="font-ui text-[9px] uppercase tracking-wider text-metallic-brass block font-bold mb-0.5">Result</span>
+                      <p className="no-prose">{project.result}</p>
+                    </div>
+                  </div>
 
-                  <p className="text-sm font-body text-off-white/70 leading-relaxed max-w-sm mb-6">
-                    {project.teaser}
-                  </p>
+                  {/* Tech Stack Badges */}
+                  <div className="flex flex-wrap gap-1.5 mt-4">
+                    {project.techStack.map((tech) => (
+                      <span key={tech} className="text-[8px] font-ui tracking-widest uppercase bg-white/5 border border-white/10 px-2 py-0.5 text-off-white/60">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-
+ 
                 <div className="border-t border-white/5 pt-6 mt-6">
                   <span className="block text-[9px] font-ui text-white/40 uppercase tracking-widest mb-1">{project.metricLabel}</span>
                   <div className="text-3xl font-heading text-metallic-brass font-bold flex items-baseline">
