@@ -291,7 +291,7 @@ export default function WarCouncilContact() {
                                   handleNext();
                                 }
                               }}
-                              autoFocus
+                              autoFocus={typeof window !== "undefined" && window.location.pathname === "/start-project"}
                               className="w-full bg-transparent border-b border-white/10 text-xl md:text-2xl text-metallic-brass focus:border-metallic-brass focus:outline-none py-2 transition-colors duration-500 placeholder-white/20 font-body"
                             />
                           )}
