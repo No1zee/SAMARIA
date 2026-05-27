@@ -66,7 +66,7 @@ export default function ProjectsTeaser() {
   const [isModalOpen, setIsModalOpen] = useState(false);
  
   return (
-    <section id="artifacts" className="py-fb8 relative overflow-hidden">
+    <section id="artifacts" className="py-12 md:py-fb8 relative overflow-hidden">
       
       <div className="container max-w-[1500px] mx-auto px-fb3 md:px-fb4 relative z-10">
         
@@ -107,7 +107,7 @@ export default function ProjectsTeaser() {
                 setSelectedProject(project);
                 setIsModalOpen(true);
               }}
-              className="group cursor-pointer border border-white/5 bg-royal-obsidian/80 hover:border-metallic-brass/30 hover:bg-royal-obsidian/95 transition-all duration-500 p-8 flex flex-col justify-between min-h-[480px] relative overflow-hidden rounded-sm"
+              className="group cursor-pointer border border-white/5 bg-royal-obsidian/80 hover:border-metallic-brass/30 hover:bg-royal-obsidian/95 transition-all duration-500 p-8 flex flex-col justify-between min-h-[380px] md:min-h-[480px] relative overflow-hidden rounded-sm"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

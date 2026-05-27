@@ -17,7 +17,7 @@ const CLIENTS = [
 
 export default function TrustBar() {
   return (
-    <section className="relative py-20 bg-transparent border-y border-white/5 overflow-hidden">
+    <section className="relative py-12 md:py-20 bg-transparent border-y border-white/5 overflow-hidden">
       {/* Subtle gradient line */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(201,168,76,0.03)_0%,transparent_70%)]" />
 

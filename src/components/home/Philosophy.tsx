@@ -6,7 +6,7 @@ import { CelestialText } from "@/components/ui/CelestialText";
 
 export default function Philosophy() {
   return (
-    <section id="philosophy" className="py-24 md:py-32 relative overflow-hidden bg-royal-obsidian/50 backdrop-blur-md z-10">
+    <section id="philosophy" className="py-12 md:py-32 relative overflow-hidden bg-royal-obsidian/50 backdrop-blur-md z-10">
       <div className="container max-w-[1500px] mx-auto px-fb3 md:px-fb4 relative z-10">
         <div className="max-w-4xl border-l border-metallic-brass/40 pl-6 md:pl-8">
           

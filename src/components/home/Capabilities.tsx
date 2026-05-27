@@ -73,7 +73,7 @@ export default function Capabilities() {
   }, []);
 
   return (
-    <section id="capabilities" className="py-fb9 relative overflow-hidden bg-transparent" ref={containerRef}>
+    <section id="capabilities" className="py-12 md:py-fb9 relative overflow-hidden bg-transparent" ref={containerRef}>
       <div className="container max-w-[1500px] mx-auto px-fb3 md:px-fb4 relative z-10">
         
         {/* Section Header — Editorial Style */}
@@ -104,7 +104,7 @@ export default function Capabilities() {
         </div>
 
         {/* Chapters List */}
-        <div className="flex flex-col gap-fb9 md:gap-fb10">
+        <div className="flex flex-col gap-12 md:gap-fb10">
           {chapters.map((chapter, idx) => (
             <div 
               key={chapter.id}

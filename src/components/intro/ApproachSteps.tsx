@@ -77,7 +77,7 @@ const APPROACH_STEPS = [
 
 export default function ApproachSteps() {
   return (
-    <section id="discipline" className="py-24 bg-transparent relative overflow-hidden border-y border-metallic-brass/10">
+    <section id="discipline" className="py-12 md:py-24 bg-transparent relative overflow-hidden border-y border-metallic-brass/10">
       {/* Section background deliberately kept transparent so the SamuraiJackBackground skyline shows through */}
 
       <div className="container max-w-[1500px] mx-auto px-fb3 md:px-fb4 relative z-10">
@@ -120,7 +120,7 @@ export default function ApproachSteps() {
             return (
               <motion.div
                 key={step.number}
-                className="bg-obsidian-layered/95 p-8 hover:bg-obsidian-layered transition-all duration-500 group flex flex-col min-h-[450px]"
+                className="bg-obsidian-layered/95 p-8 hover:bg-obsidian-layered transition-all duration-500 group flex flex-col min-h-[280px] md:min-h-[450px]"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

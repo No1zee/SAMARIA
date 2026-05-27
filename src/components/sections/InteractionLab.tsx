@@ -33,7 +33,7 @@ export default function InteractionLab() {
   const { interactionMode, setInteractionMode } = useCelestial();
 
   return (
-    <section id="crucible" className="py-fb8 relative overflow-hidden bg-black/20 border-y border-white/5">
+    <section id="crucible" className="py-12 md:py-fb8 relative overflow-hidden bg-black/20 border-y border-white/5">
       {/* Background Decor */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-linear-to-r from-transparent via-metallic-brass/20 to-transparent" />

@@ -11,7 +11,7 @@ interface TransitionBridgeProps {
 
 export default function TransitionBridge({ text, className = "", intensity = 0.6 }: TransitionBridgeProps) {
   return (
-    <div className={`py-24 md:py-32 flex items-center justify-center overflow-hidden ${className}`}>
+    <div className={`py-10 md:py-32 flex items-center justify-center overflow-hidden ${className}`}>
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

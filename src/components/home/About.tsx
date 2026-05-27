@@ -9,7 +9,7 @@ import CelestialHeading from "@/components/ui/CelestialHeading";
  
 export default function About() {
   return (
-    <section id="about" className="py-fb8 relative overflow-hidden">
+    <section id="about" className="py-12 md:py-fb8 relative overflow-hidden">
       
  
       <div className="container max-w-[1500px] mx-auto px-fb3 md:px-fb4 relative z-10">
