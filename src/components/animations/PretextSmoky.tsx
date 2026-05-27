@@ -41,12 +41,20 @@ export function PretextSmoky({
   }, []);
 
   // Use Pretext for accurate text geometry (used for filter bounds)
-  const textGeometry = useMemo(() => {
+  const preparedText = useMemo(() => {
     if (!fontsReady || !fontSize) return null;
     try {
       const fontSpec = `${Math.floor(fontSize)}px ${fontFamily}`;
-      const prepared = prepareWithSegments(text, fontSpec);
-      const result = layoutWithLines(prepared, maxWidth, 1.2);
+      return prepareWithSegments(text, fontSpec);
+    } catch {
+      return null;
+    }
+  }, [text, fontSize, fontFamily, fontsReady]);
+
+  const textGeometry = useMemo(() => {
+    if (!preparedText) return null;
+    try {
+      const result = layoutWithLines(preparedText, maxWidth, 1.2);
       const totalWidth = result.lines.reduce(
         (acc, line) => Math.max(acc, line.width),
         0
@@ -55,7 +63,7 @@ export function PretextSmoky({
     } catch {
       return null;
     }
-  }, [text, fontSize, fontFamily, maxWidth, fontsReady]);
+  }, [preparedText, maxWidth]);
 
   useAnimationFrame((time) => {
     if (filterRef.current) {

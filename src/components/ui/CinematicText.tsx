@@ -65,11 +65,15 @@ export default function CinematicText({
   }, []);
 
   // ── Pretext Layout ──────────────────────────────────────────────────────────
-  const preparedMeasure = useMemo(() => {
+  const preparedBlocks = useMemo(() => {
     if (!fontsReady) return null;
     try {
       const fontSpec = `${Math.floor(fontSize)}px ${fontFamily}`;
-      return prepareWithSegments(children, fontSpec);
+      const rawBlocks = children.split("\n");
+      return rawBlocks.map((block) => ({
+        text: block,
+        prepared: prepareWithSegments(block, fontSpec),
+      }));
     } catch (e) {
       console.error("[CinematicText] Prepare failed:", e);
       return null;
@@ -77,27 +81,24 @@ export default function CinematicText({
   }, [children, fontSize, fontFamily, fontsReady]);
 
   const layoutInfo = useMemo(() => {
-    if (!preparedMeasure || maxWidth <= 0) {
+    if (!preparedBlocks || maxWidth <= 0) {
       return { lines: [] as LayoutLine[], totalWidth: 0, totalHeight: 0 };
     }
 
     try {
       const trackingPx = letterSpacing || 0;
       const computedLineHeight = fontSize * lineHeight;
-
-      // Split the text by explicit newlines if any
-      const rawBlocks = children.split("\n");
       const allLines: { text: string; width: number }[] = [];
 
-      for (const block of rawBlocks) {
-        const fontSpec = `${Math.floor(fontSize)}px ${fontFamily}`;
-        const blockMeasure = prepareWithSegments(block, fontSpec);
+      for (const block of preparedBlocks) {
+        const blockText = block.text;
+        const blockMeasure = block.prepared;
 
         if (maxLines === 1) {
           const blockResult = layoutWithLines(blockMeasure, 10000, lineHeight);
-          allLines.push({ text: block, width: blockResult.lines.reduce((acc, l) => acc + l.width, 0) });
+          allLines.push({ text: blockText, width: blockResult.lines.reduce((acc, l) => acc + l.width, 0) });
         } else {
-          const pretextWidthValue = (maxWidth * 0.92 - 4) - (block.length - 1) * trackingPx;
+          const pretextWidthValue = (maxWidth * 0.92 - 4) - (blockText.length - 1) * trackingPx;
           const blockResult = layoutWithLines(blockMeasure, Math.max(1, pretextWidthValue), lineHeight);
           
           // Re-assemble lines to ensure no words are cut in half.
@@ -162,7 +163,7 @@ export default function CinematicText({
       console.error("[CinematicText] Layout failed:", e);
       return { lines: [] as LayoutLine[], totalWidth: 0, totalHeight: 0 };
     }
-  }, [preparedMeasure, children, fontSize, fontFamily, maxWidth, horizontalAlign, letterSpacing, lineHeight, maxLines]);
+  }, [preparedBlocks, fontSize, maxWidth, horizontalAlign, letterSpacing, lineHeight, maxLines]);
 
   const { mode } = useAdaptive();
 
