@@ -13,8 +13,8 @@ export function useScrollSkew(selector: string = '.skew-target') {
       const velocity = (currentY - lastY)
       lastY = currentY
 
-      const skewValue = velocity * -0.008;
-      const clampedSkew = Math.max(Math.min(skewValue, 5), -5);
+      const skewValue = velocity * -0.002;
+      const clampedSkew = Math.max(Math.min(skewValue, 1.5), -1.5);
 
       if (Math.abs(velocity) > 0.1) {
         gsap.to(selector, {

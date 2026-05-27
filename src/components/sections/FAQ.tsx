@@ -8,19 +8,27 @@ import CelestialHeading from "@/components/ui/CelestialHeading";
 const faqs = [
   {
     q: "Why shouldn't I just use a template or a cheap agency?",
-    a: "You should—if you only need a temporary site. But if you're building a business that you plan to run for the next ten years, a template is a liability. It's unoptimized, difficult to scale, and carries technical debt from day one. We build the infrastructure you can rely on for a decade."
+    a: "You should—if you only need a temporary site. But if you're building a business that you plan to run for the next ten years, a template is a liability. It's unoptimized, difficult to scale, and carries technical debt from day one. We build the custom, high-performance infrastructure you can rely on for a decade."
   },
   {
     q: "Will I actually own my code?",
     a: "Yes. Entirely. We don't believe in licensing fees or keeping your data hostage. Once the project is complete and the final invoice is settled, the IP, the source code, and all system documentation are transferred to you."
   },
   {
-    q: "How long does a build take?",
-    a: "We don't rush. A typical core infrastructure build takes between 8 and 12 weeks. High-fidelity cinematic experiences or complex AI integrations may take longer. We value permanence over speed."
+    q: "What is your pricing model?",
+    a: "We operate on a fixed-bid project basis. The scope is blueprinted upfront, and the budget we agree upon is final. We do not charge hidden fees or surprise hourly overages. Transparency is a prerequisite of partnership."
+  },
+  {
+    q: "What is your communication and sprint rhythm?",
+    a: "We work in weekly sprint cycles, delivering direct Loom video walkthroughs showing running code at the end of each sprint. You get direct Slack access to the lead architects—no account managers or communication buffers."
+  },
+  {
+    q: "What technologies do you build with?",
+    a: "We specialize in modern, production-hardened web tech: Next.js, React, TypeScript, Node.js, and cloud-native database infrastructure (AWS, PostgreSQL, Supabase). We build for speed, security, and future-proof scaling."
   },
   {
     q: "How do you handle maintenance?",
-    a: "We build for zero-maintenance where possible. However, the web changes. We offer continuity retainers for clients who want us to proactively monitor, update, and scale their architecture as they grow."
+    a: "We build for zero-maintenance where possible. However, external APIs and environments evolve. We offer custom continuity retainers for clients who want proactive monitoring, security audits, and continuous scaling."
   }
 ];
 
@@ -67,28 +75,28 @@ export default function FAQ() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className={`group relative bg-obsidian-layered/40 border rounded-lg overflow-hidden transition-colors duration-300 ${
+                className={`group relative bg-obsidian-layered/85 border rounded-lg overflow-hidden transition-colors duration-300 ${
                   openIndex === i
-                    ? "border-metallic-brass/40"
-                    : "border-metallic-brass/10 hover:border-metallic-brass/25"
+                    ? "border-metallic-brass/45 shadow-[0_0_15px_rgba(201,168,76,0.15)]"
+                    : "border-white/5 hover:border-metallic-brass/30"
                 }`}
               >
                 {/* Question row */}
                 <button
-                  className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left cursor-pointer focus:outline-none focus:ring-1 focus:ring-brand-red/40"
+                  className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left cursor-pointer focus:outline-none focus:ring-1 focus:ring-brand-red/40 z-10"
                   onClick={() => toggle(i)}
                   aria-expanded={openIndex === i ? "true" : "false"}
                   aria-controls={`faq-answer-${i}`}
                   id={`faq-question-${i}`}
                 >
-                  <span className="font-heading text-lg md:text-xl text-white/95">
+                  <span className="font-heading text-lg md:text-xl text-off-white group-hover:text-metallic-brass transition-colors duration-300">
                     {faq.q}
                   </span>
                   <span className="shrink-0 text-metallic-brass">
                     {openIndex === i ? (
-                      <Minus className="w-4 h-4" />
+                      <Minus className="w-5 h-5" />
                     ) : (
-                      <Plus className="w-4 h-4" />
+                      <Plus className="w-5 h-5" />
                     )}
                   </span>
                 </button>

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import CinematicText from "@/components/ui/CinematicText";
 import CelestialHeading from "@/components/ui/CelestialHeading";
  
@@ -102,17 +103,23 @@ export default function About() {
                   {/* Edward Magejo */}
                   <div className="flex items-center gap-fb4 group/founder">
                     <div className="w-20 h-20 md:w-28 md:h-28 shrink-0 rounded-full border border-metallic-brass/40 flex items-center justify-center text-metallic-brass relative overflow-hidden bg-obsidian-layered/40 group-hover/founder:border-metallic-brass transition-colors duration-700">
-                        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-metallic-brass/10 group-hover/founder:h-full transition-all duration-700 ease-circOut" />
-                        <span className="relative z-10 font-heading text-3xl md:text-5xl font-black tracking-tighter mix-blend-difference">EM</span>
+                        <div className="absolute inset-0 z-0">
+                          <Image
+                            src="/edward.png"
+                            alt="Edward Magejo"
+                            fill
+                            className="object-cover grayscale group-hover/founder:grayscale-0 transition-all duration-700"
+                          />
+                        </div>
                         <motion.div 
-                          className="absolute inset-1 border border-dashed border-metallic-brass/20 rounded-full"
+                          className="absolute inset-1 border border-dashed border-metallic-brass/20 rounded-full z-10 pointer-events-none"
                           animate={{ rotate: 360 }}
                           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                         />
                     </div>
                     <div>
                         <h4 className="text-off-white font-ui text-xl md:text-3xl uppercase tracking-[0.4em] font-black group-hover/founder:text-metallic-brass transition-colors duration-500">EDWARD MAGEJO</h4>
-                        <p className="text-metallic-brass/40 text-[10px] md:text-xs uppercase tracking-[0.6em] font-ui mt-2">FOUNDER & LEAD ARCHITECT // Gaborone</p>
+                        <p className="text-metallic-brass/40 text-[10px] md:text-xs uppercase tracking-[0.6em] font-ui mt-2">FOUNDER & LEAD ARCHITECT</p>
                         <div className="mt-4 max-w-sm overflow-hidden h-0 group-hover/founder:h-auto transition-all duration-700 opacity-0 group-hover/founder:opacity-100">
                           <p className="text-off-white/60 text-sm italic font-body leading-relaxed">
                             &quot;I&apos;ve spent a decade watching businesses get burned by &apos;fast&apos; agencies. I founded Samaria to prove there&apos;s a better way: building for permanence, not just for the next invoice.&quot;
@@ -124,17 +131,23 @@ export default function About() {
                   {/* Divine Mwale */}
                   <div className="flex items-center gap-fb4 group/founder-dm">
                     <div className="w-20 h-20 md:w-28 md:h-28 shrink-0 rounded-full border border-metallic-brass/40 flex items-center justify-center text-metallic-brass relative overflow-hidden bg-obsidian-layered/40 group-hover/founder-dm:border-metallic-brass transition-colors duration-700">
-                        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-metallic-brass/10 group-hover/founder-dm:h-full transition-all duration-700 ease-circOut" />
-                        <span className="relative z-10 font-heading text-3xl md:text-5xl font-black tracking-tighter mix-blend-difference">DM</span>
+                        <div className="absolute inset-0 z-0">
+                          <Image
+                            src="/divine.png"
+                            alt="Divine Mwale"
+                            fill
+                            className="object-cover grayscale group-hover/founder-dm:grayscale-0 transition-all duration-700"
+                          />
+                        </div>
                         <motion.div 
-                          className="absolute inset-1 border border-dashed border-metallic-brass/20 rounded-full"
+                          className="absolute inset-1 border border-dashed border-metallic-brass/20 rounded-full z-10 pointer-events-none"
                           animate={{ rotate: -360 }}
                           transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
                         />
                     </div>
                     <div>
                         <h4 className="text-off-white font-ui text-xl md:text-3xl uppercase tracking-[0.4em] font-black group-hover/founder-dm:text-metallic-brass transition-colors duration-500">DIVINE MWALE</h4>
-                        <p className="text-metallic-brass/40 text-[10px] md:text-xs uppercase tracking-[0.6em] font-ui mt-2">CO-FOUNDER & LEAD ARCHITECT // Gaborone</p>
+                        <p className="text-metallic-brass/40 text-[10px] md:text-xs uppercase tracking-[0.6em] font-ui mt-2">CO-FOUNDER & SYSTEMS ENGINEER</p>
                         <div className="mt-4 max-w-sm overflow-hidden h-0 group-hover/founder-dm:h-auto transition-all duration-700 opacity-0 group-hover/founder-dm:opacity-100">
                           <p className="text-off-white/60 text-sm italic font-body leading-relaxed">
                             &quot;Architecture isn&apos;t just about code; it&apos;s about clarity. We build the systems that remove friction from your growth so you can focus on building what matters.&quot;

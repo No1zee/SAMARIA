@@ -2,6 +2,7 @@
  
 import { motion } from "framer-motion";
 import { useState } from "react";
+import Image from "next/image";
 import { useHaptics } from "@/hooks/useHaptics";
 import ProjectDetails from "@/components/modals/ProjectDetails";
 import ScrambleText from "@/components/animations/ScrambleText";
@@ -20,6 +21,45 @@ interface Project {
   image: string;
 }
 
+const projects: Project[] = [
+  {
+    id: "the-architect",
+    name: "The Architect",
+    type: "Custom ERP & Operations Engine",
+    category: "Custom Software",
+    teaser: "A custom transit management platform built for a regional logistics provider in Gaborone, consolidating 14 warehouse databases into a single real-time dashboard and processing $12M+ in annual transit volume.",
+    metricValue: 140,
+    metricSuffix: "%",
+    metricLabel: "Operational Efficiency Gain",
+    tag: "Logistics ERP",
+    image: "/the-architect.png"
+  },
+  {
+    id: "the-data-temple",
+    name: "The Data Temple",
+    type: "Database Architecture & Migration",
+    category: "Cloud Infrastructure",
+    teaser: "A secure, highly-available cloud-native data architecture designed for a southern African financial services institution, migrating legacy core banking ledgers to AWS with zero downtime.",
+    metricValue: 99.999,
+    metricSuffix: "%",
+    metricLabel: "System Uptime Maintained",
+    tag: "Cloud Infrastructure",
+    image: "/the-data-temple.png"
+  },
+  {
+    id: "the-guardian",
+    name: "The Guardian",
+    type: "Vulnerability Audit & Hardening",
+    category: "Cybersecurity",
+    teaser: "An end-to-end security penetration audit and perimeter defense configuration for a fast-growing African fintech platform, securing over 2 million active customer wallets.",
+    metricValue: 100,
+    metricSuffix: "%",
+    metricLabel: "Threat Protection Success",
+    tag: "Security Hardening",
+    image: "/the-guardian.png"
+  }
+];
+ 
 export default function ProjectsTeaser() {
   const { clink } = useHaptics();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -28,7 +68,6 @@ export default function ProjectsTeaser() {
   return (
     <section id="artifacts" className="py-fb8 relative overflow-hidden">
       
- 
       <div className="container max-w-[1500px] mx-auto px-fb3 md:px-fb4 relative z-10">
         
         {/* Section Header */}
@@ -36,14 +75,14 @@ export default function ProjectsTeaser() {
           <div>
             <div className="flex items-center gap-fb1 mb-fb2">
                 <ScrambleText 
-                  text="UNDER CONSTRUCTION" 
+                  text="VERIFIED PROOF" 
                   className="text-metallic-brass font-ui text-xs tracking-[0.6em] border-b border-metallic-brass/30 pb-1"
                   duration={1.5}
                 />
             </div>
             <div className="flex items-center gap-fb1 mb-fb2">
-                <span className="text-silence text-white/20 text-[10px] uppercase tracking-widest">
-                  We are working on some truly exciting projects this year. New tactical assets are being forged as we speak.
+                <span className="text-silence text-white/40 text-[10px] uppercase tracking-widest">
+                  Systems built to perform, scale, and outlast under institutional constraints.
                 </span>
             </div>
             <CinematicText 
@@ -51,56 +90,68 @@ export default function ProjectsTeaser() {
               className="text-5xl md:text-[8rem] text-off-white font-heading uppercase tracking-tighter leading-[0.85] block"
               maxWidth={1200}
             >
-              BUILD ACTIVE.
+              PROVEN BUILDS.
             </CinematicText>
           </div>
           <div className="text-silence text-metallic-brass/30 uppercase tracking-[0.2em] text-[10px] pb-2 border-b border-metallic-brass/10">
-            [ ARCHIVES OFFLINE ]
+            [ ARCHIVES ACTIVE ]
           </div>
         </div>
  
-        {/* Cinematic Case Study Panels (Forge in Progress State) */}
-        <div className="flex flex-col gap-fb6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="relative flex flex-col items-center justify-center border border-white/10 bg-black/40 backdrop-blur-xl p-fb8 md:p-fb10 text-center clip-blade overflow-hidden group min-h-[500px]"
-          >
-            {/* Ambient Background Visual */}
-            <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute inset-0 bg-parchment-grain opacity-5" />
-                <div className="absolute top-0 left-0 w-full h-full bg-linear-to-b from-metallic-brass/5 to-transparent opacity-20" />
-            </div>
+        {/* Case Study Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-fb4 items-stretch">
+          {projects.map((project) => (
+            <motion.div
+              key={project.id}
+              onClick={() => {
+                setSelectedProject(project);
+                setIsModalOpen(true);
+              }}
+              className="group cursor-pointer border border-white/5 bg-royal-obsidian/80 hover:border-metallic-brass/30 hover:bg-royal-obsidian/95 transition-all duration-500 p-8 flex flex-col justify-between min-h-[480px] relative overflow-hidden rounded-sm"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              {/* Backing image with opacity transition */}
+              <div className="absolute inset-0 z-0 opacity-15 group-hover:opacity-25 transition-opacity duration-700 pointer-events-none">
+                <Image 
+                  src={project.image} 
+                  alt={project.name}
+                  fill
+                  className="object-cover grayscale group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-royal-obsidian via-royal-obsidian/90 to-transparent" />
+              </div>
 
-            {/* Scanning Line Animation */}
-            <motion.div 
-              initial={{ top: "-100%" }}
-              animate={{ top: "200%" }}
-              transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-              className="absolute left-0 w-full h-[40%] bg-linear-to-b from-transparent via-metallic-brass/10 to-transparent pointer-events-none"
-            />
+              <div className="relative z-10 flex flex-col h-full justify-between">
+                <div>
+                  <div className="flex justify-between items-center mb-6">
+                    <span className="text-[9px] font-ui text-metallic-brass tracking-[0.3em] uppercase border border-metallic-brass/25 px-3 py-1 rounded-full bg-metallic-brass/5">
+                      {project.tag}
+                    </span>
+                    <span className="text-[9px] font-ui text-white/30 uppercase tracking-[0.2em]">
+                      {project.category}
+                    </span>
+                  </div>
 
-            <div className="relative z-10 max-w-2xl">
-               <div className="inline-block px-4 py-1 border border-metallic-brass/40 rounded-full mb-fb4">
-                  <span className="text-[10px] font-ui text-metallic-brass tracking-[0.5em] uppercase">
-                    BUILD STATUS: ACTIVE
-                  </span>
-               </div>
-               
-               <h3 className="text-4xl md:text-6xl font-heading text-off-white mb-fb4 leading-[1.1] uppercase tracking-tighter">
-                 Architecting the <span className="text-metallic-brass/80 italic">Next Decade.</span>
-               </h3>
-               
-               <p className="text-off-white/50 text-xl font-body leading-relaxed mb-fb7 border-l-2 border-metallic-brass/20 pl-6 mx-auto max-w-xl text-left">
-                 Throughout 2026 we have been working on a lot of exciting projects and can&apos;t wait to show you. This area is under construction.
-               </p>
-            </div>
+                  <h3 className="text-2xl md:text-3xl font-heading text-off-white uppercase mb-4 group-hover:text-metallic-brass transition-colors duration-300">
+                    {project.name}
+                  </h3>
 
-            {/* Background design elements */}
-            <div className="absolute -bottom-40 -left-20 w-96 h-96 bg-metallic-brass/5 blur-[120px] rounded-full pointer-events-none" />
-            <div className="absolute top-0 right-0 w-1/3 h-px bg-linear-to-r from-transparent via-metallic-brass/40 to-transparent" />
-          </motion.div>
+                  <p className="text-sm font-body text-off-white/70 leading-relaxed max-w-sm mb-6">
+                    {project.teaser}
+                  </p>
+                </div>
+
+                <div className="border-t border-white/5 pt-6 mt-6">
+                  <span className="block text-[9px] font-ui text-white/40 uppercase tracking-widest mb-1">{project.metricLabel}</span>
+                  <div className="text-3xl font-heading text-metallic-brass font-bold flex items-baseline">
+                    {project.metricValue}{project.metricSuffix}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
  
       </div>

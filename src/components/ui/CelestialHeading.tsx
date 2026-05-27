@@ -59,7 +59,9 @@ export default function CelestialHeading({
   // Responsive defaults based on heading level
   const defaultSize = Tag === "h1" ? 128 : Tag === "h2" ? 80 : Tag === "h3" ? 48 : 36;
   const rawSize = fontSize || defaultSize;
-  const size = isMobile ? Math.max(28, rawSize * 0.55) : rawSize;
+  const size = isMobile 
+    ? (availableWidth < 400 ? Math.max(22, rawSize * 0.38) : Math.max(24, rawSize * 0.45)) 
+    : rawSize;
 
   return (
     <div ref={containerRef} className="w-full">

@@ -35,6 +35,9 @@ export default function Home() {
         {/* 2. THE WORLDVIEW (Philosophy) */}
         <Philosophy />
         
+        {/* EXPERIMENT: THE CRUCIBLE (Interactive Switcher surfaced early) */}
+        <InteractionLab />
+        
         {/* 2.5 THE TRUST (Social Proof) */}
         <TrustBar />
 
@@ -65,8 +68,7 @@ export default function Home() {
         {/* 5. THE PROOF (Case Studies) */}
         <ProjectsTeaser />
 
-        {/* EXPERIMENT: THE CRUCIBLE */}
-        <InteractionLab />
+
 
         {/* NARRATIVE BRIDGE 05 */}
         <TransitionBridge 

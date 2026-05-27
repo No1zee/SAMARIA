@@ -120,7 +120,7 @@ export default function ApproachSteps() {
             return (
               <motion.div
                 key={step.number}
-                className="bg-obsidian-layered/40 p-8 hover:bg-obsidian-layered/60 transition-all duration-500 group flex flex-col min-h-[450px]"
+                className="bg-obsidian-layered/95 p-8 hover:bg-obsidian-layered transition-all duration-500 group flex flex-col min-h-[450px]"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -142,7 +142,7 @@ export default function ApproachSteps() {
                 </h3>
 
                 {/* Description */}
-                <p className="text-off-white/80 text-base md:text-lg leading-relaxed font-body no-prose">
+                <p className="text-off-white/95 text-base md:text-lg leading-relaxed font-body no-prose">
                   <CelestialText intensity={0.4}>{step.description}</CelestialText>
                 </p>
                 

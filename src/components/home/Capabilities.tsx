@@ -130,7 +130,7 @@ export default function Capabilities() {
                   {chapter.tags.map(tag => (
                     <span 
                       key={tag} 
-                      className="text-[10px] uppercase tracking-[0.3em] text-metallic-brass/60 font-ui px-4 py-1.5 border border-metallic-brass/10 rounded-full transition-all duration-300 hover:scale-105 group-hover/tags:opacity-30 hover:!opacity-100 hover:border-metallic-brass hover:text-metallic-brass hover:shadow-[0_0_12px_rgba(201,168,76,0.3)] cursor-default"
+                      className="text-[10px] uppercase tracking-[0.3em] text-metallic-brass bg-metallic-brass/5 font-ui px-4 py-1.5 border border-metallic-brass/25 rounded-full transition-all duration-300 hover:scale-105 group-hover/tags:opacity-30 hover:!opacity-100 hover:border-metallic-brass hover:shadow-[0_0_12px_rgba(201,168,76,0.3)] cursor-default"
                     >
                       {tag}
                     </span>
@@ -176,11 +176,11 @@ export default function Capabilities() {
         {/* Arsenal (Simplified & Integrated) */}
         <div className="mt-fb10 pt-fb6 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-fb4 text-white/20">
           <span className="text-[10px] font-ui tracking-[0.6em] uppercase">THE STACK.</span>
-          <div className="flex flex-wrap justify-center gap-x-fb5 gap-y-fb2 group/arsenal">
+          <div className="flex flex-wrap justify-center gap-x-fb4 gap-y-2 group/arsenal">
             {['Next.js', 'React', 'TypeScript', 'Node.js', 'Supabase', 'Vercel', 'GSAP'].map((tech) => (
               <span 
                 key={tech} 
-                className="text-[10px] font-ui tracking-[0.4em] uppercase transition-all duration-300 hover:scale-105 hover:text-metallic-brass group-hover/arsenal:opacity-30 hover:!opacity-100 cursor-default"
+                className="text-[10px] font-ui tracking-[0.3em] uppercase transition-all duration-300 hover:scale-105 border border-white/10 bg-white/2 px-4 py-1.5 rounded-full text-off-white/80 hover:text-metallic-brass hover:border-metallic-brass/40 group-hover/arsenal:opacity-30 hover:!opacity-100 cursor-default"
               >
                 {tech}
               </span>

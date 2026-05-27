@@ -182,6 +182,9 @@ export default function Hero() {
           
           {/* Main vertical border Guide Container */}
           <div className="pl-6 md:pl-8 py-2 relative hero-guided-container">
+            {/* Ambient backing gradient for legibility against parallax background */}
+            <div className="absolute -inset-y-4 -left-8 -right-8 bg-gradient-to-r from-royal-obsidian via-royal-obsidian/80 to-transparent blur-md -z-10 opacity-90 pointer-events-none" />
+            
             {/* Guide line drawing animation element */}
             <div className="hero-guide-line absolute left-0 top-0 bottom-0 w-[1px] bg-gradient-to-b from-metallic-brass/80 via-metallic-brass/30 to-transparent origin-top" />
             
@@ -189,7 +192,7 @@ export default function Hero() {
             <div className="hero-content opacity-0 mb-fb1 flex items-center gap-3">
               <span className="w-1.5 h-1.5 rotate-45 bg-metallic-brass animate-pulse" />
               <span className="text-[10px] md:text-xs font-ui tracking-[0.4em] text-metallic-brass uppercase font-bold">
-                DIGITAL ARCHITECTURE FOR THE LONG GAME
+                CUSTOM WEBSITES • CLOUD OPERATIONS • ENTERPRISE SYSTEMS
               </span>
             </div>
 
@@ -228,9 +231,9 @@ export default function Hero() {
             </h1>
 
             <div className="hero-content text-off-white/80 max-w-lg mb-fb2 text-base md:text-lg font-body leading-relaxed opacity-0">
-              <CelestialText intensity={0.5} as="p" className="no-prose">
-                Some businesses want a website. Others want the infrastructure their next decade runs on. We build for the second kind.
-              </CelestialText>
+              <p className="no-prose">
+                Some businesses want a simple site. We build the secure web applications, digital workflows, and cloud-native databases your next decade runs on.
+              </p>
             </div>
 
             <div className="hero-content opacity-0 flex flex-col sm:flex-row items-stretch sm:items-center gap-fb2">

@@ -318,6 +318,26 @@
   line-height: var(--lh);
 }
 
+/* === CINEMATIC TEXT LAYERS === */
+@utility cinematic-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  font-family: var(--ff);
+  font-size: var(--fs);
+  letter-spacing: var(--ls);
+  line-height: var(--lh);
+}
+
+@utility cinematic-base-text {
+  display: block;
+  color: var(--base-color);
+  font-size: var(--fs);
+  font-family: var(--ff);
+  letter-spacing: var(--ls);
+  line-height: var(--lh);
+}
+
 @utility eclipse-glow-overlay {
   position: absolute;
   inset: 0;

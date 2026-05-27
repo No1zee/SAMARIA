@@ -69,7 +69,7 @@ export default function Navbar() {
               key={item.name}
               href={item.href}
               onMouseEnter={clink}
-              className="nav-link font-ui text-xs uppercase tracking-[0.2em] text-off-white/60 hover:text-metallic-brass transition-colors relative focus:outline-none focus:text-metallic-brass"
+              className="nav-link font-ui text-xs uppercase tracking-[0.12em] text-off-white/80 font-medium hover:text-metallic-brass transition-colors relative focus:outline-none focus:text-metallic-brass"
             >
               {item.name}
             </Link>
