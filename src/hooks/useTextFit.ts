@@ -40,14 +40,11 @@ export function useTextFit(text: string, options: TextFitOptions): number {
       return options.initialFontSize;
     }
 
-    // Pretext can't account for CSS letter-spacing. 
-    // We adjust the measure width by character count to simulate tracking.
-    // Tracking is calculated as: font-size * letter-spacing-ratio
+    const letterSpacingRatio = options.letterSpacing ? options.letterSpacing / options.initialFontSize : 0;
     const numChars = text.length;
-    const trackingPx = options.letterSpacing ?? 0;
     
-    // Safety buffer for decorative fonts and anti-aliasing (8% padding + 4px)
-    const effectiveMaxWidth = options.maxWidth * 0.92 - 4; 
+    // Safety buffer for decorative fonts and anti-aliasing (8% padding + 8px)
+    const effectiveMaxWidth = options.maxWidth * 0.90 - 8; 
 
     // Binary search for optimal font size (faster than linear scan)
     let lo = minFontSize;
@@ -61,6 +58,7 @@ export function useTextFit(text: string, options: TextFitOptions): number {
         const fontSpec = `${mid}px ${options.font}`;
         const prepared = prepareWithSegments(text, fontSpec);
         // Subtract total tracking from available width before Pretext measures
+        const trackingPx = letterSpacingRatio * mid;
         const pretextWidth = effectiveMaxWidth - (numChars - 1) * trackingPx;
         const { height, lines } = layoutWithLines(
           prepared,

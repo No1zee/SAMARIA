@@ -215,14 +215,16 @@ export default function CinematicText({
       return { opacity: 0, minHeight: `${fontSize * lineHeight}px` };
     }
     const trackingExtra = letterSpacing > 0 ? children.length * letterSpacing : 0;
+    const finalWidth = layoutInfo.totalWidth + trackingExtra + 4;
     return {
-      width: layoutInfo.totalWidth + trackingExtra + 4,
-      height: layoutInfo.totalHeight + fontSize * 0.1,
-      minHeight: layoutInfo.totalHeight + fontSize * 0.1,
+      width: finalWidth,
+      maxWidth: "100%",
+      height: (layoutInfo.totalHeight + fontSize * 0.1) * contentScale,
+      minHeight: (layoutInfo.totalHeight + fontSize * 0.1) * contentScale,
       whiteSpace: maxLines === 1 ? "nowrap" : "normal",
       textWrap: maxLines === 1 ? "nowrap" : "balance",
     } as React.CSSProperties;
-  }, [fontsReady, layoutInfo, fontSize, lineHeight, letterSpacing, children.length, maxLines]);
+  }, [fontsReady, layoutInfo, fontSize, lineHeight, letterSpacing, children.length, maxLines, contentScale]);
 
   return (
     <motion.span 
