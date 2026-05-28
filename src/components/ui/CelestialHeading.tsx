@@ -46,13 +46,17 @@ export default function CelestialHeading({
   useEffect(() => {
     if (!containerRef.current) return;
     const update = () => {
-      setAvailableWidth(containerRef.current?.offsetWidth || 1500);
+      if (!containerRef.current) return;
+      const parentWidth = containerRef.current.parentElement?.offsetWidth || window.innerWidth;
+      const width = Math.min(parentWidth, window.innerWidth - 32);
+      setAvailableWidth(width > 0 ? width : 1500);
     };
     update();
 
-    // Use ResizeObserver for more accurate updates (Pretext best practice)
+    // Use ResizeObserver on the parent node to prevent child overflow layout feedback loops
+    const parentNode = containerRef.current.parentElement || containerRef.current;
     const ro = new ResizeObserver(update);
-    ro.observe(containerRef.current);
+    ro.observe(parentNode);
     return () => ro.disconnect();
   }, []);
 

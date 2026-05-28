@@ -20,11 +20,11 @@ interface NodeState {
 }
 
 const NODE_TEMPLATES = [
-  { id: 1, label: "Websites", tags: ["Next.js", "React", "SEO"], baseX: 25, baseY: 20, color: "#C9A84C" },
-  { id: 2, label: "IT Services", tags: ["Cloud", "Security", "Databases"], baseX: 75, baseY: 30, color: "#4A88CC" },
-  { id: 3, label: "Solutions", tags: ["Automation", "APIs", "CRM/ERP"], baseX: 50, baseY: 55, color: "#E8853A" },
-  { id: 4, label: "Design", tags: ["Cinematic UI", "Brand Systems", "Motion"], baseX: 20, baseY: 75, color: "#C42B2B" },
-  { id: 5, label: "Advisory", tags: ["Strategy", "Architecture", "Scale"], baseX: 80, baseY: 75, color: "#FFE270" },
+  { id: 1, label: "Websites", tags: ["Next.js", "React 19", "TypeScript", "Performance"], baseX: 25, baseY: 20, color: "#C9A84C" },
+  { id: 2, label: "IT Services", tags: ["AWS Cloud", "Docker/K8s", "Go / Rust", "SQL/NoSQL"], baseX: 75, baseY: 30, color: "#4A88CC" },
+  { id: 3, label: "Solutions", tags: ["Custom ERP", "Python/FastAPI", "API Design", "Workflows"], baseX: 50, baseY: 55, color: "#E8853A" },
+  { id: 4, label: "Compliance", tags: ["SOC2 Prep", "ISO 27001", "OWASP WAF", "Threat Audit"], baseX: 20, baseY: 75, color: "#C42B2B" },
+  { id: 5, label: "Advisory", tags: ["Architecture", "Redundancy", "Continuity", "Disaster Rec."], baseX: 80, baseY: 75, color: "#FFE270" },
 ];
 
 export default function GravityOrbit() {

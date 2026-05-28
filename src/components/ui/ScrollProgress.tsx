@@ -13,7 +13,7 @@ export function ScrollProgress() {
     <motion.div
       style={{ scaleY }}
       className="fixed right-0 top-0 w-[2px] h-screen 
-                 bg-metallic-brass origin-top z-9997 opacity-60"
+                 bg-metallic-brass origin-top z-9997 opacity-60 pointer-events-none"
     />
   )
 }

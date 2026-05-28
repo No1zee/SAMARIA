@@ -73,7 +73,7 @@ export default function Capabilities() {
   }, []);
 
   return (
-    <section id="capabilities" className="py-12 md:py-fb9 relative overflow-hidden bg-transparent" ref={containerRef}>
+    <section id="capabilities" className="py-12 md:py-fb9 relative overflow-hidden bg-royal-obsidian z-10" ref={containerRef}>
       <div className="container max-w-[1500px] mx-auto px-fb3 md:px-fb4 relative z-10">
         
         {/* Section Header — Editorial Style */}
@@ -202,10 +202,10 @@ export default function Capabilities() {
                 Backend Services
               </span>
               <ul className="space-y-2 font-ui text-[10px] text-off-white/60 tracking-widest uppercase">
-                <li>• Node.js & Go</li>
+                <li>• Go, Rust, Node.js</li>
+                <li>• Python & FastAPI</li>
                 <li>• REST & GraphQL APIs</li>
-                <li>• Prisma ORM</li>
-                <li>• Web Sockets</li>
+                <li>• Prisma ORM / WebSockets</li>
               </ul>
             </div>
             
@@ -214,10 +214,10 @@ export default function Capabilities() {
                 Cloud & Databases
               </span>
               <ul className="space-y-2 font-ui text-[10px] text-off-white/60 tracking-widest uppercase">
-                <li>• AWS (Lambda/S3/RDS)</li>
-                <li>• PostgreSQL / Supabase</li>
-                <li>• Vercel Deployment</li>
-                <li>• Docker Orchestration</li>
+                <li>• AWS (RDS/S3/Lambda)</li>
+                <li>• PostgreSQL & Supabase</li>
+                <li>• Terraform IaC</li>
+                <li>• Docker & Kubernetes</li>
               </ul>
             </div>
             
@@ -227,9 +227,9 @@ export default function Capabilities() {
               </span>
               <ul className="space-y-2 font-ui text-[10px] text-off-white/60 tracking-widest uppercase">
                 <li>• JWT & OAuth2 Identity</li>
-                <li>• OWASP Hardening</li>
-                <li>• Automated Backups</li>
-                <li>• SSL & CDN Edge Shields</li>
+                <li>• OWASP Perimeter Shield</li>
+                <li>• SOC2 & ISO 27001 Readiness</li>
+                <li>• Automated Disaster Recovery</li>
               </ul>
             </div>
           </div>

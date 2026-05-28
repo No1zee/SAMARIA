@@ -92,6 +92,19 @@ export default function ProjectDetails({ isOpen, onClose, project }: ProjectDeta
                 {project?.name}
               </h2>
 
+              {/* Technical Diagram Container */}
+              {project?.image && (
+                <div className="relative w-full aspect-[16/9] mb-8 border border-white/10 bg-black/60 overflow-hidden rounded-sm">
+                  <img 
+                    src={project.image} 
+                    alt={`${project.name} system architecture`}
+                    className="w-full h-full object-cover"
+                  />
+                  {/* Cyber blueprint grid overlay */}
+                  <div className="absolute inset-0 bg-[linear-gradient(rgba(201,168,76,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(201,168,76,0.03)_1px,transparent_1px)] bg-[size:18px_18px] pointer-events-none" />
+                </div>
+              )}
+
               <div className="flex items-center gap-4 mb-8">
                 <div className="flex items-center gap-2 px-3 py-1 bg-metallic-brass/10 border border-metallic-brass/20 text-metallic-brass rounded-full text-xs font-ui">
                   <TrendingUp className="w-3.5 h-3.5" />

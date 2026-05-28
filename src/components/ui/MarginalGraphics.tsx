@@ -25,7 +25,7 @@ export default function MarginalGraphics() {
     <div className="fixed inset-0 pointer-events-none z-60 select-none hidden lg:block">
       
       {/* LEFT MARGIN */}
-      <div className="absolute left-[2%] top-0 bottom-0 w-[4%] flex flex-col items-center justify-between py-12">
+      <div className="absolute left-[1%] top-0 bottom-0 w-8 flex flex-col items-center justify-between py-12">
         {/* Top Sigil */}
         <motion.div 
           animate={{ 
@@ -60,7 +60,7 @@ export default function MarginalGraphics() {
       </div>
 
       {/* RIGHT MARGIN */}
-      <div className="absolute right-[2%] top-0 bottom-0 w-[4%] flex flex-col items-center justify-between py-12">
+      <div className="absolute right-[1%] top-0 bottom-0 w-8 flex flex-col items-center justify-between py-12">
         {/* Blade Scroll Spine */}
         <div className="absolute top-[20%] bottom-[20%] left-1/2 -translate-x-1/2 w-px bg-white/5 overflow-hidden">
           <motion.div 

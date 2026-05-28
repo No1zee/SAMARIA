@@ -33,7 +33,7 @@ const faqs = [
 ];
 
 export default function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(2);
 
   const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
 

@@ -82,7 +82,7 @@ export default function ProjectsTeaser() {
   const [isModalOpen, setIsModalOpen] = useState(false);
  
   return (
-    <section id="artifacts" className="py-12 md:py-fb8 relative overflow-hidden">
+    <section id="artifacts" className="py-12 md:py-fb8 relative overflow-hidden bg-royal-obsidian z-10">
       
       <div className="container max-w-[1500px] mx-auto px-fb3 md:px-fb4 relative z-10">
         
@@ -123,21 +123,11 @@ export default function ProjectsTeaser() {
                 setSelectedProject(project);
                 setIsModalOpen(true);
               }}
-              className="group cursor-pointer border border-white/5 bg-royal-obsidian/80 hover:border-metallic-brass/30 hover:bg-royal-obsidian/95 transition-all duration-500 p-8 flex flex-col justify-between min-h-[380px] md:min-h-[480px] relative overflow-hidden rounded-sm"
+              className="group cursor-pointer border border-white/5 bg-royal-obsidian/85 hover:border-metallic-brass/30 hover:bg-royal-obsidian/95 transition-all duration-500 p-8 flex flex-col justify-between min-h-[460px] md:min-h-[560px] relative overflow-hidden rounded-sm"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              {/* Backing image with opacity transition */}
-              <div className="absolute inset-0 z-0 opacity-15 group-hover:opacity-25 transition-opacity duration-700 pointer-events-none">
-                <Image 
-                  src={project.image} 
-                  alt={project.name}
-                  fill
-                  className="object-cover grayscale group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-royal-obsidian via-royal-obsidian/90 to-transparent" />
-              </div>
  
               <div className="relative z-10 flex flex-col h-full justify-between">
                 <div>
@@ -153,6 +143,18 @@ export default function ProjectsTeaser() {
                   <h3 className="text-2xl md:text-3xl font-heading text-off-white uppercase mb-4 group-hover:text-metallic-brass transition-colors duration-300">
                     {project.name}
                   </h3>
+
+                  {/* Architecture Diagram Slot */}
+                  <div className="relative w-full aspect-[16/10] my-4 border border-white/10 bg-black/40 overflow-hidden rounded-sm group-hover:border-metallic-brass/35 transition-colors duration-500">
+                    <Image 
+                      src={project.image} 
+                      alt={`${project.name} system diagram`}
+                      fill
+                      className="object-cover"
+                    />
+                    {/* Cyber blueprint grid overlay */}
+                    <div className="absolute inset-0 bg-[linear-gradient(rgba(201,168,76,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(201,168,76,0.03)_1px,transparent_1px)] bg-[size:14px_14px] pointer-events-none" />
+                  </div>
  
                   {/* Problem / Solution / Result Bullet Points */}
                   <div className="space-y-4 my-6 font-body text-xs text-off-white/70 leading-relaxed">
