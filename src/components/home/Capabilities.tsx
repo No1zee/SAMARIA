@@ -17,31 +17,31 @@ const chapters = [
   {
     id: "01",
     label: "WEBSITES",
-    name: "CUSTOM WEBSITES & APPLICATIONS",
-    description: "Digital experiences that capture attention and build authority.",
-    expanded: "We design and develop high-end bespoke websites and web applications tailored to your brand. From corporate platforms to custom SaaS applications, our code is optimized for SEO, speed, and conversion.",
+    name: "WEBSITES & WEB APPS",
+    description: "We build custom websites, client portals, and web apps that look professional, load fast, and support real business goals.",
+    expanded: "We design and develop fast, secure websites and custom web applications. From corporate portals to subscriber platforms, we ensure your systems are easy for visitors to use and simple for your team to manage.",
     image: "/the-oracle.png",
-    tags: ["Next.js & React", "E-commerce Platforms", "SaaS Applications", "SEO & Performance Optimization"],
+    tags: ["Fast, modern websites and apps", "Online shops & payments", "SaaS & subscriber portals", "Search & speed optimization"],
     align: "left"
   },
   {
     id: "02",
-    label: "IT SERVICES",
-    name: "IT SERVICES & DIGITAL OPERATIONS",
-    description: "Secure, scalable systems that power your daily business operations.",
-    expanded: "Enterprise-grade IT consultancy, system integration, cloud deployments, and custom database solutions. We construct the reliable backbones that support your growth without interruption.",
+    label: "BUSINESS SYSTEMS",
+    name: "BUSINESS SYSTEMS & INFRASTRUCTURE",
+    description: "We set up the systems behind your business, including cloud hosting, databases, integrations, and security improvements.",
+    expanded: "We design and launch robust backends, cloud-native deployments, and database architectures. Our setups are hardened against data loss and engineered to run continuously as your operations scale.",
     image: "/the-data-temple.png",
-    tags: ["Cloud Infrastructure", "System Integrations", "Database Design", "Security & Auditing"],
+    tags: ["Reliable cloud hosting", "Third-party API integrations", "Organized & secure databases", "Security auditing & backups"],
     align: "right"
   },
   {
     id: "03",
-    label: "STRATEGY",
-    name: "STRATEGIC CUSTOM DIGITAL SOLUTIONS",
-    description: "Innovative tech tailored specifically to solve your business bottlenecks.",
-    expanded: "Workflow automation, interactive customer portals, custom CRM/ERP integration, and advanced AI-assisted processes. We build the exact tools you need to optimize productivity and outperform your competition.",
+    label: "AUTOMATION",
+    name: "CUSTOM TOOLS & AUTOMATION",
+    description: "We build internal tools, customer dashboards, and automations that reduce repetitive work and help your team move faster.",
+    expanded: "From customer intake pipelines to bespoke logistics dashboards, we write custom software to streamline manual processes. We help you eliminate double-data entry and speed up operational workflows.",
     image: "/the-guardian.png",
-    tags: ["Custom ERP/CRM", "Workflow Automation", "API Development", "AI Integrations"],
+    tags: ["Custom internal tools", "Automated team workflows", "Bespoke API development", "Practical AI automations"],
     align: "left"
   }
 ];
@@ -143,7 +143,7 @@ export default function Capabilities() {
                     className="inline-flex items-center gap-3 text-metallic-brass hover:text-white transition-all uppercase tracking-[0.25em] text-[10px] font-ui group border border-metallic-brass/30 hover:border-metallic-brass/80 px-5 py-2.5 bg-metallic-brass/5"
                   >
                     <span className="relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-metallic-brass group-hover:after:w-full after:transition-all after:duration-300">
-                      START YOUR BUILD
+                      START A PROJECT
                     </span>
                     <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </Link>

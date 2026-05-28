@@ -7,33 +7,33 @@ import CelestialHeading from "@/components/ui/CelestialHeading";
 
 const faqs = [
   {
-    q: "Why shouldn't I just use a template or a cheap agency?",
-    a: "You should—if you only need a temporary site. But if you're building a business that you plan to run for the next ten years, a template is a liability. It's unoptimized, difficult to scale, and carries technical debt from day one. We build the custom, high-performance infrastructure you can rely on for a decade."
+    q: "How long does a typical project take?",
+    a: "Most projects take between 4 and 12 weeks from kickoff to launch. A standard website takes about 4 to 6 weeks, custom dashboards or web portals take 8 to 10 weeks, and complex database integrations or custom enterprise platforms can take 12 weeks or more. We work in weekly sprints and show you running progress every 7 days so you always know exactly where the project stands."
   },
   {
-    q: "Will I actually own my code?",
-    a: "Yes. Entirely. We don't believe in licensing fees or keeping your data hostage. Once the project is complete and the final invoice is settled, the IP, the source code, and all system documentation are transferred to you."
+    q: "Will I actually own my code and systems?",
+    a: "Yes, 100%. We do not believe in locking clients into proprietary platforms or charging licensing fees. As soon as the project is complete and paid for, you receive full ownership of the source code, databases, design assets, and host accounts. We help you set up the accounts under your own company's name so you retain complete control."
   },
   {
-    q: "What is your pricing model?",
-    a: "We operate on a fixed-bid project basis. The scope is blueprinted upfront, and the budget we agree upon is final. We do not charge hidden fees or surprise hourly overages. For context: high-end corporate websites range from $5,000 to $12,000; custom web applications and SaaS systems range from $15,000 to $45,000; and complex enterprise integrations or custom databases start at $50,000. Transparency is a prerequisite of partnership."
+    q: "What is your pricing model and how much does it cost?",
+    a: "We work on a fixed-bid project basis. We agree on the scope and price upfront, and that number is final—no surprise hourly bills, hidden fees, or overage charges. High-end business websites range from $5,000 to $12,000; custom web applications and client portals range from $15,000 to $45,000; and enterprise databases or custom integrations start at $50,000. We also offer monthly support retainers for ongoing updates."
   },
   {
-    q: "What is your communication and sprint rhythm?",
-    a: "We work in weekly sprint cycles, delivering direct Loom video walkthroughs showing running code at the end of each sprint. You get direct Slack access to the lead architects—no account managers or communication buffers."
+    q: "What technologies do you build with and why?",
+    a: "We build with modern, industry-standard technologies to ensure your system is fast, secure, and easy to maintain. We use React and Next.js for frontends, Node.js and TypeScript for backend logic, and PostgreSQL or Supabase for databases. By hosting on reliable platforms like AWS or Vercel, we ensure your site can handle traffic spikes and remains online 24/7."
   },
   {
-    q: "What technologies do you build with?",
-    a: "We specialize in modern, production-hardened web tech: Next.js, React, TypeScript, Node.js, and cloud-native database infrastructure (AWS, PostgreSQL, Supabase). We build for speed, security, and future-proof scaling."
+    q: "How do you handle maintenance and support after launch?",
+    a: "We build systems to be highly reliable and require minimal ongoing maintenance. However, web browsers, third-party APIs, and security protocols change. We provide 30 days of free post-launch support to resolve any initial bugs. After that, we offer optional monthly support retainers to handle routine security checks, database backups, updates, and future feature upgrades."
   },
   {
-    q: "How do you handle maintenance?",
-    a: "We build for zero-maintenance where possible. However, external APIs and environments evolve. We offer custom continuity retainers for clients who want proactive monitoring, security audits, and continuous scaling."
+    q: "How does the delivery team operate?",
+    a: "We operate as a focused core team of designers and engineers led by our founder and lead architect, Edward Magejo. By keeping our team small, you work directly with the people writing your code—eliminating project managers and communication delays. If the lead architect is unavailable, we have dedicated support engineers who maintain full access to system documentation and source code to ensure continuity of support."
   }
 ];
 
 export default function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(2);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
 
@@ -52,7 +52,7 @@ export default function FAQ() {
           transition={{ duration: 0.7 }}
         >
           <span className="section-label mb-4 block">
-            OTHER STUFF
+            FAQ
           </span>
           <CelestialHeading 
             text="COMMON QUESTIONS."
@@ -67,7 +67,7 @@ export default function FAQ() {
 
         {/* Accordion */}
         <div className="max-w-4xl border-l border-white/5 pl-6 md:pl-8">
-          <div className="space-y-3">
+          <div className="space-y-6">
             {faqs.map((faq, i) => (
               <motion.div
                 key={i}

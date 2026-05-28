@@ -213,9 +213,9 @@ export default function SamuraiJackBackground() {
   const rimLightOpacity = useTransform(progress, [0.75, 1], [0, 0.4]);
 
   const sunXPos = useTransform(sunX, (v) => isMobile ? `${Math.min(85, v + 22)}%` : `${v}%`);
-  const sunYPos = useTransform(celestialSunY, (v) => `${v}vh`);
+  const sunYPos = useTransform(celestialSunY, (v) => isMobile ? `${v - 5}vh` : `${v}vh`);
   const moonXPos = useTransform(moonX, (v) => isMobile ? `${Math.min(85, v + 22)}%` : `${v}%`);
-  const moonYPos = useTransform(celestialMoonY, (v) => `${v + 15}vh`);
+  const moonYPos = useTransform(celestialMoonY, (v) => isMobile ? `${v + 2}vh` : `${v + 15}vh`);
 
   // Consolidated high-performance spring for celestial weighting
   const mouseXValue = useSpring(0, { stiffness: 40, damping: 25 });

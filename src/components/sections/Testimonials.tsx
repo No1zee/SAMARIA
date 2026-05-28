@@ -41,7 +41,7 @@ export default function Testimonials() {
           transition={{ duration: 0.7 }}
         >
           <span className="section-label mb-4 block">
-            OTHER STUFF
+            TESTIMONIALS
           </span>
           <CelestialHeading 
             text="WHAT CLIENTS SAY."

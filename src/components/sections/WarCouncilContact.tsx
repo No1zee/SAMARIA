@@ -19,57 +19,72 @@ interface WizardStep {
 
 const steps: WizardStep[] = [
   {
-    id: "name",
-    label: "01 // IDENTIFY YOURSELF",
-    question: "What is your name?",
-    placeholder: "Your Name",
-    field: "identity",
+    id: "project",
+    label: "01 // CHOOSE SYSTEM TYPE",
+    question: "What system type are we building?",
+    placeholder: "Choose from options below...",
+    field: "architecture",
+    type: "text",
+    options: [
+      "Websites & Applications",
+      "Business Systems & Infrastructure",
+      "Custom Tools & Automation",
+      "Other Custom Build"
+    ]
+  },
+  {
+    id: "problem",
+    label: "02 // SYSTEM PURPOSE",
+    question: "What is the primary problem or bottleneck this system will solve?",
+    placeholder: "e.g., manual spreadsheet data entry, slow intake, outdated website...",
+    field: "problem",
+    type: "text",
+    isTextArea: true
+  },
+  {
+    id: "budget",
+    label: "03 // COMMERCIAL BAND",
+    question: "What is your target budget range for this project?",
+    placeholder: "Select target range...",
+    field: "budget",
+    type: "text",
+    options: [
+      "$5,000 - $12,000 (Website)",
+      "$15,000 - $45,000 (Custom App)",
+      "$50,000+ (Enterprise DB)",
+      "Not sure yet / Flexible"
+    ]
+  },
+  {
+    id: "timeline",
+    label: "04 // TARGET TIMELINE",
+    question: "What is your target launch timeline?",
+    placeholder: "e.g., Within 2 months, by end of quarter, flexible...",
+    field: "message",
+    type: "text"
+  },
+  {
+    id: "company",
+    label: "05 // BUSINESS ENTITY",
+    question: "What is your company or organization name?",
+    placeholder: "Company Name",
+    field: "company",
     type: "text"
   },
   {
     id: "email",
-    label: "02 // ESTABLISH COMMUNICATION",
+    label: "06 // ESTABLISH COMMUNICATION",
     question: "What is your work email?",
     placeholder: "Work Email",
     field: "nexus",
     type: "email"
   },
   {
-    id: "project",
-    label: "03 // DETERMINE MISSION",
-    question: "What system are we building?",
-    placeholder: "e.g., Custom Web App, IT Architecture...",
-    field: "architecture",
-    type: "text",
-    options: [
-      "Websites & Applications",
-      "IT Systems & Operations",
-      "Strategic Custom Solutions",
-      "Other Custom Build"
-    ]
-  },
-  {
-    id: "company",
-    label: "04 // BUSINESS ENTITY",
-    question: "What is your business name?",
-    placeholder: "Business / Organization Name",
-    field: "company",
-    type: "text"
-  },
-  {
-    id: "phone",
-    label: "05 // TELEPHONIC CONTACT",
-    question: "What is your phone number?",
-    placeholder: "Phone Number",
-    field: "phone",
-    type: "tel"
-  },
-  {
-    id: "message",
-    label: "06 // PROJECT COMPLETION",
-    question: "When would you like the project to be completed?",
-    placeholder: "e.g., Within 3 months, by end of year...",
-    field: "message",
+    id: "name",
+    label: "07 // IDENTIFY YOURSELF",
+    question: "What is your name?",
+    placeholder: "Your Name",
+    field: "identity",
     type: "text"
   }
 ];
@@ -84,6 +99,8 @@ export default function WarCouncilContact() {
     company: "",
     phone: "",
     message: "",
+    problem: "",
+    budget: "",
   });
   const [submitted, setSubmitted] = useState(false);
   const [validationError, setValidationError] = useState<string | null>(null);
@@ -134,17 +151,17 @@ export default function WarCouncilContact() {
         {/* Section Header (Grid Spine Alignment) */}
         <div className="mb-fb8 border-l border-metallic-brass/40 pl-6 md:pl-8">
           <div className="flex items-center gap-fb2 mb-fb3">
-            <span className="text-[10px] tracking-[0.3em] font-ui text-metallic-brass uppercase">GET IN TOUCH</span>
+            <span className="text-[10px] tracking-[0.2em] font-ui text-metallic-brass uppercase">START A PROJECT</span>
           </div>
           <CelestialHeading 
-            text={"GET IN\nTOUCH."}
+            text={"START A\nPROJECT."}
             as="h2"
             fontSize={128}
             className="text-5xl md:text-[8rem]"
             intensity={1.2}
           />
           <p className="text-white/80 text-lg md:text-xl font-body leading-relaxed max-w-2xl mt-6 no-prose">
-            If you are building for the long run and value architectural excellence, tell us about your project below.
+            We build custom websites and business systems that help your company scale. Tell us about your project below to get started.
           </p>
         </div>
 
@@ -220,8 +237,8 @@ export default function WarCouncilContact() {
                         />
                       </div>
                     </div>
-                    <span className="text-[9px] tracking-[0.2em] font-ui text-metallic-brass/50 uppercase">
-                      BUILD PROTOCOL
+                    <span className="text-[9px] tracking-[0.1em] font-ui text-metallic-brass/50 uppercase">
+                      PROJECT INTAKE
                     </span>
                   </div>
 
@@ -339,7 +356,7 @@ export default function WarCouncilContact() {
                       onMouseEnter={clink}
                       className="btn-warrior flex items-center gap-4 group"
                     >
-                      {currentStep === steps.length ? "INITIATE THE BUILD" : "CONTINUE"}
+                      {currentStep === steps.length ? "SUBMIT REQUEST" : "CONTINUE"}
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </button>
                     

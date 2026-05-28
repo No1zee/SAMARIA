@@ -24,43 +24,43 @@ interface Project {
 
 const projects: Project[] = [
   {
-    id: "edward-magejo-portfolio",
-    name: "Edward Magejo Portfolio",
-    type: "High-Fidelity Developer Portfolio",
-    category: "Creative Frontend",
-    teaser: "A premium portfolio system designed for our lead architect, showcasing interactive WebGL visuals, bespoke layouts, and complex physics-based constellations.",
-    tag: "Lead Architect Portfolio",
-    image: "/edward-portfolio-mockup.png",
-    techStack: ["React", "Next.js", "Framer Motion", "GSAP", "Tailwind CSS"],
-    problem: "Our lead architect needed a visual portfolio that immediately establishes engineering credibility without losing performance.",
-    solution: "Engineered a customized Next.js application with optimized visual caching, custom state bridges, and hardware-accelerated animations.",
-    result: "Delivered a premium digital canvas that scores a perfect 100% on Vercel Lighthouse metrics under heavy graphics load."
-  },
-  {
-    id: "portfolio-website",
-    name: "Portfolio Website",
-    type: "Interactive Developer Portal",
-    category: "UI/UX & WebGL",
-    teaser: "A lightweight, highly responsive developer hub showcasing complex canvas renders, spring-physics motion controllers, and customizable themes.",
-    tag: "Creative Showcase",
-    image: "/creative-showcase-mockup.png",
-    techStack: ["TypeScript", "Three.js", "WebGL", "Next.js", "PostCSS"],
-    problem: "Traditional portfolio sites with heavy animation suffer from high bounce rates and poor Core Web Vitals grades.",
-    solution: "Built custom DOM-free canvas rendering cycles and debounced event loop listener layers to optimize interaction cycles.",
-    result: "Maintained 99.9% pass rates for Core Web Vitals across simulated mobile devices."
-  },
-  {
     id: "it-consulting",
-    name: "IT Consulting Portal",
-    type: "Enterprise Scheduling & Booking System",
-    category: "Automated Systems",
-    teaser: "A custom consulting portal built for corporate clients, featuring client log tracking, integrated booking schedules, and dynamic intake wizard states.",
-    tag: "Enterprise Portal",
+    name: "Enterprise Operations Portal",
+    type: "Custom Operations Portal & Scheduling",
+    category: "Operations Automation",
+    teaser: "An automated client intake and scheduling system that connects booking forms directly to secure calendars and client management databases.",
+    tag: "Operations Automation",
     image: "/it-consulting-mockup.png",
     techStack: ["Next.js", "Supabase", "PostgreSQL", "Tailwind CSS", "REST API"],
-    problem: "Manual consulting coordination caused severe intake booking friction and client conversion drop-offs.",
-    solution: "Constructed a custom booking workflow integrated with PostgreSQL databases and automatic calendar alerts.",
-    result: "Fully automated the consultation pipeline, yielding a 2.4x increase in conversion rate within the first quarter."
+    problem: "Managing consultation booking and calendar coordination manually caused high administration friction.",
+    solution: "We built a customer booking workflow integrated with PostgreSQL databases and automated calendar synchronization.",
+    result: "Automated the scheduling workflow completely, reducing manual admin work by 90% and doubling booking conversions."
+  },
+  {
+    id: "database-system",
+    name: "Cloud-Native Database System",
+    type: "High-Scale Inventory & Sync Engine",
+    category: "System Architecture",
+    teaser: "A serverless inventory caching and synchronization system designed to handle high transaction volumes and instant inventory search queries.",
+    tag: "Database Architecture",
+    image: "/creative-showcase-mockup.png",
+    techStack: ["TypeScript", "Redis", "PostgreSQL", "Next.js", "AWS Cloud"],
+    problem: "A retail platform experienced database locks and slow search queries during high-traffic promotional hours.",
+    solution: "We engineered a serverless caching layer using Redis databases and optimized write-heavy query pipelines.",
+    result: "Reduced search query speeds from 3 seconds to under 45 milliseconds, resolving system lockups completely."
+  },
+  {
+    id: "continuity-system",
+    name: "IT Continuity & Support Platform",
+    type: "Critical Monitoring & Failover Server",
+    category: "Maintenance & Continuity",
+    teaser: "A redundant web architecture and monitoring system built to prevent server down-times and guarantee secure continuity.",
+    tag: "Continuity & Support",
+    image: "/edward-portfolio-mockup.png",
+    techStack: ["React", "Next.js", "Docker", "Sentry", "AWS VPC"],
+    problem: "Critical client systems lacked automatic alerts and recovery systems, risking costly downtime during hosting failures.",
+    solution: "We deployed an automated uptime monitor with redundant failover servers and immediate notification loops.",
+    result: "Maintained a guaranteed 99.99% system uptime over 12 months with automated server recovery cycles."
   }
 ];
  
@@ -80,7 +80,7 @@ export default function ProjectsTeaser() {
             <div className="flex items-center gap-fb1 mb-fb2">
                 <ScrambleText 
                   text="HOW WE HELP — OUR WORK" 
-                  className="text-metallic-brass font-ui text-xs tracking-[0.4em] border-b border-metallic-brass/30 pb-1"
+                  className="text-metallic-brass font-ui text-xs tracking-[0.2em] border-b border-metallic-brass/30 pb-1"
                   duration={1.5}
                 />
             </div>
@@ -97,8 +97,8 @@ export default function ProjectsTeaser() {
               WHAT WE'VE BUILT.
             </CinematicText>
           </div>
-          <div className="text-silence text-metallic-brass/30 uppercase tracking-[0.2em] text-[10px] pb-2 border-b border-metallic-brass/10">
-            RECENT REGISTRY
+          <div className="text-silence text-metallic-brass/30 uppercase tracking-[0.15em] text-[10px] pb-2 border-b border-metallic-brass/10">
+            CASE STUDIES
           </div>
         </div>
  

@@ -47,42 +47,42 @@ const APPROACH_STEPS = [
   {
     number: "01",
     icon: AuditIcon,
-    title: "AUDIT",
-    description: "We map every edge case, every dependency, and every piece of legacy friction before we write a single line of new code."
+    title: "DISCOVERY",
+    description: "We start by understanding your business, your current setup, and the problems slowing you down."
   },
   {
     number: "02",
     icon: ArchIcon,
-    title: "ARCHITECTURE",
-    description: "Structure comes before surface. We blueprint the data flows and system constraints that will hold your growth for the next decade."
+    title: "PLANNING",
+    description: "We map out what needs to be built, how it should work, and how it can grow with your business."
   },
   {
     number: "03",
     icon: BuildIcon,
     title: "BUILD",
-    description: "Engineering, not assembly. Every component is stress-tested and refined until it performs at the limit of current technology."
+    description: "We design and develop the system, test it properly, and make sure it performs well before launch."
   },
   {
     number: "04",
     icon: HandoverIcon,
-    title: "TRANSFER",
-    description: "We don't keep secrets. You receive the full documentation and the technical training to own your system entirely."
+    title: "HANDOVER",
+    description: "You get the code, documentation, and training needed to use and manage the system with confidence."
   },
   {
     number: "05",
     icon: UnityIcon,
-    title: "CONTINUITY",
-    description: "Growth creates new friction. When the system needs to expand, we're here to reinforce the architecture we built together."
+    title: "SUPPORT",
+    description: "If you want ongoing help, we stay available for updates, fixes, and future improvements."
   }
 ];
-
+ 
 export default function ApproachSteps() {
   const [activeStep, setActiveStep] = useState(0);
-
+ 
   return (
     <section id="discipline" className="py-12 md:py-24 bg-transparent relative overflow-hidden border-y border-metallic-brass/10">
       {/* Section background deliberately kept transparent so the SamuraiJackBackground skyline shows through */}
-
+ 
       <div className="container max-w-[1500px] mx-auto px-fb3 md:px-fb4 relative z-10">
         {/* Section header */}
         <motion.div
@@ -93,9 +93,9 @@ export default function ApproachSteps() {
           transition={{ duration: 0.8 }}
         >
           <motion.span 
-            className="text-[10px] md:text-xs font-ui text-metallic-brass tracking-[0.4em] uppercase block mb-fb3 opacity-40"
+            className="text-[10px] md:text-xs font-ui text-metallic-brass tracking-[0.2em] uppercase block mb-fb3 opacity-40"
           >
-            HOW WE HELP — PROCESS
+            HOW WE HELP — OUR PROCESS
           </motion.span>
           <h2 className="font-heading text-4xl md:text-8xl font-bold text-off-white mb-6 uppercase leading-[0.9]">
             <CelestialText intensity={1.2}>FIVE STEPS. ZERO SHORTCUTS.</CelestialText>
@@ -109,7 +109,7 @@ export default function ApproachSteps() {
           <motion.p 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 0.4 }}
-            className="text-metallic-brass font-ui text-[10px] tracking-[0.6em] uppercase mt-8"
+            className="text-metallic-brass font-ui text-[10px] tracking-[0.2em] uppercase mt-8"
           >
             Slow is smooth. Smooth is permanent.
           </motion.p>

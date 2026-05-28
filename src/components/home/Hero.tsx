@@ -50,8 +50,8 @@ export default function Hero() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Line 1: BUILT TO OUTLAST
-  const buildSize = useTextFit("BUILT TO OUTLAST", {
+  // Line 1: WEBSITES & SYSTEMS
+  const buildSize = useTextFit("WEBSITES & SYSTEMS", {
     maxWidth: availableWidth * CONTENT_WIDTH_SCALE,
     maxHeight: 180,
     font: "'Cinzel Decorative', serif",
@@ -62,8 +62,8 @@ export default function Hero() {
     letterSpacing: TRACKING * 110
   });
 
-  // Line 2: EVERYONE ELSE.
-  const africaSize = useTextFit("EVERYONE ELSE.", {
+  // Line 2: BUILT TO LAST.
+  const africaSize = useTextFit("BUILT TO LAST.", {
     maxWidth: availableWidth * CONTENT_WIDTH_SCALE,
     maxHeight: 180,
     font: "'Cinzel Decorative', serif",
@@ -191,11 +191,11 @@ export default function Hero() {
             {/* UI Prefix Header */}
             <div className="hero-content opacity-0 mb-fb1 flex items-center gap-3">
               <span className="w-1.5 h-1.5 rotate-45 bg-metallic-brass animate-pulse" />
-              <span className="text-[10px] md:text-xs font-ui tracking-[0.4em] text-metallic-brass uppercase font-bold">
-                CUSTOM WEBSITES • CLOUD OPERATIONS • ENTERPRISE SYSTEMS
+              <span className="text-[10px] md:text-xs font-ui tracking-[0.2em] text-metallic-brass uppercase font-bold">
+                CUSTOM WEBSITES • BUSINESS SYSTEMS • WORKFLOW AUTOMATION
               </span>
             </div>
-
+ 
             <h1 className="mb-fb2 font-heading w-full uppercase">
               <div className="p-0 m-0 block mb-2 md:mb-3">
                 <div className="hero-title-line block">
@@ -208,7 +208,7 @@ export default function Hero() {
                     letterSpacing={TRACKING * buildSize}
                     maxLines={1}
                   >
-                    BUILT TO OUTLAST
+                    WEBSITES & SYSTEMS
                   </CinematicText>
                 </div>
               </div>
@@ -224,18 +224,18 @@ export default function Hero() {
                     letterSpacing={TRACKING * africaSize}
                     maxLines={1}
                   >
-                    EVERYONE ELSE.
+                    BUILT TO LAST.
                   </CinematicText>
                 </div>
               </div>
             </h1>
-
+ 
             <div className="hero-content text-off-white/80 max-w-lg mb-fb2 text-base md:text-lg font-body leading-relaxed opacity-0">
               <p className="no-prose">
-                Some businesses want a simple site. We build the secure web applications, digital workflows, and cloud-native databases your next decade runs on.
+                We design and build custom websites, internal tools, and automated workflows for businesses that need reliability, speed, and full ownership of their systems. From company websites to portals, dashboards, and operational tools, we help you replace fragile setups with software you can actually grow on.
               </p>
             </div>
-
+ 
             <div className="hero-content opacity-0 flex flex-col sm:flex-row items-stretch sm:items-center gap-fb2">
               <CelestialText intensity={0.3}>
                 <Link 
@@ -243,7 +243,7 @@ export default function Hero() {
                   onClick={() => setIsCinematicMode(true)}
                   className="btn-warrior group flex items-center justify-center gap-4 py-3 px-8 text-sm"
                 >
-                  BEGIN THE BUILD
+                  START YOUR PROJECT
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </CelestialText>
@@ -254,7 +254,7 @@ export default function Hero() {
                   onClick={clink}
                   className="btn-ghost border border-white/10 hover:border-metallic-brass/40 px-6 py-3 transition-all duration-500 uppercase tracking-widest text-[10px] w-full sm:w-auto text-center flex items-center justify-center"
                 >
-                  VIEW THE SYSTEMS
+                  SEE OUR WORK
                 </Link>
               </CelestialText>
             </div>
