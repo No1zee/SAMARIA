@@ -69,6 +69,7 @@ export default function TrustBar() {
         
         {/* Stats Grid wrapped in left guide line container */}
         <div className="max-w-5xl border-l border-metallic-brass/40 pl-6 md:pl-8">
+          <span className="section-label mb-8 block text-metallic-brass/60 tracking-[0.3em] uppercase">01 / WHO WE ARE — PERFORMANCE METRICS</span>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 md:divide-x md:divide-white/5 overflow-visible relative">
             {stats.map((stat, index) => (
               <motion.div
@@ -119,7 +120,7 @@ export default function TrustBar() {
         <div className="mt-16 pt-12 border-t border-white/5 overflow-hidden">
           <div className="text-left mb-8 border-l border-metallic-brass/40 pl-6 md:pl-8 max-w-4xl">
             <span className="section-label text-metallic-brass/60 block tracking-[0.3em]">
-              Trusted by builders across the continent
+              01 / WHO WE ARE — CLIENT NETWORK
             </span>
           </div>
           <div className="border-l border-white/5 pl-6 md:pl-8 max-w-5xl">

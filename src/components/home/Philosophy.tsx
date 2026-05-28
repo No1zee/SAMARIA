@@ -15,7 +15,7 @@ export default function Philosophy() {
             whileInView={{ opacity: 1, y: 0 }}
             className="section-label block mb-fb4"
           >
-            PHILOSOPHY
+            03 / HOW WE HELP — PHILOSOPHY
           </motion.span>
 
           <CelestialHeading 

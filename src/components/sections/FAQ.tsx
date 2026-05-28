@@ -52,10 +52,10 @@ export default function FAQ() {
           transition={{ duration: 0.7 }}
         >
           <span className="section-label mb-4 block">
-            QUESTIONS
+            05 / OTHER STUFF
           </span>
           <CelestialHeading 
-            text="THINGS WORTH KNOWING BEFORE WE TALK."
+            text="COMMON QUESTIONS."
             as="h2"
             fontSize={56}
             className="text-balance"

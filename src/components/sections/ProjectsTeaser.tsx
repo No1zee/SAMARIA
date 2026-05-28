@@ -91,8 +91,8 @@ export default function ProjectsTeaser() {
           <div>
             <div className="flex items-center gap-fb1 mb-fb2">
                 <ScrambleText 
-                  text="VERIFIED PROOF" 
-                  className="text-metallic-brass font-ui text-xs tracking-[0.6em] border-b border-metallic-brass/30 pb-1"
+                  text="03 / HOW WE HELP — OUR WORK" 
+                  className="text-metallic-brass font-ui text-xs tracking-[0.4em] border-b border-metallic-brass/30 pb-1"
                   duration={1.5}
                 />
             </div>
@@ -106,7 +106,7 @@ export default function ProjectsTeaser() {
               className="text-5xl md:text-[8rem] text-off-white font-heading uppercase tracking-tighter leading-[0.85] block"
               maxWidth={1200}
             >
-              PROVEN BUILDS.
+              OUR WORK.
             </CinematicText>
           </div>
           <div className="text-silence text-metallic-brass/30 uppercase tracking-[0.2em] text-[10px] pb-2 border-b border-metallic-brass/10">
