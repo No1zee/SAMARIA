@@ -28,19 +28,24 @@ export default function ProjectsTeaser({ initialProjects = [] }: ProjectsTeaserP
   const [projects, setProjects] = useState<Project[]>(initialProjects);
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const [iframeLoading, setIframeLoading] = useState(true);
+
   const handleNext = () => {
     clink();
+    setIframeLoading(true);
     setActiveIndex((prev) => (prev + 1) % projects.length);
   };
 
   const handlePrev = () => {
     clink();
+    setIframeLoading(true);
     setActiveIndex((prev) => (prev - 1 + projects.length) % projects.length);
   };
 
   const selectCard = (index: number) => {
     if (index === activeIndex) return;
     clink();
+    setIframeLoading(true);
     setActiveIndex(index);
   };
 
@@ -352,7 +357,24 @@ export default function ProjectsTeaser({ initialProjects = [] }: ProjectsTeaserP
                       
                       {/* Web Site Content Area Preview */}
                       <div className="flex-1 overflow-hidden relative">
-                        {renderWebsiteMockPreview(project)}
+                        {isActive ? (
+                          <>
+                            {iframeLoading && (
+                              <div className="absolute inset-0 flex items-center justify-center bg-royal-obsidian/90 z-20">
+                                <div className="w-6 h-6 border-2 border-metallic-brass/80 border-t-transparent rounded-full animate-spin" />
+                              </div>
+                            )}
+                            <iframe
+                              src={project.url}
+                              className="w-full h-full border-none bg-royal-obsidian"
+                              title={project.name}
+                              onLoad={() => setIframeLoading(false)}
+                              sandbox="allow-scripts allow-same-origin allow-forms"
+                            />
+                          </>
+                        ) : (
+                          renderWebsiteMockPreview(project)
+                        )}
                       </div>
                     </div>
                   </motion.div>
