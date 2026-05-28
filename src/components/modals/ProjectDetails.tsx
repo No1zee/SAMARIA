@@ -117,16 +117,43 @@ export default function ProjectDetails({ isOpen, onClose, project }: ProjectDeta
 
               <div className="space-y-6 text-off-white/70 leading-relaxed text-lg">
                 <p>{project?.teaser}</p>
-                <p className="font-light">
-                  Our involvement in this project centered on creating a robust digital infrastructure 
-                  that prioritized both speed and security. By leveraging cutting-edge web technologies, 
-                  we transformed the client&apos;s operational model into a precision-driven ecosystem.
-                </p>
+                
+                {project?.problem && (
+                  <div className="mt-6 border-l border-metallic-brass/40 pl-4 py-1">
+                    <span className="font-ui text-xs uppercase tracking-wider text-metallic-brass block font-bold mb-1">Challenge</span>
+                    <p className="text-sm md:text-base text-off-white/80">{project.problem}</p>
+                  </div>
+                )}
+                {project?.solution && (
+                  <div className="mt-4 border-l border-metallic-brass/40 pl-4 py-1">
+                    <span className="font-ui text-xs uppercase tracking-wider text-metallic-brass block font-bold mb-1">Execution</span>
+                    <p className="text-sm md:text-base text-off-white/80">{project.solution}</p>
+                  </div>
+                )}
+                {project?.result && (
+                  <div className="mt-4 border-l border-metallic-brass/40 pl-4 py-1">
+                    <span className="font-ui text-xs uppercase tracking-wider text-metallic-brass block font-bold mb-1">Impact</span>
+                    <p className="text-sm md:text-base text-off-white/80">{project.result}</p>
+                  </div>
+                )}
               </div>
 
+              {project?.techStack && (
+                <div className="mt-8">
+                  <span className="font-ui text-xs uppercase tracking-widest text-off-white/30 block mb-3">Tech Arsenal</span>
+                  <div className="flex flex-wrap gap-2">
+                    {project.techStack.map((tech) => (
+                      <span key={tech} className="text-[10px] font-ui tracking-widest uppercase bg-white/5 border border-white/10 px-3 py-1 text-off-white/70">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               <div className="mt-12 pt-8 border-t border-brand-red/10">
-                <button className="btn-warrior w-full md:w-auto">
-                  Start Your Project
+                <button className="btn-warrior w-full md:w-auto" onClick={onClose}>
+                  Acknowledge & Close
                 </button>
               </div>
             </div>

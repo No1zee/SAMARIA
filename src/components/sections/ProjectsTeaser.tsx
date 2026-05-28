@@ -27,52 +27,52 @@ interface Project {
 
 const projects: Project[] = [
   {
-    id: "the-architect",
-    name: "The Architect",
-    type: "Custom ERP & Operations Engine",
-    category: "Custom Software",
-    teaser: "A custom transit management platform built for a regional logistics provider in Gaborone, consolidating 14 warehouse databases into a single real-time dashboard and processing $12M+ in annual transit volume.",
-    metricValue: 140,
-    metricSuffix: "%",
-    metricLabel: "Operational Efficiency Gain",
-    tag: "Logistics ERP",
-    image: "/the-architect.png",
-    techStack: ["React", "Node.js", "PostgreSQL", "Docker", "REST API"],
-    problem: "Client ran 14 isolated legacy databases, causing constant transit delays and manual dispatch bottlenecks.",
-    solution: "Constructed a monolithic, real-time dispatch dashboard and synchronized Postgres database to unify fleet operations.",
-    result: "Unified dispatch workflows, processing $12M+ annual transit volume with a 140% operational efficiency gain."
-  },
-  {
-    id: "the-data-temple",
-    name: "The Data Temple",
-    type: "Database Architecture & Migration",
-    category: "Cloud Infrastructure",
-    teaser: "A secure, highly-available cloud-native data architecture designed for a southern African financial services institution, migrating legacy core banking ledgers to AWS with zero downtime.",
-    metricValue: 99.999,
-    metricSuffix: "%",
-    metricLabel: "System Uptime Maintained",
-    tag: "Cloud Infrastructure",
-    image: "/the-data-temple.png",
-    techStack: ["AWS (RDS/S3)", "Terraform", "PostgreSQL", "Python", "IAM"],
-    problem: "Legacy core banking database suffered from frequent latency spikes and high risk during high-volume periods.",
-    solution: "Architected a highly-available, multi-AZ PostgreSQL setup on AWS RDS with structured replication and custom schemas.",
-    result: "Successfully migrated 100% of transaction ledgers to the cloud while maintaining 99.999% system uptime."
-  },
-  {
-    id: "the-guardian",
-    name: "The Guardian",
-    type: "Vulnerability Audit & Hardening",
-    category: "Cybersecurity",
-    teaser: "An end-to-end security penetration audit and perimeter defense configuration for a fast-growing African fintech platform, securing over 2 million active customer wallets.",
+    id: "edward-magejo-portfolio",
+    name: "Edward Magejo Portfolio",
+    type: "High-Fidelity Developer Portfolio",
+    category: "Creative Frontend",
+    teaser: "A premium portfolio system designed for our lead architect, showcasing interactive WebGL visuals, bespoke layouts, and complex physics-based constellations.",
     metricValue: 100,
     metricSuffix: "%",
-    metricLabel: "Threat Protection Success",
-    tag: "Security Hardening",
-    image: "/the-guardian.png",
-    techStack: ["OWASP Hardening", "JWT Auth", "Cloudflare WAF", "Nginx", "System Audit"],
-    problem: "Fast-growing fintech app had unpatched API endpoints, presenting vulnerabilities to automated credential stuffing attacks.",
-    solution: "Executed a full penetration audit, hardened JWT authentication flow, and configured a custom perimeter web firewall.",
-    result: "Secured 2M+ customer wallets with 100% threat mitigation and zero breach attempts since deployment."
+    metricLabel: "Lighthouse Performance Score",
+    tag: "Lead Architect Portfolio",
+    image: "/edward-portfolio-mockup.png",
+    techStack: ["React", "Next.js", "Framer Motion", "GSAP", "Tailwind CSS"],
+    problem: "Our lead architect needed a visual portfolio that immediately establishes engineering credibility without losing performance.",
+    solution: "Engineered a customized Next.js application with optimized visual caching, custom state bridges, and hardware-accelerated animations.",
+    result: "Delivered a premium digital canvas that scores a perfect 100% on Vercel Lighthouse metrics under heavy graphics load."
+  },
+  {
+    id: "portfolio-website",
+    name: "Portfolio Website",
+    type: "Interactive Developer Portal",
+    category: "UI/UX & WebGL",
+    teaser: "A lightweight, highly responsive developer hub showcasing complex canvas renders, spring-physics motion controllers, and customizable themes.",
+    metricValue: 99.9,
+    metricSuffix: "%",
+    metricLabel: "Core Web Vitals Pass Rate",
+    tag: "Creative Showcase",
+    image: "/creative-showcase-mockup.png",
+    techStack: ["TypeScript", "Three.js", "WebGL", "Next.js", "PostCSS"],
+    problem: "Traditional portfolio sites with heavy animation suffer from high bounce rates and poor Core Web Vitals grades.",
+    solution: "Built custom DOM-free canvas rendering cycles and debounced event loop listener layers to optimize interaction cycles.",
+    result: "Maintained 99.9% pass rates for Core Web Vitals across simulated mobile devices."
+  },
+  {
+    id: "it-consulting",
+    name: "IT Consulting Portal",
+    type: "Enterprise Scheduling & Booking System",
+    category: "Automated Systems",
+    teaser: "A custom consulting portal built for corporate clients, featuring client log tracking, integrated booking schedules, and dynamic intake wizard states.",
+    metricValue: 2.4,
+    metricSuffix: "x",
+    metricLabel: "Intake Conversion Rate",
+    tag: "Enterprise Portal",
+    image: "/it-consulting-mockup.png",
+    techStack: ["Next.js", "Supabase", "PostgreSQL", "Tailwind CSS", "REST API"],
+    problem: "Manual consulting coordination caused severe intake booking friction and client conversion drop-offs.",
+    solution: "Constructed a custom booking workflow integrated with PostgreSQL databases and automatic calendar alerts.",
+    result: "Fully automated the consultation pipeline, yielding a 2.4x increase in conversion rate within the first quarter."
   }
 ];
  
@@ -96,9 +96,9 @@ export default function ProjectsTeaser() {
                   duration={1.5}
                 />
             </div>
-            <div className="flex items-center gap-fb1 mb-fb2">
-                <span className="text-silence text-white/40 text-[10px] uppercase tracking-widest">
-                  Systems built to perform, scale, and outlast under institutional constraints.
+            <div className="flex items-center gap-fb1 mb-fb2 max-w-4xl">
+                <span className="text-silence text-white/50 text-xs md:text-sm uppercase tracking-widest leading-relaxed block my-3">
+                  We build custom digital infrastructure tailored to your exact operational requirements. While our live deployments showcase front-facing creative systems, our capabilities extend across custom database architectures, logistics ERPs, financial ledgers, and secure backend systems. Here are three of our best live Vercel deployments.
                 </span>
             </div>
             <CinematicText 
