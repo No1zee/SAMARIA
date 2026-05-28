@@ -38,7 +38,7 @@ export default function FAQ() {
   const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
 
   return (
-    <section id="faq" className="py-12 md:py-24 bg-transparent relative overflow-hidden">
+    <section id="faq" className="py-12 md:py-24 bg-royal-obsidian z-10 relative overflow-hidden border-t border-white/5">
       {/* Subtle gradient */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(201,168,76,0.04)_0%,transparent_60%)] pointer-events-none" />
 

@@ -16,6 +16,7 @@ const GravityOrbit = dynamic(() => import("@/components/animations/GravityOrbit"
 const About = dynamic(() => import("@/components/home/About"));
 const FAQ = dynamic(() => import("@/components/sections/FAQ"));
 const WarCouncilContact = dynamic(() => import("@/components/sections/WarCouncilContact"));
+const Testimonials = dynamic(() => import("@/components/sections/Testimonials"));
 const MobileStickyCTA = dynamic(() => import("@/components/ui/MobileStickyCTA"));
 
 export default function Home() {
@@ -23,39 +24,30 @@ export default function Home() {
     <main className="bg-transparent">
       <GravityOrbit />
       <div className="skew-target">
-        {/* 1. ARRIVAL */}
+        {/* 1. WHO WE ARE */}
         <Hero />
-
-        {/* 2. THE TRUST (Social Proof immediately below Hero) */}
+        <About />
         <TrustBar />
 
-        {/* 3. THE SYSTEMS & SERVICES (What we do - early decision making) */}
+        {/* 2. WHAT WE DO */}
         <Capabilities />
 
-        {/* NARRATIVE BRIDGE 01 */}
+        {/* 3. HOW WE CAN HELP / PROOF */}
         <TransitionBridge 
           text="The work is the argument. Built to outlast everyone else."
           intensity={0.5}
         />
-
-        {/* 4. THE PROOF (Case Studies) */}
         <ProjectsTeaser />
-
-        {/* 5. THE WORLDVIEW (Philosophy & Brand switchers) */}
         <Philosophy />
+        <ApproachSteps />
         <InteractionLab />
 
-        {/* 6. THE DISCIPLINE (Methodology) */}
-        <ApproachSteps />
-
-        {/* 7. THE BELIEF & TRUST (Founders) */}
-        <About />
-
-        {/* 8. THE CLARITY (FAQ) */}
-        <FAQ />
-
-        {/* 9. THE INVITATION (Contact) */}
+        {/* 4. GET IN TOUCH */}
         <WarCouncilContact />
+
+        {/* 5. OTHER STUFF */}
+        <Testimonials />
+        <FAQ />
       </div>
 
       <MobileStickyCTA />
