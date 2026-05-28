@@ -176,64 +176,6 @@ export default function Capabilities() {
           ))}
         </div>
 
-        {/* Categorized Enterprise Stack Section */}
-        <div className="mt-fb10 pt-fb6 border-t border-white/5">
-          <div className="text-left mb-8 max-w-4xl">
-            <span className="text-[10px] font-ui tracking-[0.6em] uppercase text-metallic-brass/60">
-              THE ARSENAL • ENTERPRISE CAPABILITIES
-            </span>
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div>
-              <span className="font-heading text-xs text-metallic-brass tracking-wider block mb-4 uppercase">
-                Frontend Systems
-              </span>
-              <ul className="space-y-2 font-ui text-[10px] text-off-white/60 tracking-widest uppercase">
-                <li>• Next.js / React 19</li>
-                <li>• TypeScript</li>
-                <li>• Tailwind CSS v4</li>
-                <li>• GSAP & Motion Engine</li>
-              </ul>
-            </div>
-            
-            <div>
-              <span className="font-heading text-xs text-metallic-brass tracking-wider block mb-4 uppercase">
-                Backend Services
-              </span>
-              <ul className="space-y-2 font-ui text-[10px] text-off-white/60 tracking-widest uppercase">
-                <li>• Go, Rust, Node.js</li>
-                <li>• Python & FastAPI</li>
-                <li>• REST & GraphQL APIs</li>
-                <li>• Prisma ORM / WebSockets</li>
-              </ul>
-            </div>
-            
-            <div>
-              <span className="font-heading text-xs text-metallic-brass tracking-wider block mb-4 uppercase">
-                Cloud & Databases
-              </span>
-              <ul className="space-y-2 font-ui text-[10px] text-off-white/60 tracking-widest uppercase">
-                <li>• AWS (RDS/S3/Lambda)</li>
-                <li>• PostgreSQL & Supabase</li>
-                <li>• Terraform IaC</li>
-                <li>• Docker & Kubernetes</li>
-              </ul>
-            </div>
-            
-            <div>
-              <span className="font-heading text-xs text-metallic-brass tracking-wider block mb-4 uppercase">
-                Security & Continuity
-              </span>
-              <ul className="space-y-2 font-ui text-[10px] text-off-white/60 tracking-widest uppercase">
-                <li>• JWT & OAuth2 Identity</li>
-                <li>• OWASP Perimeter Shield</li>
-                <li>• SOC2 & ISO 27001 Readiness</li>
-                <li>• Automated Disaster Recovery</li>
-              </ul>
-            </div>
-          </div>
-        </div>
 
       </div>
     </section>

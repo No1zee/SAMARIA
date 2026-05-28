@@ -106,7 +106,7 @@ export default function ProjectsTeaser() {
               className="text-5xl md:text-[8rem] text-off-white font-heading uppercase tracking-tighter leading-[0.85] block"
               maxWidth={1200}
             >
-              OUR WORK.
+              WHAT WE'VE BUILT.
             </CinematicText>
           </div>
           <div className="text-silence text-metallic-brass/30 uppercase tracking-[0.2em] text-[10px] pb-2 border-b border-metallic-brass/10">

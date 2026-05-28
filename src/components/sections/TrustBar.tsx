@@ -5,10 +5,10 @@ import { TrendingUp, Users, Star, Clock } from "lucide-react";
 import CountUp from "@/components/ui/CountUp";
 
 const stats = [
-  { value: 2023, label: "Est.", icon: <TrendingUp className="w-5 h-5" />, prefix: "" },
-  { value: 50, label: "Clients", icon: <Users className="w-5 h-5" />, suffix: "+" },
-  { value: 100, label: "Delivered on Spec", icon: <Star className="w-5 h-5" />, suffix: "%" },
-  { value: 2, label: "Systems Built", icon: <Clock className="w-5 h-5" />, prefix: "$", suffix: "M+" },
+  { value: 10, label: "Engineered Lifespan", icon: <TrendingUp className="w-5 h-5" />, suffix: " Years" },
+  { value: 100, label: "Code & IP Sovereignty", icon: <Users className="w-5 h-5" />, suffix: "%" },
+  { value: 99.9, label: "Target System Uptime", icon: <Star className="w-5 h-5" />, suffix: "%", decimals: 1 },
+  { value: 7, label: "Loom Walkthrough Cycle", icon: <Clock className="w-5 h-5" />, suffix: " Days" },
 ];
 
 const CLIENTS = [
@@ -96,8 +96,8 @@ export default function TrustBar() {
                   <CountUp 
                     to={stat.value} 
                     duration={2} 
-                    prefix={stat.prefix} 
                     suffix={stat.suffix} 
+                    decimals={stat.decimals}
                   />
                 </div>
                 {/* Label */}
@@ -111,7 +111,7 @@ export default function TrustBar() {
           {/* Verified operational metrics footnote */}
           <div className="mt-6 text-left">
             <span className="text-[10px] font-ui tracking-wider text-metallic-brass/50 uppercase select-none">
-              * Verified historical operational metrics across 50+ enterprise systems built since 2023.
+              * Standards established for all projects built under our five-step continuity blueprint.
             </span>
           </div>
         </div>
