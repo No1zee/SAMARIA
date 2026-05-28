@@ -134,7 +134,7 @@ export default function WarCouncilContact() {
         {/* Section Header (Grid Spine Alignment) */}
         <div className="mb-fb8 border-l border-metallic-brass/40 pl-6 md:pl-8">
           <div className="flex items-center gap-fb2 mb-fb3">
-            <span className="text-[10px] tracking-[0.3em] font-ui text-metallic-brass uppercase">04 / GET IN TOUCH</span>
+            <span className="text-[10px] tracking-[0.3em] font-ui text-metallic-brass uppercase">GET IN TOUCH</span>
           </div>
           <CelestialHeading 
             text={"GET IN\nTOUCH."}

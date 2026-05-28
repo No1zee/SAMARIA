@@ -85,7 +85,7 @@ export default function Capabilities() {
                 whileInView={{ opacity: 1, y: 0 }}
                 className="section-label block mb-fb3"
               >
-                02 / WHAT WE DO
+                WHAT WE DO
               </motion.span>
               <CinematicText 
                 fontSize={128}

@@ -52,7 +52,7 @@ export default function FAQ() {
           transition={{ duration: 0.7 }}
         >
           <span className="section-label mb-4 block">
-            05 / OTHER STUFF
+            OTHER STUFF
           </span>
           <CelestialHeading 
             text="COMMON QUESTIONS."

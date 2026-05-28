@@ -91,7 +91,7 @@ export default function ProjectsTeaser() {
           <div>
             <div className="flex items-center gap-fb1 mb-fb2">
                 <ScrambleText 
-                  text="03 / HOW WE HELP — OUR WORK" 
+                  text="HOW WE HELP — OUR WORK" 
                   className="text-metallic-brass font-ui text-xs tracking-[0.4em] border-b border-metallic-brass/30 pb-1"
                   duration={1.5}
                 />

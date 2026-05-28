@@ -48,7 +48,7 @@ export default function InteractionLab() {
             <div className="flex items-center gap-fb1 mb-fb2">
                <Zap className="w-3 h-3 text-metallic-brass" />
                <ScrambleText 
-                 text="03 / HOW WE HELP — SANDBOX" 
+                 text="HOW WE HELP — SANDBOX" 
                  className="text-metallic-brass font-ui text-[10px] tracking-[0.3em] uppercase"
                  duration={2}
                />

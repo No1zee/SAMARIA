@@ -95,7 +95,7 @@ export default function ApproachSteps() {
           <motion.span 
             className="text-[10px] md:text-xs font-ui text-metallic-brass tracking-[0.4em] uppercase block mb-fb3 opacity-40"
           >
-            03 / HOW WE HELP — PROCESS
+            HOW WE HELP — PROCESS
           </motion.span>
           <h2 className="font-heading text-4xl md:text-8xl font-bold text-off-white mb-6 uppercase leading-[0.9]">
             <CelestialText intensity={1.2}>FIVE STEPS. ZERO SHORTCUTS.</CelestialText>

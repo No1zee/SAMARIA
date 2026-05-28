@@ -16,7 +16,7 @@ export default function About() {
         
         {/* The Horizon Header — The Inscribed Manifesto */}
         <div className="mb-fb7 border-l border-metallic-brass/40 pl-6 md:pl-8">
-          <span className="section-label mb-4 block">01 / ABOUT US</span>
+          <span className="section-label mb-4 block">ABOUT US</span>
           <h2 className="text-5xl md:text-[8rem] font-heading uppercase tracking-tighter leading-[0.85] flex flex-col">
             <CinematicText 
               baseColor="rgba(255, 255, 255, 0.95)"
