@@ -19,6 +19,14 @@ const WarCouncilContact = dynamic(() => import("@/components/sections/WarCouncil
 const Testimonials = dynamic(() => import("@/components/sections/Testimonials"));
 const MobileStickyCTA = dynamic(() => import("@/components/ui/MobileStickyCTA"));
 
+import { Suspense } from "react";
+import { getPortfolioProjects } from "@/app/portfolio-data";
+
+async function ProjectsSection() {
+  const projects = await getPortfolioProjects();
+  return <ProjectsTeaser initialProjects={projects} />;
+}
+
 export default function Home() {
   return (
     <main className="bg-transparent">
@@ -26,7 +34,7 @@ export default function Home() {
       <div className="skew-target">
         {/* 1. WHO WE ARE */}
         <Hero />
-<AboutWrapper />
+        <AboutWrapper />
         <TrustBar />
 
         {/* 2. WHAT WE DO */}
@@ -37,7 +45,13 @@ export default function Home() {
           text="The work is the argument. Built to outlast everyone else."
           intensity={0.5}
         />
-        <ProjectsTeaser />
+        <Suspense fallback={
+          <div className="py-20 text-center text-xs font-ui text-white/20 uppercase tracking-widest">
+            Loading Portfolio...
+          </div>
+        }>
+          <ProjectsSection />
+        </Suspense>
         <Philosophy />
         <ApproachSteps />
         <InteractionLab />
