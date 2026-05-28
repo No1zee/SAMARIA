@@ -14,9 +14,6 @@ interface Project {
   type: string;
   category: string;
   teaser: string;
-  metricValue: number;
-  metricSuffix: string;
-  metricLabel: string;
   tag: string;
   image: string;
   techStack: string[];
@@ -32,9 +29,6 @@ const projects: Project[] = [
     type: "High-Fidelity Developer Portfolio",
     category: "Creative Frontend",
     teaser: "A premium portfolio system designed for our lead architect, showcasing interactive WebGL visuals, bespoke layouts, and complex physics-based constellations.",
-    metricValue: 100,
-    metricSuffix: "%",
-    metricLabel: "Lighthouse Performance Score",
     tag: "Lead Architect Portfolio",
     image: "/edward-portfolio-mockup.png",
     techStack: ["React", "Next.js", "Framer Motion", "GSAP", "Tailwind CSS"],
@@ -48,9 +42,6 @@ const projects: Project[] = [
     type: "Interactive Developer Portal",
     category: "UI/UX & WebGL",
     teaser: "A lightweight, highly responsive developer hub showcasing complex canvas renders, spring-physics motion controllers, and customizable themes.",
-    metricValue: 99.9,
-    metricSuffix: "%",
-    metricLabel: "Core Web Vitals Pass Rate",
     tag: "Creative Showcase",
     image: "/creative-showcase-mockup.png",
     techStack: ["TypeScript", "Three.js", "WebGL", "Next.js", "PostCSS"],
@@ -64,9 +55,6 @@ const projects: Project[] = [
     type: "Enterprise Scheduling & Booking System",
     category: "Automated Systems",
     teaser: "A custom consulting portal built for corporate clients, featuring client log tracking, integrated booking schedules, and dynamic intake wizard states.",
-    metricValue: 2.4,
-    metricSuffix: "x",
-    metricLabel: "Intake Conversion Rate",
     tag: "Enterprise Portal",
     image: "/it-consulting-mockup.png",
     techStack: ["Next.js", "Supabase", "PostgreSQL", "Tailwind CSS", "REST API"],
@@ -123,7 +111,7 @@ export default function ProjectsTeaser() {
                 setSelectedProject(project);
                 setIsModalOpen(true);
               }}
-              className="group cursor-pointer border border-white/5 bg-royal-obsidian/85 hover:border-metallic-brass/30 hover:bg-royal-obsidian/95 transition-all duration-500 p-8 flex flex-col justify-between min-h-[460px] md:min-h-[560px] relative overflow-hidden rounded-sm"
+              className="group cursor-pointer border border-white/5 bg-royal-obsidian/85 hover:border-metallic-brass/30 hover:bg-royal-obsidian/95 transition-all duration-500 p-8 flex flex-col justify-between min-h-[400px] md:min-h-[480px] relative overflow-hidden rounded-sm"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -143,7 +131,7 @@ export default function ProjectsTeaser() {
                   <h3 className="text-2xl md:text-3xl font-heading text-off-white uppercase mb-4 group-hover:text-metallic-brass transition-colors duration-300">
                     {project.name}
                   </h3>
-
+ 
                   {/* Architecture Diagram Slot */}
                   <div className="relative w-full aspect-[16/10] my-4 border border-white/10 bg-black/40 overflow-hidden rounded-sm group-hover:border-metallic-brass/35 transition-colors duration-500">
                     <Image 
@@ -171,7 +159,7 @@ export default function ProjectsTeaser() {
                       <p className="no-prose">{project.result}</p>
                     </div>
                   </div>
-
+ 
                   {/* Tech Stack Badges */}
                   <div className="flex flex-wrap gap-1.5 mt-4">
                     {project.techStack.map((tech) => (
@@ -179,13 +167,6 @@ export default function ProjectsTeaser() {
                         {tech}
                       </span>
                     ))}
-                  </div>
-                </div>
- 
-                <div className="border-t border-white/5 pt-6 mt-6">
-                  <span className="block text-[9px] font-ui text-white/40 uppercase tracking-widest mb-1">{project.metricLabel}</span>
-                  <div className="text-3xl font-heading text-metallic-brass font-bold flex items-baseline">
-                    {project.metricValue}{project.metricSuffix}
                   </div>
                 </div>
               </div>

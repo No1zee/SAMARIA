@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, TrendingUp } from "lucide-react";
+import { X } from "lucide-react";
 import { prepare, layout } from "@chenglou/pretext";
 
 interface Project {
@@ -11,9 +11,6 @@ interface Project {
   type: string;
   category: string;
   teaser: string;
-  metricValue: number;
-  metricSuffix: string;
-  metricLabel: string;
   tag: string;
   image: string;
   techStack?: string[];
@@ -45,8 +42,8 @@ export default function ProjectDetails({ isOpen, onClose, project }: ProjectDeta
       const prepared = prepare(project.teaser, font);
       const { height } = layout(prepared, width, lineHeight);
       
-      // Add extra height for title, metrics, and padding
-      queueMicrotask(() => setContentHeight(height + 300));
+      // Add extra height for title and padding
+      queueMicrotask(() => setContentHeight(height + 250));
     } catch (e) {
       console.error("Layout calculation failed for modal:", e);
       queueMicrotask(() => setContentHeight(600)); // Fallback
@@ -106,10 +103,6 @@ export default function ProjectDetails({ isOpen, onClose, project }: ProjectDeta
               )}
 
               <div className="flex items-center gap-4 mb-8">
-                <div className="flex items-center gap-2 px-3 py-1 bg-metallic-brass/10 border border-metallic-brass/20 text-metallic-brass rounded-full text-xs font-ui">
-                  <TrendingUp className="w-3.5 h-3.5" />
-                  {project?.metricValue}{project?.metricSuffix}
-                </div>
                 <span className="text-off-white/40 text-sm font-ui uppercase tracking-widest">
                   {project?.category}
                 </span>
