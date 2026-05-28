@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 
 // Dynamic imports
 const Hero = dynamic(() => import("@/components/home/Hero"));
+import AboutWrapper from "@/components/home/AboutWrapper";
 const TransitionBridge = dynamic(() => import("@/components/ui/TransitionBridge"));
 const Philosophy = dynamic(() => import("@/components/home/Philosophy"));
 const TrustBar = dynamic(() => import("@/components/sections/TrustBar"));
@@ -25,6 +26,7 @@ export default function Home() {
       <div className="skew-target">
         {/* 1. WHO WE ARE */}
         <Hero />
+<AboutWrapper />
         <TrustBar />
 
         {/* 2. WHAT WE DO */}

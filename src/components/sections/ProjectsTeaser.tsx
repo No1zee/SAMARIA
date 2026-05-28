@@ -8,29 +8,30 @@ import ProjectDetails from "@/components/modals/ProjectDetails";
 import ScrambleText from "@/components/animations/ScrambleText";
 import CinematicText from "@/components/ui/CinematicText";
  
+import VercelProjectCard from "@/components/sections/VercelProjectCard";
+// In production we will replace it with live Vercel projects fetched from the API.
 interface Project {
   id: string;
   name: string;
-  type: string;
-  category: string;
-  teaser: string;
-  tag: string;
+  url: string;
   image: string;
+  tag: string;
+  category: string;
   techStack: string[];
   problem: string;
   solution: string;
   result: string;
 }
 
-const projects: Project[] = [
+// Placeholder projects used when the API fails or is unreachable.
+const fallbackProjects: Project[] = [
   {
     id: "it-consulting",
     name: "Enterprise Operations Portal",
-    type: "Custom Operations Portal & Scheduling",
-    category: "Operations Automation",
-    teaser: "An automated client intake and scheduling system that connects booking forms directly to secure calendars and client management databases.",
-    tag: "Operations Automation",
+    url: "#",
     image: "/it-consulting-mockup.png",
+    tag: "Operations Automation",
+    category: "Operations Automation",
     techStack: ["Next.js", "Supabase", "PostgreSQL", "Tailwind CSS", "REST API"],
     problem: "Managing consultation booking and calendar coordination manually caused high administration friction.",
     solution: "We built a customer booking workflow integrated with PostgreSQL databases and automated calendar synchronization.",
@@ -39,36 +40,44 @@ const projects: Project[] = [
   {
     id: "database-system",
     name: "Cloud-Native Database System",
-    type: "High-Scale Inventory & Sync Engine",
-    category: "System Architecture",
-    teaser: "A serverless inventory caching and synchronization system designed to handle high transaction volumes and instant inventory search queries.",
-    tag: "Database Architecture",
+    url: "#",
     image: "/creative-showcase-mockup.png",
+    tag: "Database Architecture",
+    category: "System Architecture",
     techStack: ["TypeScript", "Redis", "PostgreSQL", "Next.js", "AWS Cloud"],
-    problem: "A retail platform experienced database locks and slow search queries during high-traffic promotional hours.",
-    solution: "We engineered a serverless caching layer using Redis databases and optimized write-heavy query pipelines.",
-    result: "Reduced search query speeds from 3 seconds to under 45 milliseconds, resolving system lockups completely."
+    problem: "A retail platform experienced database locks and slow search queries during high‑traffic promotional hours.",
+    solution: "We engineered a serverless caching layer using Redis databases and optimized write‑heavy query pipelines.",
+    result: "Reduced search query speeds from 3 seconds to under 45 ms, eliminating lock‑ups.",
   },
   {
     id: "continuity-system",
     name: "IT Continuity & Support Platform",
-    type: "Critical Monitoring & Failover Server",
-    category: "Maintenance & Continuity",
-    teaser: "A redundant web architecture and monitoring system built to prevent server down-times and guarantee secure continuity.",
-    tag: "Continuity & Support",
+    url: "#",
     image: "/edward-portfolio-mockup.png",
+    tag: "Continuity & Support",
+    category: "Maintenance & Continuity",
     techStack: ["React", "Next.js", "Docker", "Sentry", "AWS VPC"],
-    problem: "Critical client systems lacked automatic alerts and recovery systems, risking costly downtime during hosting failures.",
+    problem: "Critical client systems lacked automatic alerts and recovery systems, risking costly downtime.",
     solution: "We deployed an automated uptime monitor with redundant failover servers and immediate notification loops.",
-    result: "Maintained a guaranteed 99.99% system uptime over 12 months with automated server recovery cycles."
-  }
+    result: "Maintained a guaranteed 99.99 % uptime over 12 months with automated server recovery cycles.",
+  },
 ];
  
+import { useEffect, useState } from "react";
+import useSWR from "swr";
+
+// Simple fetcher for SWR
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
 export default function ProjectsTeaser() {
   const { clink } = useHaptics();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
  
+  // Fetch live Vercel projects – fallback to static data on error.
+  const { data, error } = useSWR('/api/vercel-projects', fetcher);
+  const projects: Project[] = data?.projects ?? fallbackProjects;
+
   return (
     <section id="artifacts" className="py-12 md:py-fb8 relative overflow-hidden bg-royal-obsidian z-10">
       
@@ -105,72 +114,14 @@ export default function ProjectsTeaser() {
         {/* Case Study Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-fb4 items-stretch">
           {projects.map((project) => (
-            <motion.div
+            <VercelProjectCard
               key={project.id}
-              onClick={() => {
+              project={project}
+              onSelect={() => {
                 setSelectedProject(project);
                 setIsModalOpen(true);
               }}
-              className="group cursor-pointer border border-white/5 bg-royal-obsidian/85 hover:border-metallic-brass/30 hover:bg-royal-obsidian/95 transition-all duration-500 p-8 flex flex-col justify-between min-h-[400px] md:min-h-[480px] relative overflow-hidden rounded-sm"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
- 
-              <div className="relative z-10 flex flex-col h-full justify-between">
-                <div>
-                  <div className="flex justify-between items-center mb-6">
-                    <span className="text-[9px] font-ui text-metallic-brass tracking-[0.3em] uppercase border border-metallic-brass/25 px-3 py-1 rounded-full bg-metallic-brass/5">
-                      {project.tag}
-                    </span>
-                    <span className="text-[9px] font-ui text-white/30 uppercase tracking-[0.2em]">
-                      {project.category}
-                    </span>
-                  </div>
- 
-                  <h3 className="text-2xl md:text-3xl font-heading text-off-white uppercase mb-4 group-hover:text-metallic-brass transition-colors duration-300">
-                    {project.name}
-                  </h3>
- 
-                  {/* Architecture Diagram Slot */}
-                  <div className="relative w-full aspect-[16/10] my-4 border border-white/10 bg-black/40 overflow-hidden rounded-sm group-hover:border-metallic-brass/35 transition-colors duration-500">
-                    <Image 
-                      src={project.image} 
-                      alt={`${project.name} system diagram`}
-                      fill
-                      className="object-cover"
-                    />
-                    {/* Cyber blueprint grid overlay */}
-                    <div className="absolute inset-0 bg-[linear-gradient(rgba(201,168,76,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(201,168,76,0.03)_1px,transparent_1px)] bg-[size:14px_14px] pointer-events-none" />
-                  </div>
- 
-                  {/* Problem / Solution / Result Bullet Points */}
-                  <div className="space-y-4 my-6 font-body text-xs text-off-white/70 leading-relaxed">
-                    <div>
-                      <span className="font-ui text-[9px] uppercase tracking-wider text-metallic-brass block font-bold mb-0.5">Problem</span>
-                      <p className="no-prose">{project.problem}</p>
-                    </div>
-                    <div>
-                      <span className="font-ui text-[9px] uppercase tracking-wider text-metallic-brass block font-bold mb-0.5">Solution</span>
-                      <p className="no-prose">{project.solution}</p>
-                    </div>
-                    <div>
-                      <span className="font-ui text-[9px] uppercase tracking-wider text-metallic-brass block font-bold mb-0.5">Result</span>
-                      <p className="no-prose">{project.result}</p>
-                    </div>
-                  </div>
- 
-                  {/* Tech Stack Badges */}
-                  <div className="flex flex-wrap gap-1.5 mt-4">
-                    {project.techStack.map((tech) => (
-                      <span key={tech} className="text-[8px] font-ui tracking-widest uppercase bg-white/5 border border-white/10 px-2 py-0.5 text-off-white/60">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+            />
           ))}
         </div>
  
