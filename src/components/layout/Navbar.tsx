@@ -9,6 +9,7 @@ import WarriorLogo from "@/components/ui/WarriorLogo";
 import { useCelestial } from "@/components/providers/CelestialProvider";
 
 const navItems = [
+  { name: "About Us", href: "/about-us" },
   { name: "Services", href: "/#capabilities" },
   { name: "Work", href: "/#artifacts" },
   { name: "FAQ", href: "/#faq" },
@@ -90,18 +91,18 @@ export default function Navbar() {
 
         {/* Mobile Menu Toggle — Minimalist Horizon Icon */}
         <button
-          className="lg:hidden flex items-center gap-2.5 p-2.5 z-60 cursor-pointer justify-self-end"
+          className="lg:hidden flex items-center gap-2.5 p-2.5 relative z-[60] cursor-pointer justify-self-end"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
         >
           <span className="font-ui text-[10px] tracking-widest text-metallic-brass uppercase font-bold select-none">
             {mobileMenuOpen ? "CLOSE" : "MENU"}
           </span>
-          <div className="flex flex-col gap-1.5 w-5 items-end justify-center">
+          <div className="w-5 h-5 relative flex flex-col justify-center gap-1.5 items-end">
             {mobileMenuOpen ? (
-              <div className="relative w-4 h-4 flex items-center justify-center">
-                <div className="absolute w-4 h-0.5 bg-metallic-brass rotate-45" />
-                <div className="absolute w-4 h-0.5 bg-metallic-brass -rotate-45" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-5 h-0.5 bg-metallic-brass rotate-45 absolute" />
+                <div className="w-5 h-0.5 bg-metallic-brass -rotate-45 absolute" />
               </div>
             ) : (
               <>

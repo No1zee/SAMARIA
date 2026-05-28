@@ -12,7 +12,7 @@ const footerLinks = {
     { name: "Digital Ecosystems", href: "#services" },
   ],
   Company: [
-    { name: "About Us", href: "#about" },
+    { name: "About Us", href: "/about-us" },
     { name: "Case Studies", href: "#artifacts" },
     { name: "Contact", href: "#contact" },
   ],

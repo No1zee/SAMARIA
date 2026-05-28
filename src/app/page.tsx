@@ -13,7 +13,6 @@ const Capabilities = dynamic(() => import("@/components/home/Capabilities"));
 const ProjectsTeaser = dynamic(() => import("@/components/sections/ProjectsTeaser"));
 const InteractionLab = dynamic(() => import("@/components/sections/InteractionLab"));
 const GravityOrbit = dynamic(() => import("@/components/animations/GravityOrbit"));
-const About = dynamic(() => import("@/components/home/About"));
 const FAQ = dynamic(() => import("@/components/sections/FAQ"));
 const WarCouncilContact = dynamic(() => import("@/components/sections/WarCouncilContact"));
 const Testimonials = dynamic(() => import("@/components/sections/Testimonials"));
@@ -26,7 +25,6 @@ export default function Home() {
       <div className="skew-target">
         {/* 1. WHO WE ARE */}
         <Hero />
-        <About />
         <TrustBar />
 
         {/* 2. WHAT WE DO */}
