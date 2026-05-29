@@ -61,37 +61,48 @@ export default function About() {
           <div className="md:col-span-7 flex flex-col items-start gap-fb7">
              
              <motion.div
-               initial={{ opacity: 0, y: 30 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               viewport={{ once: true }}
-               className="space-y-fb6 border-l border-white/5 pl-6 md:pl-8"
-             >
-                <div className="max-w-2xl">
-                   <CelestialHeading 
-                     as="h3"
-                     text="BUILT FOR THE LONG RUN."
-                     fontSize={48}
-                     className="mb-fb4 no-prose"
-                     intensity={0.6}
-                   />
-                   <p className="text-white/85 text-xl md:text-2xl font-body leading-relaxed italic no-prose">
-                     We build high-performance web systems engineered for longevity and stability. Every codebase we ship is clean, fully documented, and built to support your operations for the next ten years.
-                   </p>
-                </div>
- 
-                <div className="max-w-2xl">
-                  <CelestialHeading 
-                    as="h3"
-                    text="COMPLETE OWNERSHIP."
-                    fontSize={48}
-                    className="mb-fb4 no-prose"
-                    intensity={0.6}
-                  />
-                  <p className="text-white/85 text-xl md:text-2xl font-body leading-relaxed italic no-prose">
-                    Full ownership. Zero vendor lock-in. When the project is complete, you receive all IP, source code, hosting credentials, and documentation. The infrastructure belongs entirely to you.
-                  </p>
-                </div>
-             </motion.div>
+  initial={{ opacity: 0, y: 30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  className="space-y-fb6 border-l border-white/5 pl-6 md:pl-8"
+>
+  <div className="max-w-2xl">
+    <CelestialHeading as="h3" text="WHO WE ARE." fontSize={48} className="mb-fb4 no-prose" intensity={0.6} />
+    <p className="text-white/85 text-xl md:text-2xl font-body leading-relaxed italic no-prose">
+      Samaria is a digital services company that helps businesses build a stronger presence, run more smoothly, and grow with confidence through custom websites, portfolios, business systems, social media support, and practical IT solutions. We combine design, development, strategy, and technical support to create digital tools that are not only visually strong, but genuinely useful to the people who rely on them every day.
+      We believe good IT work should bring clarity, not confusion. That means building solutions that are tailored to each client, explained in plain language, and delivered with the professionalism, care, and long‑term thinking serious businesses need.
+    </p>
+  </div>
+
+  <div className="max-w-2xl">
+    <CelestialHeading as="h3" text="OUR MISSION." fontSize={48} className="mb-fb4 no-prose" intensity={0.6} />
+    <p className="text-white/85 text-xl md:text-2xl font-body leading-relaxed italic no-prose">
+      Our mission is to provide reliable, high‑quality digital and IT services that help businesses present themselves better, operate more efficiently, and build on systems they can truly depend on.
+    </p>
+  </div>
+
+  <div className="max-w-2xl">
+    <CelestialHeading as="h3" text="OUR VISION." fontSize={48} className="mb-fb4 no-prose" intensity={0.6} />
+    <p className="text-white/85 text-xl md:text-2xl font-body leading-relaxed italic no-prose">
+      Our vision is to become a trusted long‑term technology partner for ambitious businesses in Africa and beyond by delivering work that is modern, dependable, and built to create real value over time.
+    </p>
+  </div>
+
+  <div className="max-w-2xl">
+    <CelestialHeading as="h3" text="BUILT FOR THE LONG RUN." fontSize={48} className="mb-fb4 no-prose" intensity={0.6} />
+    <p className="text-white/85 text-xl md:text-2xl font-body leading-relaxed italic no-prose">
+      We take pride in building work that lasts. Whether we are designing a website, setting up a business system, supporting digital operations, or managing the technical side of a growing brand, we care about quality, structure, and the details that make a service dependable long after delivery.
+      For us, long‑term thinking means more than launch day. It means giving clients solutions that are clean, maintainable, scalable, and supported by people who care about doing the job properly the first time.
+    </p>
+  </div>
+
+  <div className="max-w-2xl">
+    <CelestialHeading as="h3" text="COMPLETE OWNERSHIP." fontSize={48} className="mb-fb4 no-prose" intensity={0.6} />
+    <p className="text-white/85 text-xl md:text-2xl font-body leading-relaxed italic no-prose">
+      We want every client to feel confident about what they are paying for and what they are receiving. That is why we value transparency, clear communication, and full handover, so you are never left with a system you do not understand or a service you cannot control.
+    </p>
+  </div>
+</motion.div>
 
               {/* Founders Section (The Master's Seals) */}
               <div className="pt-fb6 border-t border-white/10 w-full flex flex-col gap-fb6">

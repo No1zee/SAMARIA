@@ -32,40 +32,11 @@ const steps: WizardStep[] = [
       "Other Custom Build"
     ]
   },
-  {
-    id: "problem",
-    label: "02 // SYSTEM PURPOSE",
-    question: "What is the primary problem or bottleneck this system will solve?",
-    placeholder: "e.g., manual spreadsheet data entry, slow intake, outdated website...",
-    field: "problem",
-    type: "text",
-    isTextArea: true
-  },
-  {
-    id: "budget",
-    label: "03 // COMMERCIAL BAND",
-    question: "What is your target budget range for this project?",
-    placeholder: "Select target range...",
-    field: "budget",
-    type: "text",
-    options: [
-      "$5,000 - $12,000 (Website)",
-      "$15,000 - $45,000 (Custom App)",
-      "$50,000+ (Enterprise DB)",
-      "Not sure yet / Flexible"
-    ]
-  },
-  {
-    id: "timeline",
-    label: "04 // TARGET TIMELINE",
-    question: "What is your target launch timeline?",
-    placeholder: "e.g., Within 2 months, by end of quarter, flexible...",
-    field: "message",
-    type: "text"
-  },
+
+
   {
     id: "company",
-    label: "05 // BUSINESS ENTITY",
+    label: "02 // BUSINESS ENTITY",
     question: "What is your company or organization name?",
     placeholder: "Company Name",
     field: "company",
@@ -73,15 +44,15 @@ const steps: WizardStep[] = [
   },
   {
     id: "email",
-    label: "06 // ESTABLISH COMMUNICATION",
-    question: "What is your work email?",
+    label: "03 // ESTABLISH COMMUNICATION",
+    question: "what is your email?",
     placeholder: "Work Email",
     field: "nexus",
     type: "email"
   },
   {
     id: "name",
-    label: "07 // IDENTIFY YOURSELF",
+    label: "04 // IDENTIFY YOURSELF",
     question: "What is your name?",
     placeholder: "Your Name",
     field: "identity",
@@ -98,9 +69,7 @@ export default function WarCouncilContact() {
     nexus: "",
     company: "",
     phone: "",
-    message: "",
     problem: "",
-    budget: "",
   });
   const [submitted, setSubmitted] = useState(false);
   const [validationError, setValidationError] = useState<string | null>(null);
