@@ -182,7 +182,7 @@ function BookCard({ project, containerRef }: { project: Project; containerRef: R
           )}
           
           <iframe
-            src={project.url}
+            src={`/api/proxy?url=${encodeURIComponent(project.url)}`}
             className="w-full h-full border-none bg-[#0e0e0e]"
             title={project.name}
             loading="lazy"
