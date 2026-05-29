@@ -7,6 +7,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
+    // Allow self-signed or mismatch SSL certificates (like smilesdentalzw.com Netlify mismatch)
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
     const response = await fetch(url, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0 Safari/537.36'
