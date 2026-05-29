@@ -40,16 +40,16 @@ export default function Testimonials() {
           transition={{ duration: 0.7 }}
         >
           <span className="section-label mb-4 block">
-            TESTIMONIALS
+            CLIENT PERSPECTIVE
           </span>
           <CelestialHeading 
-            text="WHAT CLIENTS SAY."
+            text="What clients value."
             as="h2"
             fontSize={56}
             className="text-balance"
           />
           <p className="text-white/85 mt-4 text-xl max-w-xl leading-relaxed no-prose">
-            How our engineering philosophies translate into operational realities for African builders.
+            Clients come to us for delivery, but stay with us for clarity, ownership, and dependable execution over time.
           </p>
         </motion.div>
 

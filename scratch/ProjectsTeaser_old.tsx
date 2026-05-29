@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, ExternalLink, Globe } from "lucide-react";
 import { useHaptics } from "@/hooks/useHaptics";
 import ScrambleText from "@/components/animations/ScrambleText";
-import CelestialHeading from "@/components/ui/CelestialHeading";
+import CinematicText from "@/components/ui/CinematicText";
 
 interface Project {
   id: string;
@@ -17,10 +17,6 @@ interface Project {
   themeColor: string;
   accentColor: string;
   isLive?: boolean;
-  clientType: string;
-  problem: string;
-  solution: string;
-  outcome: string;
 }
 
 interface ProjectsTeaserProps {
@@ -29,7 +25,7 @@ interface ProjectsTeaserProps {
 
 export default function ProjectsTeaser({ initialProjects = [] }: ProjectsTeaserProps) {
   const { clink } = useHaptics();
-  const [projects] = useState<Project[]>(initialProjects);
+  const [projects, setProjects] = useState<Project[]>(initialProjects);
   const [activeIndex, setActiveIndex] = useState(0);
   const [iframeLoading, setIframeLoading] = useState(true);
 
@@ -74,7 +70,7 @@ export default function ProjectsTeaser({ initialProjects = [] }: ProjectsTeaserP
               </div>
             </div>
             <div className="border-t border-amber-500/10 pt-3 flex justify-between items-center text-[7px] text-amber-500/40 font-ui uppercase">
-              <span>© NGUVA SAND CO.</span><span>LOGISTICS PLATFORM</span>
+              <span>┬® NGUVA SAND CO.</span><span>LOGISTICS PLATFORM</span>
             </div>
           </div>
         );
@@ -170,7 +166,7 @@ export default function ProjectsTeaser({ initialProjects = [] }: ProjectsTeaserP
               </div>
             </div>
             <div className="border-t border-zinc-500/10 pt-3 flex justify-between items-center text-[7px] text-zinc-500/40 font-ui uppercase">
-              <span>© VALKUBU LIMITED</span><span>GLOBAL HEADQUARTERS</span>
+              <span>┬® VALKUBU LIMITED</span><span>GLOBAL HEADQUARTERS</span>
             </div>
           </div>
         );
@@ -207,29 +203,28 @@ export default function ProjectsTeaser({ initialProjects = [] }: ProjectsTeaserP
   if (projects.length === 0) return null;
 
   return (
-    <section id="selected-work" className="py-16 md:py-fb8 relative overflow-hidden bg-black/10">
+    <section id="artifacts" className="py-12 md:py-fb8 relative overflow-hidden z-10 border-y border-white/5">
       <div className="container max-w-[1500px] mx-auto px-fb3 md:px-fb4 relative z-10">
-        
-        {/* Section Header */}
-        <div className="mb-fb6 border-l border-metallic-brass/40 pl-6 md:pl-8 max-w-3xl">
+        {/* Ambient backing ÔÇö scoped to container, fades right like hero */}
+        <div className="absolute inset-0 bg-gradient-to-r from-royal-obsidian via-royal-obsidian/80 to-transparent blur-md opacity-90 pointer-events-none -z-10" />
+
+        {/* Section Header ÔÇö minimal */}
+        <div className="mb-fb6 border-l border-metallic-brass/40 pl-6 md:pl-8">
           <ScrambleText
-            text="SELECTED WORK"
+            text="PORTFOLIO ÔÇö WORK & ARTIFACTS"
             className="text-metallic-brass font-ui text-xs tracking-[0.2em] border-b border-metallic-brass/30 pb-1 inline-block mb-fb3"
             duration={1.5}
           />
-          <CelestialHeading 
-            as="h2" 
-            text="The work is the proof." 
-            fontSize={56} 
-            className="mb-fb3 uppercase tracking-tighter no-prose" 
-            intensity={0.6} 
-          />
-          <p className="text-white/70 text-sm md:text-base font-body leading-relaxed max-w-2xl no-prose">
-            A small selection of live systems built for clarity, performance, and long-term use. Each project reflects the same standard: useful now, maintainable later, and owned by the client.
-          </p>
+          <CinematicText
+            fontSize={128}
+            className="text-5xl md:text-[8rem] text-off-white font-heading uppercase tracking-tighter leading-[0.85] block"
+            maxWidth={1200}
+          >
+            WHAT WE&apos;VE BUILT.
+          </CinematicText>
         </div>
 
-        {/* Cinematic Showcase Stack */}
+        {/* ÔöÇÔöÇ Full-width cinematic showcase ÔöÇÔöÇ */}
         <div className="relative">
 
           {/* Floating prev arrow */}
@@ -242,7 +237,7 @@ export default function ProjectsTeaser({ initialProjects = [] }: ProjectsTeaserP
             <ArrowLeft size={16} />
           </button>
 
-          {/* Card stack — full width, tall */}
+          {/* Card stack ÔÇö full width, tall */}
           <div className="relative w-full h-[420px] md:h-[580px] flex items-center justify-center px-8 md:px-14">
             <div className="relative w-full h-full">
               {projects.map((project, idx) => {
@@ -307,7 +302,7 @@ export default function ProjectsTeaser({ initialProjects = [] }: ProjectsTeaserP
                               onLoad={() => setIframeLoading(false)}
                               sandbox="allow-scripts allow-same-origin allow-forms"
                             />
-                            {/* Hover-to-visit overlay */}
+                            {/* Hover-to-visit overlay ÔÇö icon only, no text */}
                             <a
                               href={project.url}
                               target="_blank"

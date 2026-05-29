@@ -74,8 +74,8 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-off-white/60 text-xl md:text-[2.5rem] leading-none max-w-2xl mb-fb4 font-heading uppercase tracking-tighter">
-              ENGINEERING THE <br className="hidden md:block" />
-              LONG GAME.
+              BUILT FOR <br className="hidden md:block" />
+              THE LONG RUN.
             </p>
             <div className="flex flex-col gap-2 mb-fb6">
               <a href="mailto:mission@samaria.tech" className="text-metallic-brass/60 hover:text-metallic-brass transition-colors uppercase tracking-[0.2em] text-[10px] md:text-xs font-ui">

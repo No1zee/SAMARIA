@@ -9,18 +9,18 @@ export default function About() {
   const blocks = [
     {
       icon: Box,
-      title: "OUR MISSION",
-      desc: "To provide reliable, high-quality digital and IT services that help businesses present themselves better, operate more efficiently, and build on systems they can truly depend on."
+      title: "What we build",
+      desc: "Custom websites, internal tools, client portals, and operational systems designed around the real needs of the business, not generic templates."
     },
     {
       icon: Zap,
-      title: "OUR VISION",
-      desc: "To become a trusted long-term technology partner for ambitious businesses in Africa and beyond by delivering work that is modern, dependable, and built to create real value over time."
+      title: "How we build",
+      desc: "We begin with structure, not decoration. That means better performance, easier maintenance, and systems that can keep working as the business grows."
     },
     {
       icon: Shield,
-      title: "COMPLETE OWNERSHIP",
-      desc: "We value transparency, clear communication, and full handover, so you are never left with a system you do not understand or a service you cannot control."
+      title: "What you keep",
+      desc: "You keep the code, the documentation, and the clarity to manage what has been built. No black boxes, no dependency by design."
     }
   ];
 
@@ -30,16 +30,16 @@ export default function About() {
         
         {/* Section Header */}
         <div className="mb-fb6 border-l border-metallic-brass/40 pl-6 md:pl-8 max-w-3xl">
-          <span className="section-label mb-3 block">ABOUT US</span>
+          <span className="section-label mb-3 block">POSITIONING</span>
           <CelestialHeading 
             as="h2" 
-            text="Who We Are." 
+            text="Infrastructure, not improvisation." 
             fontSize={56} 
             className="mb-fb3 uppercase tracking-tighter no-prose" 
             intensity={0.6} 
           />
           <p className="text-white/70 text-sm md:text-base font-body leading-relaxed max-w-2xl no-prose">
-            Samaria is a digital services company that helps businesses build a stronger presence, run more smoothly, and grow with confidence through custom websites, portfolios, business systems, social media support, and practical IT solutions.
+            Samaria builds digital systems for businesses that intend to last. We focus on clear architecture, practical execution, and handover that leaves clients in control of what they paid for.
           </p>
         </div>
 
@@ -78,7 +78,7 @@ export default function About() {
             href="/start-project"
             className="inline-flex items-center gap-4 text-metallic-brass hover:text-white transition-colors uppercase tracking-[0.2em] font-ui text-xs group border-b border-metallic-brass/20 hover:border-white pb-1"
           >
-            Join the War Council <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+            Start a Project <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
           </Link>
         </div>
 

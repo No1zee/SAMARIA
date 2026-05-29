@@ -9,37 +9,37 @@ const services = [
   {
     id: "01",
     label: "WEBSITES",
-    title: "Websites & Platforms",
-    desc: "We design and build fast, custom websites and company portals that build customer trust and scale naturally.",
+    title: "Websites and platforms",
+    desc: "We design and build fast, credible websites and web platforms that help businesses present themselves properly and scale without friction.",
     bullets: [
-      "Corporate & Brand Websites",
-      "Subscriber & Client Portals",
-      "Performance & SEO Optimization",
-      "Custom Interface Design"
+      "Company and brand websites",
+      "Client and subscriber portals",
+      "Performance and SEO foundations",
+      "Custom interface design"
     ]
   },
   {
     id: "02",
     label: "SYSTEMS",
-    title: "Business Systems & Automation",
-    desc: "We set up internal software, databases, integrations, and server infrastructure to organize your operations.",
+    title: "Business systems and automation",
+    desc: "We build the internal systems that make operations clearer and more efficient, from databases and dashboards to integrations and workflow automation.",
     bullets: [
-      "Database Setup & Security",
-      "Internal Operational Tools",
-      "Third-Party API Integrations",
-      "Reliable Cloud Hosting"
+      "Internal operational tools",
+      "Database setup and structure",
+      "API integrations",
+      "Cloud deployment and reliability"
     ]
   },
   {
     id: "03",
     label: "SUPPORT",
-    title: "Digital Operations Support",
-    desc: "We provide content strategy, routine updates, and ongoing technical support to keep your brand active and secure.",
+    title: "Digital operations support",
+    desc: "We provide structured ongoing support for businesses that need continuity after launch, including updates, maintenance, and operational assistance.",
     bullets: [
-      "Social Media Support",
-      "Content Strategy & Scheduling",
-      "Routine Website Updates",
-      "Regular Backups & Maintenance"
+      "Content and publishing support",
+      "Routine website updates",
+      "Maintenance and backups",
+      "Technical support"
     ]
   }
 ];
@@ -51,16 +51,16 @@ export default function Capabilities() {
         
         {/* Section Header */}
         <div className="mb-fb6 border-l border-metallic-brass/40 pl-6 md:pl-8 max-w-3xl">
-          <span className="section-label mb-3 block">WHAT WE DO</span>
+          <span className="section-label mb-3 block">SERVICES</span>
           <CelestialHeading 
             as="h2" 
-            text="What We Build." 
+            text="What we build." 
             fontSize={56} 
             className="mb-fb3 uppercase tracking-tighter no-prose" 
             intensity={0.6} 
           />
           <p className="text-white/70 text-sm md:text-base font-body leading-relaxed max-w-2xl no-prose">
-            We don't do everything. We focus on custom websites, robust IT systems, and strategic digital operations. We design the interaction, secure the infrastructure, and automate the workflow to change the trajectory of your business.
+            We focus on a small set of systems we can build properly. Each engagement is shaped around usefulness, reliability, and long-term ownership.
           </p>
         </div>
 
@@ -103,7 +103,7 @@ export default function Capabilities() {
                   href="/start-project" 
                   className="inline-flex items-center gap-3 text-metallic-brass hover:text-white transition-all uppercase tracking-[0.25em] text-[10px] font-ui group border border-metallic-brass/20 hover:border-metallic-brass/60 px-5 py-2.5 bg-metallic-brass/5 w-full justify-center"
                 >
-                  <span>Discuss This System</span>
+                  <span>Discuss this build</span>
                   <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </Link>
               </div>

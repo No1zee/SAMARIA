@@ -1,4 +1,4 @@
-// Skill 4+8: Server Component — no "use client" needed here
+// Skill 4+8: Server Component ÔÇö no "use client" needed here
 // All animation-heavy components loaded dynamically (ssr: false) for performance
 
 import dynamic from "next/dynamic";
@@ -7,14 +7,15 @@ import dynamic from "next/dynamic";
 const Hero = dynamic(() => import("@/components/home/Hero"));
 import AboutWrapper from "@/components/home/AboutWrapper";
 const TransitionBridge = dynamic(() => import("@/components/ui/TransitionBridge"));
+const Philosophy = dynamic(() => import("@/components/home/Philosophy"));
 const ApproachSteps = dynamic(() => import("@/components/intro/ApproachSteps"));
 const Capabilities = dynamic(() => import("@/components/home/Capabilities"));
 const ProjectsTeaser = dynamic(() => import("@/components/sections/ProjectsTeaser"));
+const InteractionLab = dynamic(() => import("@/components/sections/InteractionLab"));
 const GravityOrbit = dynamic(() => import("@/components/animations/GravityOrbit"));
 const FAQ = dynamic(() => import("@/components/sections/FAQ"));
 const WarCouncilContact = dynamic(() => import("@/components/sections/WarCouncilContact"));
 const Testimonials = dynamic(() => import("@/components/sections/Testimonials"));
-const InteractionLab = dynamic(() => import("@/components/sections/InteractionLab"));
 const MobileStickyCTA = dynamic(() => import("@/components/ui/MobileStickyCTA"));
 
 import { Suspense } from "react";
@@ -30,18 +31,16 @@ export default function Home() {
     <main className="bg-transparent">
       <GravityOrbit />
       <div className="skew-target">
-        {/* 1. HERO */}
+        {/* 1. WHO WE ARE */}
         <Hero />
-        
-        {/* 2. POSITIONING */}
         <AboutWrapper />
 
-        {/* 3. SERVICES */}
+        {/* 2. WHAT WE DO */}
         <Capabilities />
 
-        {/* 4. SELECTED WORK */}
+        {/* 3. HOW WE CAN HELP / PROOF */}
         <TransitionBridge 
-          text="The work is the proof. Built carefully, delivered clearly, and designed to remain useful."
+          text="The work is the argument. Built to outlast everyone else."
           intensity={0.5}
         />
         <Suspense fallback={
@@ -51,19 +50,16 @@ export default function Home() {
         }>
           <ProjectsSection />
         </Suspense>
-
-        {/* 5. PROCESS */}
+        <Philosophy />
         <ApproachSteps />
+        <InteractionLab />
 
-        {/* 6. TRUST LAYER */}
-        <Testimonials />
-        <FAQ />
-
-        {/* 7. CONTACT CTA */}
+        {/* 4. GET IN TOUCH */}
         <WarCouncilContact />
 
-        {/* 8. INTERACTIVE CONTROLS */}
-        <InteractionLab />
+        {/* 5. OTHER STUFF */}
+        <Testimonials />
+        <FAQ />
       </div>
 
       <MobileStickyCTA />

@@ -54,13 +54,13 @@ export default function FAQ() {
             FAQ
           </span>
           <CelestialHeading 
-            text="COMMON QUESTIONS."
+            text="Common questions."
             as="h2"
             fontSize={56}
             className="text-balance"
           />
           <p className="text-white/85 mt-4 text-xl max-w-xl leading-relaxed no-prose">
-            Honest answers to the questions serious clients always ask.
+            Direct answers on timelines, ownership, pricing, support, and how we deliver the work.
           </p>
         </motion.div>
 

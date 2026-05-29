@@ -116,7 +116,7 @@ export default function WarCouncilContact() {
       <div className="absolute inset-0 bg-parchment-grain opacity-5 pointer-events-none mix-blend-overlay" />
 
       <div className="container max-w-[1500px] mx-auto px-fb3 md:px-fb4 relative z-10">
-        {/* Ambient backing — scoped to container, fades right like hero */}
+        {/* Ambient backing ÔÇö scoped to container, fades right like hero */}
         <div className="absolute inset-0 bg-gradient-to-r from-royal-obsidian via-royal-obsidian/80 to-transparent blur-md opacity-90 pointer-events-none -z-10" />
         
         {/* Section Header (Grid Spine Alignment) */}
@@ -125,14 +125,14 @@ export default function WarCouncilContact() {
             <span className="text-[10px] tracking-[0.2em] font-ui text-metallic-brass uppercase">START A PROJECT</span>
           </div>
           <CelestialHeading 
-            text={"Tell us what\nneeds to be built."}
+            text={"START A\nPROJECT."}
             as="h2"
             fontSize={128}
             className="text-5xl md:text-[8rem]"
             intensity={1.2}
           />
           <p className="text-white/80 text-lg md:text-xl font-body leading-relaxed max-w-2xl mt-6 no-prose">
-            We build websites, systems, and operational software for businesses that need something reliable, clear, and built to last. Share the outline of your project and we will take it from there.
+            We build custom websites and business systems that help your company scale. Tell us about your project below to get started.
           </p>
         </div>
 
