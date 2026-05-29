@@ -562,6 +562,11 @@ export default function SamuraiJackBackground() {
       >
         <svg className="w-full h-full">
           <filter id="starBlur"><feGaussianBlur stdDeviation="0.4" /></filter>
+          <filter id="craterBlur"><feGaussianBlur stdDeviation="2.5" /></filter>
+          <filter id="shimmer">
+            <feTurbulence type="fractalNoise" baseFrequency="0.04 0.08" numOctaves="2" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" />
+          </filter>
           {stars.map((star, i) => (
             <motion.circle
               key={i}
@@ -596,19 +601,31 @@ export default function SamuraiJackBackground() {
         } as any}
         className="absolute w-[80px] h-[80px] md:w-[120px] md:h-[120px] flex items-center justify-center pointer-events-none"
       >
+        {/* Soft lunar glow behind the moon */}
+        <div className="absolute inset-0 bg-[#F2EDD8]/10 rounded-full blur-xl pointer-events-none scale-125" />
+
         <motion.div 
           style={{ backgroundColor: moonColor as any }}
-          className="w-[85%] h-[85%] rounded-full relative overflow-hidden"
+          className="w-[85%] h-[85%] rounded-full relative overflow-hidden shadow-[inset_-8px_-8px_16px_rgba(0,0,0,0.85),inset_8px_8px_12px_rgba(255,255,255,0.3)]"
         >
-          {/* Tartakovsky Styled Lunar Mare (Abstract jagged shapes) */}
+          {/* Tartakovsky Styled Lunar Mare (Abstract jagged shapes with blur filter) */}
           <motion.svg viewBox="0 0 200 200" style={{ opacity: craterOpacity as any }} className="absolute w-full h-full text-black">
-             <path d="M 40,60 Q 70,20 120,40 Q 150,20 160,70 Q 120,100 80,120 Q 30,100 40,60 Z" fill="currentColor" />
-             <path d="M 110,140 Q 150,110 170,140 Q 150,180 120,170 Q 90,150 110,140 Z" fill="currentColor" />
-             <path d="M 30,110 Q 60,90 70,130 Q 50,160 30,140 Z" fill="currentColor" />
-             <circle cx="140" cy="90" r="14" fill="currentColor" />
-             <circle cx="75" cy="155" r="9" fill="currentColor" />
+             <g filter="url(#craterBlur)">
+               <path d="M 40,60 Q 70,20 120,40 Q 150,20 160,70 Q 120,100 80,120 Q 30,100 40,60 Z" fill="currentColor" opacity="0.8" />
+               <path d="M 110,140 Q 150,110 170,140 Q 150,180 120,170 Q 90,150 110,140 Z" fill="currentColor" opacity="0.8" />
+               <path d="M 30,110 Q 60,90 70,130 Q 50,160 30,140 Z" fill="currentColor" opacity="0.8" />
+               <circle cx="140" cy="90" r="14" fill="currentColor" opacity="0.8" />
+               <circle cx="75" cy="155" r="9" fill="currentColor" opacity="0.8" />
+             </g>
           </motion.svg>
           
+          {/* Volumetric spherical shading overlay (terminator line) */}
+          <div className="absolute inset-0 rounded-full pointer-events-none mix-blend-multiply"
+               style={{
+                 background: "radial-gradient(circle at 30% 30%, rgba(255,255,255,1) 0%, rgba(150,150,150,0.5) 50%, rgba(20,20,30,0.92) 80%, rgba(0,0,0,1) 100%)"
+               }} 
+          />
+
           {/* Stylized Flat Crescent Shadow Arc */}
           <div className="absolute inset-0 rounded-full border-12 border-black opacity-15 translate-x-[18px] translate-y-[6px] pointer-events-none" />
         </motion.div>
@@ -630,12 +647,18 @@ export default function SamuraiJackBackground() {
         className="absolute w-[90px] h-[90px] md:w-[140px] md:h-[140px] flex items-center justify-center overflow-visible pointer-events-none"
       >
         <div className="w-full h-full relative flex items-center justify-center">
+            {/* Blinding Solar Corona backglow layers (mix-blend-screen for intensity) */}
+            <div className="absolute w-[220%] h-[220%] rounded-full filter blur-md opacity-40 mix-blend-screen"
+                 style={{ background: "radial-gradient(circle, #FFE270 0%, #E8A317 55%, transparent 70%)" }} />
+            <div className="absolute w-[320%] h-[320%] rounded-full filter blur-xl opacity-25 mix-blend-screen"
+                 style={{ background: "radial-gradient(circle, #E8A317 0%, rgba(201,168,76,0.35) 45%, transparent 70%)" }} />
+
             <motion.div 
               style={{ opacity: sunOpacityResponsive as any }}
               className="absolute inset-[0%] z-0 flex items-center justify-center"
             >
               <svg viewBox="0 0 200 200" className="w-[180%] h-[180%] absolute opacity-100">
-                 <g className="animate-[spin_120s_linear_infinite] origin-center">
+                 <g className="animate-[spin_120s_linear_infinite] origin-center" filter="url(#shimmer)">
                    {/* 12 Major Sun Rays (Thick, majestic, extending far outward) */}
                    {Array.from({ length: 12 }).map((_, i) => (
                      <g key={`major-ray-${i}`} transform={`rotate(${i * 30} 100 100)`}>
