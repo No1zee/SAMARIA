@@ -73,7 +73,9 @@ export default function Capabilities() {
   }, []);
 
   return (
-    <section id="capabilities" className="py-12 md:py-fb9 relative overflow-hidden bg-royal-obsidian z-10" ref={containerRef}>
+    <section id="capabilities" className="py-12 md:py-fb9 relative overflow-hidden z-10" ref={containerRef}>
+      {/* Glassmorphic background — lets background visuals show through like hero */}
+      <div className="absolute inset-0 bg-royal-obsidian/60 backdrop-blur-[2px] pointer-events-none" />
       <div className="container max-w-[1500px] mx-auto px-fb3 md:px-fb4 relative z-10">
         
         {/* Section Header — Editorial Style */}
@@ -159,7 +161,7 @@ export default function Capabilities() {
                   transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                   className="chapter-image-container relative aspect-[1.2/1] md:aspect-[1.5/1] overflow-hidden rounded-sm grayscale-50 hover:grayscale-0 transition-all duration-1000 group bg-white/2 backdrop-blur-[20px] border border-metallic-brass/15"
                 >
-                  <div className="absolute inset-0 bg-obsidian/40 group-hover:bg-transparent transition-colors duration-1000 z-10" />
+                  <div className="absolute inset-0 bg-obsidian/20 group-hover:bg-transparent transition-colors duration-1000 z-10" />
                   <Image 
                     src={chapter.image} 
                     alt={chapter.name}

@@ -26,7 +26,8 @@ const TESTIMONIALS = [
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="py-12 md:py-24 bg-royal-obsidian z-10 relative overflow-hidden border-t border-white/5">
+    <section id="testimonials" className="py-12 md:py-24 z-10 relative overflow-hidden border-t border-white/5">
+      <div className="absolute inset-0 bg-royal-obsidian/55 backdrop-blur-[2px] pointer-events-none" />
       {/* Subtle background glow */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(201,168,76,0.03)_0%,transparent_70%)] pointer-events-none" />
 

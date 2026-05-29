@@ -238,7 +238,8 @@ export default function ProjectsTeaser({ initialProjects = [] }: ProjectsTeaserP
   };
 
   return (
-    <section id="artifacts" className="py-12 md:py-fb8 relative overflow-hidden bg-royal-obsidian z-10 border-y border-white/5">
+    <section id="artifacts" className="py-12 md:py-fb8 relative overflow-hidden z-10 border-y border-white/5">
+      <div className="absolute inset-0 bg-royal-obsidian/55 backdrop-blur-[2px] pointer-events-none" />
       {/* Background visual graphics */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-b from-metallic-brass/5 to-transparent rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-t from-brand-red/5 to-transparent rounded-full blur-[100px] pointer-events-none" />

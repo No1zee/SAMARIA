@@ -15,7 +15,8 @@ const guarantees = [
 export default function FinalCTA() {
   const { setIsCinematicMode } = useCelestial();
   return (
-    <section className="relative py-36 bg-royal-obsidian overflow-hidden">
+    <section className="relative py-36 overflow-hidden">
+      <div className="absolute inset-0 bg-royal-obsidian/55 backdrop-blur-[2px] pointer-events-none" />
       {/* Background blobs */}
       <div className="absolute inset-0 z-0">
         <CircuitBlob variant="primary" className="opacity-50" />

@@ -208,7 +208,7 @@ export default function Hero() {
                     letterSpacing={TRACKING * buildSize}
                     maxLines={1}
                   >
-                    CUSTOM WEBSITES
+                    Full-Stack Digital & IT Services
                   </CinematicText>
                 </div>
               </div>

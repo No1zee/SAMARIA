@@ -46,7 +46,8 @@ const SOLUTIONS = [
 
 export default function ChallengeImpact() {
   return (
-    <section id="challenge" className="py-24 bg-royal-obsidian relative overflow-hidden">
+    <section id="challenge" className="py-24 relative overflow-hidden">
+      <div className="absolute inset-0 bg-royal-obsidian/55 backdrop-blur-[2px] pointer-events-none" />
       {/* Background Decor */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 left-0 w-full h-full bg-circuit-grid" />
