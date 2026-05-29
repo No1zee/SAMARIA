@@ -95,24 +95,16 @@ export default function ApproachSteps() {
           <motion.span 
             className="text-[10px] md:text-xs font-ui text-metallic-brass tracking-[0.2em] uppercase block mb-fb3 opacity-40"
           >
-            HOW WE HELP — OUR PROCESS
+            PROCESS
           </motion.span>
           <h2 className="font-heading text-4xl md:text-8xl font-bold text-off-white mb-6 uppercase leading-[0.9]">
             <CelestialText intensity={1.2}>FIVE STEPS. ZERO SHORTCUTS.</CelestialText>
           </h2>
-          <div className="text-off-white/80 text-lg md:text-2xl font-body leading-relaxed max-w-2xl italic no-prose">
+          <div className="text-off-white/80 text-lg md:text-xl font-body leading-relaxed max-w-2xl no-prose">
             <CelestialText intensity={0.6}>
-              Most agencies rush to the &quot;visuals&quot; because they&apos;re easy to sell. We start with the architecture because it&apos;s what keeps the system alive. 
-              Every engagement follows the same sequence—the only honest way to build for the long run.
+              Every build follows a disciplined sequence to ensure the system is stable, well-structured, and completely documented before handover.
             </CelestialText> 
           </div>
-          <motion.p 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 0.4 }}
-            className="text-metallic-brass font-ui text-[10px] tracking-[0.2em] uppercase mt-8"
-          >
-            Slow is smooth. Smooth is permanent.
-          </motion.p>
         </motion.div>
 
         {/* Steps Grid - Desktop (hidden on mobile) */}

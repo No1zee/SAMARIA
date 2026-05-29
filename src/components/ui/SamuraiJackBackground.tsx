@@ -692,7 +692,7 @@ export default function SamuraiJackBackground() {
       {/* Layer 2: Back Mountain - z-15 */}
       <motion.div 
         style={{ y: mountainBackY, zIndex: 15, filter: mountainFilter as any }} 
-        className="absolute inset-x-0 bottom-[-600px] w-[140%] h-[calc(100%+600px)] translate-x-[-20%] pointer-events-none"
+        className="absolute inset-x-0 bottom-[-600px] w-[140%] h-[calc(38.2vh+600px)] translate-x-[-20%] pointer-events-none"
       >
         <svg viewBox="0 0 1000 1200" preserveAspectRatio="none" className="w-full h-full">
           <path d="M0 1200 L0 220 L150 160 L350 240 L550 140 L750 220 L900 180 L1000 240 L1000 1200 Z" fill="#2E1C33" stroke="#1A0F1A" strokeWidth="2" />
@@ -710,7 +710,7 @@ export default function SamuraiJackBackground() {
       {/* Layer 4: Mid Mountain - z-25 */}
       <motion.div 
         style={{ y: mountainMidY, zIndex: 25, filter: mountainFilter as any }} 
-        className="absolute inset-x-0 bottom-[-600px] w-[120%] h-[calc(100%+600px)] translate-x-[-10%] pointer-events-none"
+        className="absolute inset-x-0 bottom-[-600px] w-[120%] h-[calc(38.2vh+600px)] translate-x-[-10%] pointer-events-none"
       >
         <svg viewBox="0 0 1000 1200" preserveAspectRatio="none" className="w-full h-full">
           <path d="M0 1200 L0 260 L120 190 L280 260 L450 150 L650 240 L800 140 L950 250 L1000 210 L1000 1200 Z" fill="#1C1021" stroke="#09050A" strokeWidth="2" />
@@ -728,7 +728,7 @@ export default function SamuraiJackBackground() {
       {/* Layer 6: Front Mountain - z-35 */}
       <motion.div 
         style={{ y: mountainFrontY, zIndex: 35, filter: mountainFilter as any }} 
-        className="absolute inset-x-0 bottom-[-600px] w-full h-[calc(100%+600px)] pointer-events-none"
+        className="absolute inset-x-0 bottom-[-600px] w-full h-[calc(38.2vh+600px)] pointer-events-none"
       >
         <svg viewBox="0 0 1000 1200" preserveAspectRatio="none" className="w-full h-full">
           <path d="M0 1200 L0 270 L100 160 L240 250 L400 90 L550 210 L720 110 L880 240 L950 140 L1000 260 L1000 1200 Z" fill="#040205" />

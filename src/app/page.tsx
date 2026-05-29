@@ -7,11 +7,9 @@ import dynamic from "next/dynamic";
 const Hero = dynamic(() => import("@/components/home/Hero"));
 import AboutWrapper from "@/components/home/AboutWrapper";
 const TransitionBridge = dynamic(() => import("@/components/ui/TransitionBridge"));
-const Philosophy = dynamic(() => import("@/components/home/Philosophy"));
 const ApproachSteps = dynamic(() => import("@/components/intro/ApproachSteps"));
 const Capabilities = dynamic(() => import("@/components/home/Capabilities"));
 const ProjectsTeaser = dynamic(() => import("@/components/sections/ProjectsTeaser"));
-const InteractionLab = dynamic(() => import("@/components/sections/InteractionLab"));
 const GravityOrbit = dynamic(() => import("@/components/animations/GravityOrbit"));
 const FAQ = dynamic(() => import("@/components/sections/FAQ"));
 const WarCouncilContact = dynamic(() => import("@/components/sections/WarCouncilContact"));
@@ -31,14 +29,16 @@ export default function Home() {
     <main className="bg-transparent">
       <GravityOrbit />
       <div className="skew-target">
-        {/* 1. WHO WE ARE */}
+        {/* 1. HERO */}
         <Hero />
+        
+        {/* 2. POSITIONING */}
         <AboutWrapper />
 
-        {/* 2. WHAT WE DO */}
+        {/* 3. SERVICES */}
         <Capabilities />
 
-        {/* 3. HOW WE CAN HELP / PROOF */}
+        {/* 4. SELECTED WORK */}
         <TransitionBridge 
           text="The work is the argument. Built to outlast everyone else."
           intensity={0.5}
@@ -50,16 +50,16 @@ export default function Home() {
         }>
           <ProjectsSection />
         </Suspense>
-        <Philosophy />
+
+        {/* 5. PROCESS */}
         <ApproachSteps />
-        <InteractionLab />
 
-        {/* 4. GET IN TOUCH */}
-        <WarCouncilContact />
-
-        {/* 5. OTHER STUFF */}
+        {/* 6. TRUST LAYER */}
         <Testimonials />
         <FAQ />
+
+        {/* 7. CONTACT CTA */}
+        <WarCouncilContact />
       </div>
 
       <MobileStickyCTA />

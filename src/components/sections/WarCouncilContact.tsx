@@ -122,10 +122,10 @@ export default function WarCouncilContact() {
         {/* Section Header (Grid Spine Alignment) */}
         <div className="mb-fb8 border-l border-metallic-brass/40 pl-6 md:pl-8">
           <div className="flex items-center gap-fb2 mb-fb3">
-            <span className="text-[10px] tracking-[0.2em] font-ui text-metallic-brass uppercase">START A PROJECT</span>
+            <span className="text-[10px] tracking-[0.2em] font-ui text-metallic-brass uppercase">START YOUR BUILD</span>
           </div>
           <CelestialHeading 
-            text={"START A\nPROJECT."}
+            text={"START YOUR\nBUILD."}
             as="h2"
             fontSize={128}
             className="text-5xl md:text-[8rem]"
@@ -209,7 +209,7 @@ export default function WarCouncilContact() {
                       </div>
                     </div>
                     <span className="text-[9px] tracking-[0.1em] font-ui text-metallic-brass/50 uppercase">
-                      PROJECT INTAKE
+                      BUILD INTAKE
                     </span>
                   </div>
 
@@ -327,7 +327,7 @@ export default function WarCouncilContact() {
                       onMouseEnter={clink}
                       className="btn-warrior flex items-center gap-4 group"
                     >
-                      {currentStep === steps.length ? "SUBMIT REQUEST" : "CONTINUE"}
+                      {currentStep === steps.length ? "SUBMIT BUILD REQUEST" : "CONTINUE"}
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </button>
                     

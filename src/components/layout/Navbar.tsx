@@ -10,8 +10,8 @@ import { useCelestial } from "@/components/providers/CelestialProvider";
 
 const navItems = [
   { name: "About Us", href: "/about-us" },
-  { name: "Services", href: "/#capabilities" },
-  { name: "Work", href: "/#artifacts" },
+  { name: "Services", href: "/#services" },
+  { name: "Work", href: "/#selected-work" },
   { name: "FAQ", href: "/#faq" },
   { name: "Contact", href: "/#contact" },
 ];
