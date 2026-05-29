@@ -14,6 +14,7 @@ const GravityOrbit = dynamic(() => import("@/components/animations/GravityOrbit"
 const FAQ = dynamic(() => import("@/components/sections/FAQ"));
 const WarCouncilContact = dynamic(() => import("@/components/sections/WarCouncilContact"));
 const Testimonials = dynamic(() => import("@/components/sections/Testimonials"));
+const InteractionLab = dynamic(() => import("@/components/sections/InteractionLab"));
 const MobileStickyCTA = dynamic(() => import("@/components/ui/MobileStickyCTA"));
 
 import { Suspense } from "react";
@@ -60,6 +61,9 @@ export default function Home() {
 
         {/* 7. CONTACT CTA */}
         <WarCouncilContact />
+
+        {/* 8. INTERACTIVE CONTROLS */}
+        <InteractionLab />
       </div>
 
       <MobileStickyCTA />
