@@ -9,37 +9,37 @@ export default function About() {
   const blocks = [
     {
       icon: Box,
-      title: "Custom websites and systems",
-      desc: "We design and build bespoke web portals, platforms, and dashboards. Every system is built to scale naturally, run fast, and integrate seamlessly with your operational tools."
+      title: "OUR MISSION",
+      desc: "To provide reliable, high-quality digital and IT services that help businesses present themselves better, operate more efficiently, and build on systems they can truly depend on."
     },
     {
       icon: Zap,
-      title: "Architecture over shortcuts",
-      desc: "We avoid fragile page builders and shortcut frameworks. By prioritizing stable coding standards and clean structure, your digital infrastructure remains useful long after launch."
+      title: "OUR VISION",
+      desc: "To become a trusted long-term technology partner for ambitious businesses in Africa and beyond by delivering work that is modern, dependable, and built to create real value over time."
     },
     {
       icon: Shield,
-      title: "Full ownership, clear handover",
-      desc: "Every asset, code repository, and configuration is handed over completely. You retain full control of your systems, supported by clear documentation and plain language."
+      title: "COMPLETE OWNERSHIP",
+      desc: "We value transparency, clear communication, and full handover, so you are never left with a system you do not understand or a service you cannot control."
     }
   ];
 
   return (
-    <section id="positioning" className="py-16 md:py-fb8 relative overflow-hidden bg-black/10">
+    <section id="about" className="py-16 md:py-fb8 relative overflow-hidden bg-black/10">
       <div className="container max-w-[1500px] mx-auto px-fb3 md:px-fb4 relative z-10">
         
         {/* Section Header */}
         <div className="mb-fb6 border-l border-metallic-brass/40 pl-6 md:pl-8 max-w-3xl">
-          <span className="section-label mb-3 block">CREDIBILITY</span>
+          <span className="section-label mb-3 block">ABOUT US</span>
           <CelestialHeading 
             as="h2" 
-            text="Built for the long run." 
+            text="Who We Are." 
             fontSize={56} 
             className="mb-fb3 uppercase tracking-tighter no-prose" 
             intensity={0.6} 
           />
           <p className="text-white/70 text-sm md:text-base font-body leading-relaxed max-w-2xl no-prose">
-            We build digital infrastructure with full ownership and clear communication, designed to support your operations without technical debt or platform dependency.
+            Samaria is a digital services company that helps businesses build a stronger presence, run more smoothly, and grow with confidence through custom websites, portfolios, business systems, social media support, and practical IT solutions.
           </p>
         </div>
 
@@ -78,7 +78,7 @@ export default function About() {
             href="/start-project"
             className="inline-flex items-center gap-4 text-metallic-brass hover:text-white transition-colors uppercase tracking-[0.2em] font-ui text-xs group border-b border-metallic-brass/20 hover:border-white pb-1"
           >
-            Start Your Build <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+            Join the War Council <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
           </Link>
         </div>
 

@@ -51,16 +51,16 @@ export default function Capabilities() {
         
         {/* Section Header */}
         <div className="mb-fb6 border-l border-metallic-brass/40 pl-6 md:pl-8 max-w-3xl">
-          <span className="section-label mb-3 block">SERVICES</span>
+          <span className="section-label mb-3 block">WHAT WE DO</span>
           <CelestialHeading 
             as="h2" 
-            text="What We Focus On." 
+            text="What We Build." 
             fontSize={56} 
             className="mb-fb3 uppercase tracking-tighter no-prose" 
             intensity={0.6} 
           />
           <p className="text-white/70 text-sm md:text-base font-body leading-relaxed max-w-2xl no-prose">
-            We focus on a small number of systems we can build properly, helping you replace fragile setups with software you can grow on.
+            We don't do everything. We focus on custom websites, robust IT systems, and strategic digital operations. We design the interaction, secure the infrastructure, and automate the workflow to change the trajectory of your business.
           </p>
         </div>
 

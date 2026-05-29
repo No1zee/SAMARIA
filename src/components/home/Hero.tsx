@@ -50,8 +50,8 @@ export default function Hero() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Line 1: BUILT FOR
-  const buildSize = useTextFit("BUILT FOR", {
+  // Line 1: CUSTOM WEBSITES
+  const buildSize = useTextFit("CUSTOM WEBSITES", {
     maxWidth: availableWidth * CONTENT_WIDTH_SCALE,
     maxHeight: 180,
     font: "'Cinzel Decorative', serif",
@@ -62,8 +62,8 @@ export default function Hero() {
     letterSpacing: TRACKING * 110
   });
 
-  // Line 2: PERMANENCE.
-  const africaSize = useTextFit("PERMANENCE.", {
+  // Line 2: & PORTFOLIOS
+  const africaSize = useTextFit("& PORTFOLIOS", {
     maxWidth: availableWidth * CONTENT_WIDTH_SCALE,
     maxHeight: 180,
     font: "'Cinzel Decorative', serif",
@@ -192,7 +192,7 @@ export default function Hero() {
             <div className="hero-content opacity-0 mb-fb1 flex items-center gap-3">
               <span className="w-1.5 h-1.5 rotate-45 bg-metallic-brass animate-pulse" />
               <span className="text-[10px] md:text-xs font-ui tracking-[0.2em] text-metallic-brass uppercase font-bold">
-                Digital infrastructure for ambitious businesses
+                HIGH-END WEB DESIGN • BUSINESS SYSTEMS • SOCIAL SUPPORT
               </span>
             </div>
 
@@ -208,7 +208,7 @@ export default function Hero() {
                     letterSpacing={TRACKING * buildSize}
                     maxLines={1}
                   >
-                    BUILT FOR
+                    CUSTOM WEBSITES
                   </CinematicText>
                 </div>
               </div>
@@ -224,7 +224,7 @@ export default function Hero() {
                     letterSpacing={TRACKING * africaSize}
                     maxLines={1}
                   >
-                    PERMANENCE.
+                    & PORTFOLIOS
                   </CinematicText>
                 </div>
               </div>
@@ -232,7 +232,7 @@ export default function Hero() {
  
             <div className="hero-content text-off-white/80 max-w-lg mb-fb2 text-base md:text-lg font-body leading-relaxed opacity-0">
               <p className="no-prose">
-                We design and build websites, systems, and operational software that stay useful long after launch.
+                We design and build custom websites, internal tools, and automated workflows for businesses that need reliability, speed, and full ownership of their systems. From company websites to portals, dashboards, and operational tools, we help you replace fragile setups with software you can actually grow on.
               </p>
             </div>
  
@@ -243,7 +243,7 @@ export default function Hero() {
                   onClick={() => setIsCinematicMode(true)}
                   className="btn-warrior group flex items-center justify-center gap-4 py-3 px-8 text-sm"
                 >
-                  START YOUR BUILD
+                  START YOUR PROJECT
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </CelestialText>
@@ -254,7 +254,7 @@ export default function Hero() {
                   onClick={clink}
                   className="btn-ghost border border-white/10 hover:border-metallic-brass/40 px-6 py-3 transition-all duration-500 uppercase tracking-widest text-[10px] w-full sm:w-auto text-center flex items-center justify-center"
                 >
-                  VIEW SELECTED WORK
+                  SEE OUR WORK
                 </Link>
               </CelestialText>
             </div>
