@@ -8,7 +8,6 @@ const Hero = dynamic(() => import("@/components/home/Hero"));
 import AboutWrapper from "@/components/home/AboutWrapper";
 const TransitionBridge = dynamic(() => import("@/components/ui/TransitionBridge"));
 const Philosophy = dynamic(() => import("@/components/home/Philosophy"));
-const TrustBar = dynamic(() => import("@/components/sections/TrustBar"));
 const ApproachSteps = dynamic(() => import("@/components/intro/ApproachSteps"));
 const Capabilities = dynamic(() => import("@/components/home/Capabilities"));
 const ProjectsTeaser = dynamic(() => import("@/components/sections/ProjectsTeaser"));
@@ -35,7 +34,6 @@ export default function Home() {
         {/* 1. WHO WE ARE */}
         <Hero />
         <AboutWrapper />
-        <TrustBar />
 
         {/* 2. WHAT WE DO */}
         <Capabilities />

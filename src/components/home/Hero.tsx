@@ -50,8 +50,8 @@ export default function Hero() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Line 1: WEBSITES & SYSTEMS
-  const buildSize = useTextFit("WEBSITES & SYSTEMS", {
+  // Line 1: CUSTOM WEBSITES
+  const buildSize = useTextFit("CUSTOM WEBSITES", {
     maxWidth: availableWidth * CONTENT_WIDTH_SCALE,
     maxHeight: 180,
     font: "'Cinzel Decorative', serif",
@@ -62,8 +62,8 @@ export default function Hero() {
     letterSpacing: TRACKING * 110
   });
 
-  // Line 2: BUILT TO LAST.
-  const africaSize = useTextFit("BUILT TO LAST.", {
+  // Line 2: & PORTFOLIOS
+  const africaSize = useTextFit("& PORTFOLIOS", {
     maxWidth: availableWidth * CONTENT_WIDTH_SCALE,
     maxHeight: 180,
     font: "'Cinzel Decorative', serif",
@@ -192,10 +192,10 @@ export default function Hero() {
             <div className="hero-content opacity-0 mb-fb1 flex items-center gap-3">
               <span className="w-1.5 h-1.5 rotate-45 bg-metallic-brass animate-pulse" />
               <span className="text-[10px] md:text-xs font-ui tracking-[0.2em] text-metallic-brass uppercase font-bold">
-                CUSTOM WEBSITES • BUSINESS SYSTEMS • WORKFLOW AUTOMATION
+                HIGH-END WEB DESIGN • BUSINESS SYSTEMS • SOCIAL SUPPORT
               </span>
             </div>
- 
+
             <h1 className="mb-fb2 font-heading w-full uppercase">
               <div className="p-0 m-0 block mb-2 md:mb-3">
                 <div className="hero-title-line block">
@@ -208,7 +208,7 @@ export default function Hero() {
                     letterSpacing={TRACKING * buildSize}
                     maxLines={1}
                   >
-                    WEBSITES & SYSTEMS
+                    CUSTOM WEBSITES
                   </CinematicText>
                 </div>
               </div>
@@ -224,7 +224,7 @@ export default function Hero() {
                     letterSpacing={TRACKING * africaSize}
                     maxLines={1}
                   >
-                    BUILT TO LAST.
+                    & PORTFOLIOS
                   </CinematicText>
                 </div>
               </div>

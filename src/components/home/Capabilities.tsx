@@ -17,31 +17,31 @@ const chapters = [
   {
     id: "01",
     label: "WEBSITES",
-    name: "WEBSITES & WEB APPS",
-    description: "We build custom websites, client portals, and web apps that look professional, load fast, and support real business goals.",
-    expanded: "We design and develop fast, secure websites and custom web applications. From corporate portals to subscriber platforms, we ensure your systems are easy for visitors to use and simple for your team to manage.",
+    name: "WEBSITES & PORTFOLIOS",
+    description: "We build custom websites, company portfolios, and web apps that look professional, load fast, and build customer trust.",
+    expanded: "We design and develop fast, secure corporate websites, creative portfolios, and subscriber systems. We focus on modern design, clear navigation, and mobile speed to make sure your audience stays engaged and takes action.",
     image: "/the-oracle.png",
-    tags: ["Fast, modern websites and apps", "Online shops & payments", "SaaS & subscriber portals", "Search & speed optimization"],
+    tags: ["Corporate Websites", "Brand Portfolios", "E-Commerce & Online Stores", "SEO & Load Speed Optimization"],
     align: "left"
   },
   {
     id: "02",
-    label: "BUSINESS SYSTEMS",
-    name: "BUSINESS SYSTEMS & INFRASTRUCTURE",
-    description: "We set up the systems behind your business, including cloud hosting, databases, integrations, and security improvements.",
-    expanded: "We design and launch robust backends, cloud-native deployments, and database architectures. Our setups are hardened against data loss and engineered to run continuously as your operations scale.",
+    label: "SYSTEMS",
+    name: "BUSINESS SYSTEMS & AUTOMATION",
+    description: "We set up internal software, databases, integrations, and server infrastructure to organize your operations.",
+    expanded: "We build custom client portals, customer booking systems, and database layers to connect your tools. We help your business move away from chaotic spreadsheets and manual entry into structured software you own.",
     image: "/the-data-temple.png",
-    tags: ["Reliable cloud hosting", "Third-party API integrations", "Organized & secure databases", "Security auditing & backups"],
+    tags: ["Client Portals & Booking", "Database Setup & Security", "Third-Party API Integrations", "Reliable Cloud Hosting"],
     align: "right"
   },
   {
     id: "03",
-    label: "AUTOMATION",
-    name: "CUSTOM TOOLS & AUTOMATION",
-    description: "We build internal tools, customer dashboards, and automations that reduce repetitive work and help your team move faster.",
-    expanded: "From customer intake pipelines to bespoke logistics dashboards, we write custom software to streamline manual processes. We help you eliminate double-data entry and speed up operational workflows.",
+    label: "SUPPORT",
+    name: "SOCIAL MEDIA & DIGITAL SUPPORT",
+    description: "We provide content creation, social media management, and ongoing technical support to keep your brand active.",
+    expanded: "From content scheduling and page setups to routine website updates and performance checks, we keep your digital channels consistent. We handle the technical maintenance so you can focus on running your business.",
     image: "/the-guardian.png",
-    tags: ["Custom internal tools", "Automated team workflows", "Bespoke API development", "Practical AI automations"],
+    tags: ["Social Media Support", "Content Strategy & Scheduling", "Ongoing Website Updates", "Routine Maintenance & Backups"],
     align: "left"
   }
 ];
