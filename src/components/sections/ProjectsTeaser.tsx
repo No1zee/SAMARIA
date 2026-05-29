@@ -239,12 +239,9 @@ export default function ProjectsTeaser({ initialProjects = [] }: ProjectsTeaserP
 
   return (
     <section id="artifacts" className="py-12 md:py-fb8 relative overflow-hidden z-10 border-y border-white/5">
-      <div className="absolute inset-0 bg-royal-obsidian/55 backdrop-blur-[2px] pointer-events-none" />
-      {/* Background visual graphics */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-b from-metallic-brass/5 to-transparent rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-t from-brand-red/5 to-transparent rounded-full blur-[100px] pointer-events-none" />
-
       <div className="container max-w-[1500px] mx-auto px-fb3 md:px-fb4 relative z-10">
+        {/* Ambient backing — scoped to container, fades right like hero */}
+        <div className="absolute inset-0 bg-gradient-to-r from-royal-obsidian via-royal-obsidian/80 to-transparent blur-md opacity-90 pointer-events-none -z-10" />
         
         {/* Section Header */}
         <div className="mb-fb7 flex flex-col md:flex-row md:items-end md:justify-between gap-6 border-l border-metallic-brass/40 pl-6 md:pl-8">
@@ -396,14 +393,6 @@ export default function ProjectsTeaser({ initialProjects = [] }: ProjectsTeaserP
                 className="space-y-6"
               >
                 <div className="space-y-2">
-                  <div className="flex items-center gap-3">
-                    <span className="text-[10px] font-ui text-metallic-brass tracking-[0.25em] uppercase border border-metallic-brass/20 px-3 py-1 rounded-sm bg-metallic-brass/5">
-                      {projects[activeIndex].tag}
-                    </span>
-                    <span className="text-[10px] font-ui text-white/30 uppercase tracking-[0.2em]">
-                      DEPLOYED
-                    </span>
-                  </div>
                   <h3 className="text-3xl md:text-4xl font-heading text-off-white uppercase leading-none">
                     {projects[activeIndex].name}
                   </h3>
@@ -413,17 +402,6 @@ export default function ProjectsTeaser({ initialProjects = [] }: ProjectsTeaserP
                   {projects[activeIndex].description}
                 </p>
 
-                {/* Tech Stack Badge List */}
-                <div className="flex flex-wrap gap-2">
-                  {projects[activeIndex].techStack.map((tech) => (
-                    <span 
-                      key={tech} 
-                      className="text-[9px] font-ui tracking-wider uppercase bg-white/5 border border-white/10 px-2.5 py-1 text-off-white/75"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
 
                 {/* Main Call to Action: Visit Site */}
                 <div className="pt-2">

@@ -74,9 +74,9 @@ export default function Capabilities() {
 
   return (
     <section id="capabilities" className="py-12 md:py-fb9 relative overflow-hidden z-10" ref={containerRef}>
-      {/* Glassmorphic background — lets background visuals show through like hero */}
-      <div className="absolute inset-0 bg-royal-obsidian/60 backdrop-blur-[2px] pointer-events-none" />
       <div className="container max-w-[1500px] mx-auto px-fb3 md:px-fb4 relative z-10">
+        {/* Ambient backing — scoped to container, fades right like hero */}
+        <div className="absolute inset-0 bg-gradient-to-r from-royal-obsidian via-royal-obsidian/80 to-transparent blur-md opacity-90 pointer-events-none -z-10" />
         
         {/* Section Header — Editorial Style */}
         <div className="mb-fb8 border-l border-metallic-brass/40 pl-6 md:pl-8">

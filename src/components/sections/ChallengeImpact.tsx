@@ -47,13 +47,9 @@ const SOLUTIONS = [
 export default function ChallengeImpact() {
   return (
     <section id="challenge" className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-royal-obsidian/55 backdrop-blur-[2px] pointer-events-none" />
-      {/* Background Decor */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 left-0 w-full h-full bg-circuit-grid" />
-      </div>
-
       <div className="container max-w-[1200px] mx-auto px-6 relative z-10">
+        {/* Ambient backing — scoped to container width, fades right like hero */}
+        <div className="absolute inset-0 bg-gradient-to-r from-royal-obsidian via-royal-obsidian/80 to-transparent blur-md opacity-90 pointer-events-none -z-10" />
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           
           {/* Left: The Old Guard */}

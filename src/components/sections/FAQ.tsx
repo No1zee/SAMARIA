@@ -39,11 +39,9 @@ export default function FAQ() {
 
   return (
     <section id="faq" className="py-12 md:py-24 z-10 relative overflow-hidden border-t border-white/5">
-      <div className="absolute inset-0 bg-royal-obsidian/55 backdrop-blur-[2px] pointer-events-none" />
-      {/* Subtle gradient */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(201,168,76,0.04)_0%,transparent_60%)] pointer-events-none" />
-
       <div className="container max-w-[1500px] mx-auto px-fb3 md:px-fb4 relative z-10">
+        {/* Ambient backing — scoped to container, fades right like hero */}
+        <div className="absolute inset-0 bg-gradient-to-r from-royal-obsidian via-royal-obsidian/80 to-transparent blur-md opacity-90 pointer-events-none -z-10" />
         {/* Header */}
         <motion.div
           className="text-left mb-14 border-l border-metallic-brass/40 pl-6 md:pl-8 max-w-4xl"

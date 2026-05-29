@@ -16,20 +16,9 @@ export default function FinalCTA() {
   const { setIsCinematicMode } = useCelestial();
   return (
     <section className="relative py-36 overflow-hidden">
-      <div className="absolute inset-0 bg-royal-obsidian/55 backdrop-blur-[2px] pointer-events-none" />
-      {/* Background blobs */}
-      <div className="absolute inset-0 z-0">
-        <CircuitBlob variant="primary" className="opacity-50" />
-        <CircuitBlob variant="secondary" className="opacity-30" />
-      </div>
-
-      {/* Radial gold glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(218,26,26,0.08)_0%,transparent_70%)] z-0" />
-
-      {/* Top border accent */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-brand-red/30 to-transparent" />
-
       <div className="container max-w-[1200px] mx-auto px-6 relative z-10">
+        {/* Ambient backing — scoped to container, fades right like hero */}
+        <div className="absolute inset-0 bg-gradient-to-r from-royal-obsidian via-royal-obsidian/80 to-transparent blur-md opacity-90 pointer-events-none -z-10" />
         <motion.div
           className="text-center max-w-3xl mx-auto"
           initial={{ opacity: 0, y: 40 }}
