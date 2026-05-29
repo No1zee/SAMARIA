@@ -28,6 +28,8 @@ interface CelestialContextType {
   bodyScale: MotionValue<number>;
   glow: MotionValue<number>;
   lunarProgress: MotionValue<number>;
+  cloudStyle: "misty" | "ukiyo";
+  setCloudStyle: (val: "misty" | "ukiyo") => void;
 }
 
 const CelestialContext = createContext<CelestialContextType | null>(null);
@@ -181,6 +183,7 @@ export function CelestialProvider({ children }: { children: ReactNode }) {
   });
 
   const [interactionMode, setInteractionMode] = useState<InteractionMode>("standard");
+  const [cloudStyle, setCloudStyle] = useState<"misty" | "ukiyo">("misty");
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -213,9 +216,11 @@ export function CelestialProvider({ children }: { children: ReactNode }) {
       zenithColor,
       horizonColor,
       bodyScale,
-      lunarProgress
+      lunarProgress,
+      cloudStyle,
+      setCloudStyle
     };
-  }, [smoothProgress, x, y, sunX, sunY, moonX, moonY, cinematicInteraction, lightX, lightY, glow, starFlash, isCinematicMode, interactionMode, skyColor, zenithColor, horizonColor, bodyScale, lunarProgress]);
+  }, [smoothProgress, x, y, sunX, sunY, moonX, moonY, cinematicInteraction, lightX, lightY, glow, starFlash, isCinematicMode, interactionMode, skyColor, zenithColor, horizonColor, bodyScale, lunarProgress, cloudStyle, setCloudStyle]);
 
   if (!value) return <>{children}</>;
 

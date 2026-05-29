@@ -110,11 +110,32 @@ interface LayerData {
   strokeWidth?: number;
 }
 
-function UkiyoCloud({ cloud, progress }: { cloud: CloudData; progress: MotionValue<number> }) {
+function UkiyoCloud({ 
+  cloud, 
+  progress, 
+  parallaxX, 
+  parallaxY 
+}: { 
+  cloud: CloudData; 
+  progress: MotionValue<number>; 
+  parallaxX: MotionValue<number>;
+  parallaxY: MotionValue<number>;
+}) {
   const cloudColor = useTransform(
     progress,
-    [0.4, 0.6, 0.8, 1],
-    ["#D4AF37", "#CB984A", "#E5B9B9", "#D4AF37"]
+    [0.0, 0.08, 0.15, 0.20, 0.50, 0.60, 0.68, 0.75, 0.85, 1.0],
+    [
+      "#080B1A", // Midnight Navy (blends with night sky)
+      "#080B1A", 
+      "#FFE270", // Amber Sunrise
+      "#F2EDD8", // Midday Cream
+      "#F2EDD8", 
+      "#D04010", // Sunset Scarlet
+      "#D04010",
+      "#8B0000", // Blood Moon deep red
+      "#8B0000",
+      "#080B1A"
+    ]
   );
 
   const design = CLOUD_DESIGNS[cloud.pathIndex];
@@ -133,7 +154,9 @@ function UkiyoCloud({ cloud, progress }: { cloud: CloudData; progress: MotionVal
         opacity: cloud.opacity,
         animation: `cloud-drift ${cloud.duration} linear infinite`,
         animationDelay: cloud.delay,
-        color: cloudColor
+        color: cloudColor,
+        translateX: parallaxX as any,
+        translateY: parallaxY as any
       }}
     >
       {design.layers.map((layer: LayerData, j) => (
@@ -151,6 +174,116 @@ function UkiyoCloud({ cloud, progress }: { cloud: CloudData; progress: MotionVal
       ))}
     </motion.svg>
   );
+}
+
+function MistyCloud({ 
+  cloud, 
+  progress, 
+  parallaxX, 
+  parallaxY 
+}: { 
+  cloud: CloudData; 
+  progress: MotionValue<number>; 
+  parallaxX: MotionValue<number>;
+  parallaxY: MotionValue<number>;
+}) {
+  const cloudHighlight = useTransform(
+    progress,
+    [0.0, 0.08, 0.15, 0.20, 0.50, 0.60, 0.68, 0.75, 0.85, 1.0],
+    [
+      "#1a1a3c", // Midnight Indigo
+      "#1a1a3c", 
+      "#FFE270", // Sunrise warm yellow
+      "#ffffff", // Midday pure white
+      "#ffffff", 
+      "#FFA834", // Sunset fire gold
+      "#FFA834",
+      "#A32A2A", // Blood Moon crimson
+      "#A32A2A",
+      "#1a1a3c"
+    ]
+  );
+
+  const cloudBase = useTransform(
+    progress,
+    [0.0, 0.08, 0.15, 0.20, 0.50, 0.60, 0.68, 0.75, 0.85, 1.0],
+    [
+      "#080816", // Midnight deep navy
+      "#080816",
+      "#B83A14", // Sunrise burnt orange/red
+      "#CB984A", // Midday golden-gray shadow
+      "#CB984A",
+      "#9A2B2B", // Sunset deep red-rose
+      "#9A2B2B",
+      "#2D0B0B", // Blood Moon charcoal-maroon
+      "#2D0B0B",
+      "#080816"
+    ]
+  );
+
+  return (
+    <motion.svg
+      viewBox="0 0 500 250"
+      className="absolute"
+      animate={{ y: [0, -cloud.bobOffset, 0] }}
+      transition={{ duration: 8 + cloud.bobOffset, repeat: Infinity, ease: "easeInOut" }}
+      style={{
+        left: cloud.left,
+        top: cloud.top,
+        width: "500px",
+        scale: cloud.scale,
+        opacity: cloud.opacity,
+        animation: `cloud-drift ${cloud.duration} linear infinite`,
+        animationDelay: cloud.delay,
+        translateX: parallaxX as any,
+        translateY: parallaxY as any
+      }}
+    >
+      <defs>
+        <filter id={`misty-blur-${cloud.id}`} x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="16" />
+        </filter>
+        <linearGradient id={`misty-grad-${cloud.id}`} x1="0%" y1="0%" x2="0%" y2="100%">
+          <motion.stop offset="0%" stopColor={cloudHighlight} />
+          <motion.stop offset="100%" stopColor={cloudBase} />
+        </linearGradient>
+      </defs>
+      <g filter={`url(#misty-blur-${cloud.id})`}>
+        {/* Ambient soft glow base */}
+        <ellipse cx="250" cy="150" rx="180" ry="60" fill={`url(#misty-grad-${cloud.id})`} opacity="0.35" />
+        {/* Overlapping puffy structures */}
+        <circle cx="160" cy="140" r="65" fill={`url(#misty-grad-${cloud.id})`} opacity="0.75" />
+        <circle cx="240" cy="110" r="85" fill={`url(#misty-grad-${cloud.id})`} opacity="0.9" />
+        <circle cx="330" cy="130" r="70" fill={`url(#misty-grad-${cloud.id})`} opacity="0.8" />
+        <rect x="100" y="150" width="300" height="40" rx="20" fill={`url(#misty-grad-${cloud.id})`} opacity="0.85" />
+      </g>
+    </motion.svg>
+  );
+}
+
+function CloudRenderer({ 
+  cloud, 
+  progress, 
+  mouseX, 
+  mouseY, 
+  factorX, 
+  factorY 
+}: { 
+  cloud: CloudData; 
+  progress: MotionValue<number>; 
+  mouseX: MotionValue<number>; 
+  mouseY: MotionValue<number>;
+  factorX: number;
+  factorY: number;
+}) {
+  const { cloudStyle } = useCelestial();
+  const parallaxX = useTransform(mouseX, (x) => x * factorX);
+  const parallaxY = useTransform(mouseY, (y) => y * factorY);
+
+  if (cloudStyle === "ukiyo") {
+    return <UkiyoCloud cloud={cloud} progress={progress} parallaxX={parallaxX} parallaxY={parallaxY} />;
+  }
+  return <MistyCloud cloud={cloud} progress={progress} parallaxX={parallaxX} parallaxY={parallaxY} />;
 }
 
 function MistBand({ mist, progress }: { mist: MistData; progress: MotionValue<number> }) {
@@ -448,11 +581,7 @@ export default function SamuraiJackBackground() {
         <ShootingStar />
       </motion.div>
 
-      <motion.div style={{ opacity: cloudsOpacity as any, y: cloudsY as any } as any} className="absolute inset-0 z-0">
-        {clouds.map((cloud) => ( <UkiyoCloud key={cloud.id} cloud={cloud} progress={progress} /> ))}
-      </motion.div>
-
-      {/* 3. THE MOON (Tartakovsky Vector Art) */}
+      {/* 2. THE MOON (Tartakovsky Vector Art) */}
        <motion.div 
         style={{ 
           left: moonXPos as any, 
@@ -463,7 +592,7 @@ export default function SamuraiJackBackground() {
           translateY: mouseYValue as any,
           x: "-50%", 
           y: "-50%",
-          zIndex: 1 
+          zIndex: 5 
         } as any}
         className="absolute w-[80px] h-[80px] md:w-[120px] md:h-[120px] flex items-center justify-center pointer-events-none"
       >
@@ -485,7 +614,7 @@ export default function SamuraiJackBackground() {
         </motion.div>
       </motion.div>
  
-      {/* 4. THE SUN / SEAL (z-35) */}
+      {/* 3. THE SUN / SEAL */}
       <motion.div 
         style={{ 
           left: sunXPos as any, 
@@ -496,7 +625,7 @@ export default function SamuraiJackBackground() {
           translateY: mouseY as any,
           x: "-50%", 
           y: "-50%",
-          zIndex: 1
+          zIndex: 5
         } as any}
         className="absolute w-[90px] h-[90px] md:w-[140px] md:h-[140px] flex items-center justify-center overflow-visible pointer-events-none"
       >
@@ -553,40 +682,68 @@ export default function SamuraiJackBackground() {
         </div>
       </motion.div>
 
-      <motion.div className="absolute inset-0 z-10">
+      {/* Layer 1: Background Cloud (Cloud 1) - z-10 */}
+      {clouds[1] && (
+        <motion.div style={{ opacity: cloudsOpacity as any, y: cloudsY as any, zIndex: 10 } as any} className="absolute inset-0 pointer-events-none">
+          <CloudRenderer cloud={clouds[1]} progress={progress} mouseX={mouseXValue} mouseY={mouseYValue} factorX={0.04} factorY={0.02} />
+        </motion.div>
+      )}
+
+      {/* Layer 2: Back Mountain - z-15 */}
+      <motion.div 
+        style={{ y: mountainBackY, zIndex: 15, filter: mountainFilter as any }} 
+        className="absolute inset-x-0 bottom-[-600px] w-[140%] h-[calc(100%+600px)] translate-x-[-20%] pointer-events-none"
+      >
+        <svg viewBox="0 0 1000 1200" preserveAspectRatio="none" className="w-full h-full">
+          <path d="M0 1200 L0 220 L150 160 L350 240 L550 140 L750 220 L900 180 L1000 240 L1000 1200 Z" fill="#2E1C33" stroke="#1A0F1A" strokeWidth="2" />
+        </svg>
+        <motion.div style={{ opacity: hazeOpacity as any }} className="absolute inset-0 bg-linear-to-t from-metallic-brass/10 via-transparent to-transparent" />
+      </motion.div>
+
+      {/* Layer 3: Midground Cloud (Cloud 0) - z-20 */}
+      {clouds[0] && (
+        <motion.div style={{ opacity: cloudsOpacity as any, y: cloudsY as any, zIndex: 20 } as any} className="absolute inset-0 pointer-events-none">
+          <CloudRenderer cloud={clouds[0]} progress={progress} mouseX={mouseXValue} mouseY={mouseYValue} factorX={0.09} factorY={0.05} />
+        </motion.div>
+      )}
+
+      {/* Layer 4: Mid Mountain - z-25 */}
+      <motion.div 
+        style={{ y: mountainMidY, zIndex: 25, filter: mountainFilter as any }} 
+        className="absolute inset-x-0 bottom-[-600px] w-[120%] h-[calc(100%+600px)] translate-x-[-10%] pointer-events-none"
+      >
+        <svg viewBox="0 0 1000 1200" preserveAspectRatio="none" className="w-full h-full">
+          <path d="M0 1200 L0 260 L120 190 L280 260 L450 150 L650 240 L800 140 L950 250 L1000 210 L1000 1200 Z" fill="#1C1021" stroke="#09050A" strokeWidth="2" />
+        </svg>
+        <motion.div style={{ opacity: hazeOpacity as any }} className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent" />
+      </motion.div>
+
+      {/* Layer 5: Foreground Cloud (Cloud 2) - z-30 */}
+      {clouds[2] && (
+        <motion.div style={{ opacity: cloudsOpacity as any, y: cloudsY as any, zIndex: 30 } as any} className="absolute inset-0 pointer-events-none">
+          <CloudRenderer cloud={clouds[2]} progress={progress} mouseX={mouseXValue} mouseY={mouseYValue} factorX={0.16} factorY={0.09} />
+        </motion.div>
+      )}
+
+      {/* Layer 6: Front Mountain - z-35 */}
+      <motion.div 
+        style={{ y: mountainFrontY, zIndex: 35, filter: mountainFilter as any }} 
+        className="absolute inset-x-0 bottom-[-600px] w-full h-[calc(100%+600px)] pointer-events-none"
+      >
+        <svg viewBox="0 0 1000 1200" preserveAspectRatio="none" className="w-full h-full">
+          <path d="M0 1200 L0 270 L100 160 L240 250 L400 90 L550 210 L720 110 L880 240 L950 140 L1000 260 L1000 1200 Z" fill="#040205" />
+          <motion.path d="M100 160 L120 180 M400 120 L430 150 M720 110 L750 140" fill="none" stroke="white" strokeWidth="3" style={{ opacity: rimLightOpacity as any }} />
+          <path d="M0 270 L100 160 L240 250 L400 90 L550 210 L720 110 L880 240 L950 140 L1000 260" fill="none" stroke="rgba(201,168,76,0.3)" strokeWidth="2" />
+        </svg>
+      </motion.div>
+
+      {/* Layer 7: Foreground Mist Bands - z-40 */}
+      <motion.div style={{ zIndex: 40 }} className="absolute inset-0 pointer-events-none">
         {mistBands.map((mist) => ( <MistBand key={mist.id} mist={mist} progress={progress} /> ))}
       </motion.div>
 
-      {/* 5. LAYERED OBSIDIAN MOUNTAINS */}
-      <motion.div style={{ filter: mountainFilter as any }} className="absolute inset-x-0 bottom-0 w-full h-[38.2vh] z-20 pointer-events-none">
-        
-        <motion.div style={{ y: mountainBackY }} className="absolute inset-x-0 bottom-[-600px] w-[140%] h-[calc(100%+600px)] translate-x-[-20%]">
-          <svg viewBox="0 0 1000 1200" preserveAspectRatio="none" className="w-full h-full">
-            <path d="M0 1200 L0 220 L150 160 L350 240 L550 140 L750 220 L900 180 L1000 240 L1000 1200 Z" fill="#2E1C33" stroke="#1A0F1A" strokeWidth="2" />
-          </svg>
-          <motion.div style={{ opacity: hazeOpacity as any }} className="absolute inset-0 bg-linear-to-t from-metallic-brass/10 via-transparent to-transparent" />
-        </motion.div>
-
-        <motion.div style={{ y: mountainMidY }} className="absolute inset-x-0 bottom-[-600px] w-[120%] h-[calc(100%+600px)] translate-x-[-10%]">
-          <svg viewBox="0 0 1000 1200" preserveAspectRatio="none" className="w-full h-full">
-            <path d="M0 1200 L0 260 L120 190 L280 260 L450 150 L650 240 L800 140 L950 250 L1000 210 L1000 1200 Z" fill="#1C1021" stroke="#09050A" strokeWidth="2" />
-          </svg>
-          <motion.div style={{ opacity: hazeOpacity as any }} className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent" />
-        </motion.div>
-
-        <motion.div style={{ y: mountainFrontY }} className="absolute inset-x-0 bottom-[-600px] w-full h-[calc(100%+600px)]">
-          <svg viewBox="0 0 1000 1200" preserveAspectRatio="none" className="w-full h-full">
-            <path d="M0 1200 L0 270 L100 160 L240 250 L400 90 L550 210 L720 110 L880 240 L950 140 L1000 260 L1000 1200 Z" fill="#040205" />
-            <motion.path d="M100 160 L120 180 M400 120 L430 150 M720 110 L750 140" fill="none" stroke="white" strokeWidth="3" style={{ opacity: rimLightOpacity as any }} />
-            <path d="M0 270 L100 160 L240 250 L400 90 L550 210 L720 110 L880 240 L950 140 L1000 260" fill="none" stroke="rgba(201,168,76,0.3)" strokeWidth="2" />
-          </svg>
-        </motion.div>
-      </motion.div>
-
-      {/* Digital Atmosphere (Optional overlays could go here) */}
-
-      {/* 7. DIGITAL EMBERS */}
-      <div className="absolute inset-0 pointer-events-none z-30">
+      {/* Layer 8: Digital Embers - z-45 */}
+      <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 45 }}>
         {particles.map((p: Particle, i: number) => (
           <motion.div key={i} className="absolute rounded-full" style={{ width: p.width, height: p.height, left: p.left, bottom: `-20px`, backgroundColor: (embersColor as unknown) as string, opacity: (embersOpacity as unknown) as number, filter: `blur(${p.blur})`, animation: `ember-drift ${p.duration} linear infinite`, animationDelay: p.delay }} />
         ))}
