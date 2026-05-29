@@ -6,7 +6,6 @@ import dynamic from "next/dynamic";
 // Dynamic imports
 const Hero = dynamic(() => import("@/components/home/Hero"));
 import AboutWrapper from "@/components/home/AboutWrapper";
-const TransitionBridge = dynamic(() => import("@/components/ui/TransitionBridge"));
 const ApproachSteps = dynamic(() => import("@/components/intro/ApproachSteps"));
 const Capabilities = dynamic(() => import("@/components/home/Capabilities"));
 const ProjectsTeaser = dynamic(() => import("@/components/sections/ProjectsTeaser"));
@@ -15,6 +14,7 @@ const FAQ = dynamic(() => import("@/components/sections/FAQ"));
 const WarCouncilContact = dynamic(() => import("@/components/sections/WarCouncilContact"));
 const Testimonials = dynamic(() => import("@/components/sections/Testimonials"));
 const MobileStickyCTA = dynamic(() => import("@/components/ui/MobileStickyCTA"));
+import VersePopup from "@/components/ui/VersePopup";
 
 import { Suspense } from "react";
 import { getPortfolioProjects } from "@/app/portfolio-data";
@@ -38,11 +38,6 @@ export default function Home() {
         {/* 3. SERVICES */}
         <Capabilities />
 
-        {/* 4. SELECTED WORK */}
-        <TransitionBridge 
-          text="The work is the proof. Built carefully, delivered clearly, and designed to remain useful."
-          intensity={0.5}
-        />
         <Suspense fallback={
           <div className="py-20 text-center text-xs font-ui text-white/20 uppercase tracking-widest">
             Loading Portfolio...
@@ -65,6 +60,7 @@ export default function Home() {
       </div>
 
       <MobileStickyCTA />
+      <VersePopup />
     </main>
   );
 }
