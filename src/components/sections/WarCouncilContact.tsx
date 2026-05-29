@@ -110,12 +110,14 @@ export default function WarCouncilContact() {
   };
 
   return (
-    <section id="contact" className="py-12 md:pt-fb9 md:pb-fb7 relative overflow-hidden border-t border-white/5 bg-royal-obsidian/50 backdrop-blur-md z-10">
+    <section id="contact" className="py-12 md:pt-fb9 md:pb-fb7 relative overflow-hidden border-t border-white/5 z-10">
       
       {/* Background Texture Overlay */}
       <div className="absolute inset-0 bg-parchment-grain opacity-5 pointer-events-none mix-blend-overlay" />
 
       <div className="container max-w-[1500px] mx-auto px-fb3 md:px-fb4 relative z-10">
+        {/* Ambient backing — scoped to container, fades right like hero */}
+        <div className="absolute inset-0 bg-gradient-to-r from-royal-obsidian via-royal-obsidian/80 to-transparent blur-md opacity-90 pointer-events-none -z-10" />
         
         {/* Section Header (Grid Spine Alignment) */}
         <div className="mb-fb8 border-l border-metallic-brass/40 pl-6 md:pl-8">

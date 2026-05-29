@@ -28,14 +28,10 @@ export default function IntroHero() {
     maxWidth > 0 ? maxWidth : 1200
   );
   return (
-    <section className="relative py-32 flex items-center justify-center overflow-hidden bg-royal-obsidian border-t border-brand-gold/10">
-      {/* Background circuit pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 left-0 w-full h-full bg-circuit-grid" />
-      </div>
-
-      {/* Content */}
+    <section className="relative py-32 flex items-center justify-center overflow-hidden border-t border-brand-gold/10">
       <div className="container max-w-[1200px] mx-auto px-6 relative z-10" ref={containerRef}>
+        {/* Ambient backing — scoped to container, fades right like hero */}
+        <div className="absolute inset-0 bg-gradient-to-r from-royal-obsidian via-royal-obsidian/80 to-transparent blur-md opacity-90 pointer-events-none -z-10" />
         <motion.div
           className="text-center"
           initial={{ opacity: 0, y: 40 }}
