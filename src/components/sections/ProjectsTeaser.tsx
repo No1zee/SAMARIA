@@ -27,7 +27,6 @@ export default function ProjectsTeaser({ initialProjects = [] }: ProjectsTeaserP
   const { clink } = useHaptics();
   const [projects, setProjects] = useState<Project[]>(initialProjects);
   const [activeIndex, setActiveIndex] = useState(0);
-
   const [iframeLoading, setIframeLoading] = useState(true);
 
   const handleNext = () => {
@@ -49,7 +48,7 @@ export default function ProjectsTeaser({ initialProjects = [] }: ProjectsTeaserP
     setActiveIndex(index);
   };
 
-  // Render a mock preview of each website based on its specific brand layout
+  // Branded mock previews for non-active (background) cards
   const renderWebsiteMockPreview = (project: Project) => {
     switch (project.id) {
       case "nguva-sand":
@@ -58,9 +57,7 @@ export default function ProjectsTeaser({ initialProjects = [] }: ProjectsTeaserP
             <div className="flex justify-between items-center border-b border-amber-500/10 pb-3">
               <span className="font-heading text-xs tracking-widest text-amber-500 font-bold">NGUVA SAND</span>
               <div className="flex gap-2 text-[8px] text-amber-500/60 font-ui uppercase">
-                <span>Services</span>
-                <span>Procurement</span>
-                <span>Contact</span>
+                <span>Services</span><span>Procurement</span><span>Contact</span>
               </div>
             </div>
             <div className="my-auto space-y-3">
@@ -68,16 +65,12 @@ export default function ProjectsTeaser({ initialProjects = [] }: ProjectsTeaserP
               <h4 className="font-heading text-2xl text-amber-100 uppercase tracking-tight leading-none max-w-md">
                 HIGH-QUALITY SILICA & CONSTRUCTION SAND DELIVERED.
               </h4>
-              <p className="text-[10px] text-amber-200/50 max-w-sm font-body leading-normal">
-                Streamlined logistics infrastructure delivering bulk sand across commercial sectors.
-              </p>
               <div className="inline-block border border-amber-500/30 px-3 py-1 text-[8px] text-amber-400 font-ui uppercase tracking-widest bg-amber-500/5">
                 Request Quote
               </div>
             </div>
             <div className="border-t border-amber-500/10 pt-3 flex justify-between items-center text-[7px] text-amber-500/40 font-ui uppercase">
-              <span>© NGUVA SAND CO.</span>
-              <span>LOGISTICS PLATFORM</span>
+              <span>© NGUVA SAND CO.</span><span>LOGISTICS PLATFORM</span>
             </div>
           </div>
         );
@@ -88,9 +81,7 @@ export default function ProjectsTeaser({ initialProjects = [] }: ProjectsTeaserP
             <div className="flex justify-between items-center border-b border-teal-500/10 pb-3">
               <span className="font-heading text-xs tracking-widest text-teal-400 font-bold">SMILES DENTAL</span>
               <div className="flex gap-2 text-[8px] text-teal-400/60 font-ui uppercase">
-                <span>Treatments</span>
-                <span>Staff</span>
-                <span>Portal</span>
+                <span>Treatments</span><span>Staff</span><span>Portal</span>
               </div>
             </div>
             <div className="my-auto space-y-3">
@@ -98,16 +89,12 @@ export default function ProjectsTeaser({ initialProjects = [] }: ProjectsTeaserP
               <h4 className="font-heading text-2xl text-teal-50 uppercase tracking-tight leading-none max-w-md">
                 YOUR TRUSTED DENTAL HEALTH PARTNER.
               </h4>
-              <p className="text-[10px] text-teal-200/50 max-w-sm font-body leading-normal">
-                Schedule consultations and manage your clinical records via our secure online portal.
-              </p>
               <div className="inline-block bg-teal-500 text-teal-950 px-3 py-1 text-[8px] font-ui uppercase tracking-widest font-bold rounded-sm">
                 Book Consultation
               </div>
             </div>
             <div className="border-t border-teal-500/10 pt-3 flex justify-between items-center text-[7px] text-teal-500/40 font-ui uppercase">
-              <span>SMILES DENTAL CLINIC</span>
-              <span>PATIENT CARE</span>
+              <span>SMILES DENTAL CLINIC</span><span>PATIENT CARE</span>
             </div>
           </div>
         );
@@ -118,9 +105,7 @@ export default function ProjectsTeaser({ initialProjects = [] }: ProjectsTeaserP
             <div className="flex justify-between items-center border-b border-sky-500/10 pb-3">
               <span className="font-heading text-xs tracking-widest text-sky-400 font-bold">CONNECT LINK</span>
               <div className="flex gap-2 text-[8px] text-sky-400/60 font-ui uppercase">
-                <span>Buy</span>
-                <span>Rent</span>
-                <span>Properties</span>
+                <span>Buy</span><span>Rent</span><span>Properties</span>
               </div>
             </div>
             <div className="my-auto space-y-3">
@@ -128,16 +113,12 @@ export default function ProjectsTeaser({ initialProjects = [] }: ProjectsTeaserP
               <h4 className="font-heading text-2xl text-sky-50 uppercase tracking-tight leading-none max-w-md">
                 DISCOVER PREMIUM PROPERTIES IN ZIMBABWE.
               </h4>
-              <p className="text-[10px] text-sky-200/50 max-w-sm font-body leading-normal">
-                Complete property ledger, interactive search maps, and streamlined leasing agreements.
-              </p>
               <div className="inline-block border border-sky-500/30 px-3 py-1 text-[8px] text-sky-400 font-ui uppercase tracking-widest bg-sky-500/5">
                 Browse Ledger
               </div>
             </div>
             <div className="border-t border-sky-500/10 pt-3 flex justify-between items-center text-[7px] text-sky-500/40 font-ui uppercase">
-              <span>CONNECT LINK PROPERTIES</span>
-              <span>REAL ESTATE</span>
+              <span>CONNECT LINK PROPERTIES</span><span>REAL ESTATE</span>
             </div>
           </div>
         );
@@ -148,9 +129,7 @@ export default function ProjectsTeaser({ initialProjects = [] }: ProjectsTeaserP
             <div className="flex justify-between items-center border-b border-red-500/15 pb-3">
               <span className="font-heading text-xs tracking-widest text-red-500 font-bold">CARHUB ZW</span>
               <div className="flex gap-2 text-[8px] text-red-500/60 font-ui uppercase">
-                <span>Inventory</span>
-                <span>Financing</span>
-                <span>Sell</span>
+                <span>Inventory</span><span>Financing</span><span>Sell</span>
               </div>
             </div>
             <div className="my-auto space-y-3">
@@ -158,16 +137,12 @@ export default function ProjectsTeaser({ initialProjects = [] }: ProjectsTeaserP
               <h4 className="font-heading text-2xl text-zinc-100 uppercase tracking-tight leading-none max-w-md">
                 FIND YOUR NEXT DRIVING EXPERIENCE.
               </h4>
-              <p className="text-[10px] text-zinc-400 max-w-sm font-body leading-normal">
-                Filter through curated high-performance vehicles with live pricing and history.
-              </p>
               <div className="inline-block bg-red-600 text-white px-3 py-1 text-[8px] font-ui uppercase tracking-widest font-bold">
                 View Inventory
               </div>
             </div>
             <div className="border-t border-red-500/15 pt-3 flex justify-between items-center text-[7px] text-red-500/40 font-ui uppercase">
-              <span>CARHUB ZIMBABWE</span>
-              <span>MARKETPLACE</span>
+              <span>CARHUB ZIMBABWE</span><span>MARKETPLACE</span>
             </div>
           </div>
         );
@@ -178,9 +153,7 @@ export default function ProjectsTeaser({ initialProjects = [] }: ProjectsTeaserP
             <div className="flex justify-between items-center border-b border-zinc-500/10 pb-3">
               <span className="font-heading text-xs tracking-widest text-zinc-300 font-bold">VALKUBU LIMITED</span>
               <div className="flex gap-2 text-[8px] text-zinc-400/60 font-ui uppercase">
-                <span>Logistics</span>
-                <span>Sectors</span>
-                <span>ESG</span>
+                <span>Logistics</span><span>Sectors</span><span>ESG</span>
               </div>
             </div>
             <div className="my-auto space-y-3">
@@ -188,16 +161,12 @@ export default function ProjectsTeaser({ initialProjects = [] }: ProjectsTeaserP
               <h4 className="font-heading text-2xl text-zinc-50 uppercase tracking-tight leading-none max-w-md">
                 GLOBAL LOGISTICS AND STRATEGIC INFRASTRUCTURE.
               </h4>
-              <p className="text-[10px] text-zinc-500 max-w-sm font-body leading-normal">
-                Connecting supply chains with custom shipping solutions and secure ledger systems.
-              </p>
               <div className="inline-block border border-zinc-500/30 px-3 py-1 text-[8px] text-zinc-300 font-ui uppercase tracking-widest bg-zinc-500/5">
                 Corporate Report
               </div>
             </div>
             <div className="border-t border-zinc-500/10 pt-3 flex justify-between items-center text-[7px] text-zinc-500/40 font-ui uppercase">
-              <span>© VALKUBU LIMITED</span>
-              <span>GLOBAL HEADQUARTERS</span>
+              <span>© VALKUBU LIMITED</span><span>GLOBAL HEADQUARTERS</span>
             </div>
           </div>
         );
@@ -208,9 +177,7 @@ export default function ProjectsTeaser({ initialProjects = [] }: ProjectsTeaserP
             <div className="flex justify-between items-center border-b border-emerald-500/10 pb-3">
               <span className="font-heading text-xs tracking-widest text-emerald-400 font-bold">ZIM RUGBY</span>
               <div className="flex gap-2 text-[8px] text-emerald-400/60 font-ui uppercase">
-                <span>Fixtures</span>
-                <span>Squads</span>
-                <span>Registry</span>
+                <span>Fixtures</span><span>Squads</span><span>Registry</span>
               </div>
             </div>
             <div className="my-auto space-y-3">
@@ -218,16 +185,12 @@ export default function ProjectsTeaser({ initialProjects = [] }: ProjectsTeaserP
               <h4 className="font-heading text-2xl text-emerald-50 uppercase tracking-tight leading-none max-w-md">
                 OFFICIAL COORDINATOR & TOURNAMENT LEDGER.
               </h4>
-              <p className="text-[10px] text-emerald-200/50 max-w-sm font-body leading-normal">
-                Verifying registered matches, player statistics, and regional division updates.
-              </p>
               <div className="inline-block bg-emerald-600 text-yellow-100 px-3 py-1 text-[8px] font-ui uppercase tracking-widest font-bold">
                 Fixtures Hub
               </div>
             </div>
             <div className="border-t border-emerald-500/10 pt-3 flex justify-between items-center text-[7px] text-emerald-500/40 font-ui uppercase">
-              <span>ZIMBABWE RUGBY UNION</span>
-              <span>TOURNAMENT REGISTRY</span>
+              <span>ZIMBABWE RUGBY UNION</span><span>TOURNAMENT REGISTRY</span>
             </div>
           </div>
         );
@@ -237,138 +200,123 @@ export default function ProjectsTeaser({ initialProjects = [] }: ProjectsTeaserP
     }
   };
 
+  if (projects.length === 0) return null;
+
   return (
     <section id="artifacts" className="py-12 md:py-fb8 relative overflow-hidden z-10 border-y border-white/5">
       <div className="container max-w-[1500px] mx-auto px-fb3 md:px-fb4 relative z-10">
         {/* Ambient backing — scoped to container, fades right like hero */}
         <div className="absolute inset-0 bg-gradient-to-r from-royal-obsidian via-royal-obsidian/80 to-transparent blur-md opacity-90 pointer-events-none -z-10" />
-        
-        {/* Section Header */}
-        <div className="mb-fb7 flex flex-col md:flex-row md:items-end md:justify-between gap-6 border-l border-metallic-brass/40 pl-6 md:pl-8">
-          <div>
-            <div className="flex items-center gap-fb1 mb-fb2">
-              <ScrambleText 
-                text="PORTFOLIO — WORK & ARTIFACTS" 
-                className="text-metallic-brass font-ui text-xs tracking-[0.2em] border-b border-metallic-brass/30 pb-1"
-                duration={1.5}
-              />
-            </div>
-            <div className="flex items-center gap-fb1 mb-fb2 max-w-4xl">
-              <span className="text-silence text-white/50 text-xs md:text-sm uppercase tracking-widest leading-relaxed block my-3">
-                We build fast, secure, and production-hardened web platforms. Below is an interactive flipbook display of our deployments. Flip through to preview the interface and verify their live server status.
-              </span>
-            </div>
-            <CinematicText 
-              fontSize={128}
-              className="text-5xl md:text-[8rem] text-off-white font-heading uppercase tracking-tighter leading-[0.85] block"
-              maxWidth={1200}
-            >
-              WHAT WE'VE BUILT.
-            </CinematicText>
-          </div>
-          
-          <div className="flex gap-4 items-center">
-            <button 
-              onClick={handlePrev}
-              className="p-3 border border-white/10 bg-white/5 hover:border-metallic-brass/50 hover:bg-white/10 transition-all rounded-full text-off-white/80 hover:text-metallic-brass cursor-pointer"
-              aria-label="Previous Project"
-            >
-              <ArrowLeft size={16} />
-            </button>
-            <button 
-              onClick={handleNext}
-              className="p-3 border border-white/10 bg-white/5 hover:border-metallic-brass/50 hover:bg-white/10 transition-all rounded-full text-off-white/80 hover:text-metallic-brass cursor-pointer"
-              aria-label="Next Project"
-            >
-              <ArrowRight size={16} />
-            </button>
-          </div>
+
+        {/* Section Header — minimal */}
+        <div className="mb-fb6 border-l border-metallic-brass/40 pl-6 md:pl-8">
+          <ScrambleText
+            text="PORTFOLIO — WORK & ARTIFACTS"
+            className="text-metallic-brass font-ui text-xs tracking-[0.2em] border-b border-metallic-brass/30 pb-1 inline-block mb-fb3"
+            duration={1.5}
+          />
+          <CinematicText
+            fontSize={128}
+            className="text-5xl md:text-[8rem] text-off-white font-heading uppercase tracking-tighter leading-[0.85] block"
+            maxWidth={1200}
+          >
+            WHAT WE&apos;VE BUILT.
+          </CinematicText>
         </div>
 
-        {/* 3D Stack Carousel Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[500px]">
-          
-          {/* Interactive Stack Display (Columns 1-7) */}
-          <div className="lg:col-span-7 relative h-[380px] md:h-[480px] flex items-center justify-center">
-            <div className="relative w-full max-w-[550px] aspect-[16/10] select-none">
-              {projects.map((project, idx) => {
-                // Calculate position relative to active index
-                const relativeIndex = (idx - activeIndex + projects.length) % projects.length;
-                
-                // Stack layout formulas
-                const isActive = relativeIndex === 0;
-                const isStackVisible = relativeIndex < 3; // Display up to 3 cards in stack
+        {/* ── Full-width cinematic showcase ── */}
+        <div className="relative">
 
+          {/* Floating prev arrow */}
+          <button
+            onClick={handlePrev}
+            onMouseEnter={clink}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 md:-translate-x-6 z-30 p-3 border border-white/10 bg-black/40 backdrop-blur-sm hover:border-metallic-brass/60 hover:bg-metallic-brass/10 transition-all rounded-full text-off-white/70 hover:text-metallic-brass cursor-pointer"
+            aria-label="Previous"
+          >
+            <ArrowLeft size={16} />
+          </button>
+
+          {/* Card stack — full width, tall */}
+          <div className="relative w-full h-[420px] md:h-[580px] flex items-center justify-center px-8 md:px-14">
+            <div className="relative w-full h-full">
+              {projects.map((project, idx) => {
+                const relativeIndex = (idx - activeIndex + projects.length) % projects.length;
+                const isActive = relativeIndex === 0;
+                const isStackVisible = relativeIndex < 3;
                 if (!isStackVisible) return null;
 
-                // Rotations and offsets for 3D stacking effect
-                const rotate = relativeIndex * 3.5 - 2;
-                const xOffset = relativeIndex * 24;
-                const yOffset = -relativeIndex * 14;
+                const rotate = relativeIndex * 2.5 - 1;
+                const xOffset = relativeIndex * 30;
+                const yOffset = -relativeIndex * 10;
                 const zIndex = projects.length - relativeIndex;
-                const opacity = 1 - relativeIndex * 0.25;
+                const scale = 1 - relativeIndex * 0.04;
+                const opacity = 1 - relativeIndex * 0.3;
 
                 return (
                   <motion.div
                     key={project.id}
-                    className={`absolute inset-0 rounded-lg border border-white/10 overflow-hidden shadow-2xl backdrop-blur-md cursor-pointer`}
-                    style={{
-                      transformOrigin: "bottom right",
-                      zIndex,
-                    }}
-                    animate={{
-                      x: xOffset,
-                      y: yOffset,
-                      rotate: rotate,
-                      scale: 1 - relativeIndex * 0.03,
-                      opacity,
-                    }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 300,
-                      damping: 30,
-                    }}
-                    onClick={() => selectCard(idx)}
+                    className="absolute inset-0 rounded-xl overflow-hidden shadow-2xl border border-white/8 cursor-pointer"
+                    style={{ transformOrigin: "bottom center", zIndex }}
+                    animate={{ x: xOffset, y: yOffset, rotate, scale, opacity }}
+                    transition={{ type: "spring", stiffness: 280, damping: 28 }}
+                    onClick={() => !isActive && selectCard(idx)}
                   >
-                    {/* Browser Window Mock Wrapper */}
-                    <div className="w-full h-full flex flex-col bg-royal-obsidian">
-                      {/* Browser top-bar control bar */}
-                      <div className="h-9 border-b border-white/5 bg-obsidian-layered px-4 flex items-center justify-between">
-                        <div className="flex gap-1.5">
-                          <div className="w-2.5 h-2.5 rounded-full bg-brand-red/80" />
-                          <div className="w-2.5 h-2.5 rounded-full bg-metallic-brass/80" />
-                          <div className="w-2.5 h-2.5 rounded-full bg-aku-green/80" />
+                    {/* Browser chrome */}
+                    <div className="w-full h-full flex flex-col bg-[#0e0e0e]">
+                      {/* Top bar */}
+                      <div className="h-9 shrink-0 border-b border-white/5 bg-[#181818] px-4 flex items-center justify-between gap-3">
+                        {/* Traffic lights */}
+                        <div className="flex gap-1.5 shrink-0">
+                          <div className="w-3 h-3 rounded-full bg-[#ff5f57]" />
+                          <div className="w-3 h-3 rounded-full bg-[#febc2e]" />
+                          <div className="w-3 h-3 rounded-full bg-[#28c840]" />
                         </div>
-                        {/* Domain bar */}
-                        <div className="h-6 px-4 border border-white/5 rounded bg-black/40 text-[9px] font-ui text-white/40 flex items-center gap-1.5 select-all max-w-[220px] truncate">
-                          <Globe size={8} />
-                          {project.url.replace("https://", "")}
+                        {/* URL bar */}
+                        <div className="flex-1 max-w-sm mx-auto h-6 px-3 border border-white/8 rounded-md bg-black/50 text-[9px] font-ui text-white/40 flex items-center gap-1.5 truncate">
+                          <Globe size={8} className="shrink-0" />
+                          <span className="truncate">{project.url.replace("https://", "")}</span>
                         </div>
-                        {/* Live Status indicator */}
-                        <div className="flex items-center gap-1.5">
-                          <div className={`w-1.5 h-1.5 rounded-full ${project.isLive ? "bg-aku-green shadow-[0_0_8px_#39FF14]" : "bg-brand-red shadow-[0_0_8px_#C42B2B] animate-pulse"}`} />
-                          <span className="text-[7px] font-ui uppercase tracking-wider text-white/40">
+                        {/* Live dot */}
+                        <div className="flex items-center gap-1.5 shrink-0">
+                          <div className={`w-1.5 h-1.5 rounded-full ${project.isLive ? "bg-[#28c840] shadow-[0_0_6px_#28c840]" : "bg-red-500 animate-pulse"}`} />
+                          <span className="text-[7px] font-ui uppercase tracking-wider text-white/30 hidden md:inline">
                             {project.isLive ? "Live" : "Offline"}
                           </span>
                         </div>
                       </div>
-                      
-                      {/* Web Site Content Area Preview */}
-                      <div className="flex-1 overflow-hidden relative">
+
+                      {/* Content area */}
+                      <div className="flex-1 overflow-hidden relative group">
                         {isActive ? (
                           <>
                             {iframeLoading && (
-                              <div className="absolute inset-0 flex items-center justify-center bg-royal-obsidian/90 z-20">
-                                <div className="w-6 h-6 border-2 border-metallic-brass/80 border-t-transparent rounded-full animate-spin" />
+                              <div className="absolute inset-0 flex items-center justify-center bg-[#0e0e0e] z-20">
+                                <div className="w-7 h-7 border-2 border-metallic-brass/70 border-t-transparent rounded-full animate-spin" />
                               </div>
                             )}
                             <iframe
                               src={project.url}
-                              className="w-full h-full border-none bg-royal-obsidian"
+                              className="w-full h-full border-none"
                               title={project.name}
                               onLoad={() => setIframeLoading(false)}
                               sandbox="allow-scripts allow-same-origin allow-forms"
                             />
+                            {/* Hover-to-visit overlay — icon only, no text */}
+                            <a
+                              href={project.url}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="absolute inset-0 z-30 flex items-center justify-center bg-black/0 hover:bg-black/40 transition-all duration-300 opacity-0 hover:opacity-100 group"
+                            >
+                              <motion.div
+                                initial={{ scale: 0.8, opacity: 0 }}
+                                whileHover={{ scale: 1, opacity: 1 }}
+                                className="w-16 h-16 rounded-full border border-metallic-brass/60 bg-metallic-brass/10 backdrop-blur-sm flex items-center justify-center text-metallic-brass shadow-[0_0_30px_rgba(201,168,76,0.3)]"
+                              >
+                                <ExternalLink size={22} />
+                              </motion.div>
+                            </a>
                           </>
                         ) : (
                           renderWebsiteMockPreview(project)
@@ -381,56 +329,29 @@ export default function ProjectsTeaser({ initialProjects = [] }: ProjectsTeaserP
             </div>
           </div>
 
-          {/* Details / Text Description (Columns 8-12) */}
-          <div className="lg:col-span-5 flex flex-col justify-center space-y-6">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeIndex}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.3 }}
-                className="space-y-6"
-              >
-                <div className="space-y-2">
-                  <h3 className="text-3xl md:text-4xl font-heading text-off-white uppercase leading-none">
-                    {projects[activeIndex].name}
-                  </h3>
-                </div>
+          {/* Floating next arrow */}
+          <button
+            onClick={handleNext}
+            onMouseEnter={clink}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 md:translate-x-6 z-30 p-3 border border-white/10 bg-black/40 backdrop-blur-sm hover:border-metallic-brass/60 hover:bg-metallic-brass/10 transition-all rounded-full text-off-white/70 hover:text-metallic-brass cursor-pointer"
+            aria-label="Next"
+          >
+            <ArrowRight size={16} />
+          </button>
+        </div>
 
-                <p className="text-white/70 font-body text-sm md:text-base leading-relaxed">
-                  {projects[activeIndex].description}
-                </p>
-
-
-                {/* Main Call to Action: Visit Site */}
-                <div className="pt-2">
-                  <a
-                    href={projects[activeIndex].url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-3 border border-metallic-brass/40 bg-metallic-brass/5 hover:border-metallic-brass hover:bg-metallic-brass/15 transition-all text-xs font-ui tracking-widest text-metallic-brass uppercase select-none cursor-pointer"
-                  >
-                    <span>Visit Live Website</span>
-                    <ExternalLink size={12} />
-                  </a>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Pagination Bullet Indicators */}
-            <div className="flex gap-2.5 pt-4">
-              {projects.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => selectCard(idx)}
-                  className={`h-1 transition-all duration-300 rounded-full cursor-pointer ${idx === activeIndex ? "w-8 bg-metallic-brass" : "w-2 bg-white/20"}`}
-                  aria-label={`Go to slide ${idx + 1}`}
-                />
-              ))}
-            </div>
-          </div>
-
+        {/* Dot navigation */}
+        <div className="flex justify-center gap-2.5 pt-8">
+          {projects.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => selectCard(idx)}
+              className={`h-1 transition-all duration-300 rounded-full cursor-pointer ${
+                idx === activeIndex ? "w-8 bg-metallic-brass" : "w-2 bg-white/20 hover:bg-white/40"
+              }`}
+              aria-label={`Go to project ${idx + 1}`}
+            />
+          ))}
         </div>
 
       </div>
