@@ -70,7 +70,7 @@ export default function WarCouncilContact() {
   };
 
   return (
-    <section id="contact" className="py-16 md:py-fb9 relative overflow-hidden border-t border-white/5 z-10">
+    <section id="contact" className="pt-16 pb-32 md:pt-fb9 md:pb-[24rem] relative overflow-hidden border-t border-white/5 z-10">
       
       {/* Background Texture Overlay */}
       <div className="absolute inset-0 bg-parchment-grain opacity-5 pointer-events-none mix-blend-overlay" />
