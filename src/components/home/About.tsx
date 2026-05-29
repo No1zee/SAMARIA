@@ -159,13 +159,7 @@ export default function About() {
 
                 </div>
 
-                <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-fb4 border-t border-white/5 w-full">
-                  <div className="flex items-center gap-3">
-                    <span className="w-2 h-2 rounded-full bg-brand-red animate-pulse shadow-[0_0_8px_var(--color-brand-red)]" />
-                    <span className="px-4 py-2 font-ui text-[10px] md:text-xs text-metallic-brass tracking-[0.2em] uppercase bg-brand-red/10 border border-brand-red/30 select-none">
-                      SCARCITY REGISTRY: 2 OPEN SLOTS
-                    </span>
-                  </div>
+                <div className="flex flex-col sm:flex-row items-center justify-end gap-6 pt-fb4 border-t border-white/5 w-full">
                   <Link 
                     href="/start-project"
                     className="inline-flex items-center gap-4 text-metallic-brass hover:text-white transition-colors uppercase tracking-[0.3em] font-ui text-xs md:text-sm group border-b border-metallic-brass/30 hover:border-white pb-1"
