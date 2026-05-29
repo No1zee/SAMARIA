@@ -60,7 +60,7 @@ export const staticProjects: Project[] = [
   {
     id: "carhub",
     name: "Carhub Zimbabwe",
-    url: "https://carhubzimbabwe.com",
+    url: "https://carhubzimbabwe.co.zw",
     tag: "Automotive Marketplace",
     description: "Dynamic car listing, dealership management, and vehicle discovery marketplace with advanced filtering.",
     techStack: ["Next.js", "Node.js", "Tailwind CSS"],
