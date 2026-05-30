@@ -184,9 +184,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={fontClasses} suppressHydrationWarning>
       <head>
-        {/* Preconnect for Google Fonts (performance) */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Removed preconnect for Google Fonts because next/font hosts them locally */}
         {/* JSON-LD Structured Data */}
         <script
           type="application/ld+json"

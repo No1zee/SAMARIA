@@ -21,6 +21,7 @@ export default function InkWashBackground() {
     
     try {
       renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     } catch (e) {
       console.error("InkWashBackground: Failed to create WebGL context", e);
       return;
