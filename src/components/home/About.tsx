@@ -25,7 +25,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-16 md:py-fb8 relative overflow-hidden bg-black/10">
+    <section id="about" className="py-16 md:py-36 relative overflow-hidden bg-zinc-950/70 border-y border-white/5 backdrop-blur-sm">
       <div className="container max-w-[1500px] mx-auto px-fb3 md:px-fb4 relative z-10">
         
         {/* Section Header */}

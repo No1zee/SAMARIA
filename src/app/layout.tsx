@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cinzel_Decorative, Orbitron, Montserrat } from "next/font/google";
+import { Cinzel_Decorative, Orbitron, Montserrat, Cormorant_Garamond } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import LoadingScreen from "@/components/ui/LoadingScreen";
@@ -19,6 +19,14 @@ const cinzel = Cinzel_Decorative({
   variable: "--font-cinzel",
   subsets: ["latin"],
   display: "swap",
+});
+
+const cormorant = Cormorant_Garamond({
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-cormorant",
+  subsets: ["latin"],
+  display: "swap",
+  style: ["normal", "italic"],
 });
 
 const orbitron = Orbitron({
@@ -171,7 +179,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const fontClasses = `${cinzel.variable} ${orbitron.variable} ${montserrat.variable}`;
+  const fontClasses = `${cinzel.variable} ${orbitron.variable} ${montserrat.variable} ${cormorant.variable}`;
 
   return (
     <html lang="en" className={fontClasses} suppressHydrationWarning>

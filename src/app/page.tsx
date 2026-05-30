@@ -19,10 +19,8 @@ import VersePopup from "@/components/ui/VersePopup";
 import { Suspense } from "react";
 import { getPortfolioProjects } from "@/app/portfolio-data";
 
-async function ProjectsSection() {
-  const projects = await getPortfolioProjects();
-  return <ProjectsTeaser initialProjects={projects} />;
-}
+function ProjectsSection() {
+  return <ProjectsTeaser />;}
 
 export default function Home() {
   return (

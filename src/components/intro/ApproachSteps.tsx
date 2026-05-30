@@ -80,7 +80,7 @@ export default function ApproachSteps() {
   const [activeStep, setActiveStep] = useState(0);
  
   return (
-    <section id="discipline" className="py-12 md:py-24 bg-transparent relative overflow-hidden border-y border-metallic-brass/10">
+    <section id="discipline" className="py-16 md:py-36 bg-zinc-950/90 relative overflow-hidden border-y border-white/5">
       {/* Section background deliberately kept transparent so the SamuraiJackBackground skyline shows through */}
  
       <div className="container max-w-[1500px] mx-auto px-fb3 md:px-fb4 relative z-10">

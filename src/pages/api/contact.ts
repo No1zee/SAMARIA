@@ -5,6 +5,7 @@ interface ContactBrief {
   name: string;
   company: string;
   email: string;
+  phone: string;
   systemType: string;
   timeline: string;
   brief: string;
@@ -15,7 +16,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { name, company, email, systemType, timeline, brief } = req.body as ContactBrief;
+  const { name, company, email, phone, systemType, timeline, brief } = req.body as ContactBrief;
 
   // Basic validation
   if (!name || !email || !systemType || !brief) {
@@ -30,6 +31,7 @@ NEW PROJECT BRIEF SUBMISSION
 Name: ${name}
 Company: ${company || 'N/A'}
 Work Email: ${email}
+Phone Number: ${phone || 'Not specified'}
 System Type: ${systemType}
 Desired Timeline: ${timeline || 'Not specified'}
 
@@ -57,6 +59,10 @@ Submitted via Samaria Web Intake Pipeline.
         <tr>
           <td style="padding: 8px 0; color: #888; font-size: 12px;">03 // WORK EMAIL</td>
           <td style="padding: 8px 0; color: #c9a84c; font-weight: bold;">${email}</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px 0; color: #888; font-size: 12px;">03B // PHONE NUMBER</td>
+          <td style="padding: 8px 0; color: #fff;">${phone || 'Not specified'}</td>
         </tr>
         <tr>
           <td style="padding: 8px 0; color: #888; font-size: 12px;">04 // SYSTEM TYPE</td>

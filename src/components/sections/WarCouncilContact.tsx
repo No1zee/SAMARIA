@@ -12,6 +12,7 @@ export default function WarCouncilContact() {
     name: "",
     company: "",
     email: "",
+    phone: "",
     systemType: "",
     timeline: "",
     brief: "",
@@ -30,6 +31,10 @@ export default function WarCouncilContact() {
     }
     if (!formData.email.trim() || !formData.email.includes("@")) {
       setValidationError("Please enter a valid email address.");
+      return;
+    }
+    if (!formData.phone.trim()) {
+      setValidationError("Please enter your phone number.");
       return;
     }
     if (!formData.systemType) {
@@ -70,7 +75,7 @@ export default function WarCouncilContact() {
   };
 
   return (
-    <section id="contact" className="pt-16 pb-32 md:pt-fb9 md:pb-[24rem] relative overflow-hidden border-t border-white/5 z-10">
+    <section id="contact" className="py-16 md:py-32 relative overflow-hidden border-t border-white/5 z-10 bg-transparent">
       
       {/* Background Texture Overlay */}
       <div className="absolute inset-0 bg-parchment-grain opacity-5 pointer-events-none mix-blend-overlay" />
@@ -79,7 +84,7 @@ export default function WarCouncilContact() {
         <div className="absolute inset-0 bg-gradient-to-r from-royal-obsidian via-royal-obsidian/80 to-transparent blur-md opacity-90 pointer-events-none -z-10" />
         
         {/* Section Header */}
-        <div className="mb-fb8 border-l border-metallic-brass/40 pl-6 md:pl-8">
+        <div className="mb-12 border-l border-metallic-brass/40 pl-6 md:pl-8">
           <div className="flex items-center gap-fb2 mb-fb3">
             <span className="text-[10px] tracking-[0.2em] font-ui text-metallic-brass uppercase">START A PROJECT</span>
           </div>
@@ -93,6 +98,42 @@ export default function WarCouncilContact() {
           <p className="text-white/80 text-lg md:text-xl font-body leading-relaxed max-w-2xl mt-6 no-prose">
             We build websites, systems, and operational software for businesses that need something reliable, clear, and built to last. Share the outline of your project and we will take it from there.
           </p>
+
+          {/* Qualified Filter, Pricing & Roadmap Panel */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 max-w-4xl border-t border-white/5 pt-8">
+            <div className="space-y-4">
+              <div>
+                <span className="block text-[10px] font-ui tracking-widest text-metallic-brass uppercase mb-1">Best Fit Clients</span>
+                <p className="text-xs text-white/60 leading-relaxed font-body">
+                  Firms needing a serious web presence, internal tools, client/member portals, or operational software.
+                </p>
+              </div>
+              <div>
+                <span className="block text-[10px] font-ui tracking-widest text-metallic-brass uppercase mb-1">Pricing Entry</span>
+                <p className="text-xs text-white/60 leading-relaxed font-body">
+                  Bespoke projects starting at $80 during promotion period.
+                </p>
+              </div>
+            </div>
+            
+            <div className="bg-white/2 border border-white/5 rounded-xl p-6 flex flex-col justify-center">
+              <span className="block text-[10px] font-ui tracking-widest text-metallic-brass uppercase mb-3">Onboarding Roadmap</span>
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center gap-3 text-xs text-off-white/80 font-body">
+                  <span className="w-5 h-5 rounded-full border border-metallic-brass/45 flex items-center justify-center text-[9px] font-ui text-metallic-brass shrink-0">1</span>
+                  <span>20-minute scoping call</span>
+                </div>
+                <div className="flex items-center gap-3 text-xs text-off-white/80 font-body">
+                  <span className="w-5 h-5 rounded-full border border-white/10 flex items-center justify-center text-[9px] font-ui text-white/40 shrink-0">2</span>
+                  <span>Architecture & system outline</span>
+                </div>
+                <div className="flex items-center gap-3 text-xs text-off-white/80 font-body">
+                  <span className="w-5 h-5 rounded-full border border-white/10 flex items-center justify-center text-[9px] font-ui text-white/40 shrink-0">3</span>
+                  <span>Fixed-price proposal</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="max-w-4xl bg-white/2 border border-white/5 backdrop-blur-md p-8 md:p-12 relative group overflow-hidden clip-blade-sm">
@@ -151,6 +192,23 @@ export default function WarCouncilContact() {
                     />
                   </div>
 
+                  {/* Phone field */}
+                  <div className="space-y-2">
+                    <label className="text-[10px] uppercase tracking-widest text-metallic-brass/60 font-ui block">
+                      03B // PHONE NUMBER
+                    </label>
+                    <input
+                      type="tel"
+                      placeholder="Phone Number"
+                      value={formData.phone}
+                      disabled={isSending}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="w-full bg-transparent border-b border-white/10 text-lg text-metallic-brass focus:border-metallic-brass focus:outline-none py-2 transition-colors duration-500 placeholder-white/20 font-body disabled:opacity-50"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* System Type Selection */}
                   <div className="space-y-2">
                     <label className="text-[10px] uppercase tracking-widest text-metallic-brass/60 font-ui block">
@@ -169,21 +227,21 @@ export default function WarCouncilContact() {
                       <option value="Other Custom Build">Other Custom Build</option>
                     </select>
                   </div>
-                </div>
 
-                {/* Timeline field */}
-                <div className="space-y-2">
-                  <label className="text-[10px] uppercase tracking-widest text-metallic-brass/60 font-ui block">
-                    05 // DESIRED TIMELINE
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="e.g., 2-3 Months, Immediate, Q3 Launch"
-                    value={formData.timeline}
-                    disabled={isSending}
-                    onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
-                    className="w-full bg-transparent border-b border-white/10 text-lg text-metallic-brass focus:border-metallic-brass focus:outline-none py-2 transition-colors duration-500 placeholder-white/20 font-body disabled:opacity-50"
-                  />
+                  {/* Timeline field */}
+                  <div className="space-y-2">
+                    <label className="text-[10px] uppercase tracking-widest text-metallic-brass/60 font-ui block">
+                      05 // DESIRED TIMELINE
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="e.g., 2-3 Months, Immediate, Q3 Launch"
+                      value={formData.timeline}
+                      disabled={isSending}
+                      onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
+                      className="w-full bg-transparent border-b border-white/10 text-lg text-metallic-brass focus:border-metallic-brass focus:outline-none py-2 transition-colors duration-500 placeholder-white/20 font-body disabled:opacity-50"
+                    />
+                  </div>
                 </div>
 
                 {/* Brief field */}

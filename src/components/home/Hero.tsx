@@ -196,47 +196,21 @@ export default function Hero() {
               </span>
             </div>
 
-            <h1 className="mb-fb2 font-heading w-full uppercase">
-              <div className="p-0 m-0 block mb-2 md:mb-3">
-                <div className="hero-title-line block">
-                  <CinematicText 
-                    fontSize={buildSize}
-                    maxWidth={availableWidth * CONTENT_WIDTH_SCALE}
-                    className="font-black leading-none block"
-                    baseColor="rgba(242, 237, 216, 0.95)"
-                    horizontalAlign="left"
-                    letterSpacing={TRACKING * buildSize}
-                    maxLines={1}
-                  >
-                    Built for
-                  </CinematicText>
-                </div>
-              </div>
-              
-              <div className="p-0 m-0 block mb-4 md:mb-5">
-                <div className="hero-title-line block">
-                  <CinematicText 
-                    fontSize={africaSize}
-                    maxWidth={availableWidth * CONTENT_WIDTH_SCALE}
-                    className="font-black block"
-                    baseColor={BRONZE_COLOR}
-                    horizontalAlign="left"
-                    letterSpacing={TRACKING * africaSize}
-                    maxLines={1}
-                  >
-                    permanence.
-                  </CinematicText>
-                </div>
-              </div>
+            <h1 className="mb-fb2 font-heading w-full normal-case text-4xl sm:text-6xl md:text-7xl font-light text-ivory-glow leading-[1.1] hero-title-line">
+              Digital Solutions <br className="hidden md:inline" />
+              for your <span className="text-metallic-brass font-normal italic">business.</span>
             </h1>
  
-            <div className="hero-content text-off-white/80 max-w-lg mb-fb2 text-base md:text-lg font-body leading-relaxed opacity-0">
+            <div className="hero-content text-off-white/80 max-w-2xl mb-fb3 text-base md:text-lg font-body leading-relaxed opacity-0">
               <p className="no-prose">
-                We design and build websites, internal systems, and digital operations that stay useful long after launch. Clear architecture, reliable delivery, and full ownership from day one.
+                We design websites, internal systems, and client portals for African businesses that need them.
+                <span className="block mt-3 text-metallic-brass font-ui tracking-wider text-[11px] md:text-xs uppercase font-semibold">
+                  ⚡ Special Promotion: Custom website builds from $80
+                </span>
               </p>
             </div>
  
-            <div className="hero-content opacity-0 flex flex-col sm:flex-row items-stretch sm:items-center gap-fb2">
+            <div className="hero-content opacity-0 flex flex-col sm:flex-row items-stretch sm:items-center gap-fb2 mb-12">
               <CelestialText intensity={0.3}>
                 <Link 
                   href="/start-project" 
@@ -257,6 +231,22 @@ export default function Hero() {
                   View Selected Work
                 </Link>
               </CelestialText>
+            </div>
+
+            {/* Trust Bar */}
+            <div className="hero-content opacity-0 mt-8 pt-8 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl">
+              <div>
+                <span className="block text-[10px] font-ui tracking-widest text-metallic-brass uppercase mb-1">Ownership</span>
+                <span className="text-xs text-off-white/60 leading-normal">100% IP & source code transfer from Day 1.</span>
+              </div>
+              <div>
+                <span className="block text-[10px] font-ui tracking-widest text-metallic-brass uppercase mb-1">Timeline</span>
+                <span className="text-xs text-off-white/60 leading-normal">Rapid deployment (2–4 weeks from brief).</span>
+              </div>
+              <div>
+                <span className="block text-[10px] font-ui tracking-widest text-metallic-brass uppercase mb-1">Delivery</span>
+                <span className="text-xs text-off-white/60 leading-normal">Custom hand-written code to complement your business.</span>
+              </div>
             </div>
           </div>
         </div>

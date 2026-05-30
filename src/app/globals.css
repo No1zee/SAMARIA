@@ -30,9 +30,10 @@
   --spacing-fb10: 15.0rem;  /* 240px */
 
   /* === TYPOGRAPHY === */
-  --font-heading: var(--font-cinzel), serif;        /* Cinzel Decorative — H1/H2 */
+  --font-heading: var(--font-cormorant), serif;     /* Cormorant Garamond — H1/H2 Refined Editorial */
+  --font-cinzel: var(--font-cinzel), serif;         /* Keep Cinzel for high-character accents */
   --font-ui: var(--font-orbitron), sans-serif;      /* Orbitron — UI/Numbers */
-  --font-body: var(--font-work-sans), sans-serif;   /* Work Sans — Body (Cleaner/Lethal) */
+  --font-body: var(--font-montserrat), sans-serif;  /* Montserrat — Body */
 
   /* === ANIMATIONS === */
   --animate-pulse-brass: pulse-brass 3s ease-in-out infinite;
