@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://samariatech.com'),
   title: 'Samaria Tech | Web Development, Software & Tech Solutions',
   description:
     'Samaria Tech builds high-performance websites, custom web applications, and practical tech solutions for businesses.',
@@ -14,6 +15,30 @@ export const metadata: Metadata = {
     apple: [
       { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
+  },
+  openGraph: {
+    title: 'Samaria Tech | Web Development, Software & Tech Solutions',
+    description:
+      'Samaria Tech builds high-performance websites, custom web applications, and practical tech solutions for businesses.',
+    url: 'https://samariatech.com',
+    siteName: 'Samaria Tech',
+    images: [
+      {
+        url: '/icon-512.png',
+        width: 512,
+        height: 512,
+        alt: 'Samaria Tech',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Samaria Tech | Web Development, Software & Tech Solutions',
+    description:
+      'Samaria Tech builds high-performance websites, custom web applications, and practical tech solutions for businesses.',
+    images: ['/icon-512.png'],
   },
 };
 
