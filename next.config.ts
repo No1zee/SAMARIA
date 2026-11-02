@@ -6,23 +6,23 @@ const withBundleAnalyzer = NextBundleAnalyzer({
 });
 
 const nextConfig: NextConfig = {
-  cacheComponents: true,
   devIndicators: false,
+  allowedDevOrigins: ["localhost:4000", "192.168.100.7:4000", "192.168.100.7"],
   experimental: {
-    optimizePackageImports: ['lucide-react', 'framer-motion', 'gsap'],
+    optimizePackageImports: ["lucide-react", "framer-motion", "gsap"],
   },
   images: {
-    formats: ['image/avif', 'image/webp'],
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'www.samaria.tech',
-        pathname: '**',
+        protocol: "https",
+        hostname: "www.samaria.tech",
+        pathname: "**",
       },
       {
-        protocol: 'https',
-        hostname: 'samaria.tech',
-        pathname: '**',
+        protocol: "https",
+        hostname: "samaria.tech",
+        pathname: "**",
       },
     ],
   },

@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Samaria Tech | 22K Sovereign Gold Coin</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: radial-gradient(circle at 50% 45%, #141311 0%, #0a0908 60%, #030303 100%);
+      color: #f1f5f9;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      user-select: none;
+    }
+    #canvas-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      cursor: grab;
+    }
+    #canvas-container:active {
+      cursor: grabbing;
+    }
+    .hud-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2.5rem;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .title-wrap h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #f3ca68;
+      text-shadow: 0 0 25px rgba(243, 202, 104, 0.45);
+    }
+    .title-wrap p {
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      color: #a8a29e;
+      margin-top: 0.35rem;
+      text-transform: uppercase;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.9rem;
+      background: rgba(243, 202, 104, 0.08);
+      border: 1px solid rgba(243, 202, 104, 0.35);
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      color: #f3ca68;
+      backdrop-filter: blur(10px);
+    }
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #f3ca68;
+      box-shadow: 0 0 10px #f3ca68;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.35; transform: scale(0.75); }
+    }
+    .footer-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      pointer-events: auto;
+    }
+    .specs-card {
+      background: rgba(18, 17, 15, 0.75);
+      border: 1px solid rgba(243, 202, 104, 0.25);
+      border-radius: 8px;
+      padding: 0.85rem 1.3rem;
+      backdrop-filter: blur(14px);
+      display: flex;
+      gap: 2rem;
+    }
+    .spec-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .spec-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: #78716c;
+      text-transform: uppercase;
+    }
+    .spec-val {
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: #f3ca68;
+      text-transform: uppercase;
+    }
+    .controls {
+      display: flex;
+      gap: 0.75rem;
+    }
+    .btn {
+      padding: 0.65rem 1.3rem;
+      background: rgba(18, 17, 15, 0.8);
+      border: 1px solid rgba(243, 202, 104, 0.35);
+      color: #f3ca68;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      backdrop-filter: blur(10px);
+    }
+    .btn:hover {
+      background: rgba(243, 202, 104, 0.2);
+      border-color: #f3ca68;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(243, 202, 104, 0.25);
+    }
+    .btn-primary {
+      background: #f3ca68;
+      color: #0b0c10;
+      border-color: #f3ca68;
+    }
+    .btn-primary:hover {
+      background: #fae4a6;
+      border-color: #fae4a6;
+      color: #000;
+      box-shadow: 0 4px 25px rgba(250, 228, 166, 0.45);
+    }
+    .bg-rings {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 820px;
+      height: 820px;
+      border: 1px dashed rgba(243, 202, 104, 0.07);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div class="bg-rings"></div>
+  <div id="canvas-container"></div>
+
+  <div class="hud-overlay">
+    <div class="header">
+      <div class="title-wrap">
+        <h1>Samaria Sovereign</h1>
+        <p>22-Karat Crown Gold &bull; Royal Mint Grade Bullion</p>
+      </div>
+      <div class="badge">
+        <span class="badge-dot"></span>
+        <span>22K Crown Gold &bull; 91.67% Fine Au</span>
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <div class="specs-card">
+        <div class="spec-item">
+          <span class="spec-label">Standard</span>
+          <span class="spec-val">British Sovereign Spec</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Alloy</span>
+          <span class="spec-val">Crown Gold (.9167 Au)</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Relief</span>
+          <span class="spec-val">Bas-Relief Die Struck</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Border</span>
+          <span class="spec-val">168 Toothed Denticles</span>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="btn-flip" class="btn btn-primary">Flip Coin</button>
+        <button id="btn-toggle-spin" class="btn">Pause Spin</button>
+        <button id="btn-reset" class="btn">Reset View</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import * as THREE from 'three';
+
+    const container = document.getElementById('canvas-container');
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    // 1. Scene & Camera
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(36, width / height, 0.1, 100);
+    camera.position.set(0, 0, 4.8);
+
+    // 2. High-precision PBR Renderer
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.04;
+    container.appendChild(renderer.domElement);
+
+    // 3. Custom Numismatic Studio Lightbox Environment
+    // 360-degree warm continuous lightbox dome (Cloud Dome / EZ-Cube numismatic spec)
+    function createNumismaticStudioEnvironment(glRenderer) {
+      const pmremGen = new THREE.PMREMGenerator(glRenderer);
+      pmremGen.compileEquirectangularShader();
+
+      const studioScene = new THREE.Scene();
+
+      // Atmospheric warm golden studio dome (provides rich baseline gold reflection across all angles)
+      const bgGeo = new THREE.SphereGeometry(42, 32, 24);
+      const bgMat = new THREE.MeshBasicMaterial({
+        color: 0xa8782a,
+        side: THREE.BackSide
+      });
+      studioScene.add(new THREE.Mesh(bgGeo, bgMat));
+
+      // Front Axial Diffuser (directly behind camera)
+      const frontCardGeo = new THREE.PlaneGeometry(36, 36);
+      const frontCardMat = new THREE.MeshBasicMaterial({ color: 0xfff7e6, side: THREE.DoubleSide });
+      const frontCard = new THREE.Mesh(frontCardGeo, frontCardMat);
+      frontCard.position.set(0, 2, 22);
+      frontCard.lookAt(0, 0, 0);
+      studioScene.add(frontCard);
+
+      // Front Key Softbox (Warm daylight white)
+      const keySoftboxGeo = new THREE.PlaneGeometry(30, 30);
+      const keySoftboxMat = new THREE.MeshBasicMaterial({ color: 0xfffbee, side: THREE.DoubleSide });
+      const keySoftbox = new THREE.Mesh(keySoftboxGeo, keySoftboxMat);
+      keySoftbox.position.set(18, 14, 15);
+      keySoftbox.lookAt(0, 0, 0);
+      studioScene.add(keySoftbox);
+
+      // Front Fill Softbox (Warm amber gold)
+      const fillSoftboxGeo = new THREE.PlaneGeometry(28, 28);
+      const fillSoftboxMat = new THREE.MeshBasicMaterial({ color: 0xf8dc9e, side: THREE.DoubleSide });
+      const fillSoftbox = new THREE.Mesh(fillSoftboxGeo, fillSoftboxMat);
+      fillSoftbox.position.set(-18, -6, 15);
+      fillSoftbox.lookAt(0, 0, 0);
+      studioScene.add(fillSoftbox);
+
+      // Back Axial Diffuser (for reverse face reflections)
+      const backCardGeo = new THREE.PlaneGeometry(36, 36);
+      const backCardMat = new THREE.MeshBasicMaterial({ color: 0xfff7e6, side: THREE.DoubleSide });
+      const backCard = new THREE.Mesh(backCardGeo, backCardMat);
+      backCard.position.set(0, 2, -22);
+      backCard.lookAt(0, 0, 0);
+      studioScene.add(backCard);
+
+      // Back Key Softbox
+      const backKeyGeo = new THREE.PlaneGeometry(30, 30);
+      const backKeyMat = new THREE.MeshBasicMaterial({ color: 0xfffbee, side: THREE.DoubleSide });
+      const backKey = new THREE.Mesh(backKeyGeo, backKeyMat);
+      backKey.position.set(-18, 14, -15);
+      backKey.lookAt(0, 0, 0);
+      studioScene.add(backKey);
+
+      // Back Fill Softbox
+      const backFillGeo = new THREE.PlaneGeometry(28, 28);
+      const backFillMat = new THREE.MeshBasicMaterial({ color: 0xf8dc9e, side: THREE.DoubleSide });
+      const backFill = new THREE.Mesh(backFillGeo, backFillMat);
+      backFill.position.set(18, -6, -15);
+      backFill.lookAt(0, 0, 0);
+      studioScene.add(backFill);
+
+      // Top Rim Reflector (Crisp pale gold)
+      const topSoftboxGeo = new THREE.PlaneGeometry(38, 38);
+      const topSoftboxMat = new THREE.MeshBasicMaterial({ color: 0xfffdf4, side: THREE.DoubleSide });
+      const topSoftbox = new THREE.Mesh(topSoftboxGeo, topSoftboxMat);
+      topSoftbox.position.set(0, 22, 0);
+      topSoftbox.rotation.x = Math.PI / 2;
+      studioScene.add(topSoftbox);
+
+      // Ground Gold Bounce Card (Rich warm undertone)
+      const groundGeo = new THREE.PlaneGeometry(38, 38);
+      const groundMat = new THREE.MeshBasicMaterial({ color: 0xa06a20, side: THREE.DoubleSide });
+      const groundMesh = new THREE.Mesh(groundGeo, groundMat);
+      groundMesh.position.set(0, -22, 0);
+      groundMesh.rotation.x = -Math.PI / 2;
+      studioScene.add(groundMesh);
+
+      const envMap = pmremGen.fromScene(studioScene).texture;
+      pmremGen.dispose();
+      return envMap;
+    }
+
+    scene.environment = createNumismaticStudioEnvironment(renderer);
+
+    // 4. Physical Studio Lights
+    // Front Axial light (illuminates flat table like numismatic macro axial beam-splitters)
+    const frontAxialLight = new THREE.DirectionalLight(0xfffaea, 1.15);
+    frontAxialLight.position.set(0, 0, 5.5);
+    scene.add(frontAxialLight);
+
+    // Front Key directional light (45 degrees, illuminating relief bevels)
+    const keyLight = new THREE.DirectionalLight(0xfffaee, 1.25);
+    keyLight.position.set(2.5, 3.5, 4.5);
+    scene.add(keyLight);
+
+    // Front Warm amber fill light
+    const fillLight = new THREE.DirectionalLight(0xdfa74e, 0.55);
+    fillLight.position.set(-3.0, -2.5, 3.5);
+    scene.add(fillLight);
+
+    // Back Axial light (for reverse side flat table)
+    const backAxialLight = new THREE.DirectionalLight(0xfffaea, 1.15);
+    backAxialLight.position.set(0, 0, -5.5);
+    scene.add(backAxialLight);
+
+    // Back Key light (for reverse side illumination)
+    const backKeyLight = new THREE.DirectionalLight(0xfffaee, 1.25);
+    backKeyLight.position.set(-2.5, 3.5, -4.5);
+    scene.add(backKeyLight);
+
+    // Back Fill light
+    const backFillLight = new THREE.DirectionalLight(0xdfa74e, 0.55);
+    backFillLight.position.set(3.0, -2.5, -4.5);
+    scene.add(backFillLight);
+
+    // Top rim light (highlights the reeded edge)
+    const rimLight = new THREE.DirectionalLight(0xfff4d0, 1.1);
+    rimLight.position.set(0, 5.0, 0);
+    scene.add(rimLight);
+
+    // Dynamic mouse-tracking specular gleam point light
+    const gleamLight = new THREE.PointLight(0xfff6dc, 1.1, 8.0);
+    gleamLight.position.set(0, 2, 4.5);
+    scene.add(gleamLight);
+
+    // 5. Texture Loading
+    const textureLoader = new THREE.TextureLoader();
+    const diffuseFront = textureLoader.load('/assets/coin/sovereign_diffuse.png');
+    const normalFront = textureLoader.load('/assets/coin/sovereign_normal.png');
+    const roughnessFront = textureLoader.load('/assets/coin/sovereign_roughness.png');
+    const aoFront = textureLoader.load('/assets/coin/sovereign_ao.png');
+
+    const diffuseBack = textureLoader.load('/assets/coin/sovereign_back_diffuse.png');
+    const normalBack = textureLoader.load('/assets/coin/sovereign_back_normal.png');
+    const roughnessBack = textureLoader.load('/assets/coin/sovereign_back_roughness.png');
+    const aoBack = textureLoader.load('/assets/coin/sovereign_back_ao.png');
+
+    const edgeDiffuse = textureLoader.load('/assets/coin/sovereign_edge_diffuse.png');
+    const edgeNormal = textureLoader.load('/assets/coin/sovereign_edge_normal.png');
+    const edgeRoughness = textureLoader.load('/assets/coin/sovereign_edge_roughness.png');
+
+    diffuseFront.colorSpace = THREE.SRGBColorSpace;
+    diffuseBack.colorSpace = THREE.SRGBColorSpace;
+    edgeDiffuse.colorSpace = THREE.SRGBColorSpace;
+
+    edgeNormal.wrapS = THREE.RepeatWrapping;
+    edgeNormal.repeat.set(1, 1);
+    edgeDiffuse.wrapS = THREE.RepeatWrapping;
+    edgeDiffuse.repeat.set(1, 1);
+    edgeRoughness.wrapS = THREE.RepeatWrapping;
+    edgeRoughness.repeat.set(1, 1);
+
+    const maxAniso = renderer.capabilities.getMaxAnisotropy();
+    diffuseFront.anisotropy = maxAniso;
+    normalFront.anisotropy = maxAniso;
+    roughnessFront.anisotropy = maxAniso;
+    aoFront.anisotropy = maxAniso;
+
+    diffuseBack.anisotropy = maxAniso;
+    normalBack.anisotropy = maxAniso;
+    roughnessBack.anisotropy = maxAniso;
+    aoBack.anisotropy = maxAniso;
+
+    edgeDiffuse.anisotropy = maxAniso;
+    edgeNormal.anisotropy = maxAniso;
+    edgeRoughness.anisotropy = maxAniso;
+
+    // 6. Calibrated 22K Crown Gold PBR Materials
+    const frontMaterial = new THREE.MeshStandardMaterial({
+      color: 0xffffff,
+      metalness: 1.0,
+      roughness: 1.0,
+      map: diffuseFront,
+      normalMap: normalFront,
+      normalScale: new THREE.Vector2(1.15, 1.15),
+      roughnessMap: roughnessFront,
+      aoMap: aoFront,
+      aoMapIntensity: 1.0,
+      envMapIntensity: 1.25
+    });
+
+    const backMaterial = new THREE.MeshStandardMaterial({
+      color: 0xffffff,
+      metalness: 1.0,
+      roughness: 1.0,
+      map: diffuseBack,
+      normalMap: normalBack,
+      normalScale: new THREE.Vector2(1.15, 1.15),
+      roughnessMap: roughnessBack,
+      aoMap: aoBack,
+      aoMapIntensity: 1.0,
+      envMapIntensity: 1.25
+    });
+
+    const edgeMaterial = new THREE.MeshStandardMaterial({
+      color: 0xffffff,
+      metalness: 1.0,
+      roughness: 1.0,
+      map: edgeDiffuse,
+      normalMap: edgeNormal,
+      normalScale: new THREE.Vector2(1.1, 1.1),
+      roughnessMap: edgeRoughness,
+      envMapIntensity: 1.2
+    });
+
+    // 7. Coin Geometry (Authentic British Sovereign Proportions)
+    const COIN_RADIUS = 1.48;
+    const COIN_THICKNESS = 0.194;
+    const geometry = new THREE.CylinderGeometry(COIN_RADIUS, COIN_RADIUS, COIN_THICKNESS, 256, 1);
+    geometry.rotateX(Math.PI / 2);
+
+    // Precise group-based UV mapping: leaves side faces (reeded edge) pristine
+    const indices = geometry.index.array;
+    const posAttr = geometry.attributes.position;
+    const uvAttr = geometry.attributes.uv;
+
+    // Group 1: Front Cap (start: 1536, count: 768)
+    const seenFront = new Set();
+    for (let i = 1536; i < 1536 + 768; i++) {
+      const v = indices[i];
+      if (seenFront.has(v)) continue;
+      seenFront.add(v);
+      const px = posAttr.getX(v);
+      const py = posAttr.getY(v);
+      const u = (px / COIN_RADIUS + 1.0) * 0.5;
+      const vCoord = (py / COIN_RADIUS + 1.0) * 0.5;
+      uvAttr.setXY(v, u, vCoord);
+    }
+
+    // Group 2: Back Cap (start: 2304, count: 768)
+    const seenBack = new Set();
+    for (let i = 2304; i < 2304 + 768; i++) {
+      const v = indices[i];
+      if (seenBack.has(v)) continue;
+      seenBack.add(v);
+      const px = posAttr.getX(v);
+      const py = posAttr.getY(v);
+      const u = (-px / COIN_RADIUS + 1.0) * 0.5;
+      const vCoord = (py / COIN_RADIUS + 1.0) * 0.5;
+      uvAttr.setXY(v, u, vCoord);
+    }
+
+    uvAttr.needsUpdate = true;
+    geometry.attributes.uv2 = geometry.attributes.uv;
+
+    const materials = [edgeMaterial, frontMaterial, backMaterial];
+    const coin = new THREE.Mesh(geometry, materials);
+    scene.add(coin);
+    window.coin = coin;
+    window.materials = materials;
+
+    // 8. Interaction & Inertial Physics
+    let isDragging = false;
+    let prevMouseX = 0;
+    let prevMouseY = 0;
+    let velocityX = 0;
+    let velocityY = 0;
+    let autoRotate = true;
+    let isFlipping = false;
+    let flipStartTime = 0;
+    const FLIP_DURATION = 1400;
+
+    window.addEventListener('mousedown', (e) => {
+      if (e.target.closest('.hud-overlay')) return;
+      isDragging = true;
+      prevMouseX = e.clientX;
+      prevMouseY = e.clientY;
+      velocityX = 0;
+      velocityY = 0;
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      // Dynamic gleam tracking
+      const normX = (e.clientX / window.innerWidth) * 2 - 1;
+      const normY = -(e.clientY / window.innerHeight) * 2 + 1;
+      gleamLight.position.x = normX * 3.2;
+      gleamLight.position.y = normY * 2.8;
+
+      if (!isDragging) return;
+      const deltaX = e.clientX - prevMouseX;
+      const deltaY = e.clientY - prevMouseY;
+      prevMouseX = e.clientX;
+      prevMouseY = e.clientY;
+
+      coin.rotation.y += deltaX * 0.0075;
+      coin.rotation.x += deltaY * 0.0075;
+
+      velocityX = deltaX * 0.0075;
+      velocityY = deltaY * 0.0075;
+    });
+
+    window.addEventListener('mouseup', () => { isDragging = false; });
+
+    // Touch support
+    window.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        isDragging = true;
+        prevMouseX = e.touches[0].clientX;
+        prevMouseY = e.touches[0].clientY;
+        velocityX = 0;
+        velocityY = 0;
+      }
+    });
+
+    window.addEventListener('touchmove', (e) => {
+      if (!isDragging || e.touches.length !== 1) return;
+      const deltaX = e.touches[0].clientX - prevMouseX;
+      const deltaY = e.touches[0].clientY - prevMouseY;
+      prevMouseX = e.touches[0].clientX;
+      prevMouseY = e.touches[0].clientY;
+
+      coin.rotation.y += deltaX * 0.0075;
+      coin.rotation.x += deltaY * 0.0075;
+      velocityX = deltaX * 0.0075;
+      velocityY = deltaY * 0.0075;
+    });
+
+    window.addEventListener('touchend', () => { isDragging = false; });
+
+    // Zoom
+    window.addEventListener('wheel', (e) => {
+      camera.position.z = Math.min(Math.max(camera.position.z + e.deltaY * 0.002, 2.8), 7.5);
+    });
+
+    // Flip
+    window.addEventListener('dblclick', () => { triggerFlip(); });
+
+    function triggerFlip() {
+      if (isFlipping) return;
+      isFlipping = true;
+      flipStartTime = performance.now();
+    }
+
+    document.getElementById('btn-flip').addEventListener('click', triggerFlip);
+
+    const spinBtn = document.getElementById('btn-toggle-spin');
+    spinBtn.addEventListener('click', () => {
+      autoRotate = !autoRotate;
+      spinBtn.innerText = autoRotate ? 'Pause Spin' : 'Resume Spin';
+    });
+
+    document.getElementById('btn-reset').addEventListener('click', () => {
+      coin.rotation.set(0, 0, 0);
+      camera.position.set(0, 0, 4.8);
+      velocityX = 0;
+      velocityY = 0;
+    });
+
+    // Programmatic orientation helper for automated verification & screenshots
+    window.__setCoinRotation = (rx, ry) => {
+      coin.rotation.set(rx, ry, 0);
+      autoRotate = false;
+      velocityX = 0;
+      velocityY = 0;
+      spinBtn.innerText = 'Resume Spin';
+    };
+
+    window.addEventListener('resize', () => {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    });
+
+    // 9. Animation Loop
+    const clock = new THREE.Clock();
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      const elapsedTime = clock.getElapsedTime();
+
+      // Coin flip parabolic jump
+      if (isFlipping) {
+        const progress = (performance.now() - flipStartTime) / FLIP_DURATION;
+        if (progress >= 1) {
+          isFlipping = false;
+        } else {
+          const jump = Math.sin(progress * Math.PI) * 1.25;
+          coin.position.y = jump;
+          coin.rotation.y += 0.32;
+          coin.rotation.x += 0.12 * Math.cos(progress * Math.PI * 0.5);
+        }
+      } else {
+        coin.position.y = Math.sin(elapsedTime * 1.5) * 0.035;
+      }
+
+      // Inertia & Auto-spin
+      if (!isDragging) {
+        coin.rotation.y += velocityX;
+        coin.rotation.x += velocityY;
+        velocityX *= 0.94;
+        velocityY *= 0.94;
+
+        if (autoRotate && !isFlipping) {
+          coin.rotation.y += 0.008;
+          coin.rotation.z = Math.sin(elapsedTime * 0.75) * 0.025;
+        }
+      }
+
+      // Gentle gleam orbit when idle
+      if (!isDragging) {
+        gleamLight.position.x = Math.sin(elapsedTime * 0.85) * 2.8;
+        gleamLight.position.y = Math.cos(elapsedTime * 0.65) * 2.2;
+      }
+
+      renderer.render(scene, camera);
+    }
+
+    animate();
+  </script>
+</body>
+</html>
