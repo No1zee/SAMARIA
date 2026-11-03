@@ -296,6 +296,31 @@ window.scrollTo(0, 0);
   window.THREE = THREE;
   window.dispatchEvent(new CustomEvent('three-engine-ready'));
 </script>
+
+<style>
+/* Editorial 3D Kinetic Typography */
+@media (prefers-reduced-motion: no-preference) {
+  .kinetic-3d-wrap {
+    perspective: 1000px !important;
+    transform-style: preserve-3d !important;
+    overflow: hidden !important;
+  }
+  .kinetic-3d-inner {
+    display: inline-block !important;
+    transform-origin: 50% 100% -25px !important;
+    will-change: transform, opacity, filter !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kinetic-3d-inner {
+    transform: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+  }
+}
+</style>
 </head><body class="body"><div class="page-wrapper" id="smooth-wrapper"><div class="projects-detail-modal"><div class="details-fader"></div><div class="details-bg"><div class="w-layout-blockcontainer container is-desktop is-c-active w-container"></div><div class="bottom-navi"><li class="pr-navi"><a class="pri-link is-prev w-inline-block" href="#what-we-do"><span class="is-caption">Previous</span></a></li><li class="pr-navi is-odd"><a class="pri-link is-next w-inline-block" href="#what-we-do"><span class="is-caption">Next</span></a></li></div><div class="close-project"><div class="close">Close</div><div class="is-svg is-button-icon is-action is-2"><div class="action-line is-h is-b"></div><div class="action-line is-v is-b"></div></div></div></div></div><div class="contact-modal div-block"><div class="modal-wrap"><div class="form-popup"><div class="modal-form"><div class="modal-title"><div class="m-wrapper" contact-clip="" style="display:inline-flex; align-items:center; gap:0.5rem; padding: 0.35rem 0.85rem; border: 1px solid rgba(255,255,255,0.3); border-radius: 9999px; text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.12em; color: rgba(255,255,255,0.9); font-family: monospace; margin-bottom: 1.5rem;"><span>CONTACT US</span><span style="opacity:0.4;">—</span><span style="color:#deb34a; font-weight:600;">SAMARIA</span></div><div class="modal-txts"><div class="is-h-m" contact-name="">Build with us, launch your next website, or discuss your tech needs with us.</div></div></div><div class="contact-form-block modal w-form" contact-fade=""><form class="contact-form modal-2" data-name="Email Form" data-wf-element-id="d9de59a5-1ec3-e201-10db-32b1b075a2f8" data-wf-page-id="6a180066e6ba27b81a7ef8f9" id="email-form" method="get" name="email-form"><div class="overflow-clip" contact-clip="" id="w-node-_306b8fa5-f54a-9f59-7d53-556288fbb594-b075a2eb"><div class="form-field-group modal-11"><label class="is-caption modal-12" for="name">Name*</label><input class="input modal-9 w-input" data-name="Name" id="name" maxlength="256" name="name" placeholder="Enter name" required="" type="text"/><div class="line is-bottom is-animated modal-14"></div></div></div><div class="overflow-clip" contact-clip="" id="w-node-b5277847-eb38-0c84-2c29-eb2b36d55050-b075a2eb"><div class="form-field-group modal-11"><label class="is-caption modal-12" for="Email">Email*</label><input class="input modal-9 w-input" data-name="Email" id="Email" maxlength="256" name="Email" placeholder="Enter Email" required="" type="email"/><div class="line is-bottom is-animated modal-14"></div></div></div><div class="overflow-clip" contact-clip="" id="w-node-c66eb0f3-31e3-3cb8-f929-b8c6b9e2e6e1-b075a2eb"><div class="form-field-group modal-11"><label class="is-caption modal-12" for="field">Message</label><textarea class="input modal-9 is-text-area modal-13 w-input" data-name="Field" id="field" maxlength="5000" name="field" placeholder="Enter Message"></textarea><div class="line is-bottom is-animated modal-14"></div></div></div><div class="overflow-clip" contact-clip="" id="w-node-_4b5e5fd0-2c2c-7b0d-cb3a-c769770ca5be-b075a2eb"><div class="action-button is-s is-modal"><input class="submit-button modal-16 w-button" data-wait="Please wait..." type="submit" value="Submit / Send"/><div class="is-svg is-button-icon is-action is-auto is-b"><div class="action-line is-h is-b"></div><div class="action-line is-v is-b"></div></div><div class="is-b-l modal-18">Send message</div></div></div></form><div class="success-message modal-19 w-form-done"><div>Thank you! Your submission has been received!</div></div><div class="w-form-fail"><div>Oops! Something went wrong while submitting the form.</div></div></div></div><div class="line is-right is-inverted" contact-line=""></div></div><div class="close-popup hoverable"><div class="close">Close</div><div class="is-svg is-button-icon is-action is-2"><div class="action-line is-h is-blue"></div><div class="action-line is-v is-blue"></div></div></div><div class="form-model" contact-fade=""><div class="popup-three"><div class="is-svg is-m-model w-embed"><div id="m-popup-container" style="width:100%;height:100%;min-height:70dvh;position:relative;"></div></div></div></div></div><div class="contact-bg"></div><div class="contact-fader"></div></div><nav class="bold-nav-full" data-navigation-status="not-active"><div class="bold-nav-full__bar"><button class="bold-nav-full__hamburger" data-navigation-toggle="toggle"><div class="bold-nav-full__hamburger-bar"></div><div class="bold-nav-full__hamburger-bar"></div><div class="bold-nav-full__hamburger-bar"></div></button><div class="navbar-bottom"><div class="is-navbar-line"></div></div><div class="hamb-icon"><div class="is-svg is-m-icon w-embed"><svg fill="none" height="100%" viewbox="0 0 10 10" width="100%" xmlns="http://www.w3.org/2000/svg">
 <path d="M0 9.45724V0H1.36205L4.62582 7.90245H4.65152L7.8896 0H9.25164V9.45724H8.12089V2.27436H8.09519L5.1398 9.45724H4.11184L1.15646 2.27436H1.13076V9.45724H0Z" fill="currentColor"></path>
 </svg></div></div><div class="close-burger"><div class="close">Close</div><div class="is-svg is-button-icon is-action is-2"><div class="action-line is-h is-b"></div><div class="action-line is-v is-b"></div></div></div></div><div class="bold-nav-full__tile"><ul class="bold-nav-full__ul"><li class="bold-nav-full__li"><a class="bold-nav-full__link w-inline-block" href="#what-we-do"><span class="bold-nav-full__link-text">What We Do</span></a></li><li class="bold-nav-full__li is-odd"><a class="bold-nav-full__link is--current w-inline-block" href="#teams"><span class="bold-nav-full__link-text">Teams</span></a></li><li class="bold-nav-full__li"><a class="bold-nav-full__link w-inline-block" href="#contact"><span class="bold-nav-full__link-text">Contact</span></a></li><li class="bold-nav-full__li is-odd"><a class="bold-nav-full__link w-inline-block" href="/blog"><span class="bold-nav-full__link-text">Blog</span></a></li><li class="bold-nav-full__li" id="w-node-dee1ee25-dc07-8a72-6e10-576b67d8a5da-67d8a5c0"><div class="action-wrap w-variant-ee4b2660-3495-2b39-5517-f99cd248d612" data-wf--fixed-cta-button--variant="mobile"><a class="action-button is-g w-variant-ee4b2660-3495-2b39-5517-f99cd248d612 w-inline-block" href="#" open-modal=""><div class="is-svg is-button-icon is-action"><div class="action-line is-h"></div><div class="action-line is-v"></div></div><div class="is-b-l">Start a Project</div></a></div></li></ul></div></nav><div class="page-fader w-variant-c00a2059-46c2-2f9b-cf12-439f0d7b11c0" data-wf--page-transition--variant="gray"></div><div class="cursor-wrap not-blend"><div class="absolute-hover arrow-cursor"><div class="is-svg is-handle w-embed"><svg fill="none" height="100%" viewbox="0 0 11 11" width="100%" xmlns="http://www.w3.org/2000/svg">
@@ -2325,16 +2350,18 @@ window.addEventListener('load', () => {
     const split = new SplitText(nameEl, { type: 'lines' });
     split.lines.forEach(function (line) {
       const mask = document.createElement('span');
-      mask.style.cssText = 'display:block; clip-path: inset(0 0 -0.3em 0);';
+      mask.className = 'kinetic-3d-wrap';
+      mask.style.cssText = 'display:block; overflow:hidden; perspective:1000px; transform-style:preserve-3d; clip-path: inset(0 0 -0.25em 0);';
       const inner = document.createElement('span');
-      inner.style.cssText = 'display:block;';
+      inner.className = 'kinetic-3d-inner';
+      inner.style.cssText = 'display:block; transform-origin: 50% 100% -25px; will-change: transform, opacity, filter; backface-visibility: hidden;';
       inner.innerHTML = line.innerHTML;
       mask.appendChild(inner);
       line.innerHTML = '';
       line.appendChild(mask);
       nameLines.push(inner);
     });
-    gsap.set(nameLines, { yPercent: 150 });
+    gsap.set(nameLines, { yPercent: 120, rotateX: 35, opacity: 0, filter: 'blur(6px)' });
   }
 
   let lottieInstance = null;
@@ -2566,9 +2593,12 @@ window.addEventListener('load', () => {
       if (nameLines.length > 0) {
         gsap.to(nameLines, {
           yPercent: 0,
-          duration: 1.6,
-          ease: 'expo.out',
-          stagger: { each: 0.1 },
+          rotateX: 0,
+          opacity: 1,
+          filter: 'blur(0px)',
+          duration: 1.35,
+          ease: 'power3.out',
+          stagger: { each: 0.08 },
           delay: baseDelay,
         });
       }
@@ -2696,9 +2726,11 @@ window.addEventListener('load', () => {
 
       split.lines.forEach(function (line) {
         var mask = document.createElement('span');
-        mask.style.cssText = 'display:block; clip-path: inset(0 0 -0.3em 0);';
+        mask.className = 'kinetic-3d-wrap';
+        mask.style.cssText = 'display:block; overflow:hidden; perspective:1000px; transform-style:preserve-3d; clip-path: inset(0 0 -0.25em 0);';
         var inner = document.createElement('span');
-        inner.style.cssText = 'display:block;';
+        inner.className = 'kinetic-3d-inner';
+        inner.style.cssText = 'display:block; transform-origin: 50% 100% -25px; will-change: transform, opacity, filter; backface-visibility: hidden;';
         inner.innerHTML = line.innerHTML;
         mask.appendChild(inner);
         line.innerHTML = '';
@@ -2706,16 +2738,34 @@ window.addEventListener('load', () => {
         lines.push(inner);
       });
 
-      gsap.set(lines, { yPercent: 150 });
+      gsap.set(lines, { yPercent: 120, rotateX: 35, opacity: 0, filter: 'blur(6px)' });
 
       setupElement(nameEl,
         function () {
           gsap.killTweensOf(lines);
-          gsap.to(lines, { yPercent: 0, duration: DUR_TEXT, ease: EASE, stagger: { each: STAG } });
+          gsap.to(lines, {
+            yPercent: 0,
+            rotateX: 0,
+            opacity: 1,
+            filter: 'blur(0px)',
+            duration: 1.15,
+            ease: 'power3.out',
+            stagger: { each: 0.045 },
+            overwrite: 'auto'
+          });
         },
         function () {
           gsap.killTweensOf(lines);
-          gsap.to(lines, { yPercent: 150, duration: DUR_TEXT * 0.6, ease: 'power2.inOut', stagger: { each: STAG, from: 'end' } });
+          gsap.to(lines, {
+            yPercent: 120,
+            rotateX: 35,
+            opacity: 0,
+            filter: 'blur(6px)',
+            duration: 0.75,
+            ease: 'power2.inOut',
+            stagger: { each: 0.025, from: 'end' },
+            overwrite: 'auto'
+          });
         }
       );
     });
@@ -2726,9 +2776,11 @@ window.addEventListener('load', () => {
 
       split.lines.forEach(function (line) {
         var mask = document.createElement('span');
-        mask.style.cssText = 'display:block; clip-path: inset(0 0 -0.3em 0);';
+        mask.className = 'kinetic-3d-wrap';
+        mask.style.cssText = 'display:block; overflow:hidden; perspective:1000px; transform-style:preserve-3d; clip-path: inset(0 0 -0.2em 0);';
         var inner = document.createElement('span');
-        inner.style.cssText = 'display:block;';
+        inner.className = 'kinetic-3d-inner';
+        inner.style.cssText = 'display:block; transform-origin: 50% 100% -15px; will-change: transform, opacity, filter; backface-visibility: hidden;';
         inner.innerHTML = line.innerHTML;
         mask.appendChild(inner);
         line.innerHTML = '';
@@ -2736,7 +2788,7 @@ window.addEventListener('load', () => {
         lines.push(inner);
       });
 
-      gsap.set(lines, { yPercent: 150 });
+      gsap.set(lines, { yPercent: 110, rotateX: 30, opacity: 0, filter: 'blur(4px)' });
 
       ScrollTrigger.create({
         trigger: nameEl,
@@ -2744,11 +2796,29 @@ window.addEventListener('load', () => {
         end: 'bottom top',
         onEnter: function () {
           gsap.killTweensOf(lines);
-          gsap.to(lines, { yPercent: 0, duration: DUR_TEXT_SMALL, ease: EASE, stagger: { each: STAG } });
+          gsap.to(lines, {
+            yPercent: 0,
+            rotateX: 0,
+            opacity: 1,
+            filter: 'blur(0px)',
+            duration: 0.95,
+            ease: 'power3.out',
+            stagger: { each: 0.035 },
+            overwrite: 'auto'
+          });
         },
         onLeaveBack: function () {
           gsap.killTweensOf(lines);
-          gsap.to(lines, { yPercent: 150, duration: DUR_TEXT_SMALL * 0.6, ease: 'power2.inOut', stagger: { each: STAG, from: 'end' } });
+          gsap.to(lines, {
+            yPercent: 110,
+            rotateX: 30,
+            opacity: 0,
+            filter: 'blur(4px)',
+            duration: 0.65,
+            ease: 'power2.inOut',
+            stagger: { each: 0.02, from: 'end' },
+            overwrite: 'auto'
+          });
         },
       });
     });
@@ -2794,9 +2864,11 @@ window.addEventListener('load', () => {
 
         split.lines.forEach(function (line) {
           var mask = document.createElement('span');
-          mask.style.cssText = 'display:block; clip-path: inset(0 0 -0.3em 0);';
+          mask.className = 'kinetic-3d-wrap';
+          mask.style.cssText = 'display:block; overflow:hidden; perspective:1000px; transform-style:preserve-3d; clip-path: inset(0 0 -0.2em 0);';
           var inner = document.createElement('span');
-          inner.style.cssText = 'display:block;';
+          inner.className = 'kinetic-3d-inner';
+          inner.style.cssText = 'display:block; transform-origin: 50% 100% -15px; will-change: transform, opacity, filter; backface-visibility: hidden;';
           inner.innerHTML = line.innerHTML;
           mask.appendChild(inner);
           line.innerHTML = '';
@@ -2806,7 +2878,7 @@ window.addEventListener('load', () => {
       });
 
       gsap.set(lines, { scaleX: 0 });
-      gsap.set(nameLines, { yPercent: 150 });
+      gsap.set(nameLines, { yPercent: 110, rotateX: 30, opacity: 0, filter: 'blur(4px)' });
 
       ScrollTrigger.create({
         trigger: container,
@@ -2817,7 +2889,16 @@ window.addEventListener('load', () => {
           gsap.to(lines, { scaleX: 1, duration: DUR_LINE, ease: EASE_LINE });
           if (nameLines.length) {
             gsap.killTweensOf(nameLines);
-            gsap.to(nameLines, { yPercent: 0, duration: DUR_TEXT_SMALL, ease: EASE, stagger: { each: STAG_WAVE } });
+            gsap.to(nameLines, {
+              yPercent: 0,
+              rotateX: 0,
+              opacity: 1,
+              filter: 'blur(0px)',
+              duration: DUR_TEXT_SMALL,
+              ease: 'power3.out',
+              stagger: { each: STAG_WAVE },
+              overwrite: 'auto'
+            });
           }
         },
         onLeaveBack: function () {
@@ -2825,7 +2906,16 @@ window.addEventListener('load', () => {
           gsap.to(lines, { scaleX: 0, duration: DUR_LINE * 0.5, ease: EASE_LINE });
           if (nameLines.length) {
             gsap.killTweensOf(nameLines);
-            gsap.to(nameLines, { yPercent: 150, duration: DUR_TEXT_SMALL * 0.6, ease: 'power2.inOut', stagger: { each: STAG_WAVE, from: 'end' } });
+            gsap.to(nameLines, {
+              yPercent: 110,
+              rotateX: 30,
+              opacity: 0,
+              filter: 'blur(4px)',
+              duration: DUR_TEXT_SMALL * 0.6,
+              ease: 'power2.inOut',
+              stagger: { each: STAG_WAVE, from: 'end' },
+              overwrite: 'auto'
+            });
           }
         },
       });
@@ -3249,9 +3339,11 @@ function setupElements() {
     const split = new SplitText(nameEl, { type: 'lines' });
     split.lines.forEach(function (line) {
       const mask = document.createElement('span');
-      mask.style.cssText = 'display:block; clip-path: inset(0 0 -0.3em 0);';
+      mask.className = 'kinetic-3d-wrap';
+      mask.style.cssText = 'display:block; overflow:hidden; perspective:1000px; transform-style:preserve-3d; clip-path: inset(0 0 -0.25em 0);';
       const inner = document.createElement('span');
-      inner.style.cssText = 'display:block;';
+      inner.className = 'kinetic-3d-inner';
+      inner.style.cssText = 'display:block; transform-origin: 50% 100% -25px; will-change: transform, opacity, filter; backface-visibility: hidden;';
       inner.innerHTML = line.innerHTML;
       mask.appendChild(inner);
       line.innerHTML = '';
@@ -3259,7 +3351,7 @@ function setupElements() {
       nameLines.push(inner);
     });
   });
-  gsap.set(nameLines, { yPercent: 150 });
+  gsap.set(nameLines, { yPercent: 120, rotateX: 35, opacity: 0, filter: 'blur(6px)' });
 
   modal.querySelectorAll('[contact-clip]').forEach(function (el) {
     [...el.children].forEach(function (child) {
@@ -3341,9 +3433,12 @@ function openModal() {
   if (nameLines.length > 0) {
     gsap.to(nameLines, {
       yPercent: 0,
+      rotateX: 0,
+      opacity: 1,
+      filter: 'blur(0px)',
       duration: DUR_REVEAL,
-      ease: EASE_MENU,
-      stagger: { each: STAG },
+      ease: 'power3.out',
+      stagger: { each: 0.05 },
       delay: nameDelay
     });
   }
@@ -3422,7 +3517,7 @@ function closeModal() {
       gsap.set(contactBg,     { y: '100%' });
       gsap.set('.modal-wrap', { y: '0%' });
       gsap.set(popupThree,    { y: '100%', opacity: 0 });
-      if (nameLines.length > 0)  gsap.set(nameLines, { yPercent: 150 });
+      if (nameLines.length > 0)  gsap.set(nameLines, { yPercent: 120, rotateX: 35, opacity: 0, filter: 'blur(6px)' });
       if (clipItems.length > 0)  gsap.set(clipItems,  { yPercent: 150 });
       if (lineItems.length > 0)  gsap.set(lineItems,  { scaleY: 0 });
       gsap.set(closeBtn,      { opacity: 0, x: '3rem' });
