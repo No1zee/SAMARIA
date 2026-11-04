@@ -1,6 +1,7 @@
+import glob
 from bs4 import BeautifulSoup
 
-for path in ['src/templates/home.html', 'src/templates/blog.html']:
+for path in glob.glob('src/templates/*.html'):
     with open(path, 'r', encoding='utf-8') as f:
         soup = BeautifulSoup(f.read(), 'html.parser')
     missing = []
