@@ -2452,7 +2452,7 @@ window.addEventListener('load', () => {
       line.appendChild(mask);
       nameLines.push(inner);
     });
-    if (nameLines.length > 0) gsap.set(nameLines, { yPercent: 110, rotateX: 30, opacity: 0, filter: \'blur(4px)\' });
+    if (nameLines.length > 0) gsap.set(nameLines, { yPercent: 110, rotateX: 30, opacity: 0, filter: 'blur(4px)' });
   }
 
   let lottieInstance = null;
@@ -2640,6 +2640,9 @@ window.addEventListener('load', () => {
         opacity: 0, duration: 0.3, ease: 'power2.inOut',
         onComplete: function () {
           gsap.set(overlay, { display: 'none', backgroundColor: 'white' });
+          gsap.set(preloader, { display: 'none', pointerEvents: 'none' });
+          ScrollTrigger.refresh();
+          window.dispatchEvent(new Event('preloader:done'));
         }
       }, 0.15);
 
@@ -2971,7 +2974,7 @@ window.addEventListener('load', () => {
       });
 
       gsap.set(lines, { scaleX: 0 });
-      if (nameLines.length > 0) gsap.set(nameLines, { yPercent: 110, rotateX: 30, opacity: 0, filter: \'blur(4px)\' });
+      if (nameLines.length > 0) gsap.set(nameLines, { yPercent: 110, rotateX: 30, opacity: 0, filter: 'blur(4px)' });
 
       ScrollTrigger.create({
         trigger: container,
@@ -3449,7 +3452,7 @@ function setupElements() {
       nameLines.push(inner);
     });
   });
-  if (nameLines.length > 0) gsap.set(nameLines, { yPercent: 110, rotateX: 30, opacity: 0, filter: \'blur(4px)\' });
+  if (nameLines.length > 0) gsap.set(nameLines, { yPercent: 110, rotateX: 30, opacity: 0, filter: 'blur(4px)' });
 
   modal.querySelectorAll('[contact-clip]').forEach(function (el) {
     [...el.children].forEach(function (child) {
@@ -3620,7 +3623,7 @@ function closeModal() {
       gsap.set(contactBg,     { y: '100%' });
       gsap.set('.modal-wrap', { y: '0%' });
       gsap.set(popupThree,    { y: '100%', opacity: 0 });
-      if (nameLines.length > 0)  if (nameLines.length > 0) gsap.set(nameLines, { yPercent: 110, rotateX: 30, opacity: 0, filter: \'blur(4px)\' });
+      if (nameLines.length > 0) gsap.set(nameLines, { yPercent: 110, rotateX: 30, opacity: 0, filter: 'blur(4px)' });
       if (clipItems.length > 0)  gsap.set(clipItems,  { yPercent: 150 });
       if (lineItems.length > 0)  gsap.set(lineItems,  { scaleY: 0 });
       gsap.set(closeBtn,      { opacity: 0, x: '3rem' });
