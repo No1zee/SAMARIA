@@ -4279,14 +4279,19 @@ if (success) {
     let lastScrollY = window.scrollY;
     let scrollVelocityTimer = null;
 
+    function wakeVisibleCards() {
+      window.dispatchEvent(new CustomEvent('samaria-wake-cards'));
+    }
+
     window.addEventListener('scroll', function() {
       const curY = window.scrollY;
       globalScrollVelocity = (curY - lastScrollY) * 0.02;
       lastScrollY = curY;
+      wakeVisibleCards();
       clearTimeout(scrollVelocityTimer);
       scrollVelocityTimer = setTimeout(function() {
         globalScrollVelocity = 0;
-      }, 100);
+      }, 120);
     }, { passive: true });
 
     if (window.lenis) {
@@ -4434,14 +4439,14 @@ if (success) {
           renderer.render(scene, camera);
         }
 
-        // Keep loop running if hovered, scrolling, or lerp in progress
-        if (curHover > 0.005 || Math.abs(globalScrollVelocity) > 0.005) {
+        // Sleep when idle (zero CPU/GPU overhead when not hovered or scrolling)
+        if (curHover > 0.003 || Math.abs(globalScrollVelocity) > 0.003) {
           card.classList.add('card-ripple-active');
+          rafId = requestAnimationFrame(renderLoop);
         } else {
           card.classList.remove('card-ripple-active');
+          rafId = null;
         }
-
-        rafId = requestAnimationFrame(renderLoop);
       }
 
       function onMouseMove(e) {
@@ -4469,23 +4474,25 @@ if (success) {
       const obs = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
           isVisible = entry.isIntersecting;
-          if (isVisible) {
-            initCardScene();
-            resizeCard();
-            if (!rafId) {
-              rafId = requestAnimationFrame(renderLoop);
-            }
-          } else {
+          if (!isVisible) {
             if (rafId) {
               cancelAnimationFrame(rafId);
               rafId = null;
             }
+          } else {
+            resizeCard();
           }
         });
       }, { rootMargin: '50% 0px' });
 
       obs.observe(card);
       window.addEventListener('resize', resizeCard, { passive: true });
+      window.addEventListener('samaria-wake-cards', function() {
+        if (isVisible && !rafId && (curHover > 0.003 || Math.abs(globalScrollVelocity) > 0.003)) {
+          initCardScene();
+          rafId = requestAnimationFrame(renderLoop);
+        }
+      }, { passive: true });
     });
   }
 
