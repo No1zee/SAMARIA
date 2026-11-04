@@ -323,26 +323,29 @@ window.scrollTo(0, 0);
 </style>
 
 <style>
-/* GPU-Stepped Film Grain (0% CPU, Compositor-Only) */
+/* GPU-Stepped Film Grain (0% CPU, Compositor-Only Hardware Tiling) */
 .samaria-noise-overlay {
   position: fixed;
-  top: -110%;
-  left: -50%;
+  top: -100%;
+  left: -100%;
   width: 300%;
   height: 300%;
   pointer-events: none;
-  opacity: 0.045;
+  opacity: 0.04;
   z-index: 9999;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  animation: 3s steps(5, end) infinite noise-grain;
+  background-image: url("/noise.png");
+  background-repeat: repeat;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  animation: 2.5s steps(5, end) infinite noise-grain;
 }
 @keyframes noise-grain {
-  0%   { transform: translate(0, 0); }
-  20%  { transform: translate(-5%, -10%); }
-  40%  { transform: translate(-15%, 5%); }
-  60%  { transform: translate(7%, -20%); }
-  80%  { transform: translate(-5%, 15%); }
-  100% { transform: translate(0, 0); }
+  0%   { transform: translate3d(0, 0, 0); }
+  20%  { transform: translate3d(-3%, -6%, 0); }
+  40%  { transform: translate3d(-8%, 3%, 0); }
+  60%  { transform: translate3d(4%, -10%, 0); }
+  80%  { transform: translate3d(-3%, 7%, 0); }
+  100% { transform: translate3d(0, 0, 0); }
 }
 @media (prefers-reduced-motion: reduce) {
   .samaria-noise-overlay {
@@ -350,7 +353,7 @@ window.scrollTo(0, 0);
   }
 }
 
-/* 3D Water Ripple Card Overlay */
+/* 3D Water Ripple Card Overlay (Flyweight Single Shared Canvas) */
 .card-ripple-canvas {
   position: absolute;
   top: 0;
@@ -360,9 +363,10 @@ window.scrollTo(0, 0);
   pointer-events: none;
   z-index: 5;
   opacity: 0;
-  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity;
 }
-.card-ripple-active .card-ripple-canvas {
+.card-ripple-canvas.is-active {
   opacity: 1;
 }
 .project-vid, .project-file {
@@ -986,9 +990,20 @@ window.addEventListener('load', function () {
           ? ''
           : 'translate3d(0,' + translateY + 'px,0)';
       }
-      rafId = requestAnimationFrame(animate);
+      if (Math.abs(target - progress) > 0.0005 || Math.abs(accumulatedDelta) > 0.01 || fall.active) {
+        rafId = requestAnimationFrame(animate);
+      } else {
+        rafId = null;
+        if (progress !== 0 && target === 0) {
+          progress = 0;
+          wrap.style.transform = '';
+        }
+      }
     }
-    window.addEventListener('wheel', onWheel, { passive: true });
+    window.addEventListener('wheel', function(e) {
+      onWheel(e);
+      if (!rafId) rafId = requestAnimationFrame(animate);
+    }, { passive: true });
     rafId = requestAnimationFrame(animate);
   }, 500);
 });
@@ -1437,10 +1452,17 @@ window.addEventListener('load', function () {
     window.addEventListener('resize', onResize);
 
     // 10. Animation Loop
-    let clock = new THREE.Clock();
+    let animStartTime = performance.now();
+    let isVisible = true;
+    let animId = null;
+
     function animate() {
-      requestAnimationFrame(animate);
-      const elapsedTime = clock.getElapsedTime();
+      if (!isVisible) {
+        animId = null;
+        return;
+      }
+      animId = requestAnimationFrame(animate);
+      const elapsedTime = (performance.now() - animStartTime) * 0.001;
 
       // Inertia decay
       if (!isDragging) {
@@ -1468,6 +1490,16 @@ window.addEventListener('load', function () {
       renderer.render(scene, camera);
     }
     animate();
+
+    const coinObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        isVisible = entry.isIntersecting;
+        if (isVisible && !animId) {
+          animId = requestAnimationFrame(animate);
+        }
+      });
+    }, { rootMargin: '25% 0px' });
+    coinObs.observe(container);
   }
 
   window.addEventListener('three-engine-ready', initCoin);
@@ -1956,10 +1988,12 @@ if (handCursor) {
     mouse.y = spring.y = e.clientY;
   });
 
+  let cursorRafId = null;
   function animate() {
-    requestAnimationFrame(animate);
-    spring.x += (mouse.x - spring.x) * 0.14;
-    spring.y += (mouse.y - spring.y) * 0.14;
+    const dx = mouse.x - spring.x;
+    const dy = mouse.y - spring.y;
+    spring.x += dx * 0.18;
+    spring.y += dy * 0.18;
 
     const cx = spring.x - window.innerWidth  / 2;
     const cy = spring.y - window.innerHeight / 2;
@@ -1967,9 +2001,18 @@ if (handCursor) {
     cursors.forEach(el => {
       el.style.transform = `translate3d(${cx}px, ${cy}px, 0px) scale3d(1,1,1)`;
     });
+
+    if (Math.abs(dx) > 0.08 || Math.abs(dy) > 0.08) {
+      cursorRafId = requestAnimationFrame(animate);
+    } else {
+      cursorRafId = null;
+    }
   }
 
-  requestAnimationFrame(animate);
+  window.addEventListener('mousemove', () => {
+    if (!cursorRafId) cursorRafId = requestAnimationFrame(animate);
+  }, { passive: true });
+  cursorRafId = requestAnimationFrame(animate);
 })();
 </script>
 <script>
@@ -2409,7 +2452,7 @@ window.addEventListener('load', () => {
       line.appendChild(mask);
       nameLines.push(inner);
     });
-    gsap.set(nameLines, { yPercent: 120, rotateX: 35, opacity: 0, filter: 'blur(6px)' });
+    if (nameLines.length > 0) gsap.set(nameLines, { yPercent: 110, rotateX: 30, opacity: 0, filter: \'blur(4px)\' });
   }
 
   let lottieInstance = null;
@@ -2785,6 +2828,7 @@ window.addEventListener('load', () => {
         line.appendChild(mask);
         lines.push(inner);
       });
+      if (!lines.length) return;
 
       gsap.set(lines, { yPercent: 120, rotateX: 35, opacity: 0, filter: 'blur(6px)' });
 
@@ -2835,6 +2879,7 @@ window.addEventListener('load', () => {
         line.appendChild(mask);
         lines.push(inner);
       });
+      if (!lines.length) return;
 
       gsap.set(lines, { yPercent: 110, rotateX: 30, opacity: 0, filter: 'blur(4px)' });
 
@@ -2926,7 +2971,7 @@ window.addEventListener('load', () => {
       });
 
       gsap.set(lines, { scaleX: 0 });
-      gsap.set(nameLines, { yPercent: 110, rotateX: 30, opacity: 0, filter: 'blur(4px)' });
+      if (nameLines.length > 0) gsap.set(nameLines, { yPercent: 110, rotateX: 30, opacity: 0, filter: \'blur(4px)\' });
 
       ScrollTrigger.create({
         trigger: container,
@@ -3365,8 +3410,13 @@ function initThree() {
 
   window.addEventListener('resize', updateCameraFraming);
 
+  let modalAnimId = null;
   function animate() {
-    requestAnimationFrame(animate);
+    if (!modalOpen) {
+      modalAnimId = null;
+      return;
+    }
+    modalAnimId = requestAnimationFrame(animate);
     if (!isModalDragging) {
       autoRotY += AUTO_SPEED;
     }
@@ -3376,7 +3426,7 @@ function initThree() {
     }
     renderer.render(scene, camera);
   }
-  animate();
+  modalAnimId = requestAnimationFrame(animate);
 }
 
 function setupElements() {
@@ -3399,7 +3449,7 @@ function setupElements() {
       nameLines.push(inner);
     });
   });
-  gsap.set(nameLines, { yPercent: 120, rotateX: 35, opacity: 0, filter: 'blur(6px)' });
+  if (nameLines.length > 0) gsap.set(nameLines, { yPercent: 110, rotateX: 30, opacity: 0, filter: \'blur(4px)\' });
 
   modal.querySelectorAll('[contact-clip]').forEach(function (el) {
     [...el.children].forEach(function (child) {
@@ -3419,6 +3469,11 @@ function setupElements() {
 }
 
 function openModal() {
+  if (typeof initThree === 'function' && renderer) {
+    if (typeof modalAnimId !== 'undefined' && !modalAnimId) {
+      modalAnimId = requestAnimationFrame(animate);
+    }
+  }
   if (modalOpen) return;
   modalOpen = true;
   lockScroll();
@@ -3565,7 +3620,7 @@ function closeModal() {
       gsap.set(contactBg,     { y: '100%' });
       gsap.set('.modal-wrap', { y: '0%' });
       gsap.set(popupThree,    { y: '100%', opacity: 0 });
-      if (nameLines.length > 0)  gsap.set(nameLines, { yPercent: 120, rotateX: 35, opacity: 0, filter: 'blur(6px)' });
+      if (nameLines.length > 0)  if (nameLines.length > 0) gsap.set(nameLines, { yPercent: 110, rotateX: 30, opacity: 0, filter: \'blur(4px)\' });
       if (clipItems.length > 0)  gsap.set(clipItems,  { yPercent: 150 });
       if (lineItems.length > 0)  gsap.set(lineItems,  { scaleY: 0 });
       gsap.set(closeBtn,      { opacity: 0, x: '3rem' });
@@ -4275,23 +4330,37 @@ if (success) {
     const cards = document.querySelectorAll('.project-vid[gsap-img], .project-file[gsap-img]');
     if (!cards.length) return;
 
+    // Single shared canvas & WebGL pipeline (Flyweight pattern: 1 context total)
+    const sharedCanvas = document.createElement('canvas');
+    sharedCanvas.className = 'card-ripple-canvas';
+
+    let renderer = null;
+    let scene = null;
+    let camera = null;
+    let mat = null;
+    let mesh = null;
+    let activeCard = null;
+    let isHovered = false;
+    let rafId = null;
+    let startTime = performance.now();
+
+    let targetHover = 0.0;
+    let curHover = 0.0;
+    let targetMouse = new THREE.Vector2(0, 0);
+    let curMouse = new THREE.Vector2(0, 0);
+
     let globalScrollVelocity = 0;
     let lastScrollY = window.scrollY;
     let scrollVelocityTimer = null;
-
-    function wakeVisibleCards() {
-      window.dispatchEvent(new CustomEvent('samaria-wake-cards'));
-    }
 
     window.addEventListener('scroll', function() {
       const curY = window.scrollY;
       globalScrollVelocity = (curY - lastScrollY) * 0.02;
       lastScrollY = curY;
-      wakeVisibleCards();
       clearTimeout(scrollVelocityTimer);
       scrollVelocityTimer = setTimeout(function() {
         globalScrollVelocity = 0;
-      }, 120);
+      }, 100);
     }, { passive: true });
 
     if (window.lenis) {
@@ -4303,6 +4372,7 @@ if (success) {
     }
 
     const textureLoader = new THREE.TextureLoader();
+    const textureCache = new Map();
 
     // Shared plane geometry with 32x18 subdivision (627 vertices)
     const rippleGeo = new THREE.PlaneGeometry(2, 2, 32, 18);
@@ -4318,7 +4388,6 @@ if (success) {
         vUv = uv;
         vec3 pos = position;
 
-        // Radial distance from cursor in normalized -1..1 space
         vec2 normPos = pos.xy;
         float dist = distance(normPos, uMouse);
 
@@ -4353,147 +4422,147 @@ if (success) {
       }
     `;
 
-    cards.forEach(function(card) {
-      // Avoid duplicate canvas
-      if (card.querySelector('.card-ripple-canvas')) return;
+    function initSharedEngine() {
+      if (renderer) return;
 
+      renderer = new THREE.WebGLRenderer({
+        canvas: sharedCanvas,
+        alpha: true,
+        antialias: false,
+        powerPreference: 'high-performance'
+      });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+
+      scene = new THREE.Scene();
+      camera = new THREE.Camera();
+
+      mat = new THREE.ShaderMaterial({
+        vertexShader: vShader,
+        fragmentShader: fShader,
+        uniforms: {
+          uTexture: { value: null },
+          uTime: { value: 0.0 },
+          uHover: { value: 0.0 },
+          uMouse: { value: new THREE.Vector2(0, 0) },
+          uScrollVelocity: { value: 0.0 },
+        },
+        transparent: true,
+        depthWrite: false,
+      });
+
+      mesh = new THREE.Mesh(rippleGeo, mat);
+      scene.add(mesh);
+    }
+
+    function renderLoop(now) {
+      if (!activeCard) {
+        rafId = null;
+        return;
+      }
+
+      curHover += (targetHover - curHover) * 0.12;
+      curMouse.lerp(targetMouse, 0.15);
+
+      const elapsed = (now - startTime) * 0.001;
+
+      if (mat) {
+        mat.uniforms.uTime.value = elapsed;
+        mat.uniforms.uHover.value = curHover;
+        mat.uniforms.uMouse.value.copy(curMouse);
+        mat.uniforms.uScrollVelocity.value = globalScrollVelocity;
+      }
+
+      if (renderer && scene && camera) {
+        renderer.render(scene, camera);
+      }
+
+      if (isHovered || curHover > 0.003 || Math.abs(globalScrollVelocity) > 0.003) {
+        rafId = requestAnimationFrame(renderLoop);
+      } else {
+        sharedCanvas.classList.remove('is-active');
+        rafId = null;
+        activeCard = null;
+      }
+    }
+
+    function updateMousePos(card, e) {
+      const rect = card.getBoundingClientRect();
+      if (rect.width <= 0 || rect.height <= 0) return;
+      const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      const y = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
+      targetMouse.set(x, y);
+    }
+
+    function activateCard(card, e) {
       const imgEl = card.querySelector('img');
       const vidEl = card.querySelector('video');
       const srcUrl = imgEl ? (imgEl.currentSrc || imgEl.src) : (vidEl ? (vidEl.poster || '') : '');
       if (!srcUrl) return;
 
-      const canvas = document.createElement('canvas');
-      canvas.className = 'card-ripple-canvas';
-      card.appendChild(canvas);
+      initSharedEngine();
+      activeCard = card;
+      isHovered = true;
+      targetHover = 1.0;
 
-      let renderer = null;
-      let scene = null;
-      let camera = null;
-      let mat = null;
-      let isVisible = false;
-      let rafId = null;
-      let startTime = performance.now();
-
-      let targetHover = 0.0;
-      let curHover = 0.0;
-      let targetMouse = new THREE.Vector2(0, 0);
-      let curMouse = new THREE.Vector2(0, 0);
-
-      function initCardScene() {
-        if (renderer) return;
-
-        renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true, powerPreference: 'low-power' });
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-
-        scene = new THREE.Scene();
-        camera = new THREE.Camera(); // Orthographic clip-space camera
-
-        const texture = textureLoader.load(srcUrl);
-        texture.minFilter = THREE.LinearFilter;
-        texture.generateMipmaps = false;
-
-        mat = new THREE.ShaderMaterial({
-          vertexShader: vShader,
-          fragmentShader: fShader,
-          uniforms: {
-            uTexture: { value: texture },
-            uTime: { value: 0.0 },
-            uHover: { value: 0.0 },
-            uMouse: { value: new THREE.Vector2(0, 0) },
-            uScrollVelocity: { value: 0.0 },
-          },
-          transparent: true,
-          depthWrite: false,
-        });
-
-        const mesh = new THREE.Mesh(rippleGeo, mat);
-        scene.add(mesh);
-        resizeCard();
+      if (sharedCanvas.parentNode !== card) {
+        card.appendChild(sharedCanvas);
       }
 
-      function resizeCard() {
-        if (!renderer || !canvas) return;
-        const rect = card.getBoundingClientRect();
+      let tex = textureCache.get(srcUrl);
+      if (!tex) {
+        tex = textureLoader.load(srcUrl);
+        tex.minFilter = THREE.LinearFilter;
+        tex.generateMipmaps = false;
+        textureCache.set(srcUrl, tex);
+      }
+      mat.uniforms.uTexture.value = tex;
+
+      const rect = card.getBoundingClientRect();
+      if (rect.width > 0 && rect.height > 0) {
+        renderer.setSize(rect.width, rect.height, false);
+      }
+
+      if (e) {
+        updateMousePos(card, e);
+      }
+
+      sharedCanvas.classList.add('is-active');
+      if (!rafId) {
+        rafId = requestAnimationFrame(renderLoop);
+      }
+    }
+
+    function deactivateCard(card) {
+      if (activeCard === card) {
+        isHovered = false;
+        targetHover = 0.0;
+      }
+    }
+
+    cards.forEach(function(card) {
+      card.addEventListener('mouseenter', function(e) {
+        activateCard(card, e);
+      }, { passive: true });
+
+      card.addEventListener('mousemove', function(e) {
+        if (activeCard === card) {
+          updateMousePos(card, e);
+        }
+      }, { passive: true });
+
+      card.addEventListener('mouseleave', function() {
+        deactivateCard(card);
+      }, { passive: true });
+    });
+
+    window.addEventListener('resize', function() {
+      if (activeCard && renderer) {
+        const rect = activeCard.getBoundingClientRect();
         if (rect.width > 0 && rect.height > 0) {
           renderer.setSize(rect.width, rect.height, false);
         }
       }
-
-      function renderLoop(now) {
-        if (!isVisible) return;
-
-        // Smooth physics lerping
-        curHover += (targetHover - curHover) * 0.12;
-        curMouse.lerp(targetMouse, 0.15);
-
-        const elapsed = (now - startTime) * 0.001;
-
-        if (mat) {
-          mat.uniforms.uTime.value = elapsed;
-          mat.uniforms.uHover.value = curHover;
-          mat.uniforms.uMouse.value.copy(curMouse);
-          mat.uniforms.uScrollVelocity.value = globalScrollVelocity;
-        }
-
-        if (renderer && scene && camera) {
-          renderer.render(scene, camera);
-        }
-
-        // Sleep when idle (zero CPU/GPU overhead when not hovered or scrolling)
-        if (curHover > 0.003 || Math.abs(globalScrollVelocity) > 0.003) {
-          card.classList.add('card-ripple-active');
-          rafId = requestAnimationFrame(renderLoop);
-        } else {
-          card.classList.remove('card-ripple-active');
-          rafId = null;
-        }
-      }
-
-      function onMouseMove(e) {
-        initCardScene();
-        const rect = card.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-        const y = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
-        targetMouse.set(x, y);
-        targetHover = 1.0;
-        card.classList.add('card-ripple-active');
-
-        if (!rafId && isVisible) {
-          rafId = requestAnimationFrame(renderLoop);
-        }
-      }
-
-      function onMouseLeave() {
-        targetHover = 0.0;
-      }
-
-      card.addEventListener('mousemove', onMouseMove, { passive: true });
-      card.addEventListener('mouseleave', onMouseLeave, { passive: true });
-
-      // IntersectionObserver: 50% rootMargin to sleep off-screen
-      const obs = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          isVisible = entry.isIntersecting;
-          if (!isVisible) {
-            if (rafId) {
-              cancelAnimationFrame(rafId);
-              rafId = null;
-            }
-          } else {
-            resizeCard();
-          }
-        });
-      }, { rootMargin: '50% 0px' });
-
-      obs.observe(card);
-      window.addEventListener('resize', resizeCard, { passive: true });
-      window.addEventListener('samaria-wake-cards', function() {
-        if (isVisible && !rafId && (curHover > 0.003 || Math.abs(globalScrollVelocity) > 0.003)) {
-          initCardScene();
-          rafId = requestAnimationFrame(renderLoop);
-        }
-      }, { passive: true });
-    });
+    }, { passive: true });
   }
 
   if (document.readyState === 'loading') {

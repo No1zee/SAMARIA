@@ -184,26 +184,29 @@ window.scrollTo(0, 0);
 </style>
 
 <style>
-/* GPU-Stepped Film Grain (0% CPU, Compositor-Only) */
+/* GPU-Stepped Film Grain (0% CPU, Compositor-Only Hardware Tiling) */
 .samaria-noise-overlay {
   position: fixed;
-  top: -110%;
-  left: -50%;
+  top: -100%;
+  left: -100%;
   width: 300%;
   height: 300%;
   pointer-events: none;
-  opacity: 0.045;
+  opacity: 0.04;
   z-index: 9999;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  animation: 3s steps(5, end) infinite noise-grain;
+  background-image: url("/noise.png");
+  background-repeat: repeat;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  animation: 2.5s steps(5, end) infinite noise-grain;
 }
 @keyframes noise-grain {
-  0%   { transform: translate(0, 0); }
-  20%  { transform: translate(-5%, -10%); }
-  40%  { transform: translate(-15%, 5%); }
-  60%  { transform: translate(7%, -20%); }
-  80%  { transform: translate(-5%, 15%); }
-  100% { transform: translate(0, 0); }
+  0%   { transform: translate3d(0, 0, 0); }
+  20%  { transform: translate3d(-3%, -6%, 0); }
+  40%  { transform: translate3d(-8%, 3%, 0); }
+  60%  { transform: translate3d(4%, -10%, 0); }
+  80%  { transform: translate3d(-3%, 7%, 0); }
+  100% { transform: translate3d(0, 0, 0); }
 }
 @media (prefers-reduced-motion: reduce) {
   .samaria-noise-overlay {
@@ -221,7 +224,8 @@ window.scrollTo(0, 0);
   pointer-events: none;
   z-index: 5;
   opacity: 0;
-  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity;
 }
 .card-ripple-active .card-ripple-canvas {
   opacity: 1;
