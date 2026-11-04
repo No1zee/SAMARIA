@@ -321,7 +321,55 @@ window.scrollTo(0, 0);
   }
 }
 </style>
-</head><body class="body"><div class="page-wrapper" id="smooth-wrapper"><div class="projects-detail-modal"><div class="details-fader"></div><div class="details-bg"><div class="w-layout-blockcontainer container is-desktop is-c-active w-container"></div><div class="bottom-navi"><li class="pr-navi"><a class="pri-link is-prev w-inline-block" href="#what-we-do"><span class="is-caption">Previous</span></a></li><li class="pr-navi is-odd"><a class="pri-link is-next w-inline-block" href="#what-we-do"><span class="is-caption">Next</span></a></li></div><div class="close-project"><div class="close">Close</div><div class="is-svg is-button-icon is-action is-2"><div class="action-line is-h is-b"></div><div class="action-line is-v is-b"></div></div></div></div></div><div class="contact-modal div-block"><div class="modal-wrap"><div class="form-popup"><div class="modal-form"><div class="modal-title"><div class="m-wrapper" contact-clip="" style="display:inline-flex; align-items:center; gap:0.5rem; padding: 0.35rem 0.85rem; border: 1px solid rgba(255,255,255,0.3); border-radius: 9999px; text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.12em; color: rgba(255,255,255,0.9); font-family: monospace; margin-bottom: 1.5rem;"><span>CONTACT US</span><span style="opacity:0.4;">—</span><span style="color:#deb34a; font-weight:600;">SAMARIA</span></div><div class="modal-txts"><div class="is-h-m" contact-name="">Build with us, launch your next website, or discuss your tech needs with us.</div></div></div><div class="contact-form-block modal w-form" contact-fade=""><form class="contact-form modal-2" data-name="Email Form" data-wf-element-id="d9de59a5-1ec3-e201-10db-32b1b075a2f8" data-wf-page-id="6a180066e6ba27b81a7ef8f9" id="email-form" method="get" name="email-form"><div class="overflow-clip" contact-clip="" id="w-node-_306b8fa5-f54a-9f59-7d53-556288fbb594-b075a2eb"><div class="form-field-group modal-11"><label class="is-caption modal-12" for="name">Name*</label><input class="input modal-9 w-input" data-name="Name" id="name" maxlength="256" name="name" placeholder="Enter name" required="" type="text"/><div class="line is-bottom is-animated modal-14"></div></div></div><div class="overflow-clip" contact-clip="" id="w-node-b5277847-eb38-0c84-2c29-eb2b36d55050-b075a2eb"><div class="form-field-group modal-11"><label class="is-caption modal-12" for="Email">Email*</label><input class="input modal-9 w-input" data-name="Email" id="Email" maxlength="256" name="Email" placeholder="Enter Email" required="" type="email"/><div class="line is-bottom is-animated modal-14"></div></div></div><div class="overflow-clip" contact-clip="" id="w-node-c66eb0f3-31e3-3cb8-f929-b8c6b9e2e6e1-b075a2eb"><div class="form-field-group modal-11"><label class="is-caption modal-12" for="field">Message</label><textarea class="input modal-9 is-text-area modal-13 w-input" data-name="Field" id="field" maxlength="5000" name="field" placeholder="Enter Message"></textarea><div class="line is-bottom is-animated modal-14"></div></div></div><div class="overflow-clip" contact-clip="" id="w-node-_4b5e5fd0-2c2c-7b0d-cb3a-c769770ca5be-b075a2eb"><div class="action-button is-s is-modal"><input class="submit-button modal-16 w-button" data-wait="Please wait..." type="submit" value="Submit / Send"/><div class="is-svg is-button-icon is-action is-auto is-b"><div class="action-line is-h is-b"></div><div class="action-line is-v is-b"></div></div><div class="is-b-l modal-18">Send message</div></div></div></form><div class="success-message modal-19 w-form-done"><div>Thank you! Your submission has been received!</div></div><div class="w-form-fail"><div>Oops! Something went wrong while submitting the form.</div></div></div></div><div class="line is-right is-inverted" contact-line=""></div></div><div class="close-popup hoverable"><div class="close">Close</div><div class="is-svg is-button-icon is-action is-2"><div class="action-line is-h is-blue"></div><div class="action-line is-v is-blue"></div></div></div><div class="form-model" contact-fade=""><div class="popup-three"><div class="is-svg is-m-model w-embed"><div id="m-popup-container" style="width:100%;height:100%;min-height:70dvh;position:relative;"></div></div></div></div></div><div class="contact-bg"></div><div class="contact-fader"></div></div><nav class="bold-nav-full" data-navigation-status="not-active"><div class="bold-nav-full__bar"><button class="bold-nav-full__hamburger" data-navigation-toggle="toggle"><div class="bold-nav-full__hamburger-bar"></div><div class="bold-nav-full__hamburger-bar"></div><div class="bold-nav-full__hamburger-bar"></div></button><div class="navbar-bottom"><div class="is-navbar-line"></div></div><div class="hamb-icon"><div class="is-svg is-m-icon w-embed"><svg fill="none" height="100%" viewbox="0 0 10 10" width="100%" xmlns="http://www.w3.org/2000/svg">
+
+<style>
+/* GPU-Stepped Film Grain (0% CPU, Compositor-Only) */
+.samaria-noise-overlay {
+  position: fixed;
+  top: -110%;
+  left: -50%;
+  width: 300%;
+  height: 300%;
+  pointer-events: none;
+  opacity: 0.045;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  animation: 3s steps(5, end) infinite noise-grain;
+}
+@keyframes noise-grain {
+  0%   { transform: translate(0, 0); }
+  20%  { transform: translate(-5%, -10%); }
+  40%  { transform: translate(-15%, 5%); }
+  60%  { transform: translate(7%, -20%); }
+  80%  { transform: translate(-5%, 15%); }
+  100% { transform: translate(0, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .samaria-noise-overlay {
+    animation: none !important;
+  }
+}
+
+/* 3D Water Ripple Card Overlay */
+.card-ripple-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-ripple-active .card-ripple-canvas {
+  opacity: 1;
+}
+.project-vid, .project-file {
+  position: relative;
+}
+</style>
+</head><body class="body"><div class="samaria-noise-overlay" aria-hidden="true"></div><div class="page-wrapper" id="smooth-wrapper"><div class="projects-detail-modal"><div class="details-fader"></div><div class="details-bg"><div class="w-layout-blockcontainer container is-desktop is-c-active w-container"></div><div class="bottom-navi"><li class="pr-navi"><a class="pri-link is-prev w-inline-block" href="#what-we-do"><span class="is-caption">Previous</span></a></li><li class="pr-navi is-odd"><a class="pri-link is-next w-inline-block" href="#what-we-do"><span class="is-caption">Next</span></a></li></div><div class="close-project"><div class="close">Close</div><div class="is-svg is-button-icon is-action is-2"><div class="action-line is-h is-b"></div><div class="action-line is-v is-b"></div></div></div></div></div><div class="contact-modal div-block"><div class="modal-wrap"><div class="form-popup"><div class="modal-form"><div class="modal-title"><div class="m-wrapper" contact-clip="" style="display:inline-flex; align-items:center; gap:0.5rem; padding: 0.35rem 0.85rem; border: 1px solid rgba(255,255,255,0.3); border-radius: 9999px; text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.12em; color: rgba(255,255,255,0.9); font-family: monospace; margin-bottom: 1.5rem;"><span>CONTACT US</span><span style="opacity:0.4;">—</span><span style="color:#deb34a; font-weight:600;">SAMARIA</span></div><div class="modal-txts"><div class="is-h-m" contact-name="">Build with us, launch your next website, or discuss your tech needs with us.</div></div></div><div class="contact-form-block modal w-form" contact-fade=""><form class="contact-form modal-2" data-name="Email Form" data-wf-element-id="d9de59a5-1ec3-e201-10db-32b1b075a2f8" data-wf-page-id="6a180066e6ba27b81a7ef8f9" id="email-form" method="get" name="email-form"><div class="overflow-clip" contact-clip="" id="w-node-_306b8fa5-f54a-9f59-7d53-556288fbb594-b075a2eb"><div class="form-field-group modal-11"><label class="is-caption modal-12" for="name">Name*</label><input class="input modal-9 w-input" data-name="Name" id="name" maxlength="256" name="name" placeholder="Enter name" required="" type="text"/><div class="line is-bottom is-animated modal-14"></div></div></div><div class="overflow-clip" contact-clip="" id="w-node-b5277847-eb38-0c84-2c29-eb2b36d55050-b075a2eb"><div class="form-field-group modal-11"><label class="is-caption modal-12" for="Email">Email*</label><input class="input modal-9 w-input" data-name="Email" id="Email" maxlength="256" name="Email" placeholder="Enter Email" required="" type="email"/><div class="line is-bottom is-animated modal-14"></div></div></div><div class="overflow-clip" contact-clip="" id="w-node-c66eb0f3-31e3-3cb8-f929-b8c6b9e2e6e1-b075a2eb"><div class="form-field-group modal-11"><label class="is-caption modal-12" for="field">Message</label><textarea class="input modal-9 is-text-area modal-13 w-input" data-name="Field" id="field" maxlength="5000" name="field" placeholder="Enter Message"></textarea><div class="line is-bottom is-animated modal-14"></div></div></div><div class="overflow-clip" contact-clip="" id="w-node-_4b5e5fd0-2c2c-7b0d-cb3a-c769770ca5be-b075a2eb"><div class="action-button is-s is-modal"><input class="submit-button modal-16 w-button" data-wait="Please wait..." type="submit" value="Submit / Send"/><div class="is-svg is-button-icon is-action is-auto is-b"><div class="action-line is-h is-b"></div><div class="action-line is-v is-b"></div></div><div class="is-b-l modal-18">Send message</div></div></div></form><div class="success-message modal-19 w-form-done"><div>Thank you! Your submission has been received!</div></div><div class="w-form-fail"><div>Oops! Something went wrong while submitting the form.</div></div></div></div><div class="line is-right is-inverted" contact-line=""></div></div><div class="close-popup hoverable"><div class="close">Close</div><div class="is-svg is-button-icon is-action is-2"><div class="action-line is-h is-blue"></div><div class="action-line is-v is-blue"></div></div></div><div class="form-model" contact-fade=""><div class="popup-three"><div class="is-svg is-m-model w-embed"><div id="m-popup-container" style="width:100%;height:100%;min-height:70dvh;position:relative;"></div></div></div></div></div><div class="contact-bg"></div><div class="contact-fader"></div></div><nav class="bold-nav-full" data-navigation-status="not-active"><div class="bold-nav-full__bar"><button class="bold-nav-full__hamburger" data-navigation-toggle="toggle"><div class="bold-nav-full__hamburger-bar"></div><div class="bold-nav-full__hamburger-bar"></div><div class="bold-nav-full__hamburger-bar"></div></button><div class="navbar-bottom"><div class="is-navbar-line"></div></div><div class="hamb-icon"><div class="is-svg is-m-icon w-embed"><svg fill="none" height="100%" viewbox="0 0 10 10" width="100%" xmlns="http://www.w3.org/2000/svg">
 <path d="M0 9.45724V0H1.36205L4.62582 7.90245H4.65152L7.8896 0H9.25164V9.45724H8.12089V2.27436H8.09519L5.1398 9.45724H4.11184L1.15646 2.27436H1.13076V9.45724H0Z" fill="currentColor"></path>
 </svg></div></div><div class="close-burger"><div class="close">Close</div><div class="is-svg is-button-icon is-action is-2"><div class="action-line is-h is-b"></div><div class="action-line is-v is-b"></div></div></div></div><div class="bold-nav-full__tile"><ul class="bold-nav-full__ul"><li class="bold-nav-full__li"><a class="bold-nav-full__link w-inline-block" href="#what-we-do"><span class="bold-nav-full__link-text">What We Do</span></a></li><li class="bold-nav-full__li is-odd"><a class="bold-nav-full__link is--current w-inline-block" href="#teams"><span class="bold-nav-full__link-text">Teams</span></a></li><li class="bold-nav-full__li"><a class="bold-nav-full__link w-inline-block" href="#contact"><span class="bold-nav-full__link-text">Contact</span></a></li><li class="bold-nav-full__li is-odd"><a class="bold-nav-full__link w-inline-block" href="/blog"><span class="bold-nav-full__link-text">Blog</span></a></li><li class="bold-nav-full__li" id="w-node-dee1ee25-dc07-8a72-6e10-576b67d8a5da-67d8a5c0"><div class="action-wrap w-variant-ee4b2660-3495-2b39-5517-f99cd248d612" data-wf--fixed-cta-button--variant="mobile"><a class="action-button is-g w-variant-ee4b2660-3495-2b39-5517-f99cd248d612 w-inline-block" href="#" open-modal=""><div class="is-svg is-button-icon is-action"><div class="action-line is-h"></div><div class="action-line is-v"></div></div><div class="is-b-l">Start a Project</div></a></div></li></ul></div></nav><div class="page-fader w-variant-c00a2059-46c2-2f9b-cf12-439f0d7b11c0" data-wf--page-transition--variant="gray"></div><div class="cursor-wrap not-blend"><div class="absolute-hover arrow-cursor"><div class="is-svg is-handle w-embed"><svg fill="none" height="100%" viewbox="0 0 11 11" width="100%" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_3831_7398)">
@@ -4208,4 +4256,244 @@ if (success) {
 })();
 </script>
 
+
+<script>
+(function() {
+  // Only activate WebGL water ripple mesh on desktop with pointer/hover support
+  if (window.matchMedia('(pointer: coarse)').matches ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return;
+  }
+
+  function initWaterRippleCards() {
+    if (typeof THREE === 'undefined') {
+      window.addEventListener('three-engine-ready', initWaterRippleCards, { once: true });
+      setTimeout(initWaterRippleCards, 60);
+      return;
+    }
+
+    const cards = document.querySelectorAll('.project-vid[gsap-img], .project-file[gsap-img]');
+    if (!cards.length) return;
+
+    let globalScrollVelocity = 0;
+    let lastScrollY = window.scrollY;
+    let scrollVelocityTimer = null;
+
+    window.addEventListener('scroll', function() {
+      const curY = window.scrollY;
+      globalScrollVelocity = (curY - lastScrollY) * 0.02;
+      lastScrollY = curY;
+      clearTimeout(scrollVelocityTimer);
+      scrollVelocityTimer = setTimeout(function() {
+        globalScrollVelocity = 0;
+      }, 100);
+    }, { passive: true });
+
+    if (window.lenis) {
+      window.lenis.on('scroll', function(e) {
+        if (e && typeof e.velocity === 'number') {
+          globalScrollVelocity = e.velocity * 0.015;
+        }
+      });
+    }
+
+    const textureLoader = new THREE.TextureLoader();
+
+    // Shared plane geometry with 32x18 subdivision (627 vertices)
+    const rippleGeo = new THREE.PlaneGeometry(2, 2, 32, 18);
+
+    const vShader = `
+      uniform float uTime;
+      uniform float uHover;
+      uniform vec2 uMouse;
+      uniform float uScrollVelocity;
+      varying vec2 vUv;
+
+      void main() {
+        vUv = uv;
+        vec3 pos = position;
+
+        // Radial distance from cursor in normalized -1..1 space
+        vec2 normPos = pos.xy;
+        float dist = distance(normPos, uMouse);
+
+        // 15% Central Dead Zone: preserve readability inside the focal area
+        float rippleZone = smoothstep(0.12, 0.45, dist);
+
+        // Dual-Drive Energy: ambient scroll velocity + interactive cursor hover
+        float waveEnergy = (uHover * 0.038 + abs(uScrollVelocity) * 0.025) * rippleZone;
+
+        float waveX = sin(dist * 18.0 - uTime * 4.2) * waveEnergy;
+        float waveY = cos(dist * 16.0 - uTime * 3.8) * waveEnergy;
+
+        pos.x += waveX;
+        pos.y += waveY;
+
+        gl_Position = vec4(pos, 1.0);
+      }
+    `;
+
+    const fShader = `
+      uniform sampler2D uTexture;
+      uniform float uHover;
+      varying vec2 vUv;
+
+      void main() {
+        vec2 uv = vUv;
+        float shift = uHover * 0.003;
+        float r = texture2D(uTexture, uv + vec2(shift, 0.0)).r;
+        float g = texture2D(uTexture, uv).g;
+        float b = texture2D(uTexture, uv - vec2(shift, 0.0)).b;
+        gl_FragColor = vec4(r, g, b, 1.0);
+      }
+    `;
+
+    cards.forEach(function(card) {
+      // Avoid duplicate canvas
+      if (card.querySelector('.card-ripple-canvas')) return;
+
+      const imgEl = card.querySelector('img');
+      const vidEl = card.querySelector('video');
+      const srcUrl = imgEl ? (imgEl.currentSrc || imgEl.src) : (vidEl ? (vidEl.poster || '') : '');
+      if (!srcUrl) return;
+
+      const canvas = document.createElement('canvas');
+      canvas.className = 'card-ripple-canvas';
+      card.appendChild(canvas);
+
+      let renderer = null;
+      let scene = null;
+      let camera = null;
+      let mat = null;
+      let isVisible = false;
+      let rafId = null;
+      let startTime = performance.now();
+
+      let targetHover = 0.0;
+      let curHover = 0.0;
+      let targetMouse = new THREE.Vector2(0, 0);
+      let curMouse = new THREE.Vector2(0, 0);
+
+      function initCardScene() {
+        if (renderer) return;
+
+        renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true, powerPreference: 'low-power' });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+
+        scene = new THREE.Scene();
+        camera = new THREE.Camera(); // Orthographic clip-space camera
+
+        const texture = textureLoader.load(srcUrl);
+        texture.minFilter = THREE.LinearFilter;
+        texture.generateMipmaps = false;
+
+        mat = new THREE.ShaderMaterial({
+          vertexShader: vShader,
+          fragmentShader: fShader,
+          uniforms: {
+            uTexture: { value: texture },
+            uTime: { value: 0.0 },
+            uHover: { value: 0.0 },
+            uMouse: { value: new THREE.Vector2(0, 0) },
+            uScrollVelocity: { value: 0.0 },
+          },
+          transparent: true,
+          depthWrite: false,
+        });
+
+        const mesh = new THREE.Mesh(rippleGeo, mat);
+        scene.add(mesh);
+        resizeCard();
+      }
+
+      function resizeCard() {
+        if (!renderer || !canvas) return;
+        const rect = card.getBoundingClientRect();
+        if (rect.width > 0 && rect.height > 0) {
+          renderer.setSize(rect.width, rect.height, false);
+        }
+      }
+
+      function renderLoop(now) {
+        if (!isVisible) return;
+
+        // Smooth physics lerping
+        curHover += (targetHover - curHover) * 0.12;
+        curMouse.lerp(targetMouse, 0.15);
+
+        const elapsed = (now - startTime) * 0.001;
+
+        if (mat) {
+          mat.uniforms.uTime.value = elapsed;
+          mat.uniforms.uHover.value = curHover;
+          mat.uniforms.uMouse.value.copy(curMouse);
+          mat.uniforms.uScrollVelocity.value = globalScrollVelocity;
+        }
+
+        if (renderer && scene && camera) {
+          renderer.render(scene, camera);
+        }
+
+        // Keep loop running if hovered, scrolling, or lerp in progress
+        if (curHover > 0.005 || Math.abs(globalScrollVelocity) > 0.005) {
+          card.classList.add('card-ripple-active');
+        } else {
+          card.classList.remove('card-ripple-active');
+        }
+
+        rafId = requestAnimationFrame(renderLoop);
+      }
+
+      function onMouseMove(e) {
+        initCardScene();
+        const rect = card.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        const y = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
+        targetMouse.set(x, y);
+        targetHover = 1.0;
+        card.classList.add('card-ripple-active');
+
+        if (!rafId && isVisible) {
+          rafId = requestAnimationFrame(renderLoop);
+        }
+      }
+
+      function onMouseLeave() {
+        targetHover = 0.0;
+      }
+
+      card.addEventListener('mousemove', onMouseMove, { passive: true });
+      card.addEventListener('mouseleave', onMouseLeave, { passive: true });
+
+      // IntersectionObserver: 50% rootMargin to sleep off-screen
+      const obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          isVisible = entry.isIntersecting;
+          if (isVisible) {
+            initCardScene();
+            resizeCard();
+            if (!rafId) {
+              rafId = requestAnimationFrame(renderLoop);
+            }
+          } else {
+            if (rafId) {
+              cancelAnimationFrame(rafId);
+              rafId = null;
+            }
+          }
+        });
+      }, { rootMargin: '50% 0px' });
+
+      obs.observe(card);
+      window.addEventListener('resize', resizeCard, { passive: true });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initWaterRippleCards);
+  } else {
+    setTimeout(initWaterRippleCards, 150);
+  }
+})();
+</script>
 </body></html>
