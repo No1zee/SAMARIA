@@ -373,19 +373,30 @@ window.scrollTo(0, 0);
   position: relative;
 }
 </style>
+
+<style>
+/* Native System Cursor Restoration & Overlay Removal */
+.cursor-wrap, .custom-cursor, .hand-cursor, .arrow-cursor, .absolute-hover, .absolute-hand {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+html, body, .body, .page-wrapper, .page-wrapper.no-cursor, * {
+  cursor: auto !important;
+}
+a, button, [href], .hoverable, [open-modal], .action-button, .close-popup, .close-project, [data-navigation-toggle], .pri-link, .top-link, .link-absolute {
+  cursor: pointer !important;
+}
+input, textarea, select {
+  cursor: text !important;
+}
+#m-mecha-container, .sidebar-video, #m-popup-container {
+  cursor: grab !important;
+}
+</style>
 </head><body class="body"><div class="samaria-noise-overlay" aria-hidden="true"></div><div class="page-wrapper" id="smooth-wrapper"><div class="projects-detail-modal"><div class="details-fader"></div><div class="details-bg"><div class="w-layout-blockcontainer container is-desktop is-c-active w-container"></div><div class="bottom-navi"><li class="pr-navi"><a class="pri-link is-prev w-inline-block" href="#what-we-do"><span class="is-caption">Previous</span></a></li><li class="pr-navi is-odd"><a class="pri-link is-next w-inline-block" href="#what-we-do"><span class="is-caption">Next</span></a></li></div><div class="close-project"><div class="close">Close</div><div class="is-svg is-button-icon is-action is-2"><div class="action-line is-h is-b"></div><div class="action-line is-v is-b"></div></div></div></div></div><div class="contact-modal div-block"><div class="modal-wrap"><div class="form-popup"><div class="modal-form"><div class="modal-title"><div class="m-wrapper" contact-clip="" style="display:inline-flex; align-items:center; gap:0.5rem; padding: 0.35rem 0.85rem; border: 1px solid rgba(255,255,255,0.3); border-radius: 9999px; text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.12em; color: rgba(255,255,255,0.9); font-family: monospace; margin-bottom: 1.5rem;"><span>CONTACT US</span><span style="opacity:0.4;">—</span><span style="color:#deb34a; font-weight:600;">SAMARIA</span></div><div class="modal-txts"><div class="is-h-m" contact-name="">Build with us, launch your next website, or discuss your tech needs with us.</div></div></div><div class="contact-form-block modal w-form" contact-fade=""><form class="contact-form modal-2" data-name="Email Form" data-wf-element-id="d9de59a5-1ec3-e201-10db-32b1b075a2f8" data-wf-page-id="6a180066e6ba27b81a7ef8f9" id="email-form" method="get" name="email-form"><div class="overflow-clip" contact-clip="" id="w-node-_306b8fa5-f54a-9f59-7d53-556288fbb594-b075a2eb"><div class="form-field-group modal-11"><label class="is-caption modal-12" for="name">Name*</label><input class="input modal-9 w-input" data-name="Name" id="name" maxlength="256" name="name" placeholder="Enter name" required="" type="text"/><div class="line is-bottom is-animated modal-14"></div></div></div><div class="overflow-clip" contact-clip="" id="w-node-b5277847-eb38-0c84-2c29-eb2b36d55050-b075a2eb"><div class="form-field-group modal-11"><label class="is-caption modal-12" for="Email">Email*</label><input class="input modal-9 w-input" data-name="Email" id="Email" maxlength="256" name="Email" placeholder="Enter Email" required="" type="email"/><div class="line is-bottom is-animated modal-14"></div></div></div><div class="overflow-clip" contact-clip="" id="w-node-c66eb0f3-31e3-3cb8-f929-b8c6b9e2e6e1-b075a2eb"><div class="form-field-group modal-11"><label class="is-caption modal-12" for="field">Message</label><textarea class="input modal-9 is-text-area modal-13 w-input" data-name="Field" id="field" maxlength="5000" name="field" placeholder="Enter Message"></textarea><div class="line is-bottom is-animated modal-14"></div></div></div><div class="overflow-clip" contact-clip="" id="w-node-_4b5e5fd0-2c2c-7b0d-cb3a-c769770ca5be-b075a2eb"><div class="action-button is-s is-modal"><input class="submit-button modal-16 w-button" data-wait="Please wait..." type="submit" value="Submit / Send"/><div class="is-svg is-button-icon is-action is-auto is-b"><div class="action-line is-h is-b"></div><div class="action-line is-v is-b"></div></div><div class="is-b-l modal-18">Send message</div></div></div></form><div class="success-message modal-19 w-form-done"><div>Thank you! Your submission has been received!</div></div><div class="w-form-fail"><div>Oops! Something went wrong while submitting the form.</div></div></div></div><div class="line is-right is-inverted" contact-line=""></div></div><div class="close-popup hoverable"><div class="close">Close</div><div class="is-svg is-button-icon is-action is-2"><div class="action-line is-h is-blue"></div><div class="action-line is-v is-blue"></div></div></div><div class="form-model" contact-fade=""><div class="popup-three"><div class="is-svg is-m-model w-embed"><div id="m-popup-container" style="width:100%;height:100%;min-height:70dvh;position:relative;"></div></div></div></div></div><div class="contact-bg"></div><div class="contact-fader"></div></div><nav class="bold-nav-full" data-navigation-status="not-active"><div class="bold-nav-full__bar"><button class="bold-nav-full__hamburger" data-navigation-toggle="toggle"><div class="bold-nav-full__hamburger-bar"></div><div class="bold-nav-full__hamburger-bar"></div><div class="bold-nav-full__hamburger-bar"></div></button><div class="navbar-bottom"><div class="is-navbar-line"></div></div><div class="hamb-icon"><div class="is-svg is-m-icon w-embed"><svg fill="none" height="100%" viewbox="0 0 10 10" width="100%" xmlns="http://www.w3.org/2000/svg">
 <path d="M0 9.45724V0H1.36205L4.62582 7.90245H4.65152L7.8896 0H9.25164V9.45724H8.12089V2.27436H8.09519L5.1398 9.45724H4.11184L1.15646 2.27436H1.13076V9.45724H0Z" fill="currentColor"></path>
-</svg></div></div><div class="close-burger"><div class="close">Close</div><div class="is-svg is-button-icon is-action is-2"><div class="action-line is-h is-b"></div><div class="action-line is-v is-b"></div></div></div></div><div class="bold-nav-full__tile"><ul class="bold-nav-full__ul"><li class="bold-nav-full__li"><a class="bold-nav-full__link w-inline-block" href="#what-we-do"><span class="bold-nav-full__link-text">What We Do</span></a></li><li class="bold-nav-full__li is-odd"><a class="bold-nav-full__link is--current w-inline-block" href="#teams"><span class="bold-nav-full__link-text">Teams</span></a></li><li class="bold-nav-full__li"><a class="bold-nav-full__link w-inline-block" href="#contact"><span class="bold-nav-full__link-text">Contact</span></a></li><li class="bold-nav-full__li is-odd"><a class="bold-nav-full__link w-inline-block" href="/blog"><span class="bold-nav-full__link-text">Blog</span></a></li><li class="bold-nav-full__li" id="w-node-dee1ee25-dc07-8a72-6e10-576b67d8a5da-67d8a5c0"><div class="action-wrap w-variant-ee4b2660-3495-2b39-5517-f99cd248d612" data-wf--fixed-cta-button--variant="mobile"><a class="action-button is-g w-variant-ee4b2660-3495-2b39-5517-f99cd248d612 w-inline-block" href="#" open-modal=""><div class="is-svg is-button-icon is-action"><div class="action-line is-h"></div><div class="action-line is-v"></div></div><div class="is-b-l">Start a Project</div></a></div></li></ul></div></nav><div class="page-fader w-variant-c00a2059-46c2-2f9b-cf12-439f0d7b11c0" data-wf--page-transition--variant="gray"></div><div class="cursor-wrap not-blend"><div class="absolute-hover arrow-cursor"><div class="is-svg is-handle w-embed"><svg fill="none" height="100%" viewbox="0 0 11 11" width="100%" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_3831_7398)">
-<path d="M9.625 1.375L1.375 9.625" stroke="white" stroke-linecap="round" stroke-linejoin="round"></path>
-<path d="M4.125 1.375H9.625V6.875" stroke="white" stroke-linecap="round" stroke-linejoin="round"></path>
-</g>
-<defs>
-<clippath id="clip0_3831_7398">
-<rect fill="white" height="11" transform="matrix(1 0 0 -1 0 11)" width="11"></rect>
-</clippath>
-</defs>
-</svg></div></div><div class="absolute-hand hand-cursor"><img alt="" class="is-svg is-arrow" loading="lazy" src="https://cdn.prod.website-files.com/6a180066e6ba27b81a7ef915/6a180066e6ba27b81a7ef9a0_image%2035917.png"/></div></div><div class="cursor-wrap"><div class="custom-cursor art"></div></div><div class="preloader-wrap" data-wf--preloader--variant="base" id="preloader"><a class="is-svg preloader-logo-wrapper w-inline-block" href="#top"><div class="is-svg preloader-logo" data-animation-type="lottie" data-autoplay="0" data-default-duration="0" data-direction="1" data-duration="0.5166666666666667" data-is-ix2-target="1" data-ix2-initial-state="0" data-loading="eager" data-loop="0" data-renderer="svg" data-src="/assets/6a180066e6ba27b81a7ef99e_data.json" data-w-id="68985fbe-70a6-5d49-bc09-a7f815686e2c"></div></a><div class="preloader-bottom"><div class="preloader-counter-wrap"><div class="is-svg w-embed"><svg fill="none" height="100%" viewbox="0 0 21 25" width="100%" xmlns="http://www.w3.org/2000/svg">
+</svg></div></div><div class="close-burger"><div class="close">Close</div><div class="is-svg is-button-icon is-action is-2"><div class="action-line is-h is-b"></div><div class="action-line is-v is-b"></div></div></div></div><div class="bold-nav-full__tile"><ul class="bold-nav-full__ul"><li class="bold-nav-full__li"><a class="bold-nav-full__link w-inline-block" href="#what-we-do"><span class="bold-nav-full__link-text">What We Do</span></a></li><li class="bold-nav-full__li is-odd"><a class="bold-nav-full__link is--current w-inline-block" href="#teams"><span class="bold-nav-full__link-text">Teams</span></a></li><li class="bold-nav-full__li"><a class="bold-nav-full__link w-inline-block" href="#contact"><span class="bold-nav-full__link-text">Contact</span></a></li><li class="bold-nav-full__li is-odd"><a class="bold-nav-full__link w-inline-block" href="/blog"><span class="bold-nav-full__link-text">Blog</span></a></li><li class="bold-nav-full__li" id="w-node-dee1ee25-dc07-8a72-6e10-576b67d8a5da-67d8a5c0"><div class="action-wrap w-variant-ee4b2660-3495-2b39-5517-f99cd248d612" data-wf--fixed-cta-button--variant="mobile"><a class="action-button is-g w-variant-ee4b2660-3495-2b39-5517-f99cd248d612 w-inline-block" href="#" open-modal=""><div class="is-svg is-button-icon is-action"><div class="action-line is-h"></div><div class="action-line is-v"></div></div><div class="is-b-l">Start a Project</div></a></div></li></ul></div></nav><div class="page-fader w-variant-c00a2059-46c2-2f9b-cf12-439f0d7b11c0" data-wf--page-transition--variant="gray"></div><div class="preloader-wrap" data-wf--preloader--variant="base" id="preloader"><a class="is-svg preloader-logo-wrapper w-inline-block" href="#top"><div class="is-svg preloader-logo" data-animation-type="lottie" data-autoplay="0" data-default-duration="0" data-direction="1" data-duration="0.5166666666666667" data-is-ix2-target="1" data-ix2-initial-state="0" data-loading="eager" data-loop="0" data-renderer="svg" data-src="/assets/6a180066e6ba27b81a7ef99e_data.json" data-w-id="68985fbe-70a6-5d49-bc09-a7f815686e2c"></div></a><div class="preloader-bottom"><div class="preloader-counter-wrap"><div class="is-svg w-embed"><svg fill="none" height="100%" viewbox="0 0 21 25" width="100%" xmlns="http://www.w3.org/2000/svg">
 <line stroke="black" x1="21" x2="1" y1="12.5" y2="12.5"></line>
 <line stroke="black" transform="matrix(1.19247e-08 1 1 -1.19247e-08 1 0)" x2="25" y1="-0.5" y2="-0.5"></line>
 </svg></div><div class="preloader-counter">00</div></div><div class="preloader-bar-track"><div class="preloader-bar-fill"></div></div></div><div class="preloader-overlay-in"></div></div><div class="custom-code-wrapper"><div class="global-code w-embed"><!--<style>:root{--font-from:21;--font-to:26;--vw-from:calc(1920 / 100);--vw-to:calc(2400 / 100);--coefficient:calc((var(--font-to) - var(--font-from)) / (var(--vw-to) - var(--vw-from)));--base:calc((var(--font-from) - var(--vw-from) * var(--coefficient)) / 16);}html{font-size:calc(var(--base) * 1rem + var(--coefficient) * 1vw);}@media screen and (max-width: 1920px){:root{--font-from:16;--font-to:21;--vw-from:calc(1440 / 100);--vw-to:calc(1920 / 100);}}@media screen and (max-width: 1440px){:root{--font-from:11;--font-to:16;--vw-from:calc(991 / 100);--vw-to:calc(1440 / 100);}}@media screen and (max-width: 991px){:root{--font-from:16;--font-to:18;--vw-from:calc(767 / 100);--vw-to:calc(991 / 100);}}@media screen and (max-width: 767px){:root{--font-from:16;--font-to:18;--vw-from:calc(479 / 100);--vw-to:calc(767 / 100);}}@media screen and (max-width: 479px){:root{--font-from:16;--font-to:18;--vw-from:calc(375 / 100);--vw-to:calc(479 / 100);}}@media screen and (max-width: 375px){:root{--font-from:12;--font-to:16;--vw-from:calc(320 / 100);--vw-to:calc(375 / 100);}}@media screen and (max-width: 320px){:root{--font-from:4;--font-to:12;--vw-from:calc(1 / 100);--vw-to:calc(320 / 100);}}</style>
@@ -1916,105 +1927,7 @@ window.addEventListener('load', function () {
 
 })();
 </script>
-<script>
-const SELECTOR = 'a, button, [href], .hoverable';
-const handCursor = document.querySelector('.hand-cursor');
-const customCursor = document.querySelector('.custom-cursor');
-const arrowCursor = document.querySelector('.arrow-cursor');
 
-window.isCustomCursorActive = true;
-
-if (handCursor) {
-  gsap.set(handCursor, { opacity: 0 });
-  gsap.set(arrowCursor, { opacity: 0 });
-
-  document.addEventListener('mouseover', e => {
-    const isArrow = e.target.closest('[hover-arrow]');
-    const isHoverable = e.target.closest(SELECTOR);
-
-    if (isArrow) {
-      window.isCustomCursorActive = false;
-      gsap.to(arrowCursor,  { opacity: 1, duration: 0.2, ease: 'mainEase' });
-      gsap.to(handCursor,   { opacity: 0, duration: 0.2, ease: 'mainEase' });
-      gsap.to(customCursor, { opacity: 0, duration: 0.2, ease: 'mainEase' });
-    } else if (isHoverable) {
-      window.isCustomCursorActive = false;
-      gsap.to(handCursor,   { opacity: 1, duration: 0.2, ease: 'mainEase' });
-      gsap.to(arrowCursor,  { opacity: 0, duration: 0.2, ease: 'mainEase' });
-      gsap.to(customCursor, { opacity: 0, duration: 0.2, ease: 'mainEase' });
-    }
-  });
-
-  document.addEventListener('mouseout', e => {
-    const isArrow = e.target.closest('[hover-arrow]');
-    const isHoverable = e.target.closest(SELECTOR);
-
-    if (isArrow || isHoverable) {
-      window.isCustomCursorActive = true;
-      gsap.to(handCursor,   { opacity: 0, duration: 0.2, ease: 'mainEase' });
-      gsap.to(arrowCursor,  { opacity: 0, duration: 0.2, ease: 'mainEase' });
-      gsap.to(customCursor, { opacity: 1, duration: 0.2, ease: 'mainEase' });
-    }
-  });
-}
-</script>
-<script>
-(function () {
-  const cursors = [
-    document.querySelector('.custom-cursor'),
-    document.querySelector('.hand-cursor'),
-    document.querySelector('.arrow-cursor'),
-  ].filter(Boolean);
-
-  const mouse  = { x: -200, y: -200 };
-  const spring = { x: -200, y: -200 };
-  let entered = false;
-
-  document.addEventListener('mousemove', e => {
-    if (!entered) {
-      entered = true;
-      mouse.x = spring.x = e.clientX;
-      mouse.y = spring.y = e.clientY;
-      return;
-    }
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-  });
-
-  document.addEventListener('mouseleave', () => { entered = false; });
-  document.addEventListener('mouseenter', e => {
-    entered = true;
-    mouse.x = spring.x = e.clientX;
-    mouse.y = spring.y = e.clientY;
-  });
-
-  let cursorRafId = null;
-  function animate() {
-    const dx = mouse.x - spring.x;
-    const dy = mouse.y - spring.y;
-    spring.x += dx * 0.18;
-    spring.y += dy * 0.18;
-
-    const cx = spring.x - window.innerWidth  / 2;
-    const cy = spring.y - window.innerHeight / 2;
-
-    cursors.forEach(el => {
-      el.style.transform = `translate3d(${cx}px, ${cy}px, 0px) scale3d(1,1,1)`;
-    });
-
-    if (Math.abs(dx) > 0.08 || Math.abs(dy) > 0.08) {
-      cursorRafId = requestAnimationFrame(animate);
-    } else {
-      cursorRafId = null;
-    }
-  }
-
-  window.addEventListener('mousemove', () => {
-    if (!cursorRafId) cursorRafId = requestAnimationFrame(animate);
-  }, { passive: true });
-  cursorRafId = requestAnimationFrame(animate);
-})();
-</script>
 <script>
 /**
  * Webflow Form Validation

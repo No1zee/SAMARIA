@@ -199,6 +199,27 @@
   position: relative;
 }
 </style>
+
+<style>
+/* Native System Cursor Restoration & Overlay Removal */
+.cursor-wrap, .custom-cursor, .hand-cursor, .arrow-cursor, .absolute-hover, .absolute-hand {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+html, body, .body, .page-wrapper, .page-wrapper.no-cursor, * {
+  cursor: auto !important;
+}
+a, button, [href], .hoverable, [open-modal], .action-button, .close-popup, .close-project, [data-navigation-toggle], .pri-link, .top-link, .link-absolute {
+  cursor: pointer !important;
+}
+input, textarea, select {
+  cursor: text !important;
+}
+#m-mecha-container, .sidebar-video, #m-popup-container {
+  cursor: grab !important;
+}
+</style>
 </head>
 <body><div class="samaria-noise-overlay" aria-hidden="true"></div>
   <div class="background-ambient" aria-hidden="true"></div>
