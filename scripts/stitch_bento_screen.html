@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SAMARIA TECH // WHAT WE DO — ARCHITECTURAL DOSSIER</title>
+<!-- Typography: Newsreader, JetBrains Mono, Hanken Grotesk -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;1,400&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS Engine -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Verbatim Tailwind Design System Configuration -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary": "#ffffff",
+            "surface-container": "#eeeeee",
+            "primary-fixed-dim": "#c8c6c7",
+            "inverse-on-surface": "#f0f1f1",
+            "outline-variant": "#c7c6ca",
+            "surface-container-highest": "#e2e2e2",
+            "on-secondary-container": "#616269",
+            "primary": "#000000",
+            "on-error-container": "#93000a",
+            "surface-container-lowest": "#ffffff",
+            "surface-variant": "#e2e2e2",
+            "on-primary-fixed": "#1c1b1c",
+            "on-primary-container": "#858384",
+            "secondary-fixed": "#e2e2ea",
+            "surface-container-high": "#e8e8e8",
+            "on-tertiary-fixed-variant": "#45464e",
+            "background": "#f9f9f9",
+            "on-error": "#ffffff",
+            "surface-dim": "#dadada",
+            "on-surface": "#1a1c1c",
+            "tertiary": "#000000",
+            "secondary": "#5d5e65",
+            "tertiary-container": "#191b22",
+            "inverse-surface": "#2f3131",
+            "on-tertiary-container": "#82838b",
+            "on-primary": "#ffffff",
+            "tertiary-fixed": "#e2e2eb",
+            "inverse-primary": "#c8c6c7",
+            "error": "#ba1a1a",
+            "secondary-fixed-dim": "#c6c6ce",
+            "outline": "#77777b",
+            "primary-fixed": "#e5e2e3",
+            "primary-container": "#1c1b1c",
+            "on-tertiary": "#ffffff",
+            "tertiary-fixed-dim": "#c5c6ce",
+            "on-tertiary-fixed": "#191b22",
+            "on-surface-variant": "#46464a",
+            "surface-tint": "#5f5e5f",
+            "on-secondary-fixed-variant": "#45464d",
+            "on-background": "#1a1c1c",
+            "error-container": "#ffdad6",
+            "secondary-container": "#dfdfe7",
+            "on-secondary-fixed": "#1a1b21",
+            "surface": "#f9f9f9",
+            "surface-bright": "#f9f9f9",
+            "surface-container-low": "#f3f3f3",
+            "on-primary-fixed-variant": "#474647"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter-desktop": "2.5rem",
+            "space-xs": "0.25rem",
+            "space-md": "1rem",
+            "space-lg": "2rem",
+            "margin": "1.25rem",
+            "gutter": "1.5rem",
+            "margin-desktop": "4.5rem",
+            "space-sm": "0.5rem",
+            "space-xl": "4rem",
+            "margin-tablet": "2.5rem"
+          },
+          "fontFamily": {
+            "label-md": ["JetBrains Mono"],
+            "display-xl": ["Newsreader"],
+            "label-sm": ["JetBrains Mono"],
+            "headline-sm": ["Newsreader"],
+            "body-md": ["Hanken Grotesk"],
+            "body-sm": ["Hanken Grotesk"],
+            "body-lg": ["Hanken Grotesk"],
+            "display-xl-mobile": ["Newsreader"],
+            "title-lg": ["Hanken Grotesk"],
+            "label-lg": ["JetBrains Mono"],
+            "headline-lg-mobile": ["Newsreader"],
+            "headline-lg": ["Newsreader"],
+            "headline-md": ["Newsreader"],
+            "title-md": ["Hanken Grotesk"]
+          },
+          "fontSize": {
+            "label-md": [
+              "11px",
+              {
+                "lineHeight": "16px",
+                "letterSpacing": "0.06em",
+                "fontWeight": "500"
+              }
+            ],
+            "display-xl": [
+              "72px",
+              {
+                "lineHeight": "80px",
+                "letterSpacing": "-0.03em",
+                "fontWeight": "400"
+              }
+            ],
+            "label-sm": [
+              "10px",
+              {
+                "lineHeight": "14px",
+                "letterSpacing": "0.08em",
+                "fontWeight": "400"
+              }
+            ],
+            "headline-sm": [
+              "24px",
+              {
+                "lineHeight": "32px",
+                "letterSpacing": "-0.01em",
+                "fontWeight": "500"
+              }
+            ],
+            "body-md": [
+              "15px",
+              {
+                "lineHeight": "24px",
+                "letterSpacing": "0em",
+                "fontWeight": "400"
+              }
+            ],
+            "body-sm": [
+              "13px",
+              {
+                "lineHeight": "20px",
+                "letterSpacing": "0.005em",
+                "fontWeight": "400"
+              }
+            ],
+            "body-lg": [
+              "18px",
+              {
+                "lineHeight": "28px",
+                "letterSpacing": "-0.005em",
+                "fontWeight": "400"
+              }
+            ],
+            "display-xl-mobile": [
+              "40px",
+              {
+                "lineHeight": "48px",
+                "letterSpacing": "-0.02em",
+                "fontWeight": "400"
+              }
+            ],
+            "title-lg": [
+              "20px",
+              {
+                "lineHeight": "28px",
+                "letterSpacing": "-0.01em",
+                "fontWeight": "500"
+              }
+            ],
+            "label-lg": [
+              "13px",
+              {
+                "lineHeight": "18px",
+                "letterSpacing": "0.04em",
+                "fontWeight": "500"
+              }
+            ],
+            "headline-lg-mobile": [
+              "32px",
+              {
+                "lineHeight": "40px",
+                "letterSpacing": "-0.01em",
+                "fontWeight": "400"
+              }
+            ],
+            "headline-lg": [
+              "48px",
+              {
+                "lineHeight": "56px",
+                "letterSpacing": "-0.02em",
+                "fontWeight": "400"
+              }
+            ],
+            "headline-md": [
+              "32px",
+              {
+                "lineHeight": "40px",
+                "letterSpacing": "-0.015em",
+                "fontWeight": "400"
+              }
+            ],
+            "title-md": [
+              "16px",
+              {
+                "lineHeight": "24px",
+                "letterSpacing": "0em",
+                "fontWeight": "600"
+              }
+            ]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    /* Architectural Hairline Cadence */
+    .hairline-border {
+      border-color: rgba(11, 11, 12, 0.08);
+    }
+    .hairline-divider {
+      background-color: rgba(11, 11, 12, 0.08);
+    }
+    /* Monospace Grid Coordinate Marker */
+    .coordinate-mark::before {
+      content: "+";
+      position: absolute;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      color: #77777b;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased selection:bg-primary selection:text-surface min-h-screen">
+<div class="flex min-h-screen relative">
+<!-- ============================================================== -->
+<!-- LEFT COLUMN: SIDE NAV RAIL (Translating Shared Component JSON) -->
+<!-- ============================================================== -->
+<aside class="fixed top-0 left-0 h-screen w-72 bg-surface flex flex-col justify-between p-space-md border-r border-outline-variant z-40 select-none">
+<!-- Top Insignia & Brand Cluster -->
+<div class="flex flex-col gap-6">
+<div class="flex items-center gap-3.5 pb-5 border-b hairline-border">
+<div class="w-10 h-10 rounded-none border hairline-border overflow-hidden bg-surface-container-lowest flex items-center justify-center p-0.5">
+<img alt="Brand Insignia Medallion" class="w-full h-full object-cover grayscale contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPE5o4Xe4aorMImT5eid3N2U8MjxIFcyc-50-2a2dCAkCWKOSkRv7W1tkeKRKOT8ucpJ9ynmz5qN53mFfwLCzMtJJmtvIAj_NRAICpcDHgna7VkRE4wif6Ny4MGnhJxLtYhjUP6z59vCawuMdhrvat8FEsfwB7iF2tGvKegkgX1ptYQPtlM_EPj4U0M8zde8MduU0GW-G7bsWJAHe3LFa4kK-cQ_CLplaLs5REIeZYeD2F1itBHS4PoZDA2W5bgWgnQM_CxonvGdQ"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg tracking-widest text-primary uppercase font-medium">SAMARIA TECH</span>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">SYSTEMS v4.2 // DOSSIER</span>
+</div>
+</div>
+<!-- Navigation List with Active State Execution -->
+<nav aria-label="System Navigation" class="flex flex-col gap-1.5">
+<!-- Active Tab 01: Exact Match to Work Showcase -->
+<a class="border-l-2 border-primary bg-surface-container-low text-primary font-label-md text-label-md pl-3 py-2 flex items-center gap-3 transition-colors duration-150" href="#dossier-01">
+<span class="material-symbols-outlined text-[16px]">grid_view</span>
+<span class="tracking-wider">01 BAMBINO WORLD</span>
+</a>
+<!-- Inactive Tab 02 -->
+<a class="text-secondary hover:text-primary font-label-md text-label-md pl-3 py-2 flex items-center gap-3 transition-colors duration-150" href="#dossier-02">
+<span class="material-symbols-outlined text-[16px]">monitoring</span>
+<span class="tracking-wider">02 KINETIK CLIPPER</span>
+</a>
+<!-- Inactive Tab 03 -->
+<a class="text-secondary hover:text-primary font-label-md text-label-md pl-3 py-2 flex items-center gap-3 transition-colors duration-150" href="#dossier-03">
+<span class="material-symbols-outlined text-[16px]">account_tree</span>
+<span class="tracking-wider">03 REMOTE WORKFORCE</span>
+</a>
+<!-- Inactive Tab 04 -->
+<a class="text-secondary hover:text-primary font-label-md text-label-md pl-3 py-2 flex items-center gap-3 transition-colors duration-150" href="#directory">
+<span class="material-symbols-outlined text-[16px]">folder_open</span>
+<span class="tracking-wider">04 DIRECTORY</span>
+</a>
+<!-- Inactive Tab 05 -->
+<a class="text-secondary hover:text-primary font-label-md text-label-md pl-3 py-2 flex items-center gap-3 transition-colors duration-150" href="#settings">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+<span class="tracking-wider">05 SETTINGS</span>
+</a>
+</nav>
+</div>
+<!-- Action & System Monospace Footer -->
+<div class="flex flex-col gap-4 pt-4 border-t hairline-border">
+<!-- CTA from JSON -->
+<button class="w-full bg-primary hover:bg-[#2A2B30] text-surface font-label-md text-label-md uppercase tracking-wider py-2.5 px-3 flex items-center justify-between transition-colors duration-150 rounded-none border-0">
+<span>Export Dossier</span>
+<span class="material-symbols-outlined text-[15px]">arrow_forward</span>
+</button>
+<!-- Footer Utility Nav Links from JSON -->
+<div class="flex items-center justify-between text-secondary pt-1">
+<a class="font-label-sm text-label-sm flex items-center gap-1.5 hover:text-primary transition-colors" href="#docs">
+<span class="material-symbols-outlined text-[14px]">menu_book</span>
+<span>Documentation</span>
+</a>
+<a class="font-label-sm text-label-sm flex items-center gap-1.5 hover:text-primary transition-colors" href="#terminal">
+<span class="material-symbols-outlined text-[14px]">terminal</span>
+<span>Terminal</span>
+</a>
+</div>
+<!-- Micro Telemetry Metadata -->
+<div class="p-2.5 bg-surface-container-low border hairline-border flex flex-col gap-1 text-secondary">
+<div class="font-label-sm text-label-sm leading-tight text-on-surface">SYS_VER: 4.8.2 // PROD</div>
+<div class="font-label-sm text-label-sm leading-tight text-secondary">ZURICH — NEW YORK ARCHIVE</div>
+<div class="font-label-sm text-label-sm leading-tight text-outline">CLASS: RESTRICTED DOSSIER</div>
+</div>
+</div>
+</aside>
+<!-- ============================================================== -->
+<!-- RIGHT COLUMN: EDITORIAL NARRATIVE & HIGH-PRECISION BENTO WORK   -->
+<!-- ============================================================== -->
+<main class="ml-72 flex-1 min-h-screen px-12 py-14 lg:px-16 lg:py-16 max-w-[1440px]">
+<!-- Monograph Chapter Bar -->
+<div class="flex items-center justify-between border-b hairline-border pb-4 mb-10">
+<div class="flex items-center gap-4">
+<span class="font-label-sm text-label-sm bg-surface-container-high px-2 py-0.5 border hairline-border text-primary uppercase">
+            [INDEX 01/03]
+          </span>
+<span class="font-label-md text-label-md uppercase tracking-widest text-secondary">
+            CASE STUDY // COMPUTATIONAL SPATIAL SYSTEM
+          </span>
+</div>
+<div class="font-label-sm text-label-sm text-outline tracking-widest">
+          COORDINATES: 47°22'N 8°32'E
+        </div>
+</div>
+<!-- Editorial Section Header -->
+<section class="mb-12">
+<!-- Monospace Category Index -->
+<div class="font-label-md text-label-md text-secondary tracking-widest uppercase mb-3 flex items-center gap-2">
+<span>3D WEBGL PLATFORM</span>
+<span class="text-outline">/</span>
+<span>SPATIAL MAPPING</span>
+<span class="text-outline">/</span>
+<span>EVENT LOGISTICS</span>
+</div>
+<!-- Grand Serif Headline -->
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight font-normal mb-8">
+          Bambino World
+        </h1>
+<!-- Two-Column Asymmetrical Narrative & Metrics Grid -->
+<div class="grid grid-cols-12 gap-8 items-start pt-6 border-t hairline-border">
+<!-- Narrative Left Column (8 cols) -->
+<div class="col-span-12 lg:col-span-7 flex flex-col gap-4">
+<p class="font-body-lg text-body-lg text-on-surface leading-relaxed font-normal">
+              An architectural-grade digital diorama spanning a continuous 10,000m² industrial footprint for client mark <strong class="font-medium text-primary">TOMORROW RECYCLING</strong>. The platform renders sub-millimeter geospatial infrastructure via accelerated WebGL pipelines directly within client web terminals without cloud proxy overhead.
+            </p>
+<p class="font-body-md text-body-md text-secondary leading-relaxed">
+              Synthesizing real-time industrial telemetry, automated material sorting telemetry, and autonomous drone pathing into an uncompromising, monochromatic digital twin engineered for Zurich-grade structural verification.
+            </p>
+<div class="pt-2 flex items-center gap-4">
+<span class="font-label-sm text-label-sm uppercase px-2.5 py-1 bg-surface-container-low border hairline-border text-primary">
+                CLIENT: TOMORROW RECYCLING AG
+              </span>
+<span class="font-label-sm text-label-sm uppercase px-2.5 py-1 bg-surface-container-low border hairline-border text-secondary">
+                SECTOR: REVERSE LOGISTICS
+              </span>
+</div>
+</div>
+<!-- Metrics Table Right Column (5 cols) -->
+<div class="col-span-12 lg:col-span-5 bg-surface-container-lowest border hairline-border p-6 flex flex-col justify-between">
+<div class="font-label-md text-label-md uppercase tracking-wider text-primary border-b hairline-border pb-3 mb-4 flex justify-between items-center">
+<span>SYSTEM PERFORMANCE METRICS</span>
+<span class="material-symbols-outlined text-[16px] text-secondary">analytics</span>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between border-b hairline-border pb-2.5">
+<span class="font-label-sm text-label-sm text-secondary uppercase">INCREASE IN USER CONVERSION</span>
+<span class="font-label-lg text-label-lg text-primary font-semibold tracking-tight">+25.0%</span>
+</div>
+<div class="flex items-center justify-between border-b hairline-border pb-2.5">
+<span class="font-label-sm text-label-sm text-secondary uppercase">REDUCTION IN PAGE LOAD LATENCY</span>
+<span class="font-label-lg text-label-lg text-primary font-semibold tracking-tight">-52.4%</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary uppercase">AUTOMATED DEPLOYMENT PIPELINES</span>
+<span class="font-label-lg text-label-lg text-primary font-semibold tracking-tight">76.0%</span>
+</div>
+</div>
+<div class="mt-5 pt-3 border-t hairline-border flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm">TELEMETRY POLLING: 60Hz</span>
+<span class="font-label-sm text-label-sm">STATUS: SYNCHRONIZED</span>
+</div>
+</div>
+</div>
+</section>
+<!-- ============================================================== -->
+<!-- BENTO MEDIA SHOWCASE: 3-FRAME BALANCED COMPOSITION            -->
+<!-- ============================================================== -->
+<section aria-label="Visual Dossier Exhibition" class="space-y-6 pt-4">
+<!-- Primary Hero Stage (Full Width 16:9) -->
+<article class="relative w-full border hairline-border bg-surface-container-lowest overflow-hidden group">
+<!-- Top Bar Index Header -->
+<div class="px-5 py-2.5 bg-surface-container-low border-b hairline-border flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 bg-primary inline-block"></span>
+<span class="font-label-md text-label-md uppercase tracking-wider text-primary">
+                FIG. 01.1 // 10,000M² SPATIAL DIORAMA
+              </span>
+</div>
+<div class="font-label-sm text-label-sm text-secondary">
+              PERSPECTIVE: ISOMETRIC AXONOMETRIC 45°
+            </div>
+</div>
+<!-- Hero Media Canvas -->
+<div class="relative aspect-[16/9] w-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover grayscale contrast-[1.12] brightness-[0.98] transition-transform duration-500 ease-out group-hover:scale-[1.01]" data-alt="A sprawling architectural hangar exhibition displaying large illuminated glass vitrine models of future metropolitan city blocks, surrounded by visitors in an immaculate minimalist pavilion. High-key soft ambient light illuminates concrete floors and steel trusses with technical HUD overlays and holographic schematics suspended in midair. A strict monochrome palette dominated by deep graphite, crisp white, and matte stainless steel accents evokes an authoritative, intellectual European design symposium." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlduKGgKK09dAK4h9FIs-ynLkc8cwDoOSgOzFxpHf4Ti9OJ72Uhmns_NIM1vRTvxjl06KS-eAJZ2lZiJbtuDyEdt91tkytrhN87rVP98p-ZJb8IeZq28GgpnJGJFgtwU3td5fP9gLnLdQ70XuBiUsYBibniS2sIRO5qO7K5Fjp0FkoMN_xKG-BDlK8YdC1Kumv0tKJ-exzIGMR9UmyWSANSzuvuLpIaDGZoSB3GkREO1aQQbNihDm8iNq25-gc9kZMROcaWLGUhd4"/>
+<!-- Technical Overlay Watermarks -->
+<div class="absolute bottom-4 left-4 bg-primary text-surface px-3 py-1.5 font-label-sm text-label-sm uppercase tracking-widest">
+              SIMULATION ENGINE: WEBGL 2.0 // BUFFER 4K
+            </div>
+<div class="absolute top-4 right-4 bg-surface-container-lowest/90 border hairline-border px-3 py-1 font-label-sm text-label-sm text-primary tracking-wider">
+              COORD: 10,000M² BOUNDING HULL
+            </div>
+</div>
+<!-- Caption Strip -->
+<div class="p-4 bg-surface-container-lowest border-t hairline-border flex flex-wrap items-center justify-between gap-4">
+<p class="font-body-sm text-body-sm text-secondary max-w-2xl">
+              Axonometric real-time viewport depicting zoning, automated vehicle thoroughfares, and interactive kiosks deployed within the facility.
+            </p>
+<span class="font-label-sm text-label-sm text-outline">
+              FPS: 120.00 // LATENCY: 3.2ms
+            </span>
+</div>
+</article>
+<!-- Secondary Duo Row (50/50 Asymmetric Cadence) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Secondary Card Left: Multi-spectral Drone Telemetry -->
+<article class="border hairline-border bg-surface-container-lowest overflow-hidden flex flex-col group">
+<div class="px-4 py-2.5 bg-surface-container-low border-b hairline-border flex items-center justify-between">
+<span class="font-label-md text-label-md uppercase tracking-wider text-primary">
+                FIG. 01.2 // MULTI-SPECTRAL DRONE TELEMETRY
+              </span>
+<span class="font-label-sm text-label-sm text-secondary">
+                SCAN FREQ: 5.8GHZ
+              </span>
+</div>
+<div class="relative aspect-[16/10] w-full overflow-hidden bg-surface-container">
+<img alt="High-altitude drone aerial telemetry computer vision stream, multispectral false-color sensor data visualization overlaying industrial venue roofs, bounding boxes, coordinate HUD, technical telemetry overlay, monochrome desaturated high-contrast aesthetic" class="w-full h-full object-cover grayscale contrast-125 transition-transform duration-500 ease-out group-hover:scale-[1.01]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCx0xNAJ6nnlx1ASsGCHW9doGC4z7eSm_zPRY1JKmsjmgOGeCdX0ctHX9OFC6KtrbD0BN2Wb_orEsj3hqyaxkA44SMsBt39_A7kv3t0Jz8RVtzrYLb2O4QBIjf3cAiUKaZ4PTIAgWfoQqu041_N0jH9MU0urL39IxQTY6GUWiLcaUpo1fZ0TaoMy0eceoG_h4Rhyu91MvwNd2B-LidAjZ4NOeqBi1DKO6ASpVCB0kCXbdB5AParbWMzKPsTuj7NFL7zeMr0t-IK11Y"/>
+<div class="absolute bottom-3 left-3 bg-surface-container-lowest/95 border hairline-border px-2.5 py-1 font-label-sm text-label-sm text-primary">
+                STREAM ID: AERIAL_OPTIC_04
+              </div>
+</div>
+<div class="p-4 border-t hairline-border flex-1 flex flex-col justify-between">
+<p class="font-body-sm text-body-sm text-secondary mb-3">
+                Continuous autonomous aerial pass confirming thermal insulation indexes and roof-mounted automated sorter health across quadrants A through H.
+              </p>
+<div class="flex items-center justify-between pt-2 border-t hairline-border text-outline">
+<span class="font-label-sm text-label-sm uppercase">SPECTRAL: INFRA-MONO</span>
+<span class="font-label-sm text-label-sm uppercase">STATUS: ACTIVE FLIGHT</span>
+</div>
+</div>
+</article>
+<!-- Secondary Card Right: Isometric CAD Wireframe Schematic -->
+<article class="border hairline-border bg-surface-container-lowest overflow-hidden flex flex-col group">
+<div class="px-4 py-2.5 bg-surface-container-low border-b hairline-border flex items-center justify-between">
+<span class="font-label-md text-label-md uppercase tracking-wider text-primary">
+                FIG. 01.3 // EDGE SORTING INFRASTRUCTURE
+              </span>
+<span class="font-label-sm text-label-sm text-secondary">
+                CAD REF: A-ISOM-010
+              </span>
+</div>
+<div class="relative aspect-[16/10] w-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover grayscale contrast-125 transition-transform duration-500 ease-out group-hover:scale-[1.01]" data-alt="Precision black-and-white architectural axonometric schematic drawing of a multi-tiered stadium arena and logistics sorting facility. Delicate crisp vector lines on an off-white blueprint paper ground depict structural steel roof trusses, concrete raked seating terraces, circulation stairs, and industrial HVAC conduit runs with clean Swiss alphanumeric engineering callouts. High contrast architectural drafting aesthetic with absolute clarity and precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlVxnmYLsYYVgj7KoapOE1TqQTqNmcluS8xP5zWqu8BZ88qjCBF3TVlZN_EbaypkmK0jr3Ul8IlRnsKvTtUjjEyPhGrrxTAfCAjNtSgrWQ-n6gBzG0gT9iDcnJYnqV95ZdBkfYqzVPfgT0HTNgpbJnU3XFDWuap2I-lgBM8z9PYPz8CSgNT0Bk_lp-MUqw3BbDRd8OzZ-Wxv7jZjGUrILLWN6DNNLfciYocGFE6A8F6bRYiGtKOKOOUlI72d6_KT5KZrpROze2s4o"/>
+<div class="absolute bottom-3 left-3 bg-surface-container-lowest/95 border hairline-border px-2.5 py-1 font-label-sm text-label-sm text-primary">
+                SYSTEM: STEEL_TRUSS_GRID
+              </div>
+</div>
+<div class="p-4 border-t hairline-border flex-1 flex flex-col justify-between">
+<p class="font-body-sm text-body-sm text-secondary mb-3">
+                Structural coordination model representing structural load capacity and pneumatic diversion nodes deployed at the processing concourses.
+              </p>
+<div class="flex items-center justify-between pt-2 border-t hairline-border text-outline">
+<span class="font-label-sm text-label-sm uppercase">TOLERANCE: ±0.4MM</span>
+<span class="font-label-sm text-label-sm uppercase">VALIDATED: Q3 2024</span>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- Editorial Colophon / Verification Panel -->
+<footer class="mt-16 pt-8 border-t hairline-border flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+<div class="flex flex-col gap-1">
+<div class="font-label-md text-label-md text-primary uppercase">
+            SAMARIA TECH // ADVISORY CO.
+          </div>
+<div class="font-body-sm text-body-sm text-secondary">
+            Zürichstrasse 104, 8002 Zürich — 350 Hudson Street, New York, NY
+          </div>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-right">
+<div class="font-label-sm text-label-sm text-primary uppercase">VERIFIED DOSSIER #SM-8841</div>
+<div class="font-label-sm text-label-sm text-outline">HASH: 9a8c1f0082de714</div>
+</div>
+<button class="bg-transparent hover:bg-primary hover:text-surface text-primary border border-primary font-label-md text-label-md uppercase px-4 py-2 transition-colors duration-150 rounded-none">
+            Request Spec Sheet
+          </button>
+</div>
+</footer>
+</main>
+</div>
+</body></html>

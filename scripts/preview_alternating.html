@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Samaria Tech // What We Do - Alternating Layout Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=JetBrains+Mono:wght@300;400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #FAFAFA;
+      color: #0F0F11;
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page-layout {
+      display: flex;
+      min-height: 100vh;
+      width: 100%;
+    }
+
+    /* Fixed Left Column (3D Coin & Section Nav) */
+    .sidebar-left {
+      width: 320px;
+      flex-shrink: 0;
+      border-right: 1px solid rgba(0, 0, 0, 0.08);
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 40px 32px;
+      background: #FAFAFA;
+      z-index: 10;
+    }
+
+    .coin-placeholder {
+      width: 220px;
+      height: 220px;
+      margin: auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .coin-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 15px 25px rgba(0,0,0,0.12));
+    }
+
+    .sidebar-nav {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .nav-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 0.4);
+      margin-bottom: 6px;
+    }
+    .nav-item {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 0.45);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: color 0.2s;
+    }
+    .nav-item.active {
+      color: #0F0F11;
+      font-weight: 600;
+    }
+    .nav-item.active::before {
+      content: '';
+      width: 18px;
+      height: 1px;
+      background: #0F0F11;
+    }
+
+    /* Right Main Content (What We Do Alternating Stream) */
+    .content-right {
+      flex: 1;
+      padding: 60px 80px 120px 80px;
+      max-width: 1200px;
+    }
+
+    .section-header-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 0.45);
+      margin-bottom: 40px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Alternating Project Row */
+    .project-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      padding: 90px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      position: relative;
+    }
+    .project-row:last-child {
+      border-bottom: none;
+    }
+
+    /* Alternate order for Row 2 */
+    .project-row.is-reversed .project-media {
+      order: 2;
+    }
+    .project-row.is-reversed .project-info {
+      order: 1;
+    }
+
+    /* Media Container */
+    .project-media {
+      position: relative;
+      border-radius: 4px;
+      overflow: hidden;
+      background: #EAEAEA;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      aspect-ratio: 16 / 10;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .project-media:hover {
+      transform: scale(1.015);
+    }
+    .project-media img, .project-media video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Project Info Column */
+    .project-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 12px;
+    }
+
+    .project-meta-line {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .project-order {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(0, 0, 0, 0.5);
+    }
+    .project-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      background: rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 2px;
+      color: rgba(0, 0, 0, 0.65);
+    }
+
+    .project-title {
+      font-family: 'Cinzel', serif;
+      font-size: 38px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      color: #0F0F11;
+      text-transform: capitalize;
+      margin-bottom: 20px;
+    }
+
+    .project-desc {
+      font-size: 15px;
+      line-height: 1.65;
+      color: rgba(15, 15, 17, 0.72);
+      margin-bottom: 28px;
+      max-width: 440px;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #0F0F11;
+      text-decoration: none;
+      font-weight: 600;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #0F0F11;
+      align-self: flex-start;
+      transition: opacity 0.2s;
+    }
+    .project-link:hover {
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-layout">
+
+  <!-- Left Sidebar with 3D Coin and Nav -->
+  <aside class="sidebar-left">
+    <div>
+      <div class="nav-label">System Index</div>
+      <div style="font-family: 'Cinzel', serif; font-size: 16px; font-weight: 600; letter-spacing: 0.05em;">SAMARIA TECH</div>
+    </div>
+
+    <div class="coin-placeholder">
+      <img src="https://cdn.prod.website-files.com/6a180066e6ba27b81a7ef915/6a180066e6ba27b81a7ef9bc_Warstwa_1%20(1).png" alt="Samaria Coin" class="coin-img" />
+    </div>
+
+    <div>
+      <div class="nav-label">What We Do</div>
+      <ul class="sidebar-nav">
+        <li class="nav-item active">01 Apex Web Platform</li>
+        <li class="nav-item">02 Pulse Application</li>
+        <li class="nav-item">03 Nexus Business Tools</li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- Right Main Content: Alternating Flow -->
+  <main class="content-right">
+    <div class="section-header-tag">
+      <span>What We Do // Selected Engineering Work</span>
+      <span>3 Systems Active</span>
+    </div>
+
+    <!-- Row 1: Image LEFT, Text RIGHT -->
+    <div class="project-row">
+      <div class="project-media">
+        <img src="https://cdn.prod.website-files.com/69e776c5f7729eda0138d932/69eab0a15f1a891d41f61e84_jfground.jpg" alt="Apex Web Platform" />
+      </div>
+      <div class="project-info">
+        <div class="project-meta-line">
+          <span class="project-order">01</span>
+          <span class="project-tag">Web Engineering</span>
+          <span class="project-tag">Robotics & AI</span>
+        </div>
+        <h2 class="project-title">Apex Web Platform</h2>
+        <p class="project-desc">
+          An interactive spatial diorama and computer vision pipeline engineered for large-scale venues, combining real-time telemetry with sub-second rendering.
+        </p>
+        <a href="https://www.apexplatform.tech/" target="_blank" class="project-link">
+          Explore Platform <span>→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Row 2: Text LEFT, Image RIGHT (Reversed) -->
+    <div class="project-row is-reversed">
+      <div class="project-media">
+        <img src="https://cdn.prod.website-files.com/6a180066e6ba27b81a7ef915/6a180066e6ba27b81a7ef974_image%2035830.png" alt="Pulse Application" />
+      </div>
+      <div class="project-info">
+        <div class="project-meta-line">
+          <span class="project-order">02</span>
+          <span class="project-tag">Web Application</span>
+          <span class="project-tag">Full-Stack</span>
+        </div>
+        <h2 class="project-title">Pulse Application</h2>
+        <p class="project-desc">
+          High-performance web architecture and intuitive application interface engineered to streamline complex technical operations and multi-tier workflows.
+        </p>
+        <a href="https://www.aescape.com/" target="_blank" class="project-link">
+          Explore Application <span>→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Row 3: Image LEFT, Text RIGHT -->
+    <div class="project-row">
+      <div class="project-media">
+        <img src="https://cdn.prod.website-files.com/6a180066e6ba27b81a7ef915/6a180066e6ba27b81a7ef97f_building-space%201%20(1).png" alt="Nexus Business Tools" />
+      </div>
+      <div class="project-info">
+        <div class="project-meta-line">
+          <span class="project-order">03</span>
+          <span class="project-tag">Custom Tooling</span>
+          <span class="project-tag">Web Systems</span>
+        </div>
+        <h2 class="project-title">Nexus Business Tools</h2>
+        <p class="project-desc">
+          Proprietary operational software, internal workflow automation, and distributed telemetry infrastructure tailored for physical intelligence systems.
+        </p>
+        <a href="#contact" class="project-link">
+          Discuss Requirements <span>→</span>
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+</div>
+
+</body>
+</html>
