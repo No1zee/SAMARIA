@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Scope Architect | Samaria Tech</title>
+  <meta content="Configure and architect your custom software, web platform, or automation system with Samaria Tech." name="description"/>
+  <meta content="Scope Architect | Samaria Tech" property="og:title"/>
+  <meta content="Configure and architect your custom software, web platform, or automation system with Samaria Tech." property="og:description"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+  <link rel="stylesheet" href="/assets/mecha-shared.css" type="text/css"/>
+
+  <style>
+    :root {
+      --bg-dark: #08090b;
+      --panel-dark: #0d0f14;
+      --panel-plate: #12151c;
+      --plate-hover: #171b24;
+      --border-zinc: #222631;
+      --border-active: #801435;
+      --gold-accent: #c5a059;
+      --gold-glow: rgba(197, 160, 89, 0.15);
+      --maroon: #801435;
+      --maroon-hover: #9e1842;
+      --text-heading: #f3f4f6;
+      --text-body: #9ca3af;
+      --text-muted: #6b7280;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-body);
+      font-family: 'Neue Haas Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Top Navigation */
+    .scope-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 9, 11, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-zinc);
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .scope-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text-heading);
+    }
+
+    .scope-brand-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .scope-brand-name {
+      font-family: 'Flecha M', Georgia, serif;
+      font-size: 1.25rem;
+      letter-spacing: -0.01em;
+      font-weight: 500;
+    }
+
+    .scope-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .scope-nav-link {
+      font-size: 0.8125rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .scope-nav-link:hover,
+    .scope-nav-link.is-active {
+      color: var(--text-heading);
+    }
+
+    .scope-cta-btn {
+      font-size: 0.8125rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #fff;
+      background-color: var(--maroon);
+      padding: 0.625rem 1.25rem;
+      text-decoration: none;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .scope-cta-btn:hover {
+      background-color: var(--maroon-hover);
+      transform: translateY(-1px);
+    }
+
+    /* Main Container & Split Layout */
+    .scope-layout {
+      flex: 1;
+      max-width: 1440px;
+      width: 100%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      min-height: calc(100vh - 75px);
+    }
+
+    /* Left Column: Architectural Spine (Sticky) */
+    .scope-spine {
+      border-right: 1px solid var(--border-zinc);
+      padding: 3rem 2.5rem;
+      position: sticky;
+      top: 75px;
+      height: calc(100vh - 75px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-y: auto;
+      background-color: var(--panel-dark);
+    }
+
+    /* Step Timeline in Spine */
+    .spine-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .spine-step-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: color 0.25s ease;
+    }
+
+    .spine-step-item.is-active {
+      color: var(--text-heading);
+    }
+
+    .spine-step-item.is-completed {
+      color: var(--gold-accent);
+    }
+
+    .spine-step-num {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 0.75rem;
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--border-zinc);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s ease;
+    }
+
+    .spine-step-item.is-active .spine-step-num {
+      border-color: var(--gold-accent);
+      color: var(--gold-accent);
+      box-shadow: 0 0 12px var(--gold-glow);
+    }
+
+    .spine-step-item.is-completed .spine-step-num {
+      border-color: var(--gold-accent);
+      background-color: var(--gold-accent);
+      color: #000;
+    }
+
+    .spine-step-title {
+      font-size: 0.8125rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 500;
+    }
+
+    /* Living Spec Ledger Receipt */
+    .sovereign-spec-card {
+      border: 1px solid var(--border-zinc);
+      background: linear-gradient(180deg, rgba(18, 21, 28, 0.85) 0%, rgba(13, 15, 20, 0.95) 100%);
+      padding: 1.75rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sovereign-spec-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold-accent), transparent);
+    }
+
+    .spec-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-zinc);
+    }
+
+    .spec-tag {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--gold-accent);
+    }
+
+    .spec-seal-mark {
+      width: 32px;
+      height: 32px;
+      opacity: 0.85;
+      object-fit: contain;
+    }
+
+    .spec-metrics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .spec-metric {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .metric-label {
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+    }
+
+    .metric-value {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 1.125rem;
+      color: var(--text-heading);
+      font-weight: 500;
+    }
+
+    .spec-stack-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-zinc);
+    }
+
+    .spec-stack-badge {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 0.6875rem;
+      padding: 0.25rem 0.5rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-zinc);
+      color: #d1d5db;
+    }
+
+    .spec-budget-box {
+      margin-top: 1.25rem;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--border-zinc);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .budget-label {
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+    }
+
+    .budget-tier {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 1.25rem;
+      color: var(--gold-accent);
+      font-weight: 600;
+    }
+
+    /* Right Column: Active Canvas Stage */
+    .scope-canvas {
+      padding: 4rem 4.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .wizard-stage {
+      display: none;
+      opacity: 0;
+      transform: translateY(16px);
+      width: 100%;
+      max-width: 820px;
+    }
+
+    .wizard-stage.is-active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .stage-header {
+      margin-bottom: 2.75rem;
+    }
+
+    .stage-step-eyebrow {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--gold-accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .stage-title {
+      font-family: 'Flecha M', Georgia, serif;
+      font-size: 2.75rem;
+      line-height: 1.15;
+      color: var(--text-heading);
+      letter-spacing: -0.02em;
+      font-weight: 400;
+    }
+
+    /* Tactile Selection Plates Grid */
+    .plates-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .tactile-plate {
+      background-color: var(--panel-plate);
+      border: 1px solid var(--border-zinc);
+      padding: 1.75rem;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 160px;
+    }
+
+    .tactile-plate:hover {
+      background-color: var(--plate-hover);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .tactile-plate.is-selected {
+      background-color: #161922;
+      border-color: var(--gold-accent);
+      box-shadow: 0 8px 24px var(--gold-glow);
+    }
+
+    .plate-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+
+    .plate-num {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .plate-indicator {
+      width: 14px;
+      height: 14px;
+      border: 1px solid var(--border-zinc);
+      border-radius: 50%;
+      transition: all 0.2s ease;
+    }
+
+    .tactile-plate.is-selected .plate-indicator {
+      border-color: var(--gold-accent);
+      background-color: var(--gold-accent);
+      box-shadow: 0 0 8px var(--gold-accent);
+    }
+
+    .plate-title {
+      font-size: 1.25rem;
+      color: var(--text-heading);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .plate-desc {
+      font-size: 0.8125rem;
+      line-height: 1.5;
+      color: var(--text-muted);
+    }
+
+    /* Capabilities Multi-Select Plates */
+    .capabilities-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .cap-plate {
+      background-color: var(--panel-plate);
+      border: 1px solid var(--border-zinc);
+      padding: 1.25rem 1.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cap-plate:hover {
+      background-color: var(--plate-hover);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .cap-plate.is-selected {
+      background-color: #171c26;
+      border-color: var(--gold-accent);
+    }
+
+    .cap-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .cap-title {
+      font-size: 0.9375rem;
+      color: var(--text-heading);
+      font-weight: 500;
+    }
+
+    .cap-detail {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .cap-toggle {
+      width: 20px;
+      height: 20px;
+      border: 1px solid var(--border-zinc);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .cap-plate.is-selected .cap-toggle {
+      border-color: var(--gold-accent);
+      background-color: var(--gold-accent);
+    }
+
+    .cap-toggle svg {
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .cap-plate.is-selected .cap-toggle svg {
+      opacity: 1;
+    }
+
+    /* Velocity Selection */
+    .velocity-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .velocity-plate {
+      background-color: var(--panel-plate);
+      border: 1px solid var(--border-zinc);
+      padding: 1.75rem 1.25rem;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 150px;
+      transition: all 0.2s ease;
+    }
+
+    .velocity-plate:hover {
+      background-color: var(--plate-hover);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .velocity-plate.is-selected {
+      background-color: #171c26;
+      border-color: var(--gold-accent);
+      box-shadow: 0 4px 18px var(--gold-glow);
+    }
+
+    .velocity-duration {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 1.25rem;
+      color: var(--text-heading);
+      margin-top: 0.75rem;
+    }
+
+    /* Stage Action Bar */
+    .stage-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-zinc);
+    }
+
+    .btn-secondary {
+      background: none;
+      border: 1px solid var(--border-zinc);
+      color: var(--text-muted);
+      padding: 0.75rem 1.75rem;
+      font-size: 0.8125rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--text-heading);
+      color: var(--text-heading);
+    }
+
+    .btn-primary {
+      background-color: var(--maroon);
+      border: 1px solid var(--maroon);
+      color: #fff;
+      padding: 0.75rem 2.25rem;
+      font-size: 0.8125rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--maroon-hover);
+      border-color: var(--maroon-hover);
+      transform: translateY(-1px);
+    }
+
+    /* Final Dispatch Form */
+    .dispatch-summary-box {
+      background: var(--panel-plate);
+      border: 1px solid var(--border-zinc);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .summary-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .summary-label {
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+    }
+
+    .summary-value {
+      font-size: 0.9375rem;
+      color: var(--text-heading);
+      font-weight: 500;
+    }
+
+    .dispatch-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-heading);
+    }
+
+    .form-input, .form-textarea {
+      background-color: var(--panel-plate);
+      border: 1px solid var(--border-zinc);
+      color: #fff;
+      padding: 0.875rem 1rem;
+      font-family: inherit;
+      font-size: 0.875rem;
+      transition: border-color 0.2s ease;
+      outline: none;
+    }
+
+    .form-input:focus, .form-textarea:focus {
+      border-color: var(--gold-accent);
+    }
+
+    .form-textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    /* Success Plate */
+    .success-plate {
+      display: none;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    .success-seal {
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 2rem;
+      filter: drop-shadow(0 15px 35px rgba(212, 175, 55, 0.3));
+    }
+
+    .success-title {
+      font-family: 'Flecha M', Georgia, serif;
+      font-size: 2.25rem;
+      color: var(--text-heading);
+      margin-bottom: 1rem;
+    }
+
+    .success-lead {
+      font-size: 0.9375rem;
+      color: var(--text-muted);
+      max-width: 500px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+
+    .success-ref {
+      font-family: 'Fragment Mono', monospace;
+      font-size: 0.875rem;
+      color: var(--gold-accent);
+      padding: 0.5rem 1rem;
+      background: rgba(197, 160, 89, 0.08);
+      border: 1px solid rgba(197, 160, 89, 0.25);
+      display: inline-block;
+      margin-bottom: 2rem;
+    }
+
+    /* Mobile Responsive */
+    @media screen and (max-width: 991px) {
+      .scope-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .scope-nav-links {
+        display: none;
+      }
+
+      .scope-mobile-home-btn {
+        display: inline-flex !important;
+      }
+
+      .scope-spine {
+        position: static;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border-zinc);
+        padding: 1.5rem 1.25rem;
+      }
+
+      .spine-steps {
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 1.25rem;
+      }
+
+      .spine-step-title {
+        display: none;
+      }
+
+      .scope-canvas {
+        padding: 2.25rem 1.25rem 4rem;
+      }
+
+      .plates-grid,
+      .capabilities-grid,
+      .velocity-grid,
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .stage-title {
+        font-size: 1.875rem;
+      }
+    }
+
+    .scope-mobile-home-btn {
+      display: none;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #fff;
+      background-color: var(--maroon);
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="scope-nav">
+    <a href="/" class="scope-brand">
+      <img src="/logo_icon.png" alt="Samaria Logo" class="scope-brand-icon"/>
+      <span class="scope-brand-name">SAMARIA</span>
+    </a>
+    <a href="/" class="scope-mobile-home-btn">Return to Home</a>
+    <div class="scope-nav-links">
+      <a href="/#what-we-do" class="scope-nav-link">What We Do</a>
+      <a href="/#teams" class="scope-nav-link">Team</a>
+      <a href="/scope" class="scope-nav-link is-active">Scope</a>
+      <a href="/#contact" class="scope-nav-link">Contact</a>
+      <a href="/blog" class="scope-nav-link">Blog</a>
+      <a href="/#contact" class="scope-cta-btn">Start a Project</a>
+    </div>
+  </nav>
+
+  <!-- Split-Spine Architectural Wizard -->
+  <main class="scope-layout">
+
+    <!-- Left Column: Architectural Spine (Sticky) -->
+    <aside class="scope-spine">
+      <div>
+        <!-- Step Navigation -->
+        <nav class="spine-steps" aria-label="Wizard Steps">
+          <div class="spine-step-item is-active" data-step-target="1">
+            <span class="spine-step-num">01</span>
+            <span class="spine-step-title">Platform</span>
+          </div>
+          <div class="spine-step-item" data-step-target="2">
+            <span class="spine-step-num">02</span>
+            <span class="spine-step-title">Capabilities</span>
+          </div>
+          <div class="spine-step-item" data-step-target="3">
+            <span class="spine-step-num">03</span>
+            <span class="spine-step-title">Velocity</span>
+          </div>
+          <div class="spine-step-item" data-step-target="4">
+            <span class="spine-step-num">04</span>
+            <span class="spine-step-title">Specification</span>
+          </div>
+        </nav>
+
+        <!-- Live Sovereign Spec Receipt -->
+        <div class="sovereign-spec-card">
+          <div class="spec-header">
+            <div>
+              <span class="spec-tag">Live Computation</span>
+              <div style="font-size: 0.875rem; color: #fff; font-weight: 500; margin-top: 0.25rem;">
+                Architectural Spec
+              </div>
+            </div>
+            <img src="/assets/coin/sovereign_diffuse.png" alt="Sovereign Seal" class="spec-seal-mark"/>
+          </div>
+
+          <div class="spec-metrics-grid">
+            <div class="spec-metric">
+              <span class="metric-label">Platform</span>
+              <span class="metric-value" id="spec-platform-display">Web Flagship</span>
+            </div>
+            <div class="spec-metric">
+              <span class="metric-label">Complexity</span>
+              <span class="metric-value" id="spec-complexity-display">Standard</span>
+            </div>
+            <div class="spec-metric">
+              <span class="metric-label">Sprint Count</span>
+              <span class="metric-value" id="spec-sprints-display">2 Sprints</span>
+            </div>
+            <div class="spec-metric">
+              <span class="metric-label">Delivery</span>
+              <span class="metric-value" id="spec-weeks-display">4 Weeks</span>
+            </div>
+          </div>
+
+          <div class="metric-label">Recommended Stack</div>
+          <div class="spec-stack-list" id="spec-stack-container">
+            <span class="spec-stack-badge">Next.js App Router</span>
+            <span class="spec-stack-badge">Tailwind v4</span>
+            <span class="spec-stack-badge">TypeScript</span>
+          </div>
+
+          <div class="spec-budget-box">
+            <span class="budget-label">Estimated Tier</span>
+            <span class="budget-tier" id="spec-budget-display">$8k – $14k</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding-top: 2rem; border-top: 1px solid var(--border-zinc); font-size: 0.6875rem; color: var(--text-muted); display: flex; justify-content: space-between;">
+        <span>Samaria Physical Intelligence Systems</span>
+        <span style="font-family: 'Fragment Mono', monospace;">MMXXVI</span>
+      </div>
+    </aside>
+
+    <!-- Right Column: Interactive Canvas Stage -->
+    <section class="scope-canvas">
+
+      <!-- STEP 01: Platform Selection -->
+      <div class="wizard-stage is-active" id="stage-1">
+        <header class="stage-header">
+          <span class="stage-step-eyebrow">Phase 01 / 04</span>
+          <h1 class="stage-title">Select the system you need engineered.</h1>
+        </header>
+
+        <div class="plates-grid">
+          <div class="tactile-plate is-selected" data-platform="web-flagship" data-sprints="2" data-weeks="4" data-budget="$8k – $14k" data-title="Web Flagship">
+            <div class="plate-top">
+              <span class="plate-num">01</span>
+              <span class="plate-indicator"></span>
+            </div>
+            <div>
+              <div class="plate-title">Web Flagship</div>
+              <div class="plate-desc">High-performance digital brand flagship, custom motion physics, and sub-second rendering.</div>
+            </div>
+          </div>
+
+          <div class="tactile-plate" data-platform="fullstack-saas" data-sprints="4" data-weeks="8" data-budget="$16k – $28k" data-title="Full-Stack SaaS">
+            <div class="plate-top">
+              <span class="plate-num">02</span>
+              <span class="plate-indicator"></span>
+            </div>
+            <div>
+              <div class="plate-title">Full-Stack SaaS</div>
+              <div class="plate-desc">Multi-tenant web application, secure authentication, reactive dashboard, and database engine.</div>
+            </div>
+          </div>
+
+          <div class="tactile-plate" data-platform="automation-erp" data-sprints="5" data-weeks="10" data-budget="$22k – $35k" data-title="Operations & Automation">
+            <div class="plate-top">
+              <span class="plate-num">03</span>
+              <span class="plate-indicator"></span>
+            </div>
+            <div>
+              <div class="plate-title">Operations & Automation</div>
+              <div class="plate-desc">Internal enterprise tooling, automated data pipelines, and ERP workflow engines.</div>
+            </div>
+          </div>
+
+          <div class="tactile-plate" data-platform="spatial-iot" data-sprints="6" data-weeks="12" data-budget="$30k – $45k" data-title="Spatial & Telemetry">
+            <div class="plate-top">
+              <span class="plate-num">04</span>
+              <span class="plate-indicator"></span>
+            </div>
+            <div>
+              <div class="plate-title">Spatial & Telemetry</div>
+              <div class="plate-desc">Real-time hardware streaming, 3D WebGL diorama, and computer vision integration.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stage-actions">
+          <div></div>
+          <button type="button" class="btn-primary" data-next-step="2">
+            <span>Proceed to Capabilities</span>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 02: Core Capabilities -->
+      <div class="wizard-stage" id="stage-2">
+        <header class="stage-header">
+          <span class="stage-step-eyebrow">Phase 02 / 04</span>
+          <h2 class="stage-title">Configure architectural requirements.</h2>
+        </header>
+
+        <div class="capabilities-grid">
+          <div class="cap-plate" data-capability="webgl-3d" data-stack="Three.js PBR">
+            <div class="cap-info">
+              <span class="cap-title">WebGL 3D & Spatial Diorama</span>
+              <span class="cap-detail">Interactive canvas, PBR shaders, particle physics</span>
+            </div>
+            <div class="cap-toggle">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#000" stroke-width="1.5"/></svg>
+            </div>
+          </div>
+
+          <div class="cap-plate" data-capability="websockets" data-stack="Real-Time WebSockets">
+            <div class="cap-info">
+              <span class="cap-title">Real-Time WebSockets</span>
+              <span class="cap-detail">Bidirectional live telemetry and instant sync</span>
+            </div>
+            <div class="cap-toggle">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#000" stroke-width="1.5"/></svg>
+            </div>
+          </div>
+
+          <div class="cap-plate" data-capability="billing" data-stack="Stripe Billing Engine">
+            <div class="cap-info">
+              <span class="cap-title">Payment & Billing Engine</span>
+              <span class="cap-detail">Subscriptions, checkout flows, and automated invoicing</span>
+            </div>
+            <div class="cap-toggle">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#000" stroke-width="1.5"/></svg>
+            </div>
+          </div>
+
+          <div class="cap-plate" data-capability="auth-rbac" data-stack="Multi-Tenant RBAC">
+            <div class="cap-info">
+              <span class="cap-title">Role-Based Auth & RBAC</span>
+              <span class="cap-detail">Enterprise session security, OAuth, and team isolation</span>
+            </div>
+            <div class="cap-toggle">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#000" stroke-width="1.5"/></svg>
+            </div>
+          </div>
+
+          <div class="cap-plate" data-capability="ai-pipeline" data-stack="AI Vector Engine">
+            <div class="cap-info">
+              <span class="cap-title">AI Pipeline & Vector Search</span>
+              <span class="cap-detail">Domain-specific RAG, embeddings, and structured inference</span>
+            </div>
+            <div class="cap-toggle">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#000" stroke-width="1.5"/></svg>
+            </div>
+          </div>
+
+          <div class="cap-plate" data-capability="audit-sec" data-stack="Audit Security Suite">
+            <div class="cap-info">
+              <span class="cap-title">Audit Logging & Security</span>
+              <span class="cap-detail">Tamper-evident logs and end-to-end encryption</span>
+            </div>
+            <div class="cap-toggle">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#000" stroke-width="1.5"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="stage-actions">
+          <button type="button" class="btn-secondary" data-prev-step="1">Back</button>
+          <button type="button" class="btn-primary" data-next-step="3">
+            <span>Proceed to Velocity</span>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 03: Delivery Velocity -->
+      <div class="wizard-stage" id="stage-3">
+        <header class="stage-header">
+          <span class="stage-step-eyebrow">Phase 03 / 04</span>
+          <h2 class="stage-title">Define delivery velocity.</h2>
+        </header>
+
+        <div class="velocity-grid">
+          <div class="velocity-plate is-selected" data-velocity="mvp" data-multiplier="1" data-vel-label="Rapid MVP">
+            <div>
+              <span class="plate-num">01</span>
+              <div class="plate-title" style="margin-top: 0.5rem;">Rapid MVP</div>
+              <div class="plate-desc">Core critical path and targeted delivery for fast market validation.</div>
+            </div>
+            <div class="velocity-duration">3 – 4 Weeks</div>
+          </div>
+
+          <div class="velocity-plate" data-velocity="production" data-multiplier="1.3" data-vel-label="Production Flagship">
+            <div>
+              <span class="plate-num">02</span>
+              <div class="plate-title" style="margin-top: 0.5rem;">Production Flagship</div>
+              <div class="plate-desc">Full architectural hardening, custom motion physics, and comprehensive testing.</div>
+            </div>
+            <div class="velocity-duration">6 – 8 Weeks</div>
+          </div>
+
+          <div class="velocity-plate" data-velocity="enterprise" data-multiplier="1.6" data-vel-label="Enterprise Scale">
+            <div>
+              <span class="plate-num">03</span>
+              <div class="plate-title" style="margin-top: 0.5rem;">Enterprise Scale</div>
+              <div class="plate-desc">High-concurrency stress testing, multi-team access control, and dedicated SLAs.</div>
+            </div>
+            <div class="velocity-duration">10 – 12 Weeks</div>
+          </div>
+        </div>
+
+        <div class="stage-actions">
+          <button type="button" class="btn-secondary" data-prev-step="2">Back</button>
+          <button type="button" class="btn-primary" data-next-step="4">
+            <span>Generate Specification</span>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 04: Specification Review & RFP Dispatch -->
+      <div class="wizard-stage" id="stage-4">
+        <header class="stage-header">
+          <span class="stage-step-eyebrow">Phase 04 / 04</span>
+          <h2 class="stage-title">Lock in your architectural specification.</h2>
+        </header>
+
+        <!-- Dynamic Spec Summary -->
+        <div class="dispatch-summary-box">
+          <div class="summary-item">
+            <span class="summary-label">Selected System</span>
+            <span class="summary-value" id="summary-platform">Web Flagship</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Target Velocity</span>
+            <span class="summary-value" id="summary-velocity">Rapid MVP (3–4 Weeks)</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Active Capabilities</span>
+            <span class="summary-value" id="summary-capabilities">Standard Core Platform</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Investment Bracket</span>
+            <span class="summary-value" id="summary-budget">$8k – $14k</span>
+          </div>
+        </div>
+
+        <!-- Dispatch Contact Form -->
+        <form class="dispatch-form" id="rfp-form" onsubmit="handleRfpSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="client-name" class="form-label">Full Name*</label>
+              <input type="text" id="client-name" name="name" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <label for="client-email" class="form-label">Work Email*</label>
+              <input type="email" id="client-email" name="email" class="form-input" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="client-company" class="form-label">Organization / Company</label>
+              <input type="text" id="client-company" name="company" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label for="client-timeline" class="form-label">Target Kickoff</label>
+              <input type="text" id="client-timeline" name="kickoff" class="form-input" value="Immediate" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="client-notes" class="form-label">Additional Engineering Requirements</label>
+            <textarea id="client-notes" name="notes" class="form-textarea"></textarea>
+          </div>
+
+          <div class="stage-actions">
+            <button type="button" class="btn-secondary" data-prev-step="3">Back</button>
+            <button type="submit" class="btn-primary" id="rfp-submit-btn">
+              <span>Dispatch Specification to Samaria Tech</span>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+          </div>
+        </form>
+
+        <!-- Success Confirmation Plate -->
+        <div class="success-plate" id="success-plate">
+          <img src="/assets/coin/sovereign_diffuse.png" alt="Sovereign Seal" class="success-seal"/>
+          <h3 class="success-title">Specification Dispatched.</h3>
+          <div class="success-ref" id="success-ref-code">REF-SAMARIA-2026-0000</div>
+          <p class="success-lead">Our engineering team has received your architectural parameters. We will review the requirements and respond with a formal technical proposal within 24 hours.</p>
+          <a href="/" class="btn-primary" style="text-decoration: none;">Return to Home</a>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Script: Wizard State & GSAP Transitions -->
+  <script src="https://cdn.prod.website-files.com/gsap/3.15.0/gsap.min.js"></script>
+  <script>
+    // State
+    const state = {
+      step: 1,
+      platform: 'Web Flagship',
+      platformKey: 'web-flagship',
+      baseSprints: 2,
+      baseWeeks: 4,
+      baseBudget: '$8k – $14k',
+      capabilities: [],
+      velocity: 'Rapid MVP (3–4 Weeks)',
+      velocityMultiplier: 1,
+    };
+
+    const baseStacks = {
+      'web-flagship': ['Next.js App Router', 'Tailwind v4', 'TypeScript'],
+      'fullstack-saas': ['Next.js App Router', 'PostgreSQL / Prisma', 'Tailwind v4', 'TypeScript'],
+      'automation-erp': ['Node / Bun Runtime', 'BullMQ Pipelines', 'PostgreSQL', 'TypeScript'],
+      'spatial-iot': ['Three.js WebGL', 'WebSockets', 'Next.js App Router', 'TypeScript'],
+    };
+
+    // Platform Selection
+    document.querySelectorAll('.tactile-plate').forEach(plate => {
+      plate.addEventListener('click', () => {
+        document.querySelectorAll('.tactile-plate').forEach(p => p.classList.remove('is-selected'));
+        plate.classList.add('is-selected');
+
+        state.platform = plate.dataset.title;
+        state.platformKey = plate.dataset.platform;
+        state.baseSprints = parseInt(plate.dataset.sprints, 10);
+        state.baseWeeks = parseInt(plate.dataset.weeks, 10);
+        state.baseBudget = plate.dataset.budget;
+
+        updateLedger();
+      });
+    });
+
+    // Capabilities Multi-Select
+    document.querySelectorAll('.cap-plate').forEach(cap => {
+      cap.addEventListener('click', () => {
+        cap.classList.toggle('is-selected');
+        const capKey = cap.dataset.capability;
+        const stackTag = cap.dataset.stack;
+
+        if (cap.classList.contains('is-selected')) {
+          state.capabilities.push({ key: capKey, stack: stackTag });
+        } else {
+          state.capabilities = state.capabilities.filter(c => c.key !== capKey);
+        }
+
+        updateLedger();
+      });
+    });
+
+    // Velocity Selection
+    document.querySelectorAll('.velocity-plate').forEach(vPlate => {
+      vPlate.addEventListener('click', () => {
+        document.querySelectorAll('.velocity-plate').forEach(p => p.classList.remove('is-selected'));
+        vPlate.classList.add('is-selected');
+
+        state.velocity = vPlate.dataset.velLabel;
+        state.velocityMultiplier = parseFloat(vPlate.dataset.multiplier);
+
+        updateLedger();
+      });
+    });
+
+    // Navigation Buttons
+    document.querySelectorAll('[data-next-step]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        goToStep(parseInt(btn.dataset.nextStep, 10));
+      });
+    });
+
+    document.querySelectorAll('[data-prev-step]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        goToStep(parseInt(btn.dataset.prevStep, 10));
+      });
+    });
+
+    document.querySelectorAll('.spine-step-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const target = parseInt(item.dataset.stepTarget, 10);
+        goToStep(target);
+      });
+    });
+
+    function goToStep(targetStep) {
+      if (targetStep === state.step || targetStep < 1 || targetStep > 4) return;
+
+      const currentStage = document.getElementById(`stage-${state.step}`);
+      const nextStage = document.getElementById(`stage-${targetStep}`);
+
+      // GSAP transition
+      gsap.to(currentStage, {
+        opacity: 0,
+        y: targetStep > state.step ? -12 : 12,
+        duration: 0.25,
+        ease: 'power2.in',
+        onComplete: () => {
+          currentStage.classList.remove('is-active');
+          nextStage.classList.add('is-active');
+
+          gsap.fromTo(nextStage, 
+            { opacity: 0, y: targetStep > state.step ? 16 : -16 },
+            { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' }
+          );
+        }
+      });
+
+      // Update Step Timeline in Spine
+      state.step = targetStep;
+      document.querySelectorAll('.spine-step-item').forEach(item => {
+        const num = parseInt(item.dataset.stepTarget, 10);
+        item.classList.remove('is-active', 'is-completed');
+        if (num === state.step) {
+          item.classList.add('is-active');
+        } else if (num < state.step) {
+          item.classList.add('is-completed');
+        }
+      });
+
+      // Update summary box if entering Step 4
+      if (state.step === 4) {
+        document.getElementById('summary-platform').textContent = state.platform;
+        document.getElementById('summary-velocity').textContent = state.velocity;
+        document.getElementById('summary-budget').textContent = document.getElementById('spec-budget-display').textContent;
+        const capNames = state.capabilities.length > 0 
+          ? state.capabilities.map(c => c.stack).join(', ')
+          : 'Standard Core Platform';
+        document.getElementById('summary-capabilities').textContent = capNames;
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Ledger Calculation Engine
+    function updateLedger() {
+      // Platform display
+      document.getElementById('spec-platform-display').textContent = state.platform;
+
+      // Sprint computation
+      const totalSprints = Math.ceil(state.baseSprints * state.velocityMultiplier + (state.capabilities.length * 0.5));
+      const totalWeeks = totalSprints * 2;
+      document.getElementById('spec-sprints-display').textContent = `${totalSprints} Sprints`;
+      document.getElementById('spec-weeks-display').textContent = `${totalWeeks} Weeks`;
+
+      // Complexity
+      const totalPoints = state.baseSprints + state.capabilities.length;
+      let complexity = 'Standard';
+      if (totalPoints >= 8) complexity = 'Enterprise';
+      else if (totalPoints >= 5) complexity = 'Vanguard';
+      document.getElementById('spec-complexity-display').textContent = complexity;
+
+      // Stack badges
+      const stackList = [...(baseStacks[state.platformKey] || [])];
+      state.capabilities.forEach(c => {
+        if (!stackList.includes(c.stack)) stackList.push(c.stack);
+      });
+
+      const stackContainer = document.getElementById('spec-stack-container');
+      stackContainer.innerHTML = '';
+      stackList.forEach(tag => {
+        const badge = document.createElement('span');
+        badge.className = 'spec-stack-badge';
+        badge.textContent = tag;
+        stackContainer.appendChild(badge);
+      });
+
+      // Budget estimation
+      let budget = '$8k – $14k';
+      if (complexity === 'Enterprise') {
+        budget = '$32k – $50k+';
+      } else if (complexity === 'Vanguard') {
+        budget = '$18k – $30k';
+      } else if (state.platformKey === 'web-flagship') {
+        budget = state.capabilities.length > 1 ? '$12k – $18k' : '$8k – $14k';
+      }
+      document.getElementById('spec-budget-display').textContent = budget;
+    }
+
+    // Form Submission
+    function handleRfpSubmit(e) {
+      e.preventDefault();
+      const submitBtn = document.getElementById('rfp-submit-btn');
+      submitBtn.disabled = true;
+      submitBtn.querySelector('span').textContent = 'Encrypting & Dispatching...';
+
+      const name = document.getElementById('client-name').value;
+      const email = document.getElementById('client-email').value;
+      const company = document.getElementById('client-company').value;
+      const notes = document.getElementById('client-notes').value;
+
+      const refCode = `SAMARIA-SPEC-${Math.floor(100000 + Math.random() * 900000)}`;
+
+      // Simulate instantaneous dispatch
+      setTimeout(() => {
+        document.getElementById('rfp-form').style.display = 'none';
+        const successPlate = document.getElementById('success-plate');
+        document.getElementById('success-ref-code').textContent = refCode;
+        successPlate.style.display = 'block';
+
+        gsap.fromTo(successPlate,
+          { opacity: 0, scale: 0.96 },
+          { opacity: 1, scale: 1, duration: 0.4, ease: 'power2.out' }
+        );
+      }, 700);
+    }
+  </script>
+</body>
+</html>
