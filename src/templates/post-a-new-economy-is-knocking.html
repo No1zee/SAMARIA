@@ -1683,9 +1683,11 @@ document.querySelectorAll('[reveal-hover]').forEach(function (el) {
 
       split.lines.forEach(function (line) {
         var mask = document.createElement('span');
-        mask.style.cssText = 'display:block; clip-path: inset(0 0 -0.3em 0);';
+        mask.className = 'kinetic-3d-wrap';
+        mask.style.cssText = 'display:block; overflow:hidden; perspective:1000px; transform-style:preserve-3d; clip-path: inset(0 0 -0.25em 0);';
         var inner = document.createElement('span');
-        inner.style.cssText = 'display:block;';
+        inner.className = 'kinetic-3d-inner';
+        inner.style.cssText = 'display:block; transform-origin: 50% 100% -25px; will-change: transform, opacity, filter; backface-visibility: hidden;';
         inner.innerHTML = line.innerHTML;
         mask.appendChild(inner);
         line.innerHTML = '';
@@ -1693,16 +1695,34 @@ document.querySelectorAll('[reveal-hover]').forEach(function (el) {
         lines.push(inner);
       });
 
-      gsap.set(lines, { yPercent: 150 });
+      gsap.set(lines, { yPercent: 120, rotateX: 35, opacity: 0, filter: 'blur(6px)' });
 
       setupElement(nameEl,
         function () {
           gsap.killTweensOf(lines);
-          gsap.to(lines, { yPercent: 0, duration: DUR_TEXT, ease: EASE, stagger: { each: STAG } });
+          gsap.to(lines, {
+            yPercent: 0,
+            rotateX: 0,
+            opacity: 1,
+            filter: 'blur(0px)',
+            duration: 1.15,
+            ease: 'power3.out',
+            stagger: { each: 0.045 },
+            overwrite: 'auto'
+          });
         },
         function () {
           gsap.killTweensOf(lines);
-          gsap.to(lines, { yPercent: 150, duration: DUR_TEXT * 0.6, ease: 'power2.inOut', stagger: { each: STAG, from: 'end' } });
+          gsap.to(lines, {
+            yPercent: 120,
+            rotateX: 35,
+            opacity: 0,
+            filter: 'blur(6px)',
+            duration: 0.75,
+            ease: 'power2.inOut',
+            stagger: { each: 0.025, from: 'end' },
+            overwrite: 'auto'
+          });
         }
       );
     });
@@ -1713,9 +1733,11 @@ document.querySelectorAll('[reveal-hover]').forEach(function (el) {
 
       split.lines.forEach(function (line) {
         var mask = document.createElement('span');
-        mask.style.cssText = 'display:block; clip-path: inset(0 0 -0.3em 0);';
+        mask.className = 'kinetic-3d-wrap';
+        mask.style.cssText = 'display:block; overflow:hidden; perspective:1000px; transform-style:preserve-3d; clip-path: inset(0 0 -0.2em 0);';
         var inner = document.createElement('span');
-        inner.style.cssText = 'display:block;';
+        inner.className = 'kinetic-3d-inner';
+        inner.style.cssText = 'display:block; transform-origin: 50% 100% -15px; will-change: transform, opacity, filter; backface-visibility: hidden;';
         inner.innerHTML = line.innerHTML;
         mask.appendChild(inner);
         line.innerHTML = '';
@@ -1723,7 +1745,7 @@ document.querySelectorAll('[reveal-hover]').forEach(function (el) {
         lines.push(inner);
       });
 
-      gsap.set(lines, { yPercent: 150 });
+      gsap.set(lines, { yPercent: 110, rotateX: 30, opacity: 0, filter: 'blur(4px)' });
 
       ScrollTrigger.create({
         trigger: nameEl,
@@ -1731,11 +1753,29 @@ document.querySelectorAll('[reveal-hover]').forEach(function (el) {
         end: 'bottom top',
         onEnter: function () {
           gsap.killTweensOf(lines);
-          gsap.to(lines, { yPercent: 0, duration: DUR_TEXT_SMALL, ease: EASE, stagger: { each: STAG } });
+          gsap.to(lines, {
+            yPercent: 0,
+            rotateX: 0,
+            opacity: 1,
+            filter: 'blur(0px)',
+            duration: 0.95,
+            ease: 'power3.out',
+            stagger: { each: 0.035 },
+            overwrite: 'auto'
+          });
         },
         onLeaveBack: function () {
           gsap.killTweensOf(lines);
-          gsap.to(lines, { yPercent: 150, duration: DUR_TEXT_SMALL * 0.6, ease: 'power2.inOut', stagger: { each: STAG, from: 'end' } });
+          gsap.to(lines, {
+            yPercent: 110,
+            rotateX: 30,
+            opacity: 0,
+            filter: 'blur(4px)',
+            duration: 0.65,
+            ease: 'power2.inOut',
+            stagger: { each: 0.02, from: 'end' },
+            overwrite: 'auto'
+          });
         },
       });
     });
@@ -2295,4 +2335,125 @@ if (success) {
     if (!wrapper.closest('.custom-videos')) initStandardVideo(wrapper);
   });
 })();
-</script></body></html>
+</script>
+<script>
+/**
+ * SAMARIA LUXURY EDITORIAL MOTION PHYSICS SUITE
+ * High-performance spring physics via GSAP quickTo
+ * - Magnetic CTA button spring attraction (max 12px, power4.out)
+ * - 3D Perspective card tilt with inertia (max ±6deg, power4.out)
+ * - Adaptive mobile micro-scale compression (scale 0.98 on touch)
+ */
+(function() {
+  function initMotionPhysics() {
+    if (typeof window === 'undefined' || !window.gsap) return;
+
+    var isTouch = window.matchMedia('(pointer: coarse)').matches || ('ontouchstart' in window);
+
+    // 1. MOBILE & TOUCH ADAPTATION (Zero-cost touch micro-scale)
+    if (isTouch) {
+      var touchTargets = document.querySelectorAll(
+        '.action-button, .bold-nav-full__hamburger, .close-popup, .close-project, .close-burger, .top-link, .project-cover, .ci_team, .blog-holder'
+      );
+      touchTargets.forEach(function(el) {
+        el.addEventListener('touchstart', function() {
+          gsap.to(el, { scale: 0.98, duration: 0.15, ease: 'power2.out', overwrite: 'auto' });
+        }, { passive: true });
+        el.addEventListener('touchend', function() {
+          gsap.to(el, { scale: 1, duration: 0.35, ease: 'power2.out', overwrite: 'auto' });
+        }, { passive: true });
+        el.addEventListener('touchcancel', function() {
+          gsap.to(el, { scale: 1, duration: 0.35, ease: 'power2.out', overwrite: 'auto' });
+        }, { passive: true });
+      });
+      return; // Gracefully bypass mouse magnetic & tilt calculations on touch devices
+    }
+
+    // 2. MAGNETIC CTA & BUTTON PHYSICS (Desktop)
+    var magneticTargets = document.querySelectorAll(
+      '.action-button, .bold-nav-full__hamburger, .close-popup, .close-project, .close-burger, .top-link'
+    );
+
+    magneticTargets.forEach(function(el) {
+      var xTo = gsap.quickTo(el, 'x', { duration: 0.4, ease: 'power4.out' });
+      var yTo = gsap.quickTo(el, 'y', { duration: 0.4, ease: 'power4.out' });
+      var rect = null;
+
+      el.addEventListener('mouseenter', function() {
+        rect = el.getBoundingClientRect();
+      });
+
+      el.addEventListener('mousemove', function(e) {
+        if (!rect) rect = el.getBoundingClientRect();
+        var centerX = rect.left + rect.width / 2;
+        var centerY = rect.top + rect.height / 2;
+        var deltaX = e.clientX - centerX;
+        var deltaY = e.clientY - centerY;
+
+        // Max 12px luxury displacement clamp
+        var maxDist = 12;
+        var clampedX = Math.max(-maxDist, Math.min(maxDist, deltaX * 0.35));
+        var clampedY = Math.max(-maxDist, Math.min(maxDist, deltaY * 0.35));
+
+        xTo(clampedX);
+        yTo(clampedY);
+      });
+
+      el.addEventListener('mouseleave', function() {
+        rect = null;
+        xTo(0);
+        yTo(0);
+      });
+    });
+
+    // 3. 3D PERSPECTIVE CARD TILT WITH INERTIA (Desktop)
+    var tiltTargets = document.querySelectorAll(
+      '.project-vid, .project-file:not(.is-mini), .ci_team, .blog-holder'
+    );
+
+    tiltTargets.forEach(function(card) {
+      gsap.set(card, { transformPerspective: 1000, transformStyle: 'preserve-3d' });
+
+      var rotXTo = gsap.quickTo(card, 'rotationX', { duration: 0.5, ease: 'power4.out' });
+      var rotYTo = gsap.quickTo(card, 'rotationY', { duration: 0.5, ease: 'power4.out' });
+      var scaleTo = gsap.quickTo(card, 'scale', { duration: 0.5, ease: 'power4.out' });
+      var cardRect = null;
+
+      card.addEventListener('mouseenter', function() {
+        cardRect = card.getBoundingClientRect();
+        scaleTo(1.015);
+      });
+
+      card.addEventListener('mousemove', function(e) {
+        if (!cardRect) cardRect = card.getBoundingClientRect();
+        var x = e.clientX - cardRect.left;
+        var y = e.clientY - cardRect.top;
+        var normX = (x / cardRect.width) * 2 - 1;
+        var normY = (y / cardRect.height) * 2 - 1;
+
+        // Tight ±6deg luxury tilt
+        var tiltX = -normY * 6;
+        var tiltY = normX * 6;
+
+        rotXTo(tiltX);
+        rotYTo(tiltY);
+      });
+
+      card.addEventListener('mouseleave', function() {
+        cardRect = null;
+        rotXTo(0);
+        rotYTo(0);
+        scaleTo(1);
+      });
+    });
+  }
+
+  if (document.readyState === 'complete') {
+    initMotionPhysics();
+  } else {
+    window.addEventListener('load', initMotionPhysics);
+  }
+})();
+</script>
+
+</body></html>
