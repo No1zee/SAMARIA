@@ -24,9 +24,9 @@ export const metadata: Metadata = {
     siteName: 'Samaria Tech',
     images: [
       {
-        url: '/icon-512.png',
-        width: 512,
-        height: 512,
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
         alt: 'Samaria Tech',
       },
     ],
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     title: 'Samaria Tech | Web Development, Software & Tech Solutions',
     description:
       'Samaria Tech builds high-performance websites, custom web applications, and practical tech solutions for businesses.',
-    images: ['/icon-512.png'],
+    images: ['/og-image.png'],
   },
 };
 
