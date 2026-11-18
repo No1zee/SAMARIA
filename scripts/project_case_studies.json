@@ -1,0 +1,220 @@
+{
+  "case_studies": [
+    {
+      "id": "hems",
+      "order": "01",
+      "title": "HEMS",
+      "subtitle": "Mission-Critical Emergency Ambulance Telemetry",
+      "tagline": "When every second counts, WhatsApp voice notes don't cut it.",
+      "category": "Mobile & Cloud Systems",
+      "tags": ["Mobile Engineering", "Cloud Infrastructure", "Telemetry"],
+      "media": {
+        "primary": "/assets/projects/hems_console.webp",
+        "primary_alt": "HEMS Apple-native dispatch operations console showing live ambulance telemetry",
+        "secondary": "/assets/projects/hems_mobile_tracker.webp",
+        "secondary_alt": "Rugged Blackview BV7300 Android device running the HEMS telemetry tracker"
+      },
+      "metrics": [
+        { "value": "98%+", "label": "Shift Uptime" },
+        { "value": "0", "label": "Lost GPS Points" },
+        { "value": "<40s", "label": "Triage Awareness" }
+      ],
+      "acts": {
+        "act_1_hassle": {
+          "kicker": "Act I // The Hassle",
+          "headline": "Emergency fleets running on radio static and guesswork.",
+          "paragraphs": [
+            "In emerging markets, ambulance dispatching is often terrifyingly analog. Control rooms shout over crackling two-way radios, drivers text approximate landmarks into chaotic WhatsApp groups, and operators lose all line of sight the moment a vehicle pulls out of the bay.",
+            "When an ambulance hits a cellular dead zone or stalls in gridlock, nobody knows if the crew is five minutes away or stranded on the shoulder. Paramedics shouldn't have to balance patient stabilization with manually typing directions into their personal phones."
+          ]
+        },
+        "act_2_engine": {
+          "kicker": "Act II // The Engine",
+          "headline": "Rugged edge hardware paired with an unkillable offline queue.",
+          "paragraphs": [
+            "We skipped delicate consumer tablets and mounted rugged Blackview BV7300 Android units directly into every vehicle cab. Our background telemetry daemon runs continuously, pulling high-accuracy GNSS fixes every 10 meters.",
+            "When mobile connectivity drops out in rural valleys or dense urban pockets, nothing gets dropped. Coordinates flow into an encrypted, write-ahead SQLite queue on the handset and flush the moment a tower connection returns. Telemetry is authenticated using RSA-OAEP sealed PINs and routes straight to low-latency Cloud Functions deployed in Johannesburg (africa-south1) to keep round-trip times well under 50ms.",
+            "Back at headquarters, dispatchers manage the entire fleet through an Apple-native desktop console built for instant multi-monitor workflows without the lag of heavy web portals."
+          ],
+          "tech_stack": [
+            { "label": "Edge Hardware", "detail": "Blackview BV7300 (MIL-STD-810H, Android 13 Kiosk, GNSS)" },
+            { "label": "Edge Persistence", "detail": "Encrypted SQLite WAL journal with automatic backpressure flushing" },
+            { "label": "Security", "detail": "RSA-OAEP hardware-bound PIN sealing per driver shift" },
+            { "label": "Cloud Routing", "detail": "GCP Cloud Functions (africa-south1) + Firestore Realtime Engine" },
+            { "label": "Dispatch Client", "detail": "Native macOS Swift application with MapKit GPU acceleration" }
+          ]
+        },
+        "act_3_win": {
+          "kicker": "Act III // The Win",
+          "headline": "Zero lost telemetry points and sub-minute response clarity.",
+          "paragraphs": [
+            "The system replaced frantic phone trees with instant situational awareness across every active shift.",
+            "Dispatchers can see vehicle speeds, heading, fuel levels, and real-time transit estimates at a single glance. More importantly, emergency response teams now arrive prepared before wheels even stop turning."
+          ],
+          "outcomes": [
+            {
+              "metric": "98%+ Tracked Uptime",
+              "description": "Handsets reliably run through full 12-hour shifts without overheating or crashing under intense dashboard sun."
+            },
+            {
+              "metric": "Zero Lost GPS Fixes",
+              "description": "Every single coordinate breadcrumb is preserved through dead zones and safely committed to central records."
+            },
+            {
+              "metric": "Sub-Minute Triage",
+              "description": "Emergency routing and hospital bay handoffs were cut from 5-minute phone calls to under 40 seconds of visual dispatch."
+            }
+          ]
+        }
+      },
+      "cta": {
+        "text": "Discuss Telemetry Architecture",
+        "link": "#contact"
+      }
+    },
+    {
+      "id": "kinetic",
+      "order": "02",
+      "title": "Kinetic",
+      "subtitle": "Autonomous Sports Highlight Extraction Pipeline",
+      "tagline": "Stop paying interns to watch 90 minutes of video for a five-second clip.",
+      "category": "Computer Vision & AI Automation",
+      "tags": ["Computer Vision", "Automated Video", "Audio Intelligence"],
+      "media": {
+        "primary": "/assets/projects/kinetic_clipper.webp",
+        "primary_alt": "Kinetic automated sports highlight computer vision tracking frame",
+        "secondary": "/assets/projects/kinetic_hud.webp",
+        "secondary_alt": "Kinetic extraction HUD displaying audio spike waveform and scoreboard bounding box"
+      },
+      "metrics": [
+        { "value": "<12s", "label": "Clip Turnaround" },
+        { "value": "100%", "label": "Goal Verification" },
+        { "value": "-90%", "label": "Compute Costs" }
+      ],
+      "acts": {
+        "act_1_hassle": {
+          "kicker": "Act I // The Hassle",
+          "headline": "Sitting through 90 minutes of footage just to post after everyone stopped caring.",
+          "paragraphs": [
+            "Traditional sports highlight clipping is slow, tedious, and expensive. Production teams pay editors to sit in dark rooms watching full matches with their finger on a record button, frantically logging timestamps when a goal lands.",
+            "By the time someone manually trims the clip, pans the camera to keep the striker centered, burns captions, and exports an MP4 for social media, 20 minutes have passed. The internet has already seen the bootleg phone recording on X and moved on."
+          ]
+        },
+        "act_2_engine": {
+          "kicker": "Act II // The Engine",
+          "headline": "Loudness spike sweeps, ground-truth match stats, and surgical vision cuts.",
+          "paragraphs": [
+            "Running heavyweight vision models across every single frame of a 1080p 60fps broadcast is a fast way to bankrupt your cloud account. Instead, Kinetic uses an intelligent, staged detection funnel:",
+            "First, an ultra-fast FFmpeg ebur128 audio filter sweeps the audio track at 40x speed, hunting for the unmistakable decibel spike of an erupting stadium crowd. Next, instead of blindly trusting crowd noise (which could just be an angry penalty call or referee whistle), the engine validates the timestamp against official live match event APIs.",
+            "Once confirmed, Kinetic fires a single Gemini Vision frame snipe directly at the broadcast scoreboard to verify the score change and clock. Finally, FFmpeg performs a sub-second, keyframe-accurate cut, tracking player action into a clean vertical 9:16 crop ready for social feeds."
+          ],
+          "tech_stack": [
+            { "label": "Audio Analysis", "detail": "FFmpeg ebur128 integrated loudness & RMS spike detection (40x speed)" },
+            { "label": "Verification", "detail": "Live match data feed reconciliation (zero false triggers)" },
+            { "label": "Visual Validation", "detail": "Single-frame Gemini 1.5 Flash scoreboard OCR & state validation" },
+            { "label": "Video Transformation", "detail": "Dynamic 16:9 to 9:16 framing with motion-centered player crop" },
+            { "label": "Encoding Speed", "detail": "Keyframe-accurate stream-copy slice in under 4.2 seconds" }
+          ]
+        },
+        "act_3_win": {
+          "kicker": "Act III // The Win",
+          "headline": "Social-ready vertical highlights delivered before the replay even ends.",
+          "paragraphs": [
+            "Kinetic strips the friction out of high-stakes sports content publishing. Brands and leagues publish professional, broadcast-grade vertical highlights while the live stadium crowd is still celebrating on the pitch.",
+            "No human intervention, no missed game-winners, and compute bills that scale with the game rather than burn through budgets."
+          ],
+          "outcomes": [
+            {
+              "metric": "12-Second Delivery",
+              "description": "From the ball crossing the goal line to a fully rendered vertical video landing on social channels."
+            },
+            {
+              "metric": "Zero False Positives",
+              "description": "Multi-stage audio verification and scoreboard checks ensure only real match highlights get clipped."
+            },
+            {
+              "metric": "90% Compute Savings",
+              "description": "Inspecting one targeted frame instead of 160,000 video frames slashes AI inference costs to pennies."
+            }
+          ]
+        }
+      },
+      "cta": {
+        "text": "Explore Video Automation Engine",
+        "link": "#contact"
+      }
+    },
+    {
+      "id": "bambino",
+      "order": "03",
+      "title": "Bambino",
+      "subtitle": "Interactive 3D Festival World & Ticketing Experience",
+      "tagline": "Nobody wants to squint at a soggy PDF map with a crying toddler in tow.",
+      "category": "Interactive 3D & Spatial Web",
+      "tags": ["3D WebGL", "Interactive Spatial", "Event Platforms"],
+      "media": {
+        "primary": "/assets/projects/bambino_world_map.webp",
+        "primary_alt": "Bambino 3D festival isometric world map running in browser",
+        "secondary": "/assets/projects/bambino_booking_ui.webp",
+        "secondary_alt": "Bambino interactive zone details and instant ticket checkout drawer"
+      },
+      "metrics": [
+        { "value": "<800ms", "label": "Mobile Load Time" },
+        { "value": "0%", "label": "Lost Attendees" },
+        { "value": "+34%", "label": "Workshop Bookings" }
+      ],
+      "acts": {
+        "act_1_hassle": {
+          "kicker": "Act I // The Hassle",
+          "headline": "Static PDF maps that turn family outings into frustrating scavenger hunts.",
+          "paragraphs": [
+            "Outdoor family festivals are wonderful in theory, but navigating them is often exhausting. Organizers usually hand visitors a crinkled paper map at the gate or link to an unwieldy 15MB PDF on their website.",
+            "Parents find themselves desperately pinching and zooming on their phones, trying to figure out where the toddler sensory tent is, which food truck has gluten-free snacks, and where the closest restroom is hiding. When families get lost, queues back up, stage performances start with half-empty crowds, and festival-goers leave early feeling worn out."
+          ]
+        },
+        "act_2_engine": {
+          "kicker": "Act II // The Engine",
+          "headline": "A lightweight 3D world built directly into the mobile browser.",
+          "paragraphs": [
+            "We built Bambino as an interactive 3D miniature festival world that loads instantly right inside mobile Safari and Chrome—no App Store download required.",
+            "Powered by custom Three.js and lean GLTF assets with Meshopt Draco compression, parents can pan, tilt, and explore an isometric recreation of the festival grounds at a silky 60 frames per second. Tapping any attraction brings up a clean slide-over drawer displaying showtimes, wait times, age recommendations, and accessibility notes.",
+            "We layered subtle spatial Web Audio that shifts gently as you explore different themed zones, and built an instant booking checkout wizard directly into the attraction pins so parents can reserve workshop spots without ever leaving the map."
+          ],
+          "tech_stack": [
+            { "label": "3D Graphics", "detail": "Three.js WebGL with custom low-draw-call isometric camera rigging" },
+            { "label": "Asset Optimization", "detail": "Meshopt Draco mesh compression + KTX2 Basis Universal textures" },
+            { "label": "Spatial Sound", "detail": "Web Audio API positional nodes dynamically tied to camera coordinates" },
+            { "label": "Booking Engine", "detail": "Integrated ticket reservation drawer with instant mobile checkout" },
+            { "label": "Performance", "detail": "Locked 60 FPS on standard mobile browsers with sub-800ms initial paint" }
+          ]
+        },
+        "act_3_win": {
+          "kicker": "Act III // The Win",
+          "headline": "Smooth crowd flow, happy parents, and record workshop ticket sales.",
+          "paragraphs": [
+            "By turning a flat piece of paper into an intuitive digital playground, Bambino kept thousands of families oriented and engaged throughout the festival weekend.",
+            "Attendees spent less time asking information booths for directions and more time enjoying the experiences, while organizers gained clear visibility into which zones were seeing the highest visitor traffic."
+          ],
+          "outcomes": [
+            {
+              "metric": "Sub-800ms Load Time",
+              "description": "Ultra-lean 3D asset packaging guarantees immediate loading even on saturated mobile festival networks."
+            },
+            {
+              "metric": "0% Lost Attendees",
+              "description": "Information booths reported zero map-related confusion or lost family complaints over the entire weekend."
+            },
+            {
+              "metric": "34% More Bookings",
+              "description": "Allowing parents to preview attractions in 3D and tap to book directly from the scene unlocked record ticket conversions."
+            }
+          ]
+        }
+      },
+      "cta": {
+        "text": "Build Interactive 3D Platforms",
+        "link": "#contact"
+      }
+    }
+  ]
+}
